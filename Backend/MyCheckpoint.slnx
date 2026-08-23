@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MyCheckpoint.Data/MyCheckpoint.Data.csproj" />
+  <Project Path="MyCheckpoint/MyCheckpoint.csproj" />
+</Solution>

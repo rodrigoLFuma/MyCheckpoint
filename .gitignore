@@ -1,0 +1,22 @@
+# ---- .NET / Backend ----
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# ---- Angular / Node / Frontend ----
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+
+# ---- User Secrets (por si alguna vez aparece en el repo por error) ----
+secrets.json
+
+# ---- Editores / SO ----
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+.DS_Store
