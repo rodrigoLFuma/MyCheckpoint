@@ -13,8 +13,6 @@ namespace MyCheckpoint.Data
         {
             
         }
-        public DbSet<Role> Roles => Set<Role>();
-        public DbSet<User> Users => Set<User>();
         public DbSet<Game> Games => Set<Game>();
         public DbSet<GameList> GameLists => Set<GameList>();
         public DbSet<Category> Categories => Set<Category>();

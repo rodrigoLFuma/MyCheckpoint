@@ -10,5 +10,7 @@ namespace MyCheckpoint.Services.Contracts
         Task<GameListDto> CreateAsync(GameListAddDto dto, int userId);
         Task<GameListDto> UpdateAsync(int id, GameListModifyDto dto, int userId);
         Task DeleteAsync(int id, int userId);
+        Task AddItemAsync(int gameListId, GameListItemAddDto dto, int userId);
+        Task RemoveItemAsync(int gameListId, int gameId, int userId);
     }
 }

@@ -7,7 +7,5 @@ namespace MyCheckpoint.Data.Entities
 {
     public class Role : IdentityRole<int>, IEntity
     {
-        public string Name { get; set; }
-
     }
 }

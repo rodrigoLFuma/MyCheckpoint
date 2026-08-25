@@ -14,6 +14,7 @@ namespace MyCheckpoint.Data.Repositories
         {
             return await _dbSet
                 .Include(ug => ug.Game)
+                .Include(ug => ug.User)
                 .FirstOrDefaultAsync(ug => ug.Id == id);
         }
 
@@ -21,6 +22,7 @@ namespace MyCheckpoint.Data.Repositories
         {
             return await _dbSet
                 .Include(ug => ug.Game)
+                .Include(ug => ug.User)
                 .Where(ug => ug.UserId == userId)
                 .ToListAsync();
         }

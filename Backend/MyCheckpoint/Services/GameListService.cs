@@ -10,12 +10,21 @@ namespace MyCheckpoint.Services
     public class GameListService : IGameListService
     {
         private readonly IGameListRepository _gameListRepository;
+        private readonly IGameListItemRepository _gameListItemRepository;
+        private readonly IGameRepository _gameRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GameListService(IGameListRepository gameListRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public GameListService(
+            IGameListRepository gameListRepository,
+            IGameListItemRepository gameListItemRepository,
+            IGameRepository gameRepository,
+            IUnitOfWork unitOfWork,
+            IMapper mapper)
         {
             _gameListRepository = gameListRepository;
+            _gameListItemRepository = gameListItemRepository;
+            _gameRepository = gameRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -84,6 +93,43 @@ namespace MyCheckpoint.Services
                 throw new ForbiddenException("No tienes permiso para borrar esta lista.");
 
             _gameListRepository.Delete(gameList);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task AddItemAsync(int gameListId, GameListItemAddDto dto, int userId)
+        {
+            var gameList = await _gameListRepository.GetByIdAsync(gameListId)
+                ?? throw new NotFoundException("La lista no existe.");
+
+            if (gameList.UserId != userId)
+                throw new ForbiddenException("No tienes permiso para modificar esta lista.");
+
+            if (gameList.GameListItems.Any(gli => gli.GameId == dto.GameId))
+                throw new ConflictException("Ese juego ya está en la lista.");
+
+            if (await _gameRepository.GetByIdAsync(dto.GameId) is null)
+                throw new NotFoundException("El juego no existe.");
+
+            var item = _mapper.Map<GameListItem>(dto);
+            item.GameListId = gameListId;
+            item.AddedAt = DateTime.UtcNow;
+
+            await _gameListItemRepository.CreateAsync(item);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task RemoveItemAsync(int gameListId, int gameId, int userId)
+        {
+            var gameList = await _gameListRepository.GetByIdAsync(gameListId)
+                ?? throw new NotFoundException("La lista no existe.");
+
+            if (gameList.UserId != userId)
+                throw new ForbiddenException("No tienes permiso para modificar esta lista.");
+
+            var item = gameList.GameListItems.FirstOrDefault(gli => gli.GameId == gameId)
+                ?? throw new NotFoundException("Ese juego no está en la lista.");
+
+            _gameListItemRepository.Delete(item);
             await _unitOfWork.SaveChangesAsync();
         }
     }

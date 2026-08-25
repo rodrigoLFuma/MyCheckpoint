@@ -4,10 +4,8 @@ namespace MyCheckpoint.Data.Entities
 {
     public class User : IdentityUser<int>, IEntity
     {
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public string ProfilePictureURL { get; set; }
-        public string Bibliography { get; set; }
+        public string? ProfilePictureURL { get; set; }
+        public string? Bibliography { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public List<Follow> Followers { get; set; }

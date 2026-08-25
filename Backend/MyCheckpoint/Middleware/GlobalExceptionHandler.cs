@@ -17,6 +17,8 @@ namespace MyCheckpoint.Middleware
         {
             var (statusCode, title, detail) = exception switch
             {
+                BadRequestException => (StatusCodes.Status400BadRequest, "Petición inválida", exception.Message),
+                UnauthorizedException => (StatusCodes.Status401Unauthorized, "No autenticado", exception.Message),
                 NotFoundException => (StatusCodes.Status404NotFound, "Recurso no encontrado", exception.Message),
                 ForbiddenException => (StatusCodes.Status403Forbidden, "Acceso denegado", exception.Message),
                 ConflictException => (StatusCodes.Status409Conflict, "Conflicto", exception.Message),
