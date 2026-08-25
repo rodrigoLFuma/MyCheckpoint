@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyCheckpoint.Models.Dtos
 {
-    public class UserSumaryDto : IDto
+    public class UserSummaryDto : IDto
     {
         [Required]
         public int Id { get; set; }

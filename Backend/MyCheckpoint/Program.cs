@@ -10,6 +10,7 @@ using MyCheckpoint.Data.Repositories.Contracts;
 using MyCheckpoint.Middleware;
 using MyCheckpoint.Services;
 using MyCheckpoint.Services.Contracts;
+using MyCheckpoint.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +65,7 @@ builder.Services.AddScoped<IUserGameService, UserGameService>();
 builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
 
@@ -74,15 +76,16 @@ builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen(options =>
 {
-    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.OpenApiSecurityScheme
+    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
         Name = "Authorization",
-        Type = Microsoft.OpenApi.SecuritySchemeType.Http,
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
         Scheme = "Bearer",
         BearerFormat = "JWT",
-        In = Microsoft.OpenApi.ParameterLocation.Header,
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
         Description = "Pega aquí el token que devuelve /api/auth/login (sin la palabra 'Bearer')."
     });
+    options.OperationFilter<AuthorizeOperationFilter>();
 });
 
 var app = builder.Build();

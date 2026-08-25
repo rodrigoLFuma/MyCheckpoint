@@ -64,7 +64,8 @@ namespace MyCheckpoint.Services
             await _gameListRepository.CreateAsync(gameList);
             await _unitOfWork.SaveChangesAsync();
 
-            return _mapper.Map<GameListDto>(gameList);
+            var created = await _gameListRepository.GetByIdAsync(gameList.Id);
+            return _mapper.Map<GameListDto>(created);
         }
 
         public async Task<GameListDto> UpdateAsync(int id, GameListModifyDto dto, int userId)

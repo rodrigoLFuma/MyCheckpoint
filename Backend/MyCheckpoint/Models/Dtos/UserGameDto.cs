@@ -18,6 +18,6 @@ namespace MyCheckpoint.Models.Dtos
         [Required]
         public GameDto Game { get; set; }
         [Required]
-        public UserSumaryDto UserSumary { get; set; }
+        public UserSummaryDto UserSummary { get; set; }
     }
 }

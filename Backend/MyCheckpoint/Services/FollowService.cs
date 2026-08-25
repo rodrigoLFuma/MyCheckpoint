@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using MyCheckpoint.Data.Entities;
 using MyCheckpoint.Data.Repositories.Contracts;
 using MyCheckpoint.Exceptions;
@@ -10,12 +11,18 @@ namespace MyCheckpoint.Services
     public class FollowService : IFollowService
     {
         private readonly IFollowRepository _followRepository;
+        private readonly UserManager<User> _userManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public FollowService(IFollowRepository followRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public FollowService(
+            IFollowRepository followRepository,
+            UserManager<User> userManager,
+            IUnitOfWork unitOfWork,
+            IMapper mapper)
         {
             _followRepository = followRepository;
+            _userManager = userManager;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -41,6 +48,9 @@ namespace MyCheckpoint.Services
         {
             if (dto.FollowedId == followerId)
                 throw new BadRequestException("No puedes seguirte a ti mismo.");
+
+            if (await _userManager.FindByIdAsync(dto.FollowedId.ToString()) is null)
+                throw new NotFoundException("El usuario que quieres seguir no existe.");
 
             if (await _followRepository.ExistsAsync(followerId, dto.FollowedId))
                 throw new ConflictException("Ya sigues a este usuario.");

@@ -9,7 +9,7 @@ namespace MyCheckpoint.Mapping
         public UserGameProfile()
         {
             CreateMap<UserGame, UserGameDto>()
-                .ForMember(dest => dest.UserSumary,
+                .ForMember(dest => dest.UserSummary,
                     opt => opt.MapFrom(src => src.User));
 
             CreateMap<UserGameAddDto, UserGame>();

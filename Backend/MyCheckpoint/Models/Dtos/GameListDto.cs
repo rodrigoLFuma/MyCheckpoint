@@ -14,7 +14,7 @@ namespace MyCheckpoint.Models.Dtos
         [Required]
         public bool IsPublic { get; set; }
         [Required]
-        public UserSumaryDto User {  get; set; }
+        public UserSummaryDto User {  get; set; }
         public List<GameListItemDto> Games { get; set; }
 
     }

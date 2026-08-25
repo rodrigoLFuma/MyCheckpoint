@@ -9,7 +9,7 @@ namespace MyCheckpoint.Mapping
         public UserProfile()
         {
             CreateMap<User, UserDto>();
-            CreateMap<User, UserSumaryDto>();
+            CreateMap<User, UserSummaryDto>();
 
             CreateMap<UserAddDto, User>();
             CreateMap<UserModifyDto, User>();

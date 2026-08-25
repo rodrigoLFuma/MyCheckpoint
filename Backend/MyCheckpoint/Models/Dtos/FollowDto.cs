@@ -6,9 +6,9 @@ namespace MyCheckpoint.Models.Dtos
     public class FollowDto 
     {
         [Required]
-        public UserSumaryDto Follower { get; set; }
+        public UserSummaryDto Follower { get; set; }
         [Required]
-        public UserSumaryDto Followed { get; set; }
+        public UserSummaryDto Followed { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
 
