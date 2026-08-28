@@ -1,0 +1,5 @@
+@if (authService.isLoggedIn()) {
+  <h1 class="text-2xl font-bold">Bienvenido, {{ authService.user()?.userName }}</h1>
+} @else {
+  <h1 class="text-2xl font-bold">Bienvenido a MyCheckpoint</h1>
+}
