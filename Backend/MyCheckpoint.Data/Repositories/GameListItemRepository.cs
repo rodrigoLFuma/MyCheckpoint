@@ -12,7 +12,7 @@ namespace MyCheckpoint.Data.Repositories
 
         public async Task<bool> ExistsAsync(int gameListId, int gameId)
         {
-            return await _dbSet.AnyAsync(gli => gli.GameListId == gameListId && gli.GameId == gameId);
+            return await _context.Set<GameListItem>().AnyAsync(gli => gli.GameListId == gameListId && gli.GameId == gameId);
         }
     }
 }

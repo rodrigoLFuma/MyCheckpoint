@@ -31,7 +31,9 @@ namespace MyCheckpoint.Services
             var user = await _userManager.FindByIdAsync(userId.ToString())
                 ?? throw new NotFoundException("El usuario no existe.");
 
-            return _mapper.Map<UserDto>(user);
+            var userDto = _mapper.Map<UserDto>(user);
+            userDto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
+            return userDto;
         }
 
         public async Task<UserDto> UpdateProfileAsync(int userId, UserModifyDto dto)
@@ -45,7 +47,9 @@ namespace MyCheckpoint.Services
             if (!result.Succeeded)
                 throw new ConflictException(string.Join(" ", result.Errors.Select(e => e.Description)));
 
-            return _mapper.Map<UserDto>(user);
+            var userDto = _mapper.Map<UserDto>(user);
+            userDto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
+            return userDto;
         }
     }
 }

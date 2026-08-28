@@ -58,11 +58,14 @@ namespace MyCheckpoint.Services
         {
             var (token, expiresAt) = await _jwtTokenGenerator.GenerateTokenAsync(user);
 
+            var userDto = _mapper.Map<UserDto>(user);
+            userDto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
+
             return new AuthResponseDto
             {
                 Token = token,
                 ExpiresAt = expiresAt,
-                User = _mapper.Map<UserDto>(user)
+                User = userDto
             };
         }
     }

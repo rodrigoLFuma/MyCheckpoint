@@ -10,6 +10,7 @@ using MyCheckpoint.Data.Repositories.Contracts;
 using MyCheckpoint.Middleware;
 using MyCheckpoint.Services;
 using MyCheckpoint.Services.Contracts;
+using MyCheckpoint.Services.External;
 using MyCheckpoint.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,9 +46,36 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                if (context.Request.Cookies.TryGetValue("token", out var token))
+                {
+                    context.Token = token;
+                }
+                return Task.CompletedTask;
+            }
+        };
     });
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
+
+builder.Services.AddHttpClient<IRawgClient, RawgClient>(client =>
+{
+    client.BaseAddress = new Uri("https://api.rawg.io/api/");
+});
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -100,6 +128,8 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
+
+app.UseCors("Frontend");
 
 app.UseAuthentication();
 app.UseAuthorization();

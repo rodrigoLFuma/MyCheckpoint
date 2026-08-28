@@ -12,25 +12,25 @@ namespace MyCheckpoint.Data.Repositories
 
         public override async Task<UserGame?> GetByIdAsync(int id)
         {
-            return await _dbSet
-                .Include(ug => ug.Game)
-                .Include(ug => ug.User)
-                .FirstOrDefaultAsync(ug => ug.Id == id);
+            return await _context.Set<UserGame>()
+                    .Include(ug => ug.Game)
+                    .Include(ug => ug.User)
+                    .FirstOrDefaultAsync(ug => ug.Id == id);
         }
 
         public async Task<IEnumerable<UserGame>> GetByUserIdAsync(int userId)
         {
-            return await _dbSet
-                .Include(ug => ug.Game)
-                .Include(ug => ug.User)
-                .Where(ug => ug.UserId == userId)
-                .ToListAsync();
+            return await _context.Set<UserGame>()
+                    .Include(ug => ug.Game)
+                    .Include(ug => ug.User)
+                    .Where(ug => ug.UserId == userId)
+                    .ToListAsync();
         }
 
         public async Task<UserGame?> GetByUserAndGameAsync(int userId, int gameId)
         {
-            return await _dbSet
-                .FirstOrDefaultAsync(ug => ug.UserId == userId && ug.GameId == gameId);
+            return await _context.Set<UserGame>()
+                    .FirstOrDefaultAsync(ug => ug.UserId == userId && ug.GameId == gameId);
         }
     }
 }

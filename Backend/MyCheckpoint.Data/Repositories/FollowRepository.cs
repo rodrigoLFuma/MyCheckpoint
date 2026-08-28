@@ -12,7 +12,7 @@ namespace MyCheckpoint.Data.Repositories
 
         public async Task<IEnumerable<Follow>> GetFollowersAsync(int userId)
         {
-            return await _dbSet
+            return await _context.Set<Follow>()
                 .Include(f => f.Follower)
                 .Where(f => f.FollowedId == userId)
                 .ToListAsync();
@@ -20,7 +20,7 @@ namespace MyCheckpoint.Data.Repositories
 
         public async Task<IEnumerable<Follow>> GetFollowingAsync(int userId)
         {
-            return await _dbSet
+            return await _context.Set<Follow>()
                 .Include(f => f.Followed)
                 .Where(f => f.FollowerId == userId)
                 .ToListAsync();
@@ -28,7 +28,7 @@ namespace MyCheckpoint.Data.Repositories
 
         public async Task<bool> ExistsAsync(int followerId, int followedId)
         {
-            return await _dbSet.AnyAsync(f => f.FollowerId == followerId && f.FollowedId == followedId);
+            return await _context.Set<Follow>().AnyAsync(f => f.FollowerId == followerId && f.FollowedId == followedId);
         }
     }
 }

@@ -9,6 +9,7 @@ namespace MyCheckpoint.Data.Repositories.Contracts
     {
         Task<IEnumerable<Game>> GetByCategoryAsync(IEnumerable<int> categoryIds);
         Task<IEnumerable<Game>> SearchByNameAsync(string term);
+        Task<Game?> GetByRawgIdAsync(int rawgId);
 
     }
 }
