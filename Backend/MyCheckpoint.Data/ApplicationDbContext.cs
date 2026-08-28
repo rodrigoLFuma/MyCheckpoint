@@ -55,6 +55,10 @@ namespace MyCheckpoint.Data
 
             modelBuilder.Entity<GameListItem>()
                 .HasKey(x => new { x.GameListId, x.GameId });
+
+            modelBuilder.Entity<Game>()
+                .HasIndex(g => g.RawgId)
+                .IsUnique();
         }
     }
 }

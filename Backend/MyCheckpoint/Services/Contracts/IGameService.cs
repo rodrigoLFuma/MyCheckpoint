@@ -1,4 +1,5 @@
 using MyCheckpoint.Models.Dtos;
+using MyCheckpoint.Services.External;
 
 namespace MyCheckpoint.Services.Contracts
 {
@@ -11,5 +12,7 @@ namespace MyCheckpoint.Services.Contracts
         Task<GameDto> CreateAsync(GameAddDto dto);
         Task<GameDto> UpdateAsync(int id, GameModifyDto dto);
         Task DeleteAsync(int id);
+        Task<IEnumerable<RawgGameSummary>> SearchExternalAsync(string term);
+        Task<GameDto> ImportFromRawgAsync(int rawgId);
     }
 }

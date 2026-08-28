@@ -16,34 +16,42 @@ namespace MyCheckpoint.Data.Repositories
 
         public override async Task<Game?> GetByIdAsync(int id)
         {
-            return await _dbSet
-                .Include(g => g.GameCategories)
+            return await _context.Set<Game>()
+                    .Include(g => g.GameCategories)
                     .ThenInclude(gc => gc.Category)
-                .FirstOrDefaultAsync(g => g.Id == id);
+                    .FirstOrDefaultAsync(g => g.Id == id);
         }
 
         public override async Task<IEnumerable<Game>> GetAllAsync()
         {
-            return await _dbSet
-                .Include(g => g.GameCategories)
+            return await _context.Set<Game>()
+                    .Include(g => g.GameCategories)
                     .ThenInclude(gc => gc.Category)
-                .ToListAsync();
+                    .ToListAsync();
         }
 
         public async Task<IEnumerable<Game>> GetByCategoryAsync(IEnumerable<int> categoryIds)
         {
-            return await _dbSet
-                .Include(g => g.GameCategories)
+            return await _context.Set<Game>()
+                    .Include(g => g.GameCategories)
                     .ThenInclude(gc => gc.Category)
-                .Where(g => g.GameCategories.Any(gc => categoryIds.Contains(gc.CategoryId)))
-                .ToListAsync();
+                    .Where(g => g.GameCategories.Any(gc => categoryIds.Contains(gc.CategoryId)))
+                    .ToListAsync();
         }
 
         public async Task<IEnumerable<Game>> SearchByNameAsync(string term)
         {
-            return await _dbSet
+            return await _context.Set<Game>()
                 .Where(g => EF.Functions.ILike(g.Name, $"%{term}%"))
                 .ToListAsync();
+        }
+
+        public async Task<Game?> GetByRawgIdAsync(int rawgId)
+        {
+            return await _context.Set<Game>()
+                    .Include(g => g.GameCategories)
+                    .ThenInclude(gc => gc.Category)
+                    .FirstOrDefaultAsync(g => g.RawgId == rawgId);
         }
     }
 }

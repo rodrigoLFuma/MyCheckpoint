@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyCheckpoint.Models.Dtos;
 using MyCheckpoint.Services.Contracts;
+using MyCheckpoint.Services.External;
 
 namespace MyCheckpoint.Controllers
 {
@@ -38,6 +39,20 @@ namespace MyCheckpoint.Controllers
         public async Task<ActionResult<IEnumerable<GameDto>>> GetByCategory([FromQuery] IEnumerable<int> categoryIds)
         {
             return Ok(await _gameService.GetByCategoryAsync(categoryIds));
+        }
+
+        [HttpGet("search-external")]
+        public async Task<ActionResult<IEnumerable<RawgGameSummary>>> SearchExternal([FromQuery] string term)
+        {
+            return Ok(await _gameService.SearchExternalAsync(term));
+        }
+
+        [HttpPost("import/{rawgId}")]
+        [Authorize]
+        public async Task<ActionResult<GameDto>> Import(int rawgId)
+        {
+            var created = await _gameService.ImportFromRawgAsync(rawgId);
+            return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
         [HttpPost]

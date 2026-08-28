@@ -4,6 +4,7 @@ using MyCheckpoint.Data.Repositories.Contracts;
 using MyCheckpoint.Exceptions;
 using MyCheckpoint.Models.Dtos;
 using MyCheckpoint.Services.Contracts;
+using MyCheckpoint.Services.External;
 
 namespace MyCheckpoint.Services
 {
@@ -11,17 +12,20 @@ namespace MyCheckpoint.Services
     {
         private readonly IGameRepository _gameRepository;
         private readonly IRepositoryBaseWithId<Category> _categoryRepository;
+        private readonly IRawgClient _rawgClient;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public GameService(
             IGameRepository gameRepository,
             IRepositoryBaseWithId<Category> categoryRepository,
+            IRawgClient rawgClient,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             _gameRepository = gameRepository;
             _categoryRepository = categoryRepository;
+            _rawgClient = rawgClient;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -111,6 +115,66 @@ namespace MyCheckpoint.Services
 
             if (categoryIds.Any(id => !lookup.ContainsKey(id)))
                 throw new NotFoundException("Una o más categorías no existen.");
+
+            return lookup;
+        }
+
+        public async Task<IEnumerable<RawgGameSummary>> SearchExternalAsync(string term)
+        {
+            return await _rawgClient.SearchAsync(term);
+        }
+
+        public async Task<GameDto> ImportFromRawgAsync(int rawgId)
+        {
+            var existing = await _gameRepository.GetByRawgIdAsync(rawgId);
+            if (existing is not null)
+                return _mapper.Map<GameDto>(existing);
+
+            var rawgGame = await _rawgClient.GetByIdAsync(rawgId)
+                ?? throw new NotFoundException("El juego no existe en RAWG.");
+
+            var categoryLookup = await GetOrCreateCategoriesByNameAsync(rawgGame.Genres.Select(g => g.Name));
+
+            var game = new Game
+            {
+                Name = rawgGame.Name,
+                ReleaseDate = rawgGame.Released ?? DateTime.MinValue,
+                RawgId = rawgGame.Id,
+                Developer = rawgGame.Developers.Count > 0
+                    ? string.Join(", ", rawgGame.Developers.Select(d => d.Name))
+                    : null,
+                Publisher = rawgGame.Publishers.Count > 0
+                    ? string.Join(", ", rawgGame.Publishers.Select(p => p.Name))
+                    : null,
+                Description = rawgGame.DescriptionRaw,
+                CoverImageUrl = rawgGame.BackgroundImage,
+                Metacritic = rawgGame.Metacritic,
+                GameCategories = rawgGame.Genres
+                    .Select(g => new GameCategory { Category = categoryLookup[g.Name] })
+                    .ToList()
+            };
+
+            await _gameRepository.CreateAsync(game);
+            await _unitOfWork.SaveChangesAsync();
+
+            var created = await _gameRepository.GetByIdAsync(game.Id);
+            return _mapper.Map<GameDto>(created);
+        }
+
+        private async Task<Dictionary<string, Category>> GetOrCreateCategoriesByNameAsync(IEnumerable<string> names)
+        {
+            var existingCategories = await _categoryRepository.GetAllAsync();
+            var lookup = existingCategories.ToDictionary(c => c.Name, StringComparer.OrdinalIgnoreCase);
+
+            foreach (var name in names)
+            {
+                if (!lookup.ContainsKey(name))
+                {
+                    var newCategory = new Category { Name = name };
+                    await _categoryRepository.CreateAsync(newCategory);
+                    lookup[name] = newCategory;
+                }
+            }
 
             return lookup;
         }

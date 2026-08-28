@@ -17,7 +17,7 @@ namespace MyCheckpoint.Data.Repositories
 
         public virtual async Task<T?> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            return await _context.Set<T>().FindAsync(id);
         }
     }
 }

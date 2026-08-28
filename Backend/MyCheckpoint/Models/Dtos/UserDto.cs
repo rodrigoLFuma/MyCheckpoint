@@ -14,5 +14,6 @@ namespace MyCheckpoint.Models.Dtos
         public string? Bibliography { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }
+        public List<string> Roles { get; set; } = new();
     }
 }

@@ -16,17 +16,36 @@ namespace MyCheckpoint.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<AuthResponseDto>> Register(UserAddDto dto)
+        public async Task<ActionResult<AuthUserResponseDto>> Register(UserAddDto dto)
         {
             var response = await _authService.RegisterAsync(dto);
-            return Ok(response);
+            SetTokenCookie(response.Token);
+            return Ok(new AuthUserResponseDto { User = response.User, ExpiresAt = response.ExpiresAt });
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AuthResponseDto>> Login(LoginDto dto)
+        public async Task<ActionResult<AuthUserResponseDto>> Login(LoginDto dto)
         {
             var response = await _authService.LoginAsync(dto);
-            return Ok(response);
+            SetTokenCookie(response.Token);
+            return Ok(new AuthUserResponseDto { User = response.User, ExpiresAt = response.ExpiresAt });
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("token");
+            return NoContent();
+        }
+
+        private void SetTokenCookie(string token)
+        {
+            Response.Cookies.Append("token", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict
+            });
         }
     }
 }
