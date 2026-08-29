@@ -1,0 +1,48 @@
+<div class="mx-auto mt-16 max-w-sm rounded border p-6">
+  <h1 class="mb-4 text-xl font-bold">Crear cuenta</h1>
+
+  <form (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
+    <input
+      type="text"
+      [(ngModel)]="userName"
+      name="userName"
+      placeholder="Nombre de usuario"
+      required
+      class="rounded border px-3 py-2"
+    />
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      placeholder="Email"
+      required
+      class="rounded border px-3 py-2"
+    />
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      placeholder="Contraseña"
+      required
+      minlength="8"
+      class="rounded border px-3 py-2"
+    />
+    <p class="text-xs text-gray-500">Mínimo 8 caracteres, con al menos una mayúscula y un número.</p>
+
+    @if (errorMessage()) {
+      <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    }
+
+    <button
+      type="submit"
+      [disabled]="isSubmitting()"
+      class="rounded bg-blue-600 px-3 py-2 text-white disabled:opacity-50"
+    >
+      {{ isSubmitting() ? 'Creando cuenta...' : 'Crear cuenta' }}
+    </button>
+  </form>
+
+  <p class="mt-4 text-sm">
+    ¿Ya tienes cuenta? <a routerLink="/login" class="text-blue-600 underline">Inicia sesión</a>
+  </p>
+</div>
