@@ -1,0 +1,105 @@
+<div class="mx-auto mt-10 max-w-lg rounded border p-6">
+  @if (!isEditing()) {
+    <div class="flex items-start justify-between">
+      <div class="flex items-center gap-4">
+        @if (authService.user()?.profilePictureURL) {
+          <img
+            [src]="authService.user()?.profilePictureURL"
+            alt="Foto de perfil"
+            class="h-16 w-16 rounded-full object-cover"
+          />
+        } @else {
+          <div class="flex h-16 w-16 items-center justify-center rounded-full bg-slate-300 text-xl font-bold">
+            {{ authService.user()?.userName?.charAt(0)?.toUpperCase() }}
+          </div>
+        }
+
+        <div>
+          <h1 class="text-xl font-bold">{{ authService.user()?.userName }}</h1>
+          <p class="text-sm text-slate-500">{{ authService.user()?.email }}</p>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        (click)="startEditing()"
+        class="rounded bg-blue-600 px-3 py-2 text-sm text-white"
+      >
+        Editar perfil
+      </button>
+    </div>
+
+    @if (authService.user()?.bibliography) {
+      <p class="mt-4 whitespace-pre-line">{{ authService.user()?.bibliography }}</p>
+    }
+
+    @if (authService.user()?.roles?.length) {
+      <div class="mt-4 flex gap-2">
+        @for (role of authService.user()?.roles; track role) {
+          <span class="rounded bg-slate-200 px-2 py-1 text-xs font-semibold">{{ role }}</span>
+        }
+      </div>
+    }
+
+    <p class="mt-4 text-xs text-slate-400">
+      Miembro desde {{ authService.user()?.createdAt | date: 'longDate' }}
+    </p>
+  } @else {
+    <h1 class="mb-4 text-xl font-bold">Editar perfil</h1>
+
+    <form (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
+      <label class="text-sm font-semibold">
+        Nombre de usuario
+        <input
+          type="text"
+          [(ngModel)]="userName"
+          name="userName"
+          required
+          class="mt-1 w-full rounded border px-3 py-2"
+        />
+      </label>
+
+      <label class="text-sm font-semibold">
+        URL de foto de perfil
+        <input
+          type="url"
+          [(ngModel)]="profilePictureURL"
+          name="profilePictureURL"
+          class="mt-1 w-full rounded border px-3 py-2"
+        />
+      </label>
+
+      <label class="text-sm font-semibold">
+        Biografía
+        <textarea
+          [(ngModel)]="bibliography"
+          name="bibliography"
+          rows="3"
+          class="mt-1 w-full rounded border px-3 py-2"
+        ></textarea>
+      </label>
+
+      @if (errorMessage()) {
+        <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+      }
+
+      <div class="flex gap-2">
+        <button
+          type="submit"
+          [disabled]="isSubmitting()"
+          class="rounded bg-blue-600 px-3 py-2 text-white disabled:opacity-50"
+        >
+          {{ isSubmitting() ? 'Guardando...' : 'Guardar' }}
+        </button>
+        <button
+          type="button"
+          (click)="cancelEditing()"
+          [disabled]="isSubmitting()"
+          class="rounded border px-3 py-2"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  }
+</div>

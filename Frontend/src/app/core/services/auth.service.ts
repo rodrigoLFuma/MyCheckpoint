@@ -4,9 +4,11 @@ import { apiAuthLoginPost$Json } from '../../api/fn/auth/api-auth-login-post-jso
 import { apiAuthRegisterPost$Json } from '../../api/fn/auth/api-auth-register-post-json';
 import { apiAuthLogoutPost } from '../../api/fn/auth/api-auth-logout-post';
 import { apiUserMeGet$Json } from '../../api/fn/user/api-user-me-get-json';
+import { apiUserMePut$Json } from '../../api/fn/user/api-user-me-put-json';
 import { LoginDto } from '../../api/models/login-dto';
 import { UserAddDto } from '../../api/models/user-add-dto';
 import { UserDto } from '../../api/models/user-dto';
+import { UserModifyDto } from '../../api/models/user-modify-dto';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -25,6 +27,11 @@ export class AuthService {
   async register(dto: UserAddDto): Promise<void> {
     const response = await this.api.invoke(apiAuthRegisterPost$Json, { body: dto });
     this._user.set(response.user ?? null);
+  }
+
+  async updateProfile(dto: UserModifyDto): Promise<void> {
+    const response = await this.api.invoke(apiUserMePut$Json, { body: dto });
+    this._user.set(response);
   }
 
   async logout(): Promise<void> {
