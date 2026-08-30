@@ -35,5 +35,13 @@ namespace MyCheckpoint.Controllers
         {
             return Ok(await _userService.UpdateProfileAsync(this.GetUserId(), dto));
         }
+
+        [HttpDelete("me")]
+        [Authorize]
+        public async Task<IActionResult> DeleteMyAccount()
+        {
+            await _userService.DeleteMyAccountAsync(this.GetUserId());
+            return NoContent();
+        }
     }
 }

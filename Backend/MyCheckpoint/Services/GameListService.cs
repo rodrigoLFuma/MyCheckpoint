@@ -9,6 +9,8 @@ namespace MyCheckpoint.Services
 {
     public class GameListService : IGameListService
     {
+        private const string PendingListName = "Juegos pendientes";
+
         private readonly IGameListRepository _gameListRepository;
         private readonly IGameListItemRepository _gameListItemRepository;
         private readonly IGameRepository _gameRepository;
@@ -132,6 +134,52 @@ namespace MyCheckpoint.Services
 
             _gameListItemRepository.Delete(item);
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task AddToPendingListAsync(int gameId, int userId)
+        {
+            var pendingList = await GetOrCreatePendingListAsync(userId);
+            await AddItemAsync(pendingList.Id, new GameListItemAddDto { GameId = gameId }, userId);
+        }
+
+        public async Task EnsurePendingListAsync(int userId)
+        {
+            await GetOrCreatePendingListAsync(userId);
+        }
+
+        public async Task RemoveFromPendingListIfPresentAsync(int gameId, int userId)
+        {
+            var lists = await _gameListRepository.GetByUserIdAsync(userId, userId);
+            var pendingList = lists.FirstOrDefault(gl => gl.Name == PendingListName);
+            if (pendingList is null)
+                return;
+
+            var alreadyThere = await _gameListItemRepository.ExistsAsync(pendingList.Id, gameId);
+            if (!alreadyThere)
+                return;
+
+            await RemoveItemAsync(pendingList.Id, gameId, userId);
+        }
+
+        private async Task<GameList> GetOrCreatePendingListAsync(int userId)
+        {
+            var lists = await _gameListRepository.GetByUserIdAsync(userId, userId);
+            var existing = lists.FirstOrDefault(gl => gl.Name == PendingListName);
+            if (existing is not null)
+                return existing;
+
+            var pendingList = new GameList
+            {
+                Name = PendingListName,
+                IsPublic = false,
+                UserId = userId,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            await _gameListRepository.CreateAsync(pendingList);
+            await _unitOfWork.SaveChangesAsync();
+
+            return pendingList;
         }
     }
 }

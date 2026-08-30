@@ -5,6 +5,7 @@ import { apiAuthRegisterPost$Json } from '../../api/fn/auth/api-auth-register-po
 import { apiAuthLogoutPost } from '../../api/fn/auth/api-auth-logout-post';
 import { apiUserMeGet$Json } from '../../api/fn/user/api-user-me-get-json';
 import { apiUserMePut$Json } from '../../api/fn/user/api-user-me-put-json';
+import { apiUserMeDelete } from '../../api/fn/user/api-user-me-delete';
 import { LoginDto } from '../../api/models/login-dto';
 import { UserAddDto } from '../../api/models/user-add-dto';
 import { UserDto } from '../../api/models/user-dto';
@@ -37,6 +38,17 @@ export class AuthService {
   async logout(): Promise<void> {
     await this.api.invoke(apiAuthLogoutPost);
     this._user.set(null);
+  }
+
+  async deleteAccount(): Promise<void> {
+    await this.api.invoke(apiUserMeDelete);
+    try {
+      // La cuenta ya no existe, pero la cookie HttpOnly sigue en el
+      // navegador hasta que el propio backend la borre explícitamente.
+      await this.api.invoke(apiAuthLogoutPost);
+    } finally {
+      this._user.set(null);
+    }
   }
 
   /**

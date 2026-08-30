@@ -8,10 +8,10 @@ namespace MyCheckpoint.Data.Entities
     {
         public int Id { get; set; }
         public string Status { get; set; }
-        public int Rate { get; set; }
-        public string Review { get; set; }
+        public int? Rate { get; set; }
+        public string? Review { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime PlayedDate { get; set; }
+        public DateTime? PlayedDate { get; set; }
         public DateTime UpdatedAt { get; set; }
 
         public int UserId { get; set; }

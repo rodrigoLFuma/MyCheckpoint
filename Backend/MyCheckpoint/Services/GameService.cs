@@ -138,7 +138,10 @@ namespace MyCheckpoint.Services
             var game = new Game
             {
                 Name = rawgGame.Name,
-                ReleaseDate = rawgGame.Released ?? DateTime.MinValue,
+                // Postgres guarda ReleaseDate como timestamptz, y exige Kind=Utc.
+                // Tanto el valor por defecto como lo que deserializa RAWG llegan
+                // con Kind=Unspecified, así que hay que forzarlo explícitamente.
+                ReleaseDate = DateTime.SpecifyKind(rawgGame.Released ?? DateTime.MinValue, DateTimeKind.Utc),
                 RawgId = rawgGame.Id,
                 Developer = rawgGame.Developers.Count > 0
                     ? string.Join(", ", rawgGame.Developers.Select(d => d.Name))

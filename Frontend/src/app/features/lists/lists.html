@@ -1,0 +1,77 @@
+<div class="mx-auto mt-10 max-w-2xl">
+  <div class="mb-4 flex items-center justify-between">
+    <h1 class="text-xl font-bold">Mis listas</h1>
+    @if (!isFormOpen()) {
+      <button type="button" (click)="openForm()" class="rounded bg-blue-600 px-3 py-2 text-sm text-white">
+        Crear lista
+      </button>
+    }
+  </div>
+
+  @if (isFormOpen()) {
+    <form (ngSubmit)="onSubmit()" class="mb-6 flex flex-col gap-3 rounded border p-4">
+      <input
+        type="text"
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Nombre de la lista"
+        required
+        class="rounded border px-3 py-2"
+      />
+      <textarea
+        [(ngModel)]="description"
+        name="description"
+        placeholder="Descripción (opcional)"
+        rows="2"
+        class="rounded border px-3 py-2"
+      ></textarea>
+      <label class="flex items-center gap-2 text-sm">
+        <input type="checkbox" [(ngModel)]="isPublic" name="isPublic" />
+        Lista pública
+      </label>
+
+      @if (formError()) {
+        <p class="text-sm text-red-600">{{ formError() }}</p>
+      }
+
+      <div class="flex gap-2">
+        <button
+          type="submit"
+          [disabled]="isSubmitting()"
+          class="flex-1 rounded bg-blue-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+        >
+          {{ isSubmitting() ? 'Creando...' : 'Crear' }}
+        </button>
+        <button type="button" (click)="cancelForm()" class="rounded border px-3 py-2 text-sm">Cancelar</button>
+      </div>
+    </form>
+  }
+
+  @if (isLoading()) {
+    <p class="text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (!isLoading() && lists().length === 0) {
+    <p class="text-sm text-slate-500">Todavía no has creado ninguna lista.</p>
+  }
+
+  <ul class="flex flex-col gap-2">
+    @for (list of lists(); track list.id) {
+      <li>
+        <a [routerLink]="['/lists', list.id]" class="block rounded border p-3 hover:bg-slate-50">
+          <div class="flex items-center justify-between">
+            <span class="font-semibold">{{ list.name }}</span>
+            <span class="text-xs text-slate-500">{{ list.isPublic ? 'Pública' : 'Privada' }}</span>
+          </div>
+          @if (list.description) {
+            <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
+          }
+        </a>
+      </li>
+    }
+  </ul>
+</div>

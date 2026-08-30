@@ -1,5 +1,8 @@
 <header class="relative flex items-center justify-between bg-slate-800 px-6 py-4 text-white">
-  <a routerLink="/" class="font-bold">MyCheckpoint</a>
+  <div class="flex items-center gap-6">
+    <a routerLink="/" class="font-bold">MyCheckpoint</a>
+    <a routerLink="/games/search" class="text-sm underline">Buscar juegos</a>
+  </div>
 
   @if (authService.isLoggedIn()) {
     <div class="relative">
@@ -16,6 +19,20 @@
         <div class="fixed inset-0 z-10" (click)="closeMenu()"></div>
 
         <div class="absolute right-0 z-20 mt-2 w-40 rounded border border-slate-600 bg-slate-800 shadow-lg">
+          <a
+            routerLink="/library"
+            (click)="closeMenu()"
+            class="block w-full px-4 py-2 hover:bg-slate-700"
+          >
+            Mi biblioteca
+          </a>
+          <a
+            routerLink="/lists"
+            (click)="closeMenu()"
+            class="block w-full px-4 py-2 hover:bg-slate-700"
+          >
+            Mis listas
+          </a>
           <a
             routerLink="/profile"
             (click)="closeMenu()"

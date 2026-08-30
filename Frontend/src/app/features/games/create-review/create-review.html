@@ -1,0 +1,65 @@
+@if (isDone()) {
+  <p class="mt-2 text-sm text-green-600">¡Reseña guardada!</p>
+} @else if (alreadyReviewed()) {
+  <p class="mt-2 w-full rounded bg-slate-100 px-2 py-1 text-center text-sm text-slate-500">Reseña creada</p>
+} @else if (!authService.isLoggedIn()) {
+  <a routerLink="/login" class="mt-2 block text-sm text-blue-600 underline">Inicia sesión para reseñar</a>
+} @else if (!isFormOpen()) {
+  <button
+    type="button"
+    (click)="openForm()"
+    class="mt-2 w-full rounded bg-blue-600 px-2 py-1 text-sm text-white"
+  >
+    Crear reseña
+  </button>
+} @else {
+  <form (ngSubmit)="onSubmit()" class="mt-2 flex flex-col gap-2" (click)="$event.stopPropagation()">
+    <label class="text-xs font-semibold">
+      Estado
+      <select [(ngModel)]="status" name="status" class="mt-1 w-full rounded border px-2 py-1 text-sm">
+        @for (option of statuses; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+    </label>
+
+    @if (status !== 'Pendiente') {
+      <label class="text-xs font-semibold">
+        Puntuación ({{ rate }}/10)
+        <input type="range" min="1" max="10" [(ngModel)]="rate" name="rate" class="w-full" />
+      </label>
+
+      <label class="text-xs font-semibold">
+        Reseña (opcional)
+        <textarea
+          [(ngModel)]="review"
+          name="review"
+          rows="2"
+          class="mt-1 w-full rounded border px-2 py-1 text-sm"
+        ></textarea>
+      </label>
+    }
+
+    @if (errorMessage()) {
+      <p class="text-xs text-red-600">{{ errorMessage() }}</p>
+    }
+
+    <div class="flex gap-2">
+      <button
+        type="submit"
+        [disabled]="isSubmitting()"
+        class="flex-1 rounded bg-blue-600 px-2 py-1 text-sm text-white disabled:opacity-50"
+      >
+        {{ isSubmitting() ? 'Guardando...' : 'Guardar' }}
+      </button>
+      <button
+        type="button"
+        (click)="cancel()"
+        [disabled]="isSubmitting()"
+        class="rounded border px-2 py-1 text-sm"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+}

@@ -6,8 +6,7 @@ namespace MyCheckpoint.Models.Dtos
     {
         [Required]
         public string Status { get; set; }
-        [Required]
-        public int Rate { get; set; }
+        public int? Rate { get; set; }
         public string? Review { get; set; }
         public DateTime? PlayedDate { get; set; }
     }

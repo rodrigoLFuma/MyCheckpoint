@@ -103,3 +103,45 @@
     </form>
   }
 </div>
+
+<div class="mx-auto mt-4 max-w-lg rounded border border-red-200 p-6">
+  <h2 class="text-sm font-bold text-red-700">Zona de peligro</h2>
+
+  @if (!pendingDeleteAccount()) {
+    <p class="mt-1 text-sm text-slate-500">
+      Borrar tu cuenta es irreversible: se pierden tu perfil, tus reseñas y tus listas.
+    </p>
+    <button
+      type="button"
+      (click)="askDeleteAccount()"
+      class="mt-3 rounded border border-red-600 px-3 py-2 text-sm text-red-600"
+    >
+      Borrar cuenta
+    </button>
+  } @else {
+    <p class="mt-1 text-sm text-red-700">¿Seguro que quieres borrar tu cuenta? No se puede deshacer.</p>
+
+    @if (deleteError()) {
+      <p class="mt-1 text-sm text-red-600">{{ deleteError() }}</p>
+    }
+
+    <div class="mt-3 flex gap-2">
+      <button
+        type="button"
+        (click)="confirmDeleteAccount()"
+        [disabled]="isDeletingAccount()"
+        class="rounded bg-red-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+      >
+        {{ isDeletingAccount() ? 'Borrando...' : 'Sí, borrar mi cuenta' }}
+      </button>
+      <button
+        type="button"
+        (click)="cancelDeleteAccount()"
+        [disabled]="isDeletingAccount()"
+        class="rounded border px-3 py-2 text-sm"
+      >
+        Cancelar
+      </button>
+    </div>
+  }
+</div>

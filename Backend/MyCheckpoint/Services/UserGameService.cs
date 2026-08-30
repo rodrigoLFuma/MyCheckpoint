@@ -11,17 +11,20 @@ namespace MyCheckpoint.Services
     {
         private readonly IUserGameRepository _userGameRepository;
         private readonly IGameRepository _gameRepository;
+        private readonly IGameListService _gameListService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public UserGameService(
             IUserGameRepository userGameRepository,
             IGameRepository gameRepository,
+            IGameListService gameListService,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             _userGameRepository = userGameRepository;
             _gameRepository = gameRepository;
+            _gameListService = gameListService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -53,8 +56,15 @@ namespace MyCheckpoint.Services
             userGame.CreatedAt = DateTime.UtcNow;
             userGame.UpdatedAt = DateTime.UtcNow;
 
+            if (userGame.Status == "Pendiente")
+                userGame.Rate = null;
+
             await _userGameRepository.CreateAsync(userGame);
             await _unitOfWork.SaveChangesAsync();
+
+            // Si el juego estaba en el backlog de "Juegos pendientes", ya no
+            // pinta ahí: acaba de recibir una reseña de verdad.
+            await _gameListService.RemoveFromPendingListIfPresentAsync(dto.GameId, userId);
 
             var created = await _userGameRepository.GetByIdAsync(userGame.Id);
             return _mapper.Map<UserGameDto>(created);
@@ -70,6 +80,9 @@ namespace MyCheckpoint.Services
 
             _mapper.Map(dto, userGame);
             userGame.UpdatedAt = DateTime.UtcNow;
+
+            if (userGame.Status == "Pendiente")
+                userGame.Rate = null;
 
             await _unitOfWork.SaveChangesAsync();
 

@@ -105,6 +105,8 @@ export type { ApiGameListIdItemsPost$Params as ApiGameListIdItemsPost$Params } f
 export { apiGameListIdItemsPost as apiGameListIdItemsPost } from './fn/game-list/api-game-list-id-items-post';
 export type { ApiGameListIdItemsGameIdDelete$Params as ApiGameListIdItemsGameIdDelete$Params } from './fn/game-list/api-game-list-id-items-game-id-delete';
 export { apiGameListIdItemsGameIdDelete as apiGameListIdItemsGameIdDelete } from './fn/game-list/api-game-list-id-items-game-id-delete';
+export type { ApiGameListPendingItemsPost$Params as ApiGameListPendingItemsPost$Params } from './fn/game-list/api-game-list-pending-items-post';
+export { apiGameListPendingItemsPost as apiGameListPendingItemsPost } from './fn/game-list/api-game-list-pending-items-post';
 export type { ApiUserIdGet$Plain$Params as ApiUserIdGet$Plain$Params } from './fn/user/api-user-id-get-plain';
 export { apiUserIdGet$Plain as apiUserIdGet$Plain } from './fn/user/api-user-id-get-plain';
 export type { ApiUserIdGet$Json$Params as ApiUserIdGet$Json$Params } from './fn/user/api-user-id-get-json';
@@ -117,6 +119,8 @@ export type { ApiUserMePut$Plain$Params as ApiUserMePut$Plain$Params } from './f
 export { apiUserMePut$Plain as apiUserMePut$Plain } from './fn/user/api-user-me-put-plain';
 export type { ApiUserMePut$Json$Params as ApiUserMePut$Json$Params } from './fn/user/api-user-me-put-json';
 export { apiUserMePut$Json as apiUserMePut$Json } from './fn/user/api-user-me-put-json';
+export type { ApiUserMeDelete$Params as ApiUserMeDelete$Params } from './fn/user/api-user-me-delete';
+export { apiUserMeDelete as apiUserMeDelete } from './fn/user/api-user-me-delete';
 export type { ApiUserGameIdGet$Plain$Params as ApiUserGameIdGet$Plain$Params } from './fn/user-game/api-user-game-id-get-plain';
 export { apiUserGameIdGet$Plain as apiUserGameIdGet$Plain } from './fn/user-game/api-user-game-id-get-plain';
 export type { ApiUserGameIdGet$Json$Params as ApiUserGameIdGet$Json$Params } from './fn/user-game/api-user-game-id-get-json';

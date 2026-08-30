@@ -4,7 +4,7 @@
 export interface UserGameAddDto {
   gameId: number;
   playedDate?: string | null;
-  rate: number;
+  rate?: number | null;
   review?: string | null;
   status: string;
 }

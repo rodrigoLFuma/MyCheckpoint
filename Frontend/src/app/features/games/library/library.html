@@ -1,0 +1,131 @@
+<div class="mx-auto mt-10 max-w-4xl">
+  <h1 class="mb-4 text-xl font-bold">Mi biblioteca</h1>
+
+  @if (isLoading()) {
+    <p class="text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (!isLoading() && userGames().length === 0) {
+    <p class="text-sm text-slate-500">
+      Todavía no has reseñado ningún juego. Búscalos en
+      <a routerLink="/games/search" class="text-blue-600 underline">Buscar juegos</a>.
+    </p>
+  }
+
+  <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+    @for (userGame of userGames(); track userGame.id) {
+      <app-game-card
+        [name]="userGame.game.name"
+        [imageUrl]="userGame.game.coverImageUrl"
+        [releaseDate]="userGame.game.releaseDate"
+      >
+        @if (editingId() === userGame.id) {
+          <form (ngSubmit)="saveEdit(userGame.id)" class="mt-2 flex flex-col gap-2">
+            <label class="text-xs font-semibold">
+              Estado
+              <select [(ngModel)]="status" name="status" class="mt-1 w-full rounded border px-2 py-1 text-sm">
+                @for (option of statuses; track option) {
+                  <option [value]="option">{{ option }}</option>
+                }
+              </select>
+            </label>
+
+            <label class="text-xs font-semibold">
+              Puntuación ({{ rate }}/10)
+              <input type="range" min="1" max="10" [(ngModel)]="rate" name="rate" class="w-full" />
+            </label>
+
+            <label class="text-xs font-semibold">
+              Reseña
+              <textarea
+                [(ngModel)]="review"
+                name="review"
+                rows="2"
+                class="mt-1 w-full rounded border px-2 py-1 text-sm"
+              ></textarea>
+            </label>
+
+            <div class="flex gap-2">
+              <button
+                type="submit"
+                [disabled]="isSaving()"
+                class="flex-1 rounded bg-blue-600 px-2 py-1 text-sm text-white disabled:opacity-50"
+              >
+                {{ isSaving() ? 'Guardando...' : 'Guardar' }}
+              </button>
+              <button type="button" (click)="cancelEdit()" class="rounded border px-2 py-1 text-sm">Cancelar</button>
+            </div>
+          </form>
+        } @else if (pendingDeleteId() === userGame.id) {
+          <div class="mt-2 flex flex-col gap-2">
+            <p class="text-xs text-red-600">¿Borrar esta reseña?</p>
+            <div class="flex gap-2">
+              <button
+                type="button"
+                (click)="confirmDelete(userGame.id)"
+                class="flex-1 rounded bg-red-600 px-2 py-1 text-sm text-white"
+              >
+                Sí, borrar
+              </button>
+              <button type="button" (click)="cancelDelete()" class="rounded border px-2 py-1 text-sm">Cancelar</button>
+            </div>
+          </div>
+        } @else if (addingToListForGameId() === userGame.game.id) {
+          <div class="mt-2 flex flex-col gap-2">
+            @if (lists().length === 0) {
+              <p class="text-xs text-slate-500">No tienes listas todavía.</p>
+            } @else {
+              <select [(ngModel)]="selectedListId" name="listId" class="w-full rounded border px-2 py-1 text-sm">
+                @for (list of lists(); track list.id) {
+                  <option [value]="list.id">{{ list.name }}</option>
+                }
+              </select>
+            }
+
+            @if (addToListMessage()) {
+              <p class="text-xs text-slate-600">{{ addToListMessage() }}</p>
+            }
+
+            <div class="flex gap-2">
+              @if (lists().length > 0) {
+                <button
+                  type="button"
+                  (click)="confirmAddToList(userGame.game.id)"
+                  class="flex-1 rounded bg-blue-600 px-2 py-1 text-sm text-white"
+                >
+                  Añadir
+                </button>
+              }
+              <button type="button" (click)="cancelAddToList()" class="rounded border px-2 py-1 text-sm">Cerrar</button>
+            </div>
+          </div>
+        } @else {
+          <div class="mt-2 text-sm">
+            <p class="font-semibold">{{ userGame.status }} · {{ userGame.rate }}/10</p>
+            @if (userGame.review) {
+              <p class="mt-1 text-slate-600">{{ userGame.review }}</p>
+            }
+          </div>
+
+          <div class="mt-2 flex flex-col gap-2">
+            <div class="flex gap-2">
+              <button type="button" (click)="startEdit(userGame)" class="flex-1 rounded border px-2 py-1 text-sm">
+                Editar
+              </button>
+              <button type="button" (click)="askDelete(userGame.id)" class="rounded border px-2 py-1 text-sm text-red-600">
+                Borrar
+              </button>
+            </div>
+            <button type="button" (click)="openAddToList(userGame.game.id)" class="w-full rounded border px-2 py-1 text-sm">
+              + Añadir a lista
+            </button>
+          </div>
+        }
+      </app-game-card>
+    }
+  </div>
+</div>

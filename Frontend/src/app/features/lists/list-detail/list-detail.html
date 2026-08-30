@@ -1,0 +1,88 @@
+<div class="mx-auto mt-10 max-w-4xl">
+  @if (isLoading()) {
+    <p class="text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (list(); as list) {
+    @if (!isEditing()) {
+      <div class="mb-6 flex items-start justify-between">
+        <div>
+          <h1 class="text-xl font-bold">{{ list.name }}</h1>
+          <p class="text-xs text-slate-500">
+            {{ list.isPublic ? 'Pública' : 'Privada' }} · de {{ list.user.userName }}
+          </p>
+          @if (list.description) {
+            <p class="mt-2 text-sm text-slate-600">{{ list.description }}</p>
+          }
+        </div>
+
+        @if (isOwner) {
+          <div class="flex gap-2">
+            <button type="button" (click)="startEdit()" class="rounded border px-3 py-2 text-sm">Editar</button>
+            <button type="button" (click)="askDelete()" class="rounded border px-3 py-2 text-sm text-red-600">
+              Borrar
+            </button>
+          </div>
+        }
+      </div>
+
+      @if (pendingDelete()) {
+        <div class="mb-6 flex items-center gap-2 rounded border border-red-200 bg-red-50 p-3">
+          <p class="flex-1 text-sm text-red-700">¿Seguro que quieres borrar esta lista?</p>
+          <button type="button" (click)="confirmDelete()" class="rounded bg-red-600 px-3 py-1 text-sm text-white">
+            Sí, borrar
+          </button>
+          <button type="button" (click)="cancelDelete()" class="rounded border px-3 py-1 text-sm">Cancelar</button>
+        </div>
+      }
+    } @else {
+      <form (ngSubmit)="saveEdit()" class="mb-6 flex flex-col gap-3 rounded border p-4">
+        <input type="text" [(ngModel)]="name" name="name" required class="rounded border px-3 py-2" />
+        <textarea [(ngModel)]="description" name="description" rows="2" class="rounded border px-3 py-2"></textarea>
+        <label class="flex items-center gap-2 text-sm">
+          <input type="checkbox" [(ngModel)]="isPublic" name="isPublic" />
+          Lista pública
+        </label>
+
+        @if (formError()) {
+          <p class="text-sm text-red-600">{{ formError() }}</p>
+        }
+
+        <div class="flex gap-2">
+          <button
+            type="submit"
+            [disabled]="isSaving()"
+            class="flex-1 rounded bg-blue-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+          >
+            {{ isSaving() ? 'Guardando...' : 'Guardar' }}
+          </button>
+          <button type="button" (click)="cancelEdit()" class="rounded border px-3 py-2 text-sm">Cancelar</button>
+        </div>
+      </form>
+    }
+
+    @if (list.games?.length) {
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        @for (item of list.games; track item.game.id) {
+          <app-game-card [name]="item.game.name" [imageUrl]="item.game.coverImageUrl" [releaseDate]="item.game.releaseDate">
+            @if (isOwner) {
+              <button
+                type="button"
+                (click)="removeGame(item.game.id)"
+                class="mt-2 w-full rounded border px-2 py-1 text-sm text-red-600"
+              >
+                Quitar
+              </button>
+            }
+          </app-game-card>
+        }
+      </div>
+    } @else {
+      <p class="text-sm text-slate-500">Esta lista todavía no tiene juegos.</p>
+    }
+  }
+</div>

@@ -228,7 +228,6 @@ namespace MyCheckpoint.Data.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("IsPublic")
@@ -385,14 +384,13 @@ namespace MyCheckpoint.Data.Migrations
                     b.Property<int>("GameId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("PlayedDate")
+                    b.Property<DateTime?>("PlayedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Rate")
+                    b.Property<int?>("Rate")
                         .HasColumnType("integer");
 
                     b.Property<string>("Review")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Status")

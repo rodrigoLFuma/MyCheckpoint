@@ -8,8 +8,9 @@ namespace MyCheckpoint.Models.Dtos
         public int GameId { get; set; }
         [Required]
         public string Status { get; set; }
-        [Required]
-        public int Rate { get; set; }
+        // Sin [Required]: un juego "Pendiente" no tiene puntuación todavía.
+        // UserGameService la ignora igualmente si Status es "Pendiente".
+        public int? Rate { get; set; }
         public string? Review { get; set; }
         public DateTime? PlayedDate { get; set; }
     }

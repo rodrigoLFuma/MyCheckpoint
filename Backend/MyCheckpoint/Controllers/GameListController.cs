@@ -72,5 +72,13 @@ namespace MyCheckpoint.Controllers
             await _gameListService.RemoveItemAsync(id, gameId, this.GetUserId());
             return NoContent();
         }
+
+        [HttpPost("pending-items")]
+        [Authorize]
+        public async Task<IActionResult> AddPendingItem(GameListItemAddDto dto)
+        {
+            await _gameListService.AddToPendingListAsync(dto.GameId, this.GetUserId());
+            return NoContent();
+        }
     }
 }

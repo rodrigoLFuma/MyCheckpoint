@@ -1,0 +1,19 @@
+<div class="overflow-hidden rounded border shadow-sm">
+  @if (imageUrl()) {
+    <img [src]="imageUrl()" [alt]="name()" class="h-40 w-full object-cover" />
+  } @else {
+    <div class="flex h-40 w-full items-center justify-center bg-slate-200 text-3xl font-bold text-slate-500">
+      {{ name().charAt(0).toUpperCase() }}
+    </div>
+  }
+
+  <div class="p-3">
+    <h3 class="font-semibold">{{ name() }}</h3>
+
+    @if (releaseDate()) {
+      <p class="text-sm text-slate-500">{{ releaseDate() | date: 'yyyy' }}</p>
+    }
+
+    <ng-content></ng-content>
+  </div>
+</div>

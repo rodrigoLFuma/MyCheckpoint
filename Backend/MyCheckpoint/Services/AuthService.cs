@@ -14,17 +14,20 @@ namespace MyCheckpoint.Services
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        private readonly IGameListService _gameListService;
         private readonly IMapper _mapper;
 
         public AuthService(
             UserManager<User> userManager,
             RoleManager<Role> roleManager,
             IJwtTokenGenerator jwtTokenGenerator,
+            IGameListService gameListService,
             IMapper mapper)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _jwtTokenGenerator = jwtTokenGenerator;
+            _gameListService = gameListService;
             _mapper = mapper;
         }
 
@@ -41,6 +44,7 @@ namespace MyCheckpoint.Services
                 await _roleManager.CreateAsync(new Role { Name = DefaultRole });
 
             await _userManager.AddToRoleAsync(user, DefaultRole);
+            await _gameListService.EnsurePendingListAsync(user.Id);
 
             return await BuildAuthResponseAsync(user);
         }
