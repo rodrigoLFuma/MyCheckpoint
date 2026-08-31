@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
@@ -12,6 +13,22 @@ export const routes: Routes = [
   {
     path: 'games/search',
     loadComponent: () => import('./features/games/search/game-search').then((m) => m.GameSearch),
+  },
+  {
+    path: 'social',
+    loadComponent: () => import('./features/social/user-search/user-search').then((m) => m.UserSearch),
+  },
+  {
+    path: 'social/category/:id',
+    loadComponent: () => import('./features/social/category-top/category-top').then((m) => m.CategoryTop),
+  },
+  {
+    path: 'users/:id',
+    loadComponent: () => import('./features/social/user-profile/user-profile').then((m) => m.UserProfile),
+  },
+  {
+    path: 'users/:id/reviews',
+    loadComponent: () => import('./features/social/user-reviews/user-reviews').then((m) => m.UserReviews),
   },
   {
     path: 'profile',

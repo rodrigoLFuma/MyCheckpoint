@@ -40,6 +40,16 @@
             </label>
 
             <label class="text-xs font-semibold">
+              Título
+              <input
+                type="text"
+                [(ngModel)]="title"
+                name="title"
+                class="mt-1 w-full rounded border px-2 py-1 text-sm"
+              />
+            </label>
+
+            <label class="text-xs font-semibold">
               Reseña
               <textarea
                 [(ngModel)]="review"
@@ -106,6 +116,9 @@
         } @else {
           <div class="mt-2 text-sm">
             <p class="font-semibold">{{ userGame.status }} · {{ userGame.rate }}/10</p>
+            @if (userGame.title) {
+              <p class="mt-1 font-semibold">{{ userGame.title }}</p>
+            }
             @if (userGame.review) {
               <p class="mt-1 text-slate-600">{{ userGame.review }}</p>
             }

@@ -1,0 +1,65 @@
+<div class="mx-auto mt-10 max-w-2xl">
+  @if (isLoading()) {
+    <p class="text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage() && !profileUser()) {
+    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (profileUser(); as user) {
+    <div class="flex items-start justify-between rounded border p-6">
+      <div class="flex items-center gap-4">
+        <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />
+        <div>
+          <h1 class="text-xl font-bold">{{ user.userName }}</h1>
+          @if (user.bibliography) {
+            <p class="mt-1 max-w-sm text-sm text-slate-600 whitespace-pre-line">{{ user.bibliography }}</p>
+          }
+        </div>
+      </div>
+
+      @if (!isOwnProfile) {
+        <button
+          type="button"
+          (click)="toggleFollow()"
+          [disabled]="isFollowBusy()"
+          class="shrink-0 rounded px-3 py-2 text-sm disabled:opacity-50"
+          [class]="isFollowing() ? 'border text-slate-700' : 'bg-blue-600 text-white'"
+        >
+          {{ isFollowing() ? 'Siguiendo' : 'Seguir' }}
+        </button>
+      }
+    </div>
+
+    @if (errorMessage()) {
+      <p class="mt-2 text-sm text-red-600">{{ errorMessage() }}</p>
+    }
+
+    <div class="mt-6">
+      <h2 class="mb-2 font-semibold">Reseñas</h2>
+
+      @if (reviews().length === 0) {
+        <p class="text-sm text-slate-500">Todavía no ha reseñado ningún juego.</p>
+      }
+
+      <div class="flex flex-col gap-3">
+        @for (review of reviews(); track review.id) {
+          <app-review-card
+            [gameName]="review.game.name"
+            [gameImageUrl]="review.game.coverImageUrl"
+            [title]="review.title"
+            [description]="review.review"
+            [rate]="review.rate"
+          />
+        }
+      </div>
+
+      @if (reviewCount() > reviews().length) {
+        <a [routerLink]="['/users', user.id, 'reviews']" class="mt-3 inline-block text-sm text-blue-600 underline">
+          Ver más ({{ reviewCount() }} en total)
+        </a>
+      }
+    </div>
+  }
+</div>

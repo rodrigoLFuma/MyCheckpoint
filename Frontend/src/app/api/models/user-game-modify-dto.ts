@@ -6,4 +6,5 @@ export interface UserGameModifyDto {
   rate?: number | null;
   review?: string | null;
   status: string;
+  title?: string | null;
 }

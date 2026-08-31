@@ -1,0 +1,27 @@
+<div class="mx-auto mt-10 max-w-2xl">
+  <a [routerLink]="['/users', userId]" class="text-sm text-blue-600 underline">&larr; Volver al perfil</a>
+
+  @if (isLoading()) {
+    <p class="mt-4 text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="mt-4 text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (profileUser(); as user) {
+    <h1 class="mt-4 mb-4 text-xl font-bold">Reseñas de {{ user.userName }}</h1>
+
+    <div class="flex flex-col gap-3">
+      @for (review of reviews(); track review.id) {
+        <app-review-card
+          [gameName]="review.game.name"
+          [gameImageUrl]="review.game.coverImageUrl"
+          [title]="review.title"
+          [description]="review.review"
+          [rate]="review.rate"
+        />
+      }
+    </div>
+  }
+</div>

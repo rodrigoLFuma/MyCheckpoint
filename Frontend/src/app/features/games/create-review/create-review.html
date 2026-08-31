@@ -30,6 +30,16 @@
       </label>
 
       <label class="text-xs font-semibold">
+        Título (opcional)
+        <input
+          type="text"
+          [(ngModel)]="title"
+          name="title"
+          class="mt-1 w-full rounded border px-2 py-1 text-sm"
+        />
+      </label>
+
+      <label class="text-xs font-semibold">
         Reseña (opcional)
         <textarea
           [(ngModel)]="review"

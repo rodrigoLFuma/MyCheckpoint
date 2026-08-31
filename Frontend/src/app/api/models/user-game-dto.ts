@@ -11,6 +11,7 @@ export interface UserGameDto {
   rate?: number | null;
   review?: string | null;
   status: string;
+  title?: string | null;
   updatedAt?: string | null;
   userSummary: UserSummaryDto;
 }

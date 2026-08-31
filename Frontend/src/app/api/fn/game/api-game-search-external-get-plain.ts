@@ -7,16 +7,20 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
-import { RawgGameSummary } from '../../models/rawg-game-summary';
+import { GameSearchResultDto } from '../../models/game-search-result-dto';
 
 export interface ApiGameSearchExternalGet$Plain$Params {
   term?: string;
+  genres?: string;
+  page?: number;
 }
 
-export function apiGameSearchExternalGet$Plain(http: HttpClient, rootUrl: string, params?: ApiGameSearchExternalGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<RawgGameSummary>>> {
+export function apiGameSearchExternalGet$Plain(http: HttpClient, rootUrl: string, params?: ApiGameSearchExternalGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<GameSearchResultDto>> {
   const rb = new RequestBuilder(rootUrl, apiGameSearchExternalGet$Plain.PATH, 'get');
   if (params) {
     rb.query('term', params.term, {});
+    rb.query('genres', params.genres, {});
+    rb.query('page', params.page, {});
   }
 
   return http.request(
@@ -24,7 +28,7 @@ export function apiGameSearchExternalGet$Plain(http: HttpClient, rootUrl: string
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<RawgGameSummary>>;
+      return r as StrictHttpResponse<GameSearchResultDto>;
     })
   );
 }

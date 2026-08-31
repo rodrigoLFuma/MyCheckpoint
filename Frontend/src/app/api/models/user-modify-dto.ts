@@ -3,6 +3,7 @@
 
 export interface UserModifyDto {
   bibliography?: string | null;
+  favoriteGenreCategoryIds?: Array<number> | null;
   profilePictureURL?: string | null;
   userName: string;
 }

@@ -41,6 +41,7 @@ export class Library implements OnInit {
 
   status: (typeof STATUSES)[number] = 'Jugando';
   rate = 5;
+  title = '';
   review = '';
 
   ngOnInit(): void {
@@ -104,6 +105,7 @@ export class Library implements OnInit {
     this.pendingDeleteId.set(null);
     this.status = (userGame.status as (typeof STATUSES)[number]) ?? 'Jugando';
     this.rate = userGame.rate ?? 5;
+    this.title = userGame.title ?? '';
     this.review = userGame.review ?? '';
     this.editingId.set(userGame.id);
   }
@@ -117,7 +119,7 @@ export class Library implements OnInit {
     try {
       const updated = await this.api.invoke(apiUserGameIdPut$Json, {
         id,
-        body: { status: this.status, rate: this.rate, review: this.review || null },
+        body: { status: this.status, rate: this.rate, title: this.title || null, review: this.review || null },
       });
       this.userGames.update((games) => games.map((g) => (g.id === id ? updated : g)));
       this.editingId.set(null);

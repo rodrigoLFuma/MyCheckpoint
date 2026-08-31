@@ -7,4 +7,5 @@ export interface UserGameAddDto {
   rate?: number | null;
   review?: string | null;
   status: string;
+  title?: string | null;
 }

@@ -36,6 +36,7 @@ export class CreateReview {
 
   status: (typeof STATUSES)[number] = 'Jugando';
   rate = 5;
+  title = '';
   review = '';
 
   openForm(): void {
@@ -63,6 +64,7 @@ export class CreateReview {
             gameId: game.id,
             status: this.status,
             rate: this.rate,
+            title: this.title || null,
             review: this.review || null,
           },
         });

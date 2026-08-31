@@ -1,16 +1,20 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { Api } from '../../api/api';
+import { apiCategoryGet$Json } from '../../api/fn/category/api-category-get-json';
+import { CategoryDto } from '../../api/models/category-dto';
 
 @Component({
   selector: 'app-profile',
   imports: [FormsModule, DatePipe],
   templateUrl: './profile.html',
 })
-export class Profile {
+export class Profile implements OnInit {
   protected authService = inject(AuthService);
+  private api = inject(Api);
   private router = inject(Router);
 
   protected isEditing = signal(false);
@@ -21,15 +25,43 @@ export class Profile {
   protected isDeletingAccount = signal(false);
   protected deleteError = signal<string | null>(null);
 
+  protected categories = signal<CategoryDto[]>([]);
+  protected selectedGenreIds = signal<Set<number>>(new Set());
+
   userName = '';
   profilePictureURL = '';
   bibliography = '';
+
+  ngOnInit(): void {
+    this.loadCategories();
+  }
+
+  private async loadCategories(): Promise<void> {
+    try {
+      this.categories.set(await this.api.invoke(apiCategoryGet$Json));
+    } catch {
+      // Sin categorías, el selector de géneros favoritos queda vacío.
+    }
+  }
+
+  toggleGenre(categoryId: number): void {
+    this.selectedGenreIds.update((ids) => {
+      const next = new Set(ids);
+      if (next.has(categoryId)) {
+        next.delete(categoryId);
+      } else {
+        next.add(categoryId);
+      }
+      return next;
+    });
+  }
 
   startEditing(): void {
     const user = this.authService.user();
     this.userName = user?.userName ?? '';
     this.profilePictureURL = user?.profilePictureURL ?? '';
     this.bibliography = user?.bibliography ?? '';
+    this.selectedGenreIds.set(new Set(user?.favoriteGenres?.map((g) => g.id) ?? []));
     this.errorMessage.set(null);
     this.isEditing.set(true);
   }
@@ -46,6 +78,7 @@ export class Profile {
         userName: this.userName,
         profilePictureURL: this.profilePictureURL || null,
         bibliography: this.bibliography || null,
+        favoriteGenreCategoryIds: Array.from(this.selectedGenreIds()),
       });
       this.isEditing.set(false);
     } catch {
