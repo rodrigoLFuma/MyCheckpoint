@@ -119,9 +119,10 @@ namespace MyCheckpoint.Services
             return lookup;
         }
 
-        public async Task<IEnumerable<RawgGameSummary>> SearchExternalAsync(string term)
+        public async Task<GameSearchResultDto> SearchExternalAsync(string? term, string? genres, int page)
         {
-            return await _rawgClient.SearchAsync(term);
+            var (results, hasMore) = await _rawgClient.SearchAsync(term, genres, page);
+            return new GameSearchResultDto { Results = results.ToList(), HasMore = hasMore };
         }
 
         public async Task<GameDto> ImportFromRawgAsync(int rawgId)

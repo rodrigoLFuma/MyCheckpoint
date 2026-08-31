@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using MyCheckpoint.Data.Entities;
 using MyCheckpoint.Data.Repositories.Contracts;
 using MyCheckpoint.Exceptions;
@@ -12,17 +13,20 @@ namespace MyCheckpoint.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly IFollowRepository _followRepository;
+        private readonly IRepositoryBaseWithId<Category> _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public UserService(
             UserManager<User> userManager,
             IFollowRepository followRepository,
+            IRepositoryBaseWithId<Category> categoryRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             _userManager = userManager;
             _followRepository = followRepository;
+            _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -35,9 +39,63 @@ namespace MyCheckpoint.Services
             return _mapper.Map<UserSummaryDto>(user);
         }
 
+        public async Task<IEnumerable<UserSummaryDto>> SearchAsync(string? term, int? categoryId)
+        {
+            var query = _userManager.Users.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(term))
+                query = query.Where(u => EF.Functions.ILike(u.UserName!, $"%{term}%"));
+
+            if (categoryId is not null)
+                query = query.Where(u => u.FavoriteGenres.Any(fg => fg.CategoryId == categoryId));
+
+            var users = await query.ToListAsync();
+            return _mapper.Map<IEnumerable<UserSummaryDto>>(users);
+        }
+
+        public async Task<IEnumerable<CategoryTopUsersDto>> GetTopByFavoriteGenresAsync(int userId, int perCategory)
+        {
+            var user = await GetWithFavoriteGenresAsync(userId)
+                ?? throw new NotFoundException("El usuario no existe.");
+
+            var result = new List<CategoryTopUsersDto>();
+            foreach (var favorite in user.FavoriteGenres)
+            {
+                var topUsers = await GetTopInCategoryAsync(favorite.CategoryId, userId, 0, perCategory);
+                result.Add(new CategoryTopUsersDto
+                {
+                    Category = _mapper.Map<CategoryDto>(favorite.Category),
+                    TopUsers = topUsers.ToList()
+                });
+            }
+
+            return result;
+        }
+
+        public async Task<IEnumerable<UserSummaryDto>> GetTopInCategoryAsync(int categoryId, int? excludeUserId, int skip, int take)
+        {
+            var query = _userManager.Users
+                .Where(u => u.FavoriteGenres.Any(fg => fg.CategoryId == categoryId));
+
+            if (excludeUserId is not null)
+                query = query.Where(u => u.Id != excludeUserId);
+
+            // Followeds = filas de Follow donde este usuario es el "Followed",
+            // es decir, la gente que LE sigue a él (contraintuitivo por el
+            // nombre, pero así está modelada la relación en ApplicationDbContext).
+            var users = await query
+                .OrderByDescending(u => u.Followeds.Count)
+                .ThenBy(u => u.CreatedAt)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<UserSummaryDto>>(users);
+        }
+
         public async Task<UserDto> GetMyProfileAsync(int userId)
         {
-            var user = await _userManager.FindByIdAsync(userId.ToString())
+            var user = await GetWithFavoriteGenresAsync(userId)
                 ?? throw new NotFoundException("El usuario no existe.");
 
             var userDto = _mapper.Map<UserDto>(user);
@@ -47,10 +105,25 @@ namespace MyCheckpoint.Services
 
         public async Task<UserDto> UpdateProfileAsync(int userId, UserModifyDto dto)
         {
-            var user = await _userManager.FindByIdAsync(userId.ToString())
+            var user = await GetWithFavoriteGenresAsync(userId)
                 ?? throw new NotFoundException("El usuario no existe.");
 
             _mapper.Map(dto, user);
+
+            var categoryLookup = await GetCategoriesByIdsAsync(dto.FavoriteGenreCategoryIds);
+
+            user.FavoriteGenres.RemoveAll(fg => !dto.FavoriteGenreCategoryIds.Contains(fg.CategoryId));
+
+            var existingIds = user.FavoriteGenres.Select(fg => fg.CategoryId).ToHashSet();
+            foreach (var categoryId in dto.FavoriteGenreCategoryIds.Where(id => !existingIds.Contains(id)))
+            {
+                user.FavoriteGenres.Add(new UserFavoriteGenre
+                {
+                    UserId = userId,
+                    CategoryId = categoryId,
+                    Category = categoryLookup[categoryId]
+                });
+            }
 
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
@@ -79,6 +152,25 @@ namespace MyCheckpoint.Services
             var result = await _userManager.DeleteAsync(user);
             if (!result.Succeeded)
                 throw new ConflictException(string.Join(" ", result.Errors.Select(e => e.Description)));
+        }
+
+        private Task<User?> GetWithFavoriteGenresAsync(int userId)
+        {
+            return _userManager.Users
+                .Include(u => u.FavoriteGenres)
+                    .ThenInclude(fg => fg.Category)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+        }
+
+        private async Task<Dictionary<int, Category>> GetCategoriesByIdsAsync(IEnumerable<int> categoryIds)
+        {
+            var allCategories = await _categoryRepository.GetAllAsync();
+            var lookup = allCategories.ToDictionary(c => c.Id);
+
+            if (categoryIds.Any(id => !lookup.ContainsKey(id)))
+                throw new NotFoundException("Una o más categorías no existen.");
+
+            return lookup;
         }
     }
 }

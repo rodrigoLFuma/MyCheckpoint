@@ -8,5 +8,6 @@ namespace MyCheckpoint.Models.Dtos
         public string UserName { get; set; }
         public string? ProfilePictureURL { get; set; }
         public string? Bibliography { get; set; }
+        public List<int> FavoriteGenreCategoryIds { get; set; } = new();
     }
 }

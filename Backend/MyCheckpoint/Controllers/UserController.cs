@@ -22,6 +22,30 @@ namespace MyCheckpoint.Controllers
             return Ok(await _userService.GetByIdAsync(id));
         }
 
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<UserSummaryDto>>> Search(
+            [FromQuery] string? term, [FromQuery] int? categoryId)
+        {
+            return Ok(await _userService.SearchAsync(term, categoryId));
+        }
+
+        [HttpGet("top-by-favorites")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<CategoryTopUsersDto>>> GetTopByFavorites([FromQuery] int perCategory = 5)
+        {
+            return Ok(await _userService.GetTopByFavoriteGenresAsync(this.GetUserId(), perCategory));
+        }
+
+        [HttpGet("category/{categoryId}/top")]
+        public async Task<ActionResult<IEnumerable<UserSummaryDto>>> GetTopInCategory(
+            int categoryId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
+        {
+            // Ranking completo de la categoría: no se excluye a nadie, ni
+            // siquiera a quien lo consulta (a diferencia de top-by-favorites,
+            // que sí te excluye porque ahí no tiene sentido recomendarte a ti).
+            return Ok(await _userService.GetTopInCategoryAsync(categoryId, excludeUserId: null, skip, take));
+        }
+
         [HttpGet("me")]
         [Authorize]
         public async Task<ActionResult<UserDto>> GetMyProfile()

@@ -9,6 +9,7 @@ namespace MyCheckpoint.Models.Dtos
         [Required]
         public string Status { get; set; }
         public int? Rate { get; set; }
+        public string? Title { get; set; }
         public string? Review { get; set; }
         [Required]
         public DateTime CreatedAt { get; set; }

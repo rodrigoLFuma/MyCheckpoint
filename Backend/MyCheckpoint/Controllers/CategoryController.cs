@@ -50,5 +50,12 @@ namespace MyCheckpoint.Controllers
             await _categoryService.DeleteAsync(id);
             return NoContent();
         }
+
+        [HttpPost("import-from-rawg")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IEnumerable<CategoryDto>>> ImportFromRawg()
+        {
+            return Ok(await _categoryService.ImportFromRawgAsync());
+        }
     }
 }

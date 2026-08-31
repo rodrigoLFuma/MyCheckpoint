@@ -137,6 +137,9 @@ namespace MyCheckpoint.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("RawgSlug")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("categories", (string)null);
@@ -370,6 +373,21 @@ namespace MyCheckpoint.Data.Migrations
                     b.ToTable("users", (string)null);
                 });
 
+            modelBuilder.Entity("MyCheckpoint.Data.Entities.UserFavoriteGenre", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UserId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("user_favorite_genres", (string)null);
+                });
+
             modelBuilder.Entity("MyCheckpoint.Data.Entities.UserGame", b =>
                 {
                     b.Property<int>("Id")
@@ -395,6 +413,9 @@ namespace MyCheckpoint.Data.Migrations
 
                     b.Property<string>("Status")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -531,6 +552,25 @@ namespace MyCheckpoint.Data.Migrations
                     b.Navigation("GameList");
                 });
 
+            modelBuilder.Entity("MyCheckpoint.Data.Entities.UserFavoriteGenre", b =>
+                {
+                    b.HasOne("MyCheckpoint.Data.Entities.Category", "Category")
+                        .WithMany("UserFavoriteGenres")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyCheckpoint.Data.Entities.User", "User")
+                        .WithMany("FavoriteGenres")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MyCheckpoint.Data.Entities.UserGame", b =>
                 {
                     b.HasOne("MyCheckpoint.Data.Entities.Game", "Game")
@@ -553,6 +593,8 @@ namespace MyCheckpoint.Data.Migrations
             modelBuilder.Entity("MyCheckpoint.Data.Entities.Category", b =>
                 {
                     b.Navigation("GameCategories");
+
+                    b.Navigation("UserFavoriteGenres");
                 });
 
             modelBuilder.Entity("MyCheckpoint.Data.Entities.Game", b =>
@@ -571,6 +613,8 @@ namespace MyCheckpoint.Data.Migrations
 
             modelBuilder.Entity("MyCheckpoint.Data.Entities.User", b =>
                 {
+                    b.Navigation("FavoriteGenres");
+
                     b.Navigation("Followeds");
 
                     b.Navigation("Followers");

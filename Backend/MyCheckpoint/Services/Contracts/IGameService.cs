@@ -12,7 +12,7 @@ namespace MyCheckpoint.Services.Contracts
         Task<GameDto> CreateAsync(GameAddDto dto);
         Task<GameDto> UpdateAsync(int id, GameModifyDto dto);
         Task DeleteAsync(int id);
-        Task<IEnumerable<RawgGameSummary>> SearchExternalAsync(string term);
+        Task<GameSearchResultDto> SearchExternalAsync(string? term, string? genres, int page);
         Task<GameDto> ImportFromRawgAsync(int rawgId);
     }
 }

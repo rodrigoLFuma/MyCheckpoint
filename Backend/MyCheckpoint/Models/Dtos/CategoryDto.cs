@@ -8,5 +8,6 @@ namespace MyCheckpoint.Models.Dtos
         public int Id { get ; set ; }
         [Required]
         public string Name { get; set; }
+        public string? RawgSlug { get; set; }
     }
 }

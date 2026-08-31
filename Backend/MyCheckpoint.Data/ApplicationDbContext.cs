@@ -20,6 +20,7 @@ namespace MyCheckpoint.Data
         public DbSet<UserGame> UserGames => Set<UserGame>();
         public DbSet<GameListItem> GameListItems => Set<GameListItem>();
         public DbSet<GameCategory> GameCategories => Set<GameCategory>();
+        public DbSet<UserFavoriteGenre> UserFavoriteGenres => Set<UserFavoriteGenre>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,7 @@ namespace MyCheckpoint.Data
             modelBuilder.Entity<UserGame>().ToTable("user_games");
             modelBuilder.Entity<GameList>().ToTable("game_lists");
             modelBuilder.Entity<GameListItem>().ToTable("game_list_items");
+            modelBuilder.Entity<UserFavoriteGenre>().ToTable("user_favorite_genres");
 
             modelBuilder.Entity<Follow>()
             .HasKey(f => new { f.FollowerId, f.FollowedId });
@@ -52,6 +54,9 @@ namespace MyCheckpoint.Data
 
             modelBuilder.Entity<GameCategory>()
                 .HasKey(gc => new { gc.GameId, gc.CategoryId });
+
+            modelBuilder.Entity<UserFavoriteGenre>()
+                .HasKey(ufg => new { ufg.UserId, ufg.CategoryId });
 
             modelBuilder.Entity<GameListItem>()
                 .HasKey(x => new { x.GameListId, x.GameId });

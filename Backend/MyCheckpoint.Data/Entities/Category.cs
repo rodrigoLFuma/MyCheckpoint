@@ -8,7 +8,11 @@ namespace MyCheckpoint.Data.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        // Slug del género en RAWG (p. ej. "role-playing-games-rpg"). Nulo para
+        // categorías creadas a mano por un admin, sin equivalente en RAWG.
+        public string? RawgSlug { get; set; }
 
         public List<GameCategory> GameCategories { get; set; }
+        public List<UserFavoriteGenre> UserFavoriteGenres { get; set; }
     }
 }

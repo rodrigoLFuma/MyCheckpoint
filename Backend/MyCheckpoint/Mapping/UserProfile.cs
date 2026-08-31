@@ -8,11 +8,18 @@ namespace MyCheckpoint.Mapping
     {
         public UserProfile()
         {
-            CreateMap<User, UserDto>();
+            CreateMap<User, UserDto>()
+                .ForMember(dest => dest.FavoriteGenres,
+                    opt => opt.MapFrom(src => src.FavoriteGenres.Select(fg => fg.Category)));
             CreateMap<User, UserSummaryDto>();
 
             CreateMap<UserAddDto, User>();
-            CreateMap<UserModifyDto, User>();
+
+            // FavoriteGenres se reconcilia a mano en UserService (mismo motivo
+            // que GameCategories en GameService: evita pisar una colección ya
+            // rastreada por EF Core).
+            CreateMap<UserModifyDto, User>()
+                .ForMember(dest => dest.FavoriteGenres, opt => opt.Ignore());
         }
     }
 }

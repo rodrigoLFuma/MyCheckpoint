@@ -42,9 +42,10 @@ namespace MyCheckpoint.Controllers
         }
 
         [HttpGet("search-external")]
-        public async Task<ActionResult<IEnumerable<RawgGameSummary>>> SearchExternal([FromQuery] string term)
+        public async Task<ActionResult<GameSearchResultDto>> SearchExternal(
+            [FromQuery] string? term, [FromQuery] string? genres, [FromQuery] int page = 1)
         {
-            return Ok(await _gameService.SearchExternalAsync(term));
+            return Ok(await _gameService.SearchExternalAsync(term, genres, page));
         }
 
         [HttpPost("import/{rawgId}")]

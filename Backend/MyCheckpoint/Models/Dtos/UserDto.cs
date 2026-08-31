@@ -15,5 +15,6 @@ namespace MyCheckpoint.Models.Dtos
         [Required]
         public DateTime CreatedAt { get; set; }
         public List<string> Roles { get; set; } = new();
+        public List<CategoryDto> FavoriteGenres { get; set; } = new();
     }
 }

@@ -16,6 +16,8 @@ namespace MyCheckpoint.Data.Entities
 
         public List<UserGame> UserGames { get; set; }
 
+        public List<UserFavoriteGenre> FavoriteGenres { get; set; }
+
 
     }
 }
