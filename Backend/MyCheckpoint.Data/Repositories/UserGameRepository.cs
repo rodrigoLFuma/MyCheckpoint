@@ -32,5 +32,16 @@ namespace MyCheckpoint.Data.Repositories
             return await _context.Set<UserGame>()
                     .FirstOrDefaultAsync(ug => ug.UserId == userId && ug.GameId == gameId);
         }
+
+        public async Task<IEnumerable<UserGame>> GetOtherReviewsForGamesAsync(IEnumerable<int> gameIds, int excludeUserId)
+        {
+            return await _context.Set<UserGame>()
+                    .Include(ug => ug.Game)
+                    .Include(ug => ug.User)
+                    .Where(ug => gameIds.Contains(ug.GameId)
+                              && ug.UserId != excludeUserId
+                              && ug.Review != null && ug.Review != "")
+                    .ToListAsync();
+        }
     }
 }

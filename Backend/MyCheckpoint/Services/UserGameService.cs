@@ -43,6 +43,21 @@ namespace MyCheckpoint.Services
             return _mapper.Map<IEnumerable<UserGameDto>>(userGames);
         }
 
+        public async Task<IEnumerable<UserGameDto>> GetDiscoverReviewsAsync(int userId, int skip, int take)
+        {
+            var myGames = await _userGameRepository.GetByUserIdAsync(userId);
+            var myGameIds = myGames.Select(ug => ug.GameId).ToList();
+
+            var candidates = (await _userGameRepository.GetOtherReviewsForGamesAsync(myGameIds, userId)).ToList();
+
+            // Orden aleatorio: es un feed de descubrimiento, no un ranking
+            // donde la consistencia entre páginas importe.
+            var random = new Random();
+            var shuffled = candidates.OrderBy(_ => random.Next()).Skip(skip).Take(take);
+
+            return _mapper.Map<IEnumerable<UserGameDto>>(shuffled);
+        }
+
         public async Task<UserGameDto> CreateAsync(UserGameAddDto dto, int userId)
         {
             if (await _gameRepository.GetByIdAsync(dto.GameId) is null)

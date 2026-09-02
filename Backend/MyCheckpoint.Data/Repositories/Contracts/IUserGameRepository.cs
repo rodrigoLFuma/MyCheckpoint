@@ -6,5 +6,11 @@ namespace MyCheckpoint.Data.Repositories.Contracts
     {
         Task<IEnumerable<UserGame>> GetByUserIdAsync(int userId);
         Task<UserGame?> GetByUserAndGameAsync(int userId, int gameId);
+
+        /// <summary>
+        /// Reseñas (con texto) de otros usuarios sobre juegos concretos —
+        /// para "qué opina la gente de juegos que ya has jugado".
+        /// </summary>
+        Task<IEnumerable<UserGame>> GetOtherReviewsForGamesAsync(IEnumerable<int> gameIds, int excludeUserId);
     }
 }

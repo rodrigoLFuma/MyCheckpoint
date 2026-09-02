@@ -46,6 +46,14 @@ namespace MyCheckpoint.Controllers
             return Ok(await _userService.GetTopInCategoryAsync(categoryId, excludeUserId: null, skip, take));
         }
 
+        [HttpGet("similar")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<UserSummaryDto>>> GetSimilar(
+            [FromQuery] int skip = 0, [FromQuery] int take = 6)
+        {
+            return Ok(await _userService.GetSimilarUsersAsync(this.GetUserId(), skip, take));
+        }
+
         [HttpGet("me")]
         [Authorize]
         public async Task<ActionResult<UserDto>> GetMyProfile()
@@ -58,6 +66,14 @@ namespace MyCheckpoint.Controllers
         public async Task<ActionResult<UserDto>> UpdateProfile(UserModifyDto dto)
         {
             return Ok(await _userService.UpdateProfileAsync(this.GetUserId(), dto));
+        }
+
+        [HttpPut("me/password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto dto)
+        {
+            await _userService.ChangePasswordAsync(this.GetUserId(), dto);
+            return NoContent();
         }
 
         [HttpDelete("me")]

@@ -33,5 +33,11 @@ namespace MyCheckpoint.Services.Contracts
         /// no estaba en ella.
         /// </summary>
         Task RemoveFromPendingListIfPresentAsync(int gameId, int userId);
+
+        /// <summary>
+        /// Ids de los juegos en "Juegos pendientes" del usuario, sin crear la
+        /// lista si todavía no la tiene (a diferencia de las otras).
+        /// </summary>
+        Task<IEnumerable<int>> GetPendingGameIdsAsync(int userId);
     }
 }

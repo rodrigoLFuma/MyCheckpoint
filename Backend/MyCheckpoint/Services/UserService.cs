@@ -93,6 +93,38 @@ namespace MyCheckpoint.Services
             return _mapper.Map<IEnumerable<UserSummaryDto>>(users);
         }
 
+        public async Task<IEnumerable<int>> GetFavoriteGenreCategoryIdsAsync(int userId)
+        {
+            var user = await GetWithFavoriteGenresAsync(userId)
+                ?? throw new NotFoundException("El usuario no existe.");
+
+            return user.FavoriteGenres.Select(fg => fg.CategoryId).ToList();
+        }
+
+        public async Task<IEnumerable<UserSummaryDto>> GetSimilarUsersAsync(int userId, int skip, int take)
+        {
+            var myGenreIds = await GetFavoriteGenreCategoryIdsAsync(userId);
+
+            // Un único listado (a diferencia de top-by-favorites, que agrupa
+            // por categoría): ordenado por cuántos géneros favoritos
+            // compartís, y solo como desempate por nº de seguidores.
+            var users = await _userManager.Users
+                .Where(u => u.Id != userId && u.FavoriteGenres.Any(fg => myGenreIds.Contains(fg.CategoryId)))
+                .Select(u => new
+                {
+                    User = u,
+                    SharedGenres = u.FavoriteGenres.Count(fg => myGenreIds.Contains(fg.CategoryId))
+                })
+                .OrderByDescending(x => x.SharedGenres)
+                .ThenByDescending(x => x.User.Followeds.Count)
+                .Skip(skip)
+                .Take(take)
+                .Select(x => x.User)
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<UserSummaryDto>>(users);
+        }
+
         public async Task<UserDto> GetMyProfileAsync(int userId)
         {
             var user = await GetWithFavoriteGenresAsync(userId)
@@ -132,6 +164,16 @@ namespace MyCheckpoint.Services
             var userDto = _mapper.Map<UserDto>(user);
             userDto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
             return userDto;
+        }
+
+        public async Task ChangePasswordAsync(int userId, ChangePasswordDto dto)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString())
+                ?? throw new NotFoundException("El usuario no existe.");
+
+            var result = await _userManager.ChangePasswordAsync(user, dto.CurrentPassword, dto.NewPassword);
+            if (!result.Succeeded)
+                throw new BadRequestException(string.Join(" ", result.Errors.Select(e => e.Description)));
         }
 
         public async Task DeleteMyAccountAsync(int userId)

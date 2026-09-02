@@ -22,6 +22,14 @@ namespace MyCheckpoint.Controllers
             return Ok(await _userGameService.GetByIdAsync(id));
         }
 
+        [HttpGet("discover-reviews")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<UserGameDto>>> DiscoverReviews(
+            [FromQuery] int skip = 0, [FromQuery] int take = 6)
+        {
+            return Ok(await _userGameService.GetDiscoverReviewsAsync(this.GetUserId(), skip, take));
+        }
+
         [HttpGet("user/{userId}")]
         public async Task<ActionResult<IEnumerable<UserGameDto>>> GetByUser(int userId)
         {

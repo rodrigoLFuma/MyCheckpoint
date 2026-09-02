@@ -16,8 +16,19 @@ namespace MyCheckpoint.Services.Contracts
 
         /// <summary>Ranking completo de una categoría por nº de seguidores.</summary>
         Task<IEnumerable<UserSummaryDto>> GetTopInCategoryAsync(int categoryId, int? excludeUserId, int skip, int take);
+
+        Task<IEnumerable<int>> GetFavoriteGenreCategoryIdsAsync(int userId);
+
+        /// <summary>
+        /// Un único listado de gente con más géneros favoritos en común
+        /// contigo (a diferencia de GetTopByFavoriteGenresAsync, que agrupa
+        /// por categoría).
+        /// </summary>
+        Task<IEnumerable<UserSummaryDto>> GetSimilarUsersAsync(int userId, int skip, int take);
+
         Task<UserDto> GetMyProfileAsync(int userId);
         Task<UserDto> UpdateProfileAsync(int userId, UserModifyDto dto);
+        Task ChangePasswordAsync(int userId, ChangePasswordDto dto);
         Task DeleteMyAccountAsync(int userId);
     }
 }

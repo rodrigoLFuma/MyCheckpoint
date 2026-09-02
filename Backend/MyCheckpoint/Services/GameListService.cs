@@ -147,6 +147,19 @@ namespace MyCheckpoint.Services
             await GetOrCreatePendingListAsync(userId);
         }
 
+        public async Task<IEnumerable<int>> GetPendingGameIdsAsync(int userId)
+        {
+            var lists = await _gameListRepository.GetByUserIdAsync(userId, userId);
+            var pendingListSummary = lists.FirstOrDefault(gl => gl.Name == PendingListName);
+            if (pendingListSummary is null)
+                return Enumerable.Empty<int>();
+
+            // GetByUserIdAsync no incluye GameListItems; hay que volver a
+            // pedir la lista por Id (ese sí los incluye) para leerlos.
+            var pendingList = await _gameListRepository.GetByIdAsync(pendingListSummary.Id);
+            return pendingList?.GameListItems.Select(gli => gli.GameId) ?? Enumerable.Empty<int>();
+        }
+
         public async Task RemoveFromPendingListIfPresentAsync(int gameId, int userId)
         {
             var lists = await _gameListRepository.GetByUserIdAsync(userId, userId);
