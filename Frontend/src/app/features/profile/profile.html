@@ -131,6 +131,82 @@
   }
 </div>
 
+<div class="mx-auto mt-4 max-w-lg rounded border p-6">
+  <h2 class="text-sm font-bold">Seguridad</h2>
+
+  @if (!isChangingPassword()) {
+    @if (passwordSuccess()) {
+      <p class="mt-1 text-sm text-green-700">Contraseña actualizada correctamente.</p>
+    }
+    <button
+      type="button"
+      (click)="startChangePassword()"
+      class="mt-3 rounded border px-3 py-2 text-sm"
+    >
+      Cambiar contraseña
+    </button>
+  } @else {
+    <form (ngSubmit)="onChangePasswordSubmit()" class="mt-3 flex flex-col gap-3">
+      <label class="text-sm font-semibold">
+        Contraseña actual
+        <input
+          type="password"
+          [(ngModel)]="currentPassword"
+          name="currentPassword"
+          required
+          class="mt-1 w-full rounded border px-3 py-2"
+        />
+      </label>
+
+      <label class="text-sm font-semibold">
+        Contraseña nueva
+        <input
+          type="password"
+          [(ngModel)]="newPassword"
+          name="newPassword"
+          required
+          minlength="8"
+          class="mt-1 w-full rounded border px-3 py-2"
+        />
+      </label>
+      <p class="-mt-2 text-xs text-slate-500">Mínimo 8 caracteres, con al menos una mayúscula y un número.</p>
+
+      <label class="text-sm font-semibold">
+        Repetir contraseña nueva
+        <input
+          type="password"
+          [(ngModel)]="confirmNewPassword"
+          name="confirmNewPassword"
+          required
+          class="mt-1 w-full rounded border px-3 py-2"
+        />
+      </label>
+
+      @if (passwordError()) {
+        <p class="text-sm text-red-600">{{ passwordError() }}</p>
+      }
+
+      <div class="flex gap-2">
+        <button
+          type="submit"
+          [disabled]="isSubmittingPassword()"
+          class="rounded bg-blue-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+        >
+          {{ isSubmittingPassword() ? 'Guardando...' : 'Guardar contraseña' }}
+        </button>
+        <button
+          type="button"
+          (click)="cancelChangePassword()"
+          [disabled]="isSubmittingPassword()"
+          class="rounded border px-3 py-2 text-sm"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  }
+</div>
+
 <div class="mx-auto mt-4 max-w-lg rounded border border-red-200 p-6">
   <h2 class="text-sm font-bold text-red-700">Zona de peligro</h2>
 

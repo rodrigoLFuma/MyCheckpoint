@@ -1,0 +1,38 @@
+<div class="mx-auto mt-10 max-w-2xl">
+  <a routerLink="/" class="text-sm text-blue-600 underline">&larr; Volver a inicio</a>
+
+  <h1 class="mt-4 mb-4 text-xl font-bold">Reseñas de otros sobre tus juegos</h1>
+
+  @if (isLoading()) {
+    <p class="text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  <div class="flex flex-col gap-3">
+    @for (review of reviews(); track review.id) {
+      <app-review-card
+        [gameName]="review.game.name"
+        [gameImageUrl]="review.game.coverImageUrl"
+        [title]="review.title"
+        [description]="review.review"
+        [rate]="review.rate"
+      />
+    }
+  </div>
+
+  @if (hasMore()) {
+    <div class="mt-6 flex justify-center">
+      <button
+        type="button"
+        (click)="loadMore()"
+        [disabled]="isLoadingMore()"
+        class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+      >
+        {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
+      </button>
+    </div>
+  }
+</div>

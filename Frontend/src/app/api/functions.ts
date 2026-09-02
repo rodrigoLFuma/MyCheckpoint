@@ -127,6 +127,10 @@ export type { ApiUserCategoryCategoryIdTopGet$Plain$Params as ApiUserCategoryCat
 export { apiUserCategoryCategoryIdTopGet$Plain as apiUserCategoryCategoryIdTopGet$Plain } from './fn/user/api-user-category-category-id-top-get-plain';
 export type { ApiUserCategoryCategoryIdTopGet$Json$Params as ApiUserCategoryCategoryIdTopGet$Json$Params } from './fn/user/api-user-category-category-id-top-get-json';
 export { apiUserCategoryCategoryIdTopGet$Json as apiUserCategoryCategoryIdTopGet$Json } from './fn/user/api-user-category-category-id-top-get-json';
+export type { ApiUserSimilarGet$Plain$Params as ApiUserSimilarGet$Plain$Params } from './fn/user/api-user-similar-get-plain';
+export { apiUserSimilarGet$Plain as apiUserSimilarGet$Plain } from './fn/user/api-user-similar-get-plain';
+export type { ApiUserSimilarGet$Json$Params as ApiUserSimilarGet$Json$Params } from './fn/user/api-user-similar-get-json';
+export { apiUserSimilarGet$Json as apiUserSimilarGet$Json } from './fn/user/api-user-similar-get-json';
 export type { ApiUserMeGet$Plain$Params as ApiUserMeGet$Plain$Params } from './fn/user/api-user-me-get-plain';
 export { apiUserMeGet$Plain as apiUserMeGet$Plain } from './fn/user/api-user-me-get-plain';
 export type { ApiUserMeGet$Json$Params as ApiUserMeGet$Json$Params } from './fn/user/api-user-me-get-json';
@@ -137,6 +141,8 @@ export type { ApiUserMePut$Json$Params as ApiUserMePut$Json$Params } from './fn/
 export { apiUserMePut$Json as apiUserMePut$Json } from './fn/user/api-user-me-put-json';
 export type { ApiUserMeDelete$Params as ApiUserMeDelete$Params } from './fn/user/api-user-me-delete';
 export { apiUserMeDelete as apiUserMeDelete } from './fn/user/api-user-me-delete';
+export type { ApiUserMePasswordPut$Params as ApiUserMePasswordPut$Params } from './fn/user/api-user-me-password-put';
+export { apiUserMePasswordPut as apiUserMePasswordPut } from './fn/user/api-user-me-password-put';
 export type { ApiUserGameIdGet$Plain$Params as ApiUserGameIdGet$Plain$Params } from './fn/user-game/api-user-game-id-get-plain';
 export { apiUserGameIdGet$Plain as apiUserGameIdGet$Plain } from './fn/user-game/api-user-game-id-get-plain';
 export type { ApiUserGameIdGet$Json$Params as ApiUserGameIdGet$Json$Params } from './fn/user-game/api-user-game-id-get-json';
@@ -147,6 +153,10 @@ export type { ApiUserGameIdPut$Json$Params as ApiUserGameIdPut$Json$Params } fro
 export { apiUserGameIdPut$Json as apiUserGameIdPut$Json } from './fn/user-game/api-user-game-id-put-json';
 export type { ApiUserGameIdDelete$Params as ApiUserGameIdDelete$Params } from './fn/user-game/api-user-game-id-delete';
 export { apiUserGameIdDelete as apiUserGameIdDelete } from './fn/user-game/api-user-game-id-delete';
+export type { ApiUserGameDiscoverReviewsGet$Plain$Params as ApiUserGameDiscoverReviewsGet$Plain$Params } from './fn/user-game/api-user-game-discover-reviews-get-plain';
+export { apiUserGameDiscoverReviewsGet$Plain as apiUserGameDiscoverReviewsGet$Plain } from './fn/user-game/api-user-game-discover-reviews-get-plain';
+export type { ApiUserGameDiscoverReviewsGet$Json$Params as ApiUserGameDiscoverReviewsGet$Json$Params } from './fn/user-game/api-user-game-discover-reviews-get-json';
+export { apiUserGameDiscoverReviewsGet$Json as apiUserGameDiscoverReviewsGet$Json } from './fn/user-game/api-user-game-discover-reviews-get-json';
 export type { ApiUserGameUserUserIdGet$Plain$Params as ApiUserGameUserUserIdGet$Plain$Params } from './fn/user-game/api-user-game-user-user-id-get-plain';
 export { apiUserGameUserUserIdGet$Plain as apiUserGameUserUserIdGet$Plain } from './fn/user-game/api-user-game-user-user-id-get-plain';
 export type { ApiUserGameUserUserIdGet$Json$Params as ApiUserGameUserUserIdGet$Json$Params } from './fn/user-game/api-user-game-user-user-id-get-json';

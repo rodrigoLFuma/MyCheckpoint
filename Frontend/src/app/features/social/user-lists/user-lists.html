@@ -1,0 +1,29 @@
+<div class="mx-auto mt-10 max-w-2xl">
+  <a [routerLink]="['/users', userId]" class="text-sm text-blue-600 underline">&larr; Volver al perfil</a>
+
+  @if (isLoading()) {
+    <p class="mt-4 text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="mt-4 text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (profileUser(); as user) {
+    <h1 class="mt-4 mb-4 text-xl font-bold">Listas de {{ user.userName }}</h1>
+
+    <div class="flex flex-col gap-2">
+      @for (list of lists(); track list.id) {
+        <a [routerLink]="['/lists', list.id]" class="block rounded border p-3 hover:bg-slate-50">
+          <div class="flex items-center justify-between">
+            <span class="font-semibold">{{ list.name }}</span>
+            <span class="text-xs text-slate-500">{{ list.isPublic ? 'Pública' : 'Privada' }}</span>
+          </div>
+          @if (list.description) {
+            <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
+          }
+        </a>
+      }
+    </div>
+  }
+</div>

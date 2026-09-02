@@ -6,6 +6,7 @@ export type { CategoryAddDto } from './models/category-add-dto';
 export type { CategoryDto } from './models/category-dto';
 export type { CategoryModifyDto } from './models/category-modify-dto';
 export type { CategoryTopUsersDto } from './models/category-top-users-dto';
+export type { ChangePasswordDto } from './models/change-password-dto';
 export type { FollowAddDto } from './models/follow-add-dto';
 export type { FollowDto } from './models/follow-dto';
 export type { GameAddDto } from './models/game-add-dto';

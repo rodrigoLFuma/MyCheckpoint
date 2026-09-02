@@ -1,5 +1,135 @@
-@if (authService.isLoggedIn()) {
-  <h1 class="text-2xl font-bold">Bienvenido, {{ authService.user()?.userName }}</h1>
-} @else {
-  <h1 class="text-2xl font-bold">Bienvenido a MyCheckpoint</h1>
+<div class="mx-auto mt-10 max-w-5xl">
+  <h1 class="mb-6 text-2xl font-bold">Bienvenido, {{ authService.user()?.userName }}</h1>
+
+  <section class="mb-8">
+    <h2 class="mb-2 font-semibold">Reseñas de otros sobre tus juegos</h2>
+
+    @if (isLoadingReviews()) {
+      <p class="text-sm text-slate-500">Cargando...</p>
+    } @else if (discoverReviews().length === 0) {
+      <p class="text-sm text-slate-500">
+        Reseña algún juego en
+        <a routerLink="/games/search" class="text-blue-600 underline">Buscar juegos</a>
+        para ver aquí lo que opina otra gente de esos mismos juegos.
+      </p>
+    } @else {
+      <div class="flex gap-4 overflow-x-auto pb-2">
+        @for (review of discoverReviews(); track review.id) {
+          <div class="w-72 shrink-0">
+            <app-review-card
+              [gameName]="review.game.name"
+              [gameImageUrl]="review.game.coverImageUrl"
+              [title]="review.title"
+              [description]="review.review"
+              [rate]="review.rate"
+            />
+          </div>
+        }
+        @if (hasMoreReviews()) {
+          <a
+            routerLink="/discover/reviews"
+            class="flex w-32 shrink-0 items-center justify-center rounded border text-sm text-blue-600 underline"
+          >
+            Ver más
+          </a>
+        }
+      </div>
+    }
+  </section>
+
+  <section class="mb-8">
+    <h2 class="mb-2 font-semibold">Descubre tu nuevo juego favorito</h2>
+
+    @if (!authService.user()?.favoriteGenres?.length) {
+      <p class="text-sm text-slate-500">
+        Marca tus géneros favoritos en tu
+        <a routerLink="/profile" class="text-blue-600 underline">perfil</a>
+        para que te recomendemos juegos.
+      </p>
+    } @else {
+      <button
+        type="button"
+        (click)="discoverNewFavorite()"
+        class="rounded bg-blue-600 px-4 py-2 text-sm text-white"
+      >
+        Quiero descubrir mi nuevo juego favorito
+      </button>
+    }
+  </section>
+
+  <section class="mb-8">
+    <h2 class="mb-2 font-semibold">Gente con tus mismos gustos</h2>
+
+    @if (isLoadingUsers()) {
+      <p class="text-sm text-slate-500">Cargando...</p>
+    } @else if (similarUsers().length === 0) {
+      @if (!authService.user()?.favoriteGenres?.length) {
+        <p class="text-sm text-slate-500">
+          Marca tus géneros favoritos en tu
+          <a routerLink="/profile" class="text-blue-600 underline">perfil</a>
+          para que te recomendemos gente con tus mismos gustos.
+        </p>
+      } @else {
+        <p class="text-sm text-slate-500">
+          De momento nadie más comparte tus géneros favoritos. Prueba a explorar en
+          <a routerLink="/social" class="text-blue-600 underline">Social</a>.
+        </p>
+      }
+    } @else {
+      <div class="flex gap-4 overflow-x-auto pb-2">
+        @for (user of similarUsers(); track user.id) {
+          <a
+            [routerLink]="['/users', user.id]"
+            class="flex w-28 shrink-0 flex-col items-center gap-2 rounded border p-3 text-center hover:bg-slate-50"
+          >
+            <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-14 w-14" />
+            <span class="text-sm font-semibold">{{ user.userName }}</span>
+          </a>
+        }
+        @if (hasMoreUsers()) {
+          <a
+            routerLink="/discover/users"
+            class="flex w-28 shrink-0 items-center justify-center rounded border text-sm text-blue-600 underline"
+          >
+            Ver más
+          </a>
+        }
+      </div>
+    }
+  </section>
+</div>
+
+@if (isDiscoverPopupOpen()) {
+  <div class="fixed inset-0 z-40 bg-black/50" (click)="closeDiscoverPopup()"></div>
+
+  <div class="fixed inset-x-4 top-10 z-50 mx-auto max-w-3xl rounded bg-white p-6 shadow-lg">
+    <div class="mb-4 flex items-center justify-between">
+      <h2 class="text-lg font-bold">Tu nuevo juego favorito podría ser...</h2>
+      <button type="button" (click)="closeDiscoverPopup()" class="text-sm text-slate-500 underline">Cerrar</button>
+    </div>
+
+    @if (isDiscovering()) {
+      <p class="text-sm text-slate-500">Buscando en RAWG...</p>
+    }
+
+    @if (discoverError()) {
+      <p class="text-sm text-red-600">{{ discoverError() }}</p>
+    }
+
+    @if (!isDiscovering() && !discoverError() && discoverPicks().length === 0) {
+      <p class="text-sm text-slate-500">No se han encontrado juegos. Inténtalo otra vez.</p>
+    }
+
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+      @for (pick of discoverPicks(); track pick.id) {
+        <app-game-card [name]="pick.name ?? ''" [imageUrl]="pick.background_image" [releaseDate]="pick.released">
+          <app-create-review
+            [rawgId]="pick.id!"
+            [alreadyReviewed]="reviewedRawgIds().has(pick.id!)"
+            (created)="onDiscoverReviewCreated(pick.id!)"
+          />
+        </app-game-card>
+      }
+    </div>
+  </div>
 }

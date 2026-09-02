@@ -1,11 +1,33 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Api } from '../../api/api';
 import { apiCategoryGet$Json } from '../../api/fn/category/api-category-get-json';
 import { CategoryDto } from '../../api/models/category-dto';
+
+/**
+ * Los endpoints que devuelven 204 No Content (como cambiar contraseña) piden
+ * `responseType: 'text'`, así que Angular no parsea el cuerpo del error como
+ * JSON automáticamente (solo lo hace cuando responseType es 'json'): aquí
+ * `err.error` llega como texto plano, no como objeto. Hay que intentar
+ * parsearlo a mano para poder leer el `detail` del ProblemDetails.
+ */
+function extractErrorDetail(err: unknown): string | null {
+  if (!(err instanceof HttpErrorResponse)) return null;
+  const raw = err.error;
+  if (raw && typeof raw === 'object') return raw.detail ?? null;
+  if (typeof raw === 'string') {
+    try {
+      return JSON.parse(raw)?.detail ?? null;
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-profile',
@@ -21,6 +43,11 @@ export class Profile implements OnInit {
   protected errorMessage = signal<string | null>(null);
   protected isSubmitting = signal(false);
 
+  protected isChangingPassword = signal(false);
+  protected isSubmittingPassword = signal(false);
+  protected passwordError = signal<string | null>(null);
+  protected passwordSuccess = signal(false);
+
   protected pendingDeleteAccount = signal(false);
   protected isDeletingAccount = signal(false);
   protected deleteError = signal<string | null>(null);
@@ -31,6 +58,10 @@ export class Profile implements OnInit {
   userName = '';
   profilePictureURL = '';
   bibliography = '';
+
+  currentPassword = '';
+  newPassword = '';
+  confirmNewPassword = '';
 
   ngOnInit(): void {
     this.loadCategories();
@@ -85,6 +116,42 @@ export class Profile implements OnInit {
       this.errorMessage.set('No se ha podido guardar el perfil.');
     } finally {
       this.isSubmitting.set(false);
+    }
+  }
+
+  startChangePassword(): void {
+    this.currentPassword = '';
+    this.newPassword = '';
+    this.confirmNewPassword = '';
+    this.passwordError.set(null);
+    this.passwordSuccess.set(false);
+    this.isChangingPassword.set(true);
+  }
+
+  cancelChangePassword(): void {
+    this.isChangingPassword.set(false);
+  }
+
+  async onChangePasswordSubmit(): Promise<void> {
+    this.passwordError.set(null);
+
+    if (this.newPassword !== this.confirmNewPassword) {
+      this.passwordError.set('Las contraseñas nuevas no coinciden.');
+      return;
+    }
+
+    this.isSubmittingPassword.set(true);
+    try {
+      await this.authService.changePassword({
+        currentPassword: this.currentPassword,
+        newPassword: this.newPassword,
+      });
+      this.passwordSuccess.set(true);
+      this.isChangingPassword.set(false);
+    } catch (err) {
+      this.passwordError.set(extractErrorDetail(err) ?? 'No se ha podido cambiar la contraseña.');
+    } finally {
+      this.isSubmittingPassword.set(false);
     }
   }
 

@@ -31,6 +31,20 @@ export const routes: Routes = [
     loadComponent: () => import('./features/social/user-reviews/user-reviews').then((m) => m.UserReviews),
   },
   {
+    path: 'users/:id/lists',
+    loadComponent: () => import('./features/social/user-lists/user-lists').then((m) => m.UserLists),
+  },
+  {
+    path: 'discover/reviews',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/discover/discover-reviews/discover-reviews').then((m) => m.DiscoverReviews),
+  },
+  {
+    path: 'discover/users',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/discover/discover-users/discover-users').then((m) => m.DiscoverUsers),
+  },
+  {
     path: 'profile',
     canActivate: [authGuard],
     loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
