@@ -13,6 +13,7 @@ namespace MyCheckpoint.Services
         private readonly IGameRepository _gameRepository;
         private readonly IGameListService _gameListService;
         private readonly IFollowRepository _followRepository;
+        private readonly IReviewLikeRepository _reviewLikeRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
@@ -21,6 +22,7 @@ namespace MyCheckpoint.Services
             IGameRepository gameRepository,
             IGameListService gameListService,
             IFollowRepository followRepository,
+            IReviewLikeRepository reviewLikeRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
@@ -28,22 +30,25 @@ namespace MyCheckpoint.Services
             _gameRepository = gameRepository;
             _gameListService = gameListService;
             _followRepository = followRepository;
+            _reviewLikeRepository = reviewLikeRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        public async Task<UserGameDto> GetByIdAsync(int id)
+        public async Task<UserGameDto> GetByIdAsync(int id, int? viewerUserId)
         {
             var userGame = await _userGameRepository.GetByIdAsync(id)
                 ?? throw new NotFoundException("Esta entrada no existe.");
 
-            return _mapper.Map<UserGameDto>(userGame);
+            var dto = _mapper.Map<UserGameDto>(userGame);
+            return (await EnrichWithLikesAsync(new[] { dto }, viewerUserId)).Single();
         }
 
-        public async Task<IEnumerable<UserGameDto>> GetByUserIdAsync(int userId)
+        public async Task<IEnumerable<UserGameDto>> GetByUserIdAsync(int userId, int? viewerUserId)
         {
             var userGames = await _userGameRepository.GetByUserIdAsync(userId);
-            return _mapper.Map<IEnumerable<UserGameDto>>(userGames);
+            var dtos = _mapper.Map<IEnumerable<UserGameDto>>(userGames);
+            return await EnrichWithLikesAsync(dtos, viewerUserId);
         }
 
         public async Task<IEnumerable<UserGameDto>> GetDiscoverReviewsAsync(int userId, int skip, int take)
@@ -58,7 +63,8 @@ namespace MyCheckpoint.Services
             var random = new Random();
             var shuffled = candidates.OrderBy(_ => random.Next()).Skip(skip).Take(take);
 
-            return _mapper.Map<IEnumerable<UserGameDto>>(shuffled);
+            var dtos = _mapper.Map<IEnumerable<UserGameDto>>(shuffled);
+            return await EnrichWithLikesAsync(dtos, userId);
         }
 
         public async Task<IEnumerable<UserGameDto>> GetFollowingActivityAsync(int userId, int skip, int take)
@@ -70,7 +76,8 @@ namespace MyCheckpoint.Services
                 return Enumerable.Empty<UserGameDto>();
 
             var activity = await _userGameRepository.GetByUserIdsAsync(followingIds, skip, take);
-            return _mapper.Map<IEnumerable<UserGameDto>>(activity);
+            var dtos = _mapper.Map<IEnumerable<UserGameDto>>(activity);
+            return await EnrichWithLikesAsync(dtos, userId);
         }
 
         public async Task<UserGameDto> CreateAsync(UserGameAddDto dto, int userId)
@@ -116,7 +123,8 @@ namespace MyCheckpoint.Services
 
             await _unitOfWork.SaveChangesAsync();
 
-            return _mapper.Map<UserGameDto>(userGame);
+            var updatedDto = _mapper.Map<UserGameDto>(userGame);
+            return (await EnrichWithLikesAsync(new[] { updatedDto }, userId)).Single();
         }
 
         public async Task DeleteAsync(int id, int userId)
@@ -129,6 +137,63 @@ namespace MyCheckpoint.Services
 
             _userGameRepository.Delete(userGame);
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<UserGameDto> LikeAsync(int userGameId, int userId)
+        {
+            var userGame = await _userGameRepository.GetByIdAsync(userGameId)
+                ?? throw new NotFoundException("Esta reseña no existe.");
+
+            if (await _reviewLikeRepository.GetAsync(userId, userGameId) is null)
+            {
+                await _reviewLikeRepository.CreateAsync(new ReviewLike { UserId = userId, UserGameId = userGameId });
+                await _unitOfWork.SaveChangesAsync();
+            }
+
+            var dto = _mapper.Map<UserGameDto>(userGame);
+            return (await EnrichWithLikesAsync(new[] { dto }, userId)).Single();
+        }
+
+        public async Task<UserGameDto> UnlikeAsync(int userGameId, int userId)
+        {
+            var userGame = await _userGameRepository.GetByIdAsync(userGameId)
+                ?? throw new NotFoundException("Esta reseña no existe.");
+
+            var existing = await _reviewLikeRepository.GetAsync(userId, userGameId);
+            if (existing is not null)
+            {
+                _reviewLikeRepository.Delete(existing);
+                await _unitOfWork.SaveChangesAsync();
+            }
+
+            var dto = _mapper.Map<UserGameDto>(userGame);
+            return (await EnrichWithLikesAsync(new[] { dto }, userId)).Single();
+        }
+
+        /// <summary>
+        /// Rellena LikeCount y LikedByMe en lote (nada de una consulta por
+        /// cada reseña). viewerUserId nulo cuando nadie ha iniciado sesión:
+        /// se rellena el conteo igualmente, LikedByMe se queda en false.
+        /// </summary>
+        private async Task<IEnumerable<UserGameDto>> EnrichWithLikesAsync(IEnumerable<UserGameDto> dtos, int? viewerUserId)
+        {
+            var list = dtos.ToList();
+            var ids = list.Select(d => d.Id).ToList();
+            if (ids.Count == 0)
+                return list;
+
+            var counts = await _reviewLikeRepository.GetCountsAsync(ids);
+            var liked = viewerUserId is not null
+                ? await _reviewLikeRepository.GetLikedUserGameIdsAsync(viewerUserId.Value, ids)
+                : new HashSet<int>();
+
+            foreach (var dto in list)
+            {
+                dto.LikeCount = counts.GetValueOrDefault(dto.Id);
+                dto.LikedByMe = liked.Contains(dto.Id);
+            }
+
+            return list;
         }
     }
 }

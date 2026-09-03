@@ -19,7 +19,7 @@ namespace MyCheckpoint.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserGameDto>> GetById(int id)
         {
-            return Ok(await _userGameService.GetByIdAsync(id));
+            return Ok(await _userGameService.GetByIdAsync(id, this.GetUserIdOrNull()));
         }
 
         [HttpGet("discover-reviews")]
@@ -41,7 +41,21 @@ namespace MyCheckpoint.Controllers
         [HttpGet("user/{userId}")]
         public async Task<ActionResult<IEnumerable<UserGameDto>>> GetByUser(int userId)
         {
-            return Ok(await _userGameService.GetByUserIdAsync(userId));
+            return Ok(await _userGameService.GetByUserIdAsync(userId, this.GetUserIdOrNull()));
+        }
+
+        [HttpPost("{id}/like")]
+        [Authorize]
+        public async Task<ActionResult<UserGameDto>> Like(int id)
+        {
+            return Ok(await _userGameService.LikeAsync(id, this.GetUserId()));
+        }
+
+        [HttpDelete("{id}/like")]
+        [Authorize]
+        public async Task<ActionResult<UserGameDto>> Unlike(int id)
+        {
+            return Ok(await _userGameService.UnlikeAsync(id, this.GetUserId()));
         }
 
         [HttpPost]

@@ -268,6 +268,21 @@ namespace MyCheckpoint.Data.Migrations
                     b.ToTable("game_list_items", (string)null);
                 });
 
+            modelBuilder.Entity("MyCheckpoint.Data.Entities.ReviewLike", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserGameId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UserId", "UserGameId");
+
+                    b.HasIndex("UserGameId");
+
+                    b.ToTable("review_likes", (string)null);
+                });
+
             modelBuilder.Entity("MyCheckpoint.Data.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -550,6 +565,25 @@ namespace MyCheckpoint.Data.Migrations
                     b.Navigation("Game");
 
                     b.Navigation("GameList");
+                });
+
+            modelBuilder.Entity("MyCheckpoint.Data.Entities.ReviewLike", b =>
+                {
+                    b.HasOne("MyCheckpoint.Data.Entities.UserGame", "UserGame")
+                        .WithMany()
+                        .HasForeignKey("UserGameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyCheckpoint.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("UserGame");
                 });
 
             modelBuilder.Entity("MyCheckpoint.Data.Entities.UserFavoriteGenre", b =>

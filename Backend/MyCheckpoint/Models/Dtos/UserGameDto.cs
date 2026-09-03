@@ -19,5 +19,9 @@ namespace MyCheckpoint.Models.Dtos
         public GameDto Game { get; set; }
         [Required]
         public UserSummaryDto UserSummary { get; set; }
+        [Required]
+        public int LikeCount { get; set; }
+        [Required]
+        public bool LikedByMe { get; set; }
     }
 }

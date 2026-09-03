@@ -4,8 +4,11 @@ namespace MyCheckpoint.Services.Contracts
 {
     public interface IUserGameService
     {
-        Task<UserGameDto> GetByIdAsync(int id);
-        Task<IEnumerable<UserGameDto>> GetByUserIdAsync(int userId);
+        /// <summary>viewerUserId: quien la está viendo, para saber si le ha dado "me gusta" (null si no ha iniciado sesión).</summary>
+        Task<UserGameDto> GetByIdAsync(int id, int? viewerUserId);
+
+        /// <summary>viewerUserId: quien está viendo, para saber qué reseñas de esta lista tiene marcadas con "me gusta".</summary>
+        Task<IEnumerable<UserGameDto>> GetByUserIdAsync(int userId, int? viewerUserId);
 
         /// <summary>
         /// Reseñas aleatorias escritas por otros usuarios sobre juegos que
@@ -22,5 +25,8 @@ namespace MyCheckpoint.Services.Contracts
         Task<UserGameDto> CreateAsync(UserGameAddDto dto, int userId);
         Task<UserGameDto> UpdateAsync(int id, UserGameModifyDto dto, int userId);
         Task DeleteAsync(int id, int userId);
+
+        Task<UserGameDto> LikeAsync(int userGameId, int userId);
+        Task<UserGameDto> UnlikeAsync(int userGameId, int userId);
     }
 }
