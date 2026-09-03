@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -76,5 +77,10 @@ export const routes: Routes = [
   {
     path: 'lists/:id',
     loadComponent: () => import('./features/lists/list-detail/list-detail').then((m) => m.ListDetail),
+  },
+  {
+    path: 'admin/games',
+    canActivate: [authGuard, adminGuard],
+    loadComponent: () => import('./features/admin/manage-games/manage-games').then((m) => m.ManageGames),
   },
 ];

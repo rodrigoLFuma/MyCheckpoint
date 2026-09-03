@@ -17,6 +17,7 @@ export type { GameListItemAddDto } from './models/game-list-item-add-dto';
 export type { GameListItemDto } from './models/game-list-item-dto';
 export type { GameListModifyDto } from './models/game-list-modify-dto';
 export type { GameModifyDto } from './models/game-modify-dto';
+export type { GameRefreshRequestDto } from './models/game-refresh-request-dto';
 export type { GameSearchResultDto } from './models/game-search-result-dto';
 export type { LoginDto } from './models/login-dto';
 export type { RawgGameSummary } from './models/rawg-game-summary';

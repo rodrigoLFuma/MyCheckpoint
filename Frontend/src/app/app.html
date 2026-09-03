@@ -41,6 +41,15 @@
           >
             Mi perfil
           </a>
+          @if (authService.isAdmin()) {
+            <a
+              routerLink="/admin/games"
+              (click)="closeMenu()"
+              class="block w-full px-4 py-2 hover:bg-slate-700"
+            >
+              Gestionar juegos
+            </a>
+          }
           <button
             type="button"
             (click)="logout()"

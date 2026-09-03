@@ -83,6 +83,10 @@ export type { ApiGameImportRawgIdPost$Plain$Params as ApiGameImportRawgIdPost$Pl
 export { apiGameImportRawgIdPost$Plain as apiGameImportRawgIdPost$Plain } from './fn/game/api-game-import-rawg-id-post-plain';
 export type { ApiGameImportRawgIdPost$Json$Params as ApiGameImportRawgIdPost$Json$Params } from './fn/game/api-game-import-rawg-id-post-json';
 export { apiGameImportRawgIdPost$Json as apiGameImportRawgIdPost$Json } from './fn/game/api-game-import-rawg-id-post-json';
+export type { ApiGameRefreshPost$Plain$Params as ApiGameRefreshPost$Plain$Params } from './fn/game/api-game-refresh-post-plain';
+export { apiGameRefreshPost$Plain as apiGameRefreshPost$Plain } from './fn/game/api-game-refresh-post-plain';
+export type { ApiGameRefreshPost$Json$Params as ApiGameRefreshPost$Json$Params } from './fn/game/api-game-refresh-post-json';
+export { apiGameRefreshPost$Json as apiGameRefreshPost$Json } from './fn/game/api-game-refresh-post-json';
 export type { ApiGameListIdGet$Plain$Params as ApiGameListIdGet$Plain$Params } from './fn/game-list/api-game-list-id-get-plain';
 export { apiGameListIdGet$Plain as apiGameListIdGet$Plain } from './fn/game-list/api-game-list-id-get-plain';
 export type { ApiGameListIdGet$Json$Params as ApiGameListIdGet$Json$Params } from './fn/game-list/api-game-list-id-get-json';

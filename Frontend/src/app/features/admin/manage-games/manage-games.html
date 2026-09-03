@@ -1,0 +1,72 @@
+<div class="mx-auto mt-10 max-w-5xl">
+  <h1 class="mb-4 text-xl font-bold">Gestionar juegos</h1>
+
+  <p class="mb-4 text-sm text-slate-500">
+    Los juegos importados se quedan tal cual estaban en RAWG en el momento de importarlos. Selecciona los que
+    quieras refrescar con los datos actuales de RAWG (nombre, portada, descripción, Metacritic, géneros). Cada
+    juego seleccionado es una llamada a RAWG.
+  </p>
+
+  @if (isLoading()) {
+    <p class="text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (!isLoading() && games().length === 0) {
+    <p class="text-sm text-slate-500">Todavía no hay juegos importados.</p>
+  }
+
+  @if (games().length > 0) {
+    <div class="mb-4 flex flex-wrap items-center gap-2">
+      <button type="button" (click)="allSelected() ? deselectAll() : selectAll()" class="rounded border px-3 py-2 text-sm">
+        {{ allSelected() ? 'Deseleccionar todos' : 'Seleccionar todos' }}
+      </button>
+
+      <button
+        type="button"
+        (click)="refreshSelected()"
+        [disabled]="isRefreshing() || selectedIds().size === 0"
+        class="rounded bg-blue-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+      >
+        {{ isRefreshing() ? 'Actualizando...' : 'Actualizar seleccionados (' + selectedIds().size + ')' }}
+      </button>
+
+      @if (refreshMessage()) {
+        <span class="text-sm text-slate-600">{{ refreshMessage() }}</span>
+      }
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      @for (game of games(); track game.id) {
+        <label class="flex cursor-pointer flex-col overflow-hidden rounded border shadow-sm">
+          @if (game.coverImageUrl) {
+            <img [src]="game.coverImageUrl" [alt]="game.name" class="h-32 w-full object-cover" />
+          } @else {
+            <div class="flex h-32 w-full items-center justify-center bg-slate-200 text-2xl font-bold text-slate-500">
+              {{ game.name.charAt(0).toUpperCase() }}
+            </div>
+          }
+
+          <div class="flex items-start gap-2 p-3">
+            <input
+              type="checkbox"
+              [checked]="selectedIds().has(game.id)"
+              (change)="toggleSelect(game.id)"
+              class="mt-1"
+            />
+            <div class="min-w-0">
+              <p class="truncate text-sm font-semibold">{{ game.name }}</p>
+              <p class="text-xs text-slate-500">{{ game.releaseDate | date: 'yyyy' }}</p>
+              @if (!game.rawgId) {
+                <p class="text-xs text-amber-600">Sin RawgId (no se puede refrescar)</p>
+              }
+            </div>
+          </div>
+        </label>
+      }
+    </div>
+  }
+</div>
