@@ -12,6 +12,7 @@ namespace MyCheckpoint.Services
         private readonly IUserGameRepository _userGameRepository;
         private readonly IGameRepository _gameRepository;
         private readonly IGameListService _gameListService;
+        private readonly IFollowRepository _followRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
@@ -19,12 +20,14 @@ namespace MyCheckpoint.Services
             IUserGameRepository userGameRepository,
             IGameRepository gameRepository,
             IGameListService gameListService,
+            IFollowRepository followRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             _userGameRepository = userGameRepository;
             _gameRepository = gameRepository;
             _gameListService = gameListService;
+            _followRepository = followRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -56,6 +59,18 @@ namespace MyCheckpoint.Services
             var shuffled = candidates.OrderBy(_ => random.Next()).Skip(skip).Take(take);
 
             return _mapper.Map<IEnumerable<UserGameDto>>(shuffled);
+        }
+
+        public async Task<IEnumerable<UserGameDto>> GetFollowingActivityAsync(int userId, int skip, int take)
+        {
+            var following = await _followRepository.GetFollowingAsync(userId);
+            var followingIds = following.Select(f => f.FollowedId).ToList();
+
+            if (followingIds.Count == 0)
+                return Enumerable.Empty<UserGameDto>();
+
+            var activity = await _userGameRepository.GetByUserIdsAsync(followingIds, skip, take);
+            return _mapper.Map<IEnumerable<UserGameDto>>(activity);
         }
 
         public async Task<UserGameDto> CreateAsync(UserGameAddDto dto, int userId)

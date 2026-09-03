@@ -43,5 +43,17 @@ namespace MyCheckpoint.Data.Repositories
                               && ug.Review != null && ug.Review != "")
                     .ToListAsync();
         }
+
+        public async Task<IEnumerable<UserGame>> GetByUserIdsAsync(IEnumerable<int> userIds, int skip, int take)
+        {
+            return await _context.Set<UserGame>()
+                    .Include(ug => ug.Game)
+                    .Include(ug => ug.User)
+                    .Where(ug => userIds.Contains(ug.UserId) && ug.Review != null && ug.Review != "")
+                    .OrderByDescending(ug => ug.CreatedAt)
+                    .Skip(skip)
+                    .Take(take)
+                    .ToListAsync();
+        }
     }
 }
