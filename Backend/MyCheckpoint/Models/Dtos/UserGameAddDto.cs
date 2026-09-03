@@ -12,6 +12,7 @@ namespace MyCheckpoint.Models.Dtos
         // UserGameService la ignora igualmente si Status es "Pendiente".
         public int? Rate { get; set; }
         public string? Title { get; set; }
+        [MaxLength(2000)]
         public string? Review { get; set; }
         public DateTime? PlayedDate { get; set; }
     }
