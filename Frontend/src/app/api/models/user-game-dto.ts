@@ -7,6 +7,8 @@ export interface UserGameDto {
   createdAt: string;
   game: GameDto;
   id: number;
+  likeCount: number;
+  likedByMe: boolean;
   playedDate?: string | null;
   rate?: number | null;
   review?: string | null;

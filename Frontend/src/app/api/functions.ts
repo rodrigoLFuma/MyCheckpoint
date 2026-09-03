@@ -169,6 +169,14 @@ export type { ApiUserGameUserUserIdGet$Plain$Params as ApiUserGameUserUserIdGet$
 export { apiUserGameUserUserIdGet$Plain as apiUserGameUserUserIdGet$Plain } from './fn/user-game/api-user-game-user-user-id-get-plain';
 export type { ApiUserGameUserUserIdGet$Json$Params as ApiUserGameUserUserIdGet$Json$Params } from './fn/user-game/api-user-game-user-user-id-get-json';
 export { apiUserGameUserUserIdGet$Json as apiUserGameUserUserIdGet$Json } from './fn/user-game/api-user-game-user-user-id-get-json';
+export type { ApiUserGameIdLikePost$Plain$Params as ApiUserGameIdLikePost$Plain$Params } from './fn/user-game/api-user-game-id-like-post-plain';
+export { apiUserGameIdLikePost$Plain as apiUserGameIdLikePost$Plain } from './fn/user-game/api-user-game-id-like-post-plain';
+export type { ApiUserGameIdLikePost$Json$Params as ApiUserGameIdLikePost$Json$Params } from './fn/user-game/api-user-game-id-like-post-json';
+export { apiUserGameIdLikePost$Json as apiUserGameIdLikePost$Json } from './fn/user-game/api-user-game-id-like-post-json';
+export type { ApiUserGameIdLikeDelete$Plain$Params as ApiUserGameIdLikeDelete$Plain$Params } from './fn/user-game/api-user-game-id-like-delete-plain';
+export { apiUserGameIdLikeDelete$Plain as apiUserGameIdLikeDelete$Plain } from './fn/user-game/api-user-game-id-like-delete-plain';
+export type { ApiUserGameIdLikeDelete$Json$Params as ApiUserGameIdLikeDelete$Json$Params } from './fn/user-game/api-user-game-id-like-delete-json';
+export { apiUserGameIdLikeDelete$Json as apiUserGameIdLikeDelete$Json } from './fn/user-game/api-user-game-id-like-delete-json';
 export type { ApiUserGamePost$Plain$Params as ApiUserGamePost$Plain$Params } from './fn/user-game/api-user-game-post-plain';
 export { apiUserGamePost$Plain as apiUserGamePost$Plain } from './fn/user-game/api-user-game-post-plain';
 export type { ApiUserGamePost$Json$Params as ApiUserGamePost$Json$Params } from './fn/user-game/api-user-game-post-json';

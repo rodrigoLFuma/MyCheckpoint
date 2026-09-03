@@ -23,5 +23,11 @@
     <div class="mt-1 text-sm text-slate-600">
       <app-truncated-text [text]="description()" [reviewId]="reviewId()" />
     </div>
+
+    @if (reviewId() != null) {
+      <div class="mt-2">
+        <app-like-button [reviewId]="reviewId()!" [likeCount]="likeCount()" [likedByMe]="likedByMe()" />
+      </div>
+    }
   </div>
 </div>

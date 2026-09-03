@@ -5,6 +5,7 @@ import { Api } from '../../../api/api';
 import { apiUserGameIdGet$Json } from '../../../api/fn/user-game/api-user-game-id-get-json';
 import { UserGameDto } from '../../../api/models/user-game-dto';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
+import { LikeButton } from '../../../shared/components/like-button/like-button';
 
 /**
  * Vista completa de una reseña: a donde lleva "Ver más" en cualquier tarjeta
@@ -13,7 +14,7 @@ import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
  */
 @Component({
   selector: 'app-review-detail',
-  imports: [DatePipe, RouterLink, UserAvatar],
+  imports: [DatePipe, RouterLink, UserAvatar, LikeButton],
   templateUrl: './review-detail.html',
 })
 export class ReviewDetail implements OnInit {

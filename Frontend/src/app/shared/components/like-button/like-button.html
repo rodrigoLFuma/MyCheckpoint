@@ -1,0 +1,18 @@
+@if (canLike) {
+  <button
+    type="button"
+    (click)="toggle()"
+    [disabled]="isToggling()"
+    class="flex items-center gap-1 text-sm disabled:opacity-50"
+    [class.text-red-600]="displayedLikedByMe"
+    [class.text-slate-500]="!displayedLikedByMe"
+  >
+    <span>{{ displayedLikedByMe ? '♥' : '♡' }}</span>
+    <span>{{ displayedLikeCount }}</span>
+  </button>
+} @else {
+  <span class="flex items-center gap-1 text-sm text-slate-500">
+    <span>♡</span>
+    <span>{{ displayedLikeCount }}</span>
+  </span>
+}
