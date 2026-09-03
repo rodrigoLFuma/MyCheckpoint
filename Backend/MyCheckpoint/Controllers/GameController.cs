@@ -56,6 +56,13 @@ namespace MyCheckpoint.Controllers
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 
+        [HttpPost("refresh")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IEnumerable<GameDto>>> Refresh(GameRefreshRequestDto dto)
+        {
+            return Ok(await _gameService.RefreshFromRawgAsync(dto.GameIds));
+        }
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<GameDto>> Create(GameAddDto dto)

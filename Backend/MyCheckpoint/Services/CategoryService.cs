@@ -10,13 +10,13 @@ namespace MyCheckpoint.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IRepositoryBaseWithId<Category> _categoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IRawgClient _rawgClient;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public CategoryService(
-            IRepositoryBaseWithId<Category> categoryRepository,
+            ICategoryRepository categoryRepository,
             IRawgClient rawgClient,
             IUnitOfWork unitOfWork,
             IMapper mapper)
@@ -72,6 +72,10 @@ namespace MyCheckpoint.Services
         {
             var category = await _categoryRepository.GetByIdAsync(id)
                 ?? throw new NotFoundException("La categoría no existe.");
+
+            if (await _categoryRepository.IsInUseAsync(id))
+                throw new ConflictException(
+                    "No se puede borrar: la categoría está asignada a algún juego o en los géneros favoritos de algún usuario.");
 
             _categoryRepository.Delete(category);
             await _unitOfWork.SaveChangesAsync();

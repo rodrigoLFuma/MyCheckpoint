@@ -165,6 +165,54 @@ namespace MyCheckpoint.Services
             return _mapper.Map<GameDto>(created);
         }
 
+        public async Task<IEnumerable<GameDto>> RefreshFromRawgAsync(IEnumerable<int> gameIds)
+        {
+            var refreshed = new List<GameDto>();
+
+            foreach (var id in gameIds.Distinct())
+            {
+                var game = await _gameRepository.GetByIdAsync(id);
+                if (game is null || game.RawgId is null)
+                    continue; // no importado de RAWG, no hay nada que refrescar
+
+                var rawgGame = await _rawgClient.GetByIdAsync(game.RawgId.Value);
+                if (rawgGame is null)
+                    continue; // ya no existe en RAWG; se deja el juego como está
+
+                var categoryLookup = await GetOrCreateCategoriesByNameAsync(rawgGame.Genres.Select(g => g.Name));
+
+                game.Name = rawgGame.Name;
+                game.ReleaseDate = DateTime.SpecifyKind(rawgGame.Released ?? DateTime.MinValue, DateTimeKind.Utc);
+                game.Developer = rawgGame.Developers.Count > 0
+                    ? string.Join(", ", rawgGame.Developers.Select(d => d.Name))
+                    : null;
+                game.Publisher = rawgGame.Publishers.Count > 0
+                    ? string.Join(", ", rawgGame.Publishers.Select(p => p.Name))
+                    : null;
+                game.Description = rawgGame.DescriptionRaw;
+                game.CoverImageUrl = rawgGame.BackgroundImage;
+                game.Metacritic = rawgGame.Metacritic;
+
+                var targetCategoryIds = rawgGame.Genres.Select(g => categoryLookup[g.Name].Id).ToHashSet();
+                game.GameCategories.RemoveAll(gc => !targetCategoryIds.Contains(gc.CategoryId));
+                var existingIds = game.GameCategories.Select(gc => gc.CategoryId).ToHashSet();
+                foreach (var categoryId in targetCategoryIds.Where(cid => !existingIds.Contains(cid)))
+                {
+                    game.GameCategories.Add(new GameCategory
+                    {
+                        GameId = id,
+                        CategoryId = categoryId,
+                        Category = categoryLookup.Values.First(c => c.Id == categoryId)
+                    });
+                }
+
+                refreshed.Add(_mapper.Map<GameDto>(game));
+            }
+
+            await _unitOfWork.SaveChangesAsync();
+            return refreshed;
+        }
+
         private async Task<Dictionary<string, Category>> GetOrCreateCategoriesByNameAsync(IEnumerable<string> names)
         {
             var existingCategories = await _categoryRepository.GetAllAsync();

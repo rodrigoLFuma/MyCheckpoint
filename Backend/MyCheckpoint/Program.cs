@@ -85,7 +85,8 @@ builder.Services.AddScoped<IGameListRepository, GameListRepository>();
 builder.Services.AddScoped<IGameListItemRepository, GameListItemRepository>();
 builder.Services.AddScoped<IFollowRepository, FollowRepository>();
 builder.Services.AddScoped<IUserGameRepository, UserGameRepository>();
-builder.Services.AddScoped<IRepositoryBaseWithId<Category>, RepositoryBaseWithId<Category>>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IRepositoryBaseWithId<Category>>(sp => sp.GetRequiredService<ICategoryRepository>());
 
 builder.Services.AddScoped<IGameListService, GameListService>();
 builder.Services.AddScoped<IFollowService, FollowService>();
