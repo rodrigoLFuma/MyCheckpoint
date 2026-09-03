@@ -1,24 +1,33 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { Api } from '../../../api/api';
 import { apiUserGameUserUserIdGet$Json } from '../../../api/fn/user-game/api-user-game-user-user-id-get-json';
-import { apiUserGameIdPut$Json } from '../../../api/fn/user-game/api-user-game-id-put-json';
 import { apiUserGameIdDelete } from '../../../api/fn/user-game/api-user-game-id-delete';
 import { apiGameListUserUserIdGet$Json } from '../../../api/fn/game-list/api-game-list-user-user-id-get-json';
 import { apiGameListIdItemsPost } from '../../../api/fn/game-list/api-game-list-id-items-post';
 import { UserGameDto } from '../../../api/models/user-game-dto';
 import { GameListDto } from '../../../api/models/game-list-dto';
 import { GameCard } from '../game-card/game-card';
+import { TruncatedText } from '../../../shared/components/truncated-text/truncated-text';
 
 // "Pendiente" no aparece aquí: una reseña ya creada implica que el juego
 // dejó de ser "solo pendiente" (eso vive en la lista "Juegos pendientes").
 const STATUSES = ['Jugando', 'Completado', 'Abandonado'] as const;
 
+const SORT_OPTIONS = [
+  { value: 'recent', label: 'Más recientes primero' },
+  { value: 'oldest', label: 'Más antiguos primero' },
+  { value: 'rate-desc', label: 'Mejor puntuados' },
+  { value: 'rate-asc', label: 'Peor puntuados' },
+  { value: 'name', label: 'Nombre (A-Z)' },
+] as const;
+type SortOption = (typeof SORT_OPTIONS)[number]['value'];
+
 @Component({
   selector: 'app-library',
-  imports: [FormsModule, RouterLink, GameCard],
+  imports: [FormsModule, RouterLink, GameCard, TruncatedText],
   templateUrl: './library.html',
 })
 export class Library implements OnInit {
@@ -26,23 +35,60 @@ export class Library implements OnInit {
   private api = inject(Api);
 
   protected readonly statuses = STATUSES;
+  protected readonly sortOptions = SORT_OPTIONS;
   protected userGames = signal<UserGameDto[]>([]);
   protected isLoading = signal(true);
   protected errorMessage = signal<string | null>(null);
 
-  protected editingId = signal<number | null>(null);
-  protected isSaving = signal(false);
+  protected searchTerm = signal('');
+  protected statusFilter = signal<'Todos' | (typeof STATUSES)[number]>('Todos');
+  protected sortBy = signal<SortOption>('recent');
+
+  protected filteredGames = computed(() => {
+    const term = this.searchTerm().trim().toLowerCase();
+    const status = this.statusFilter();
+    const sort = this.sortBy();
+
+    let games = this.userGames();
+
+    if (term) {
+      games = games.filter(
+        (g) => g.game.name.toLowerCase().includes(term) || (g.title ?? '').toLowerCase().includes(term),
+      );
+    }
+    if (status !== 'Todos') {
+      games = games.filter((g) => g.status === status);
+    }
+
+    games = [...games];
+    switch (sort) {
+      case 'oldest':
+        games.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+        break;
+      case 'rate-desc':
+        games.sort((a, b) => (b.rate ?? 0) - (a.rate ?? 0));
+        break;
+      case 'rate-asc':
+        games.sort((a, b) => (a.rate ?? 0) - (b.rate ?? 0));
+        break;
+      case 'name':
+        games.sort((a, b) => a.game.name.localeCompare(b.game.name));
+        break;
+      case 'recent':
+      default:
+        games.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+        break;
+    }
+
+    return games;
+  });
+
   protected pendingDeleteId = signal<number | null>(null);
 
   protected lists = signal<GameListDto[]>([]);
   protected addingToListForGameId = signal<number | null>(null);
   protected addToListMessage = signal<string | null>(null);
   selectedListId: number | null = null;
-
-  status: (typeof STATUSES)[number] = 'Jugando';
-  rate = 5;
-  title = '';
-  review = '';
 
   ngOnInit(): void {
     this.loadLibrary();
@@ -60,7 +106,6 @@ export class Library implements OnInit {
   }
 
   openAddToList(gameId: number): void {
-    this.editingId.set(null);
     this.pendingDeleteId.set(null);
     this.addToListMessage.set(null);
     this.selectedListId = this.lists()[0]?.id ?? null;
@@ -101,37 +146,7 @@ export class Library implements OnInit {
     }
   }
 
-  startEdit(userGame: UserGameDto): void {
-    this.pendingDeleteId.set(null);
-    this.status = (userGame.status as (typeof STATUSES)[number]) ?? 'Jugando';
-    this.rate = userGame.rate ?? 5;
-    this.title = userGame.title ?? '';
-    this.review = userGame.review ?? '';
-    this.editingId.set(userGame.id);
-  }
-
-  cancelEdit(): void {
-    this.editingId.set(null);
-  }
-
-  async saveEdit(id: number): Promise<void> {
-    this.isSaving.set(true);
-    try {
-      const updated = await this.api.invoke(apiUserGameIdPut$Json, {
-        id,
-        body: { status: this.status, rate: this.rate, title: this.title || null, review: this.review || null },
-      });
-      this.userGames.update((games) => games.map((g) => (g.id === id ? updated : g)));
-      this.editingId.set(null);
-    } catch {
-      this.errorMessage.set('No se ha podido guardar el cambio.');
-    } finally {
-      this.isSaving.set(false);
-    }
-  }
-
   askDelete(id: number): void {
-    this.editingId.set(null);
     this.pendingDeleteId.set(id);
   }
 

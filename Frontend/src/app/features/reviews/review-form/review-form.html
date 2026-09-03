@@ -1,0 +1,162 @@
+<div class="mx-auto mt-10 max-w-2xl">
+  <button type="button" (click)="goBack()" class="text-sm text-blue-600 underline">&larr; Volver</button>
+
+  @if (isLoading()) {
+    <p class="mt-4 text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (loadError()) {
+    <p class="mt-4 text-sm text-red-600">{{ loadError() }}</p>
+  }
+
+  @if (isForbidden()) {
+    <p class="mt-4 text-sm text-red-600">No tienes permiso para editar esta reseña.</p>
+  }
+
+  @if (game(); as gameInfo) {
+    <div class="mt-4 flex flex-col gap-4 sm:flex-row">
+      @if (gameInfo.coverImageUrl) {
+        <img
+          [src]="gameInfo.coverImageUrl"
+          [alt]="gameInfo.name"
+          class="h-64 w-48 shrink-0 rounded object-cover"
+        />
+      } @else {
+        <div
+          class="flex h-64 w-48 shrink-0 items-center justify-center rounded bg-slate-200 text-3xl font-bold text-slate-500"
+        >
+          {{ gameInfo.name.charAt(0).toUpperCase() }}
+        </div>
+      }
+
+      <div class="min-w-0 flex-1">
+        <h1 class="text-xl font-bold">{{ gameInfo.name }}</h1>
+
+        <p class="mt-1 text-sm text-slate-500">
+          @if (gameInfo.releaseDate) {
+            {{ gameInfo.releaseDate | date: 'yyyy' }}
+          }
+          @if (gameInfo.developer) {
+            · {{ gameInfo.developer }}
+          }
+          @if (gameInfo.publisher && gameInfo.publisher !== gameInfo.developer) {
+            · {{ gameInfo.publisher }}
+          }
+        </p>
+
+        @if (gameInfo.metacritic != null) {
+          <p class="mt-1 text-sm text-slate-500">Metacritic: {{ gameInfo.metacritic }}</p>
+        }
+
+        @if (gameInfo.categories?.length) {
+          <div class="mt-2 flex flex-wrap gap-1">
+            @for (category of gameInfo.categories; track category.id) {
+              <span class="rounded-full bg-slate-100 px-2 py-1 text-xs text-slate-600">{{ category.name }}</span>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    @if (!isForbidden()) {
+      <form (ngSubmit)="onSubmit()" class="mt-6 flex flex-col gap-3 rounded border p-4">
+        <h2 class="font-semibold">{{ isEditMode() ? 'Editar reseña' : 'Nueva reseña' }}</h2>
+
+        <label class="text-sm font-semibold">
+          Estado
+          <select [(ngModel)]="status" name="status" class="mt-1 w-full rounded border px-3 py-2 text-sm">
+            @for (option of statuses; track option) {
+              <option [value]="option">{{ option }}</option>
+            }
+          </select>
+        </label>
+
+        @if (status !== 'Pendiente') {
+          <label class="text-sm font-semibold">
+            Puntuación ({{ rate }}/10)
+            <input type="range" min="1" max="10" [(ngModel)]="rate" name="rate" class="mt-1 w-full" />
+          </label>
+
+          <label class="text-sm font-semibold">
+            Título
+            <input
+              type="text"
+              [(ngModel)]="title"
+              name="title"
+              class="mt-1 w-full rounded border px-3 py-2 text-sm"
+            />
+          </label>
+
+          <label class="text-sm font-semibold">
+            Reseña
+            <textarea
+              [(ngModel)]="review"
+              name="review"
+              rows="6"
+              [maxlength]="reviewMaxLength"
+              class="mt-1 w-full rounded border px-3 py-2 text-sm"
+            ></textarea>
+          </label>
+          <p class="-mt-2 text-right text-xs text-slate-400">{{ review.length }} / {{ reviewMaxLength }}</p>
+        }
+
+        @if (submitError()) {
+          <p class="text-sm text-red-600">{{ submitError() }}</p>
+        }
+
+        <div class="flex gap-2">
+          <button
+            type="submit"
+            [disabled]="isSubmitting()"
+            class="flex-1 rounded bg-blue-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+          >
+            {{ isSubmitting() ? 'Guardando...' : 'Guardar' }}
+          </button>
+          <button
+            type="button"
+            (click)="goBack()"
+            [disabled]="isSubmitting()"
+            class="rounded border px-3 py-2 text-sm"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+
+      @if (isEditMode()) {
+        <div class="mt-4 rounded border border-red-200 p-4">
+          @if (!pendingDelete()) {
+            <button type="button" (click)="askDelete()" class="text-sm text-red-600 underline">
+              Borrar esta reseña
+            </button>
+          } @else {
+            <p class="text-sm text-red-700">¿Seguro que quieres borrar esta reseña? No se puede deshacer.</p>
+
+            @if (deleteError()) {
+              <p class="mt-1 text-sm text-red-600">{{ deleteError() }}</p>
+            }
+
+            <div class="mt-2 flex gap-2">
+              <button
+                type="button"
+                (click)="confirmDelete()"
+                [disabled]="isDeleting()"
+                class="rounded bg-red-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+              >
+                {{ isDeleting() ? 'Borrando...' : 'Sí, borrar' }}
+              </button>
+              <button
+                type="button"
+                (click)="cancelDelete()"
+                [disabled]="isDeleting()"
+                class="rounded border px-3 py-2 text-sm"
+              >
+                Cancelar
+              </button>
+            </div>
+          }
+        </div>
+      }
+    }
+  }
+</div>

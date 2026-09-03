@@ -16,61 +16,51 @@
     </p>
   }
 
+  @if (userGames().length > 0) {
+    <div class="mb-4 flex flex-wrap gap-2">
+      <input
+        type="text"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+        placeholder="Buscar por juego o título..."
+        class="min-w-48 flex-1 rounded border px-3 py-2 text-sm"
+      />
+
+      <select
+        [ngModel]="statusFilter()"
+        (ngModelChange)="statusFilter.set($event)"
+        class="rounded border px-3 py-2 text-sm"
+      >
+        <option value="Todos">Todos los estados</option>
+        @for (option of statuses; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+
+      <select
+        [ngModel]="sortBy()"
+        (ngModelChange)="sortBy.set($event)"
+        class="rounded border px-3 py-2 text-sm"
+      >
+        @for (option of sortOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+
+    @if (filteredGames().length === 0) {
+      <p class="text-sm text-slate-500">Ningún juego coincide con la búsqueda o el filtro.</p>
+    }
+  }
+
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-    @for (userGame of userGames(); track userGame.id) {
+    @for (userGame of filteredGames(); track userGame.id) {
       <app-game-card
         [name]="userGame.game.name"
         [imageUrl]="userGame.game.coverImageUrl"
         [releaseDate]="userGame.game.releaseDate"
       >
-        @if (editingId() === userGame.id) {
-          <form (ngSubmit)="saveEdit(userGame.id)" class="mt-2 flex flex-col gap-2">
-            <label class="text-xs font-semibold">
-              Estado
-              <select [(ngModel)]="status" name="status" class="mt-1 w-full rounded border px-2 py-1 text-sm">
-                @for (option of statuses; track option) {
-                  <option [value]="option">{{ option }}</option>
-                }
-              </select>
-            </label>
-
-            <label class="text-xs font-semibold">
-              Puntuación ({{ rate }}/10)
-              <input type="range" min="1" max="10" [(ngModel)]="rate" name="rate" class="w-full" />
-            </label>
-
-            <label class="text-xs font-semibold">
-              Título
-              <input
-                type="text"
-                [(ngModel)]="title"
-                name="title"
-                class="mt-1 w-full rounded border px-2 py-1 text-sm"
-              />
-            </label>
-
-            <label class="text-xs font-semibold">
-              Reseña
-              <textarea
-                [(ngModel)]="review"
-                name="review"
-                rows="2"
-                class="mt-1 w-full rounded border px-2 py-1 text-sm"
-              ></textarea>
-            </label>
-
-            <div class="flex gap-2">
-              <button
-                type="submit"
-                [disabled]="isSaving()"
-                class="flex-1 rounded bg-blue-600 px-2 py-1 text-sm text-white disabled:opacity-50"
-              >
-                {{ isSaving() ? 'Guardando...' : 'Guardar' }}
-              </button>
-              <button type="button" (click)="cancelEdit()" class="rounded border px-2 py-1 text-sm">Cancelar</button>
-            </div>
-          </form>
-        } @else if (pendingDeleteId() === userGame.id) {
+        @if (pendingDeleteId() === userGame.id) {
           <div class="mt-2 flex flex-col gap-2">
             <p class="text-xs text-red-600">¿Borrar esta reseña?</p>
             <div class="flex gap-2">
@@ -119,16 +109,19 @@
             @if (userGame.title) {
               <p class="mt-1 font-semibold">{{ userGame.title }}</p>
             }
-            @if (userGame.review) {
-              <p class="mt-1 text-slate-600">{{ userGame.review }}</p>
-            }
+            <div class="mt-1 text-slate-600">
+              <app-truncated-text [text]="userGame.review" [reviewId]="userGame.id" />
+            </div>
           </div>
 
           <div class="mt-2 flex flex-col gap-2">
             <div class="flex gap-2">
-              <button type="button" (click)="startEdit(userGame)" class="flex-1 rounded border px-2 py-1 text-sm">
+              <a
+                [routerLink]="['/reviews', userGame.id, 'edit']"
+                class="flex-1 rounded border px-2 py-1 text-center text-sm"
+              >
                 Editar
-              </button>
+              </a>
               <button type="button" (click)="askDelete(userGame.id)" class="rounded border px-2 py-1 text-sm text-red-600">
                 Borrar
               </button>

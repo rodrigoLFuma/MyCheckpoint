@@ -1,33 +1,12 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Api } from '../../api/api';
 import { apiCategoryGet$Json } from '../../api/fn/category/api-category-get-json';
 import { CategoryDto } from '../../api/models/category-dto';
-
-/**
- * Los endpoints que devuelven 204 No Content (como cambiar contraseña) piden
- * `responseType: 'text'`, así que Angular no parsea el cuerpo del error como
- * JSON automáticamente (solo lo hace cuando responseType es 'json'): aquí
- * `err.error` llega como texto plano, no como objeto. Hay que intentar
- * parsearlo a mano para poder leer el `detail` del ProblemDetails.
- */
-function extractErrorDetail(err: unknown): string | null {
-  if (!(err instanceof HttpErrorResponse)) return null;
-  const raw = err.error;
-  if (raw && typeof raw === 'object') return raw.detail ?? null;
-  if (typeof raw === 'string') {
-    try {
-      return JSON.parse(raw)?.detail ?? null;
-    } catch {
-      return null;
-    }
-  }
-  return null;
-}
+import { extractErrorDetail } from '../../shared/utils/http-error';
 
 @Component({
   selector: 'app-profile',

@@ -1,14 +1,14 @@
-import { Component, input, signal } from '@angular/core';
-
-const DESCRIPTION_LIMIT = 400;
+import { Component, input } from '@angular/core';
+import { TruncatedText } from '../truncated-text/truncated-text';
 
 /**
  * Tarjeta de una reseña: imagen y nombre del juego, título de la reseña,
- * descripción (recortada a 400 caracteres con "Ver más" si hace falta) y
+ * descripción (recortada con "Ver más" si hace falta, vía TruncatedText) y
  * la nota. Puramente visual, no sabe de dónde viene el UserGame.
  */
 @Component({
   selector: 'app-review-card',
+  imports: [TruncatedText],
   templateUrl: './review-card.html',
 })
 export class ReviewCard {
@@ -17,20 +17,5 @@ export class ReviewCard {
   title = input<string | null | undefined>(null);
   description = input<string | null | undefined>(null);
   rate = input<number | null | undefined>(null);
-
-  protected isExpanded = signal(false);
-
-  protected get isTruncated(): boolean {
-    return (this.description()?.length ?? 0) > DESCRIPTION_LIMIT;
-  }
-
-  protected get visibleDescription(): string {
-    const description = this.description() ?? '';
-    if (this.isExpanded() || !this.isTruncated) return description;
-    return description.slice(0, DESCRIPTION_LIMIT) + '…';
-  }
-
-  toggleExpanded(): void {
-    this.isExpanded.update((expanded) => !expanded);
-  }
+  reviewId = input<number | null | undefined>(null);
 }

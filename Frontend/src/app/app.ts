@@ -31,7 +31,7 @@ export class App {
       // cliente igualmente: la cookie HttpOnly expira sola y lo que
       // importa es que la UI refleje la intención del usuario.
       this.authService.clearLocalSession();
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/login');
     }
   }
 }

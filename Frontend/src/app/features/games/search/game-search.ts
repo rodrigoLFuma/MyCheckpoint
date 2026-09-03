@@ -84,10 +84,6 @@ export class GameSearch implements OnInit {
     }
   }
 
-  onReviewCreated(rawgId: number): void {
-    this.reviewedRawgIds.update((ids) => new Set(ids).add(rawgId));
-  }
-
   async onSubmit(): Promise<void> {
     const term = this.term.trim();
     const genres = this.categories().find((c) => c.id === this.selectedCategoryId)?.rawgSlug ?? undefined;

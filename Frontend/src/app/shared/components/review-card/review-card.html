@@ -20,13 +20,8 @@
       }
     </div>
 
-    @if (description()) {
-      <p class="mt-1 whitespace-pre-line text-sm text-slate-600">{{ visibleDescription }}</p>
-      @if (isTruncated) {
-        <button type="button" (click)="toggleExpanded()" class="mt-1 text-xs text-blue-600 underline">
-          {{ isExpanded() ? 'Ver menos' : 'Ver más' }}
-        </button>
-      }
-    }
+    <div class="mt-1 text-sm text-slate-600">
+      <app-truncated-text [text]="description()" [reviewId]="reviewId()" />
+    </div>
   </div>
 </div>

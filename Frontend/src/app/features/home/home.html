@@ -22,6 +22,7 @@
               [title]="review.title"
               [description]="review.review"
               [rate]="review.rate"
+              [reviewId]="review.id"
             />
           </div>
         }
@@ -123,11 +124,7 @@
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
       @for (pick of discoverPicks(); track pick.id) {
         <app-game-card [name]="pick.name ?? ''" [imageUrl]="pick.background_image" [releaseDate]="pick.released">
-          <app-create-review
-            [rawgId]="pick.id!"
-            [alreadyReviewed]="reviewedRawgIds().has(pick.id!)"
-            (created)="onDiscoverReviewCreated(pick.id!)"
-          />
+          <app-create-review [rawgId]="pick.id!" [alreadyReviewed]="reviewedRawgIds().has(pick.id!)" />
         </app-game-card>
       }
     </div>

@@ -23,6 +23,20 @@ export const routes: Routes = [
     loadComponent: () => import('./features/social/category-top/category-top').then((m) => m.CategoryTop),
   },
   {
+    path: 'reviews/new/:gameId',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/reviews/review-form/review-form').then((m) => m.ReviewForm),
+  },
+  {
+    path: 'reviews/:id/edit',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/reviews/review-form/review-form').then((m) => m.ReviewForm),
+  },
+  {
+    path: 'reviews/:id',
+    loadComponent: () => import('./features/reviews/review-detail/review-detail').then((m) => m.ReviewDetail),
+  },
+  {
     path: 'users/:id',
     loadComponent: () => import('./features/social/user-profile/user-profile').then((m) => m.UserProfile),
   },

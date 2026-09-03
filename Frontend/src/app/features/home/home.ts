@@ -96,10 +96,6 @@ export class Home implements OnInit {
     }
   }
 
-  onDiscoverReviewCreated(rawgId: number): void {
-    this.reviewedRawgIds.update((ids) => new Set(ids).add(rawgId));
-  }
-
   async discoverNewFavorite(): Promise<void> {
     const genres = (this.authService.user()?.favoriteGenres ?? [])
       .map((c) => c.rawgSlug)
