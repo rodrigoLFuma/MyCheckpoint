@@ -20,6 +20,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/social/user-search/user-search').then((m) => m.UserSearch),
   },
   {
+    path: 'social/activity',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/social/activity-feed/activity-feed').then((m) => m.ActivityFeed),
+  },
+  {
     path: 'social/category/:id',
     loadComponent: () => import('./features/social/category-top/category-top').then((m) => m.CategoryTop),
   },

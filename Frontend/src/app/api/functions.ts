@@ -161,6 +161,10 @@ export type { ApiUserGameDiscoverReviewsGet$Plain$Params as ApiUserGameDiscoverR
 export { apiUserGameDiscoverReviewsGet$Plain as apiUserGameDiscoverReviewsGet$Plain } from './fn/user-game/api-user-game-discover-reviews-get-plain';
 export type { ApiUserGameDiscoverReviewsGet$Json$Params as ApiUserGameDiscoverReviewsGet$Json$Params } from './fn/user-game/api-user-game-discover-reviews-get-json';
 export { apiUserGameDiscoverReviewsGet$Json as apiUserGameDiscoverReviewsGet$Json } from './fn/user-game/api-user-game-discover-reviews-get-json';
+export type { ApiUserGameFollowingActivityGet$Plain$Params as ApiUserGameFollowingActivityGet$Plain$Params } from './fn/user-game/api-user-game-following-activity-get-plain';
+export { apiUserGameFollowingActivityGet$Plain as apiUserGameFollowingActivityGet$Plain } from './fn/user-game/api-user-game-following-activity-get-plain';
+export type { ApiUserGameFollowingActivityGet$Json$Params as ApiUserGameFollowingActivityGet$Json$Params } from './fn/user-game/api-user-game-following-activity-get-json';
+export { apiUserGameFollowingActivityGet$Json as apiUserGameFollowingActivityGet$Json } from './fn/user-game/api-user-game-following-activity-get-json';
 export type { ApiUserGameUserUserIdGet$Plain$Params as ApiUserGameUserUserIdGet$Plain$Params } from './fn/user-game/api-user-game-user-user-id-get-plain';
 export { apiUserGameUserUserIdGet$Plain as apiUserGameUserUserIdGet$Plain } from './fn/user-game/api-user-game-user-user-id-get-plain';
 export type { ApiUserGameUserUserIdGet$Json$Params as ApiUserGameUserUserIdGet$Json$Params } from './fn/user-game/api-user-game-user-user-id-get-json';

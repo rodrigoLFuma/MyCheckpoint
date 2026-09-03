@@ -1,0 +1,65 @@
+<div class="mx-auto mt-10 max-w-2xl">
+  <a routerLink="/social" class="text-sm text-blue-600 underline">&larr; Volver a Social</a>
+
+  <h1 class="mt-4 mb-4 text-xl font-bold">Actividad de gente que sigues</h1>
+
+  @if (isLoading()) {
+    <p class="text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (!isLoading() && activity().length === 0) {
+    @if (!followsAnyone()) {
+      <p class="text-sm text-slate-500">
+        Todavía no sigues a nadie. Busca gente en
+        <a routerLink="/social" class="text-blue-600 underline">Social</a>
+        para ver aquí sus reseñas.
+      </p>
+    } @else {
+      <p class="text-sm text-slate-500">La gente que sigues todavía no ha escrito ninguna reseña.</p>
+    }
+  }
+
+  <div class="flex flex-col gap-3">
+    @for (item of activity(); track item.id) {
+      <div class="rounded border p-3">
+        <a
+          [routerLink]="['/users', item.userSummary.id]"
+          class="mb-2 flex w-fit items-center gap-2 text-sm font-semibold hover:underline"
+        >
+          <app-user-avatar
+            [imageUrl]="item.userSummary.profilePictureURL"
+            [name]="item.userSummary.userName"
+            sizeClass="h-6 w-6"
+          />
+          {{ item.userSummary.userName }}
+        </a>
+
+        <app-review-card
+          [gameName]="item.game.name"
+          [gameImageUrl]="item.game.coverImageUrl"
+          [title]="item.title"
+          [description]="item.review"
+          [rate]="item.rate"
+          [reviewId]="item.id"
+        />
+      </div>
+    }
+  </div>
+
+  @if (hasMore()) {
+    <div class="mt-6 flex justify-center">
+      <button
+        type="button"
+        (click)="loadMore()"
+        [disabled]="isLoadingMore()"
+        class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+      >
+        {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
+      </button>
+    </div>
+  }
+</div>

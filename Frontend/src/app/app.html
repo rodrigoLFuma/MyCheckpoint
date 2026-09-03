@@ -3,6 +3,9 @@
     <a routerLink="/" class="font-bold">MyCheckpoint</a>
     <a routerLink="/games/search" class="text-sm underline">Buscar juegos</a>
     <a routerLink="/social" class="text-sm underline">Social</a>
+    @if (authService.isLoggedIn()) {
+      <a routerLink="/social/activity" class="text-sm underline">Actividad</a>
+    }
   </div>
 
   @if (authService.isLoggedIn()) {
