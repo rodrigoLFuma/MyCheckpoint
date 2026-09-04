@@ -20,6 +20,7 @@ export type { GameModifyDto } from './models/game-modify-dto';
 export type { GameRefreshRequestDto } from './models/game-refresh-request-dto';
 export type { GameSearchResultDto } from './models/game-search-result-dto';
 export type { LoginDto } from './models/login-dto';
+export type { NotificationDto } from './models/notification-dto';
 export type { RawgGameSummary } from './models/rawg-game-summary';
 export type { UserAddDto } from './models/user-add-dto';
 export type { UserDto } from './models/user-dto';

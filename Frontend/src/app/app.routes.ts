@@ -84,6 +84,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/lists/list-detail/list-detail').then((m) => m.ListDetail),
   },
   {
+    path: 'notifications',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/notifications/notifications').then((m) => m.Notifications),
+  },
+  {
     path: 'admin/games',
     canActivate: [authGuard, adminGuard],
     loadComponent: () => import('./features/admin/manage-games/manage-games').then((m) => m.ManageGames),

@@ -115,6 +115,16 @@ export type { ApiGameListIdItemsGameIdDelete$Params as ApiGameListIdItemsGameIdD
 export { apiGameListIdItemsGameIdDelete as apiGameListIdItemsGameIdDelete } from './fn/game-list/api-game-list-id-items-game-id-delete';
 export type { ApiGameListPendingItemsPost$Params as ApiGameListPendingItemsPost$Params } from './fn/game-list/api-game-list-pending-items-post';
 export { apiGameListPendingItemsPost as apiGameListPendingItemsPost } from './fn/game-list/api-game-list-pending-items-post';
+export type { ApiNotificationGet$Plain$Params as ApiNotificationGet$Plain$Params } from './fn/notification/api-notification-get-plain';
+export { apiNotificationGet$Plain as apiNotificationGet$Plain } from './fn/notification/api-notification-get-plain';
+export type { ApiNotificationGet$Json$Params as ApiNotificationGet$Json$Params } from './fn/notification/api-notification-get-json';
+export { apiNotificationGet$Json as apiNotificationGet$Json } from './fn/notification/api-notification-get-json';
+export type { ApiNotificationUnreadCountGet$Plain$Params as ApiNotificationUnreadCountGet$Plain$Params } from './fn/notification/api-notification-unread-count-get-plain';
+export { apiNotificationUnreadCountGet$Plain as apiNotificationUnreadCountGet$Plain } from './fn/notification/api-notification-unread-count-get-plain';
+export type { ApiNotificationUnreadCountGet$Json$Params as ApiNotificationUnreadCountGet$Json$Params } from './fn/notification/api-notification-unread-count-get-json';
+export { apiNotificationUnreadCountGet$Json as apiNotificationUnreadCountGet$Json } from './fn/notification/api-notification-unread-count-get-json';
+export type { ApiNotificationMarkReadPost$Params as ApiNotificationMarkReadPost$Params } from './fn/notification/api-notification-mark-read-post';
+export { apiNotificationMarkReadPost as apiNotificationMarkReadPost } from './fn/notification/api-notification-mark-read-post';
 export type { ApiUserIdGet$Plain$Params as ApiUserIdGet$Plain$Params } from './fn/user/api-user-id-get-plain';
 export { apiUserIdGet$Plain as apiUserIdGet$Plain } from './fn/user/api-user-id-get-plain';
 export type { ApiUserIdGet$Json$Params as ApiUserIdGet$Json$Params } from './fn/user/api-user-id-get-json';

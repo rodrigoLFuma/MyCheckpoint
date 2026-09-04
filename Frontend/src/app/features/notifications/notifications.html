@@ -1,0 +1,70 @@
+<div class="mx-auto mt-10 max-w-2xl">
+  <h1 class="mb-4 text-xl font-bold">Notificaciones</h1>
+
+  @if (isLoading()) {
+    <p class="text-sm text-slate-500">Cargando...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (!isLoading() && notifications().length === 0) {
+    <p class="text-sm text-slate-500">No tienes notificaciones todavía.</p>
+  }
+
+  <div class="flex flex-col gap-2">
+    @for (notification of notifications(); track notification.id) {
+      <div class="flex items-center gap-3 rounded border p-3" [class.bg-blue-50]="!notification.isRead">
+        <app-user-avatar
+          [imageUrl]="notification.actor.profilePictureURL"
+          [name]="notification.actor.userName"
+          sizeClass="h-10 w-10"
+        />
+
+        <div class="min-w-0 flex-1 text-sm">
+          @if (notification.type === 'Follow') {
+            <p>
+              <a [routerLink]="['/users', notification.actor.id]" class="font-semibold hover:underline">{{
+                notification.actor.userName
+              }}</a>
+              ha empezado a seguirte.
+            </p>
+          } @else if (notification.type === 'Like') {
+            <p>
+              <a [routerLink]="['/users', notification.actor.id]" class="font-semibold hover:underline">{{
+                notification.actor.userName
+              }}</a>
+              le ha dado
+              <span>♥</span>
+              a tu reseña de
+              @if (notification.userGameId != null) {
+                <a [routerLink]="['/reviews', notification.userGameId]" class="font-semibold hover:underline">{{
+                  notification.gameName
+                }}</a>
+              } @else {
+                <span class="font-semibold">{{ notification.gameName }}</span>
+              }
+              .
+            </p>
+          }
+
+          <p class="mt-1 text-xs text-slate-400">{{ notification.createdAt | date: 'medium' }}</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (hasMore()) {
+    <div class="mt-6 flex justify-center">
+      <button
+        type="button"
+        (click)="loadMore()"
+        [disabled]="isLoadingMore()"
+        class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+      >
+        {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
+      </button>
+    </div>
+  }
+</div>
