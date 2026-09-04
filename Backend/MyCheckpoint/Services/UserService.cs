@@ -13,6 +13,7 @@ namespace MyCheckpoint.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly IFollowRepository _followRepository;
+        private readonly INotificationRepository _notificationRepository;
         private readonly IRepositoryBaseWithId<Category> _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -20,12 +21,14 @@ namespace MyCheckpoint.Services
         public UserService(
             UserManager<User> userManager,
             IFollowRepository followRepository,
+            INotificationRepository notificationRepository,
             IRepositoryBaseWithId<Category> categoryRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             _userManager = userManager;
             _followRepository = followRepository;
+            _notificationRepository = notificationRepository;
             _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -189,6 +192,14 @@ namespace MyCheckpoint.Services
             var following = await _followRepository.GetFollowingAsync(userId);
             foreach (var follow in followers.Concat(following))
                 _followRepository.Delete(follow);
+
+            // Notification tiene el mismo problema de doble FK a User que
+            // Follow: hay que borrar a mano tanto las que recibió como las
+            // que generó él mismo.
+            var notifications = await _notificationRepository.GetAllForUserAsync(userId);
+            foreach (var notification in notifications)
+                _notificationRepository.Delete(notification);
+
             await _unitOfWork.SaveChangesAsync();
 
             var result = await _userManager.DeleteAsync(user);

@@ -268,6 +268,44 @@ namespace MyCheckpoint.Data.Migrations
                     b.ToTable("game_list_items", (string)null);
                 });
 
+            modelBuilder.Entity("MyCheckpoint.Data.Entities.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ActorUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("RecipientUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("UserGameId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActorUserId");
+
+                    b.HasIndex("RecipientUserId");
+
+                    b.HasIndex("UserGameId");
+
+                    b.ToTable("notifications", (string)null);
+                });
+
             modelBuilder.Entity("MyCheckpoint.Data.Entities.ReviewLike", b =>
                 {
                     b.Property<int>("UserId")
@@ -565,6 +603,32 @@ namespace MyCheckpoint.Data.Migrations
                     b.Navigation("Game");
 
                     b.Navigation("GameList");
+                });
+
+            modelBuilder.Entity("MyCheckpoint.Data.Entities.Notification", b =>
+                {
+                    b.HasOne("MyCheckpoint.Data.Entities.User", "ActorUser")
+                        .WithMany()
+                        .HasForeignKey("ActorUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MyCheckpoint.Data.Entities.User", "RecipientUser")
+                        .WithMany()
+                        .HasForeignKey("RecipientUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MyCheckpoint.Data.Entities.UserGame", "UserGame")
+                        .WithMany()
+                        .HasForeignKey("UserGameId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.Navigation("ActorUser");
+
+                    b.Navigation("RecipientUser");
+
+                    b.Navigation("UserGame");
                 });
 
             modelBuilder.Entity("MyCheckpoint.Data.Entities.ReviewLike", b =>

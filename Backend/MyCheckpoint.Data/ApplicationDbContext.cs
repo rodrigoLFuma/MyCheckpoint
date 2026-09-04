@@ -22,6 +22,7 @@ namespace MyCheckpoint.Data
         public DbSet<GameCategory> GameCategories => Set<GameCategory>();
         public DbSet<UserFavoriteGenre> UserFavoriteGenres => Set<UserFavoriteGenre>();
         public DbSet<ReviewLike> ReviewLikes => Set<ReviewLike>();
+        public DbSet<Notification> Notifications => Set<Notification>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,6 +39,7 @@ namespace MyCheckpoint.Data
             modelBuilder.Entity<GameListItem>().ToTable("game_list_items");
             modelBuilder.Entity<UserFavoriteGenre>().ToTable("user_favorite_genres");
             modelBuilder.Entity<ReviewLike>().ToTable("review_likes");
+            modelBuilder.Entity<Notification>().ToTable("notifications");
 
             modelBuilder.Entity<Follow>()
             .HasKey(f => new { f.FollowerId, f.FollowedId });
@@ -62,6 +64,28 @@ namespace MyCheckpoint.Data
 
             modelBuilder.Entity<ReviewLike>()
                 .HasKey(rl => new { rl.UserId, rl.UserGameId });
+
+            // Igual que Follow: dos FKs a User en la misma entidad, así que
+            // ambas necesitan Restrict para evitar el ciclo de cascada.
+            // DeleteMyAccountAsync borra a mano las notificaciones antes de
+            // borrar al usuario, igual que ya hace con los follows.
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.RecipientUser)
+                .WithMany()
+                .HasForeignKey(n => n.RecipientUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.ActorUser)
+                .WithMany()
+                .HasForeignKey(n => n.ActorUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.UserGame)
+                .WithMany()
+                .HasForeignKey(n => n.UserGameId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<GameListItem>()
                 .HasKey(x => new { x.GameListId, x.GameId });

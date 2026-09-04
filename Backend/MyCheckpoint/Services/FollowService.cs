@@ -12,17 +12,20 @@ namespace MyCheckpoint.Services
     {
         private readonly IFollowRepository _followRepository;
         private readonly UserManager<User> _userManager;
+        private readonly INotificationService _notificationService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public FollowService(
             IFollowRepository followRepository,
             UserManager<User> userManager,
+            INotificationService notificationService,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             _followRepository = followRepository;
             _userManager = userManager;
+            _notificationService = notificationService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -61,6 +64,8 @@ namespace MyCheckpoint.Services
 
             await _followRepository.CreateAsync(follow);
             await _unitOfWork.SaveChangesAsync();
+
+            await _notificationService.CreateAsync(dto.FollowedId, followerId, "Follow");
         }
 
         public async Task UnfollowAsync(int followedId, int followerId)

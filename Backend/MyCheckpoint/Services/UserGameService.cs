@@ -14,6 +14,7 @@ namespace MyCheckpoint.Services
         private readonly IGameListService _gameListService;
         private readonly IFollowRepository _followRepository;
         private readonly IReviewLikeRepository _reviewLikeRepository;
+        private readonly INotificationService _notificationService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
@@ -23,6 +24,7 @@ namespace MyCheckpoint.Services
             IGameListService gameListService,
             IFollowRepository followRepository,
             IReviewLikeRepository reviewLikeRepository,
+            INotificationService notificationService,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
@@ -31,6 +33,7 @@ namespace MyCheckpoint.Services
             _gameListService = gameListService;
             _followRepository = followRepository;
             _reviewLikeRepository = reviewLikeRepository;
+            _notificationService = notificationService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -148,6 +151,8 @@ namespace MyCheckpoint.Services
             {
                 await _reviewLikeRepository.CreateAsync(new ReviewLike { UserId = userId, UserGameId = userGameId });
                 await _unitOfWork.SaveChangesAsync();
+
+                await _notificationService.CreateAsync(userGame.UserId, userId, "Like", userGameId);
             }
 
             var dto = _mapper.Map<UserGameDto>(userGame);
