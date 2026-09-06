@@ -1,47 +1,76 @@
-<div class="mx-auto mt-10 max-w-lg rounded border p-6">
+<div class="mx-auto max-w-lg rounded-lg border border-border bg-surface p-6">
   @if (authService.user(); as me) {
-    <a [routerLink]="['/users', me.id]" class="text-sm text-blue-600 underline">&larr; Volver a mi perfil</a>
+    <a [routerLink]="['/users', me.id]" class="text-sm font-medium text-primary hover:underline">&larr; Volver a mi perfil</a>
   }
 
-  <h1 class="mt-4 mb-4 text-xl font-bold">Editar perfil</h1>
+  <h1 class="mt-4 mb-4 text-xl font-bold text-ink">Editar perfil</h1>
 
   <form (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
-    <label class="text-sm font-semibold">
+    <label class="text-sm font-semibold text-ink">
       Nombre de usuario
       <input
         type="text"
         [(ngModel)]="userName"
         name="userName"
         required
-        class="mt-1 w-full rounded border px-3 py-2"
+        class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
       />
     </label>
 
-    <label class="text-sm font-semibold">
-      URL de foto de perfil
-      <input
-        type="url"
-        [(ngModel)]="profilePictureURL"
-        name="profilePictureURL"
-        class="mt-1 w-full rounded border px-3 py-2"
-      />
-    </label>
+    @if (authService.user(); as me) {
+      <div class="text-sm font-semibold text-ink">
+        Foto de perfil
+        <div class="mt-1 flex items-center gap-3">
+          <app-user-avatar [imageUrl]="me.profilePictureURL" [name]="me.userName" sizeClass="h-16 w-16" />
 
-    <label class="text-sm font-semibold">
+          <div class="flex flex-col gap-1">
+            <label class="cursor-pointer text-xs font-normal text-primary hover:underline">
+              {{ isUploadingPicture() ? 'Subiendo...' : 'Cambiar foto' }}
+              <input
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+                [disabled]="isUploadingPicture()"
+                (change)="onPictureSelected($event)"
+                class="hidden"
+              />
+            </label>
+
+            @if (me.profilePictureURL) {
+              <button
+                type="button"
+                (click)="removePicture()"
+                [disabled]="isUploadingPicture()"
+                class="text-left text-xs font-normal text-danger hover:underline disabled:opacity-50"
+              >
+                Quitar foto
+              </button>
+            }
+          </div>
+        </div>
+
+        @if (pictureError()) {
+          <p class="mt-1 text-xs font-normal text-danger">{{ pictureError() }}</p>
+        }
+      </div>
+    }
+
+    <label class="text-sm font-semibold text-ink">
       Biografía
       <textarea
         [(ngModel)]="bibliography"
         name="bibliography"
         rows="3"
-        class="mt-1 w-full rounded border px-3 py-2"
+        class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
       ></textarea>
     </label>
 
-    <div class="text-sm font-semibold">
+    <div class="text-sm font-semibold text-ink">
       Géneros favoritos
       <div class="mt-1 flex flex-wrap gap-2">
         @for (category of categories(); track category.id) {
-          <label class="flex items-center gap-1 rounded border px-2 py-1 text-xs font-normal">
+          <label
+            class="flex items-center gap-1 rounded-lg border border-border px-2 py-1 text-xs font-normal text-ink-muted has-checked:border-primary has-checked:text-ink"
+          >
             <input
               type="checkbox"
               [checked]="selectedGenreIds().has(category.id)"
@@ -54,17 +83,17 @@
     </div>
 
     @if (saved()) {
-      <p class="text-sm text-green-700">Perfil actualizado correctamente.</p>
+      <p class="text-sm text-success">Perfil actualizado correctamente.</p>
     }
 
     @if (errorMessage()) {
-      <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+      <p class="text-sm text-danger">{{ errorMessage() }}</p>
     }
 
     <button
       type="submit"
       [disabled]="isSubmitting()"
-      class="rounded bg-blue-600 px-3 py-2 text-white disabled:opacity-50"
+      class="rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
     >
       {{ isSubmitting() ? 'Guardando...' : 'Guardar' }}
     </button>

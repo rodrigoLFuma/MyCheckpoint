@@ -171,6 +171,14 @@ export type { ApiUserMePut$Json$Params as ApiUserMePut$Json$Params } from './fn/
 export { apiUserMePut$Json as apiUserMePut$Json } from './fn/user/api-user-me-put-json';
 export type { ApiUserMeDelete$Params as ApiUserMeDelete$Params } from './fn/user/api-user-me-delete';
 export { apiUserMeDelete as apiUserMeDelete } from './fn/user/api-user-me-delete';
+export type { ApiUserMeProfilePicturePost$Plain$Params as ApiUserMeProfilePicturePost$Plain$Params } from './fn/user/api-user-me-profile-picture-post-plain';
+export { apiUserMeProfilePicturePost$Plain as apiUserMeProfilePicturePost$Plain } from './fn/user/api-user-me-profile-picture-post-plain';
+export type { ApiUserMeProfilePicturePost$Json$Params as ApiUserMeProfilePicturePost$Json$Params } from './fn/user/api-user-me-profile-picture-post-json';
+export { apiUserMeProfilePicturePost$Json as apiUserMeProfilePicturePost$Json } from './fn/user/api-user-me-profile-picture-post-json';
+export type { ApiUserMeProfilePictureDelete$Plain$Params as ApiUserMeProfilePictureDelete$Plain$Params } from './fn/user/api-user-me-profile-picture-delete-plain';
+export { apiUserMeProfilePictureDelete$Plain as apiUserMeProfilePictureDelete$Plain } from './fn/user/api-user-me-profile-picture-delete-plain';
+export type { ApiUserMeProfilePictureDelete$Json$Params as ApiUserMeProfilePictureDelete$Json$Params } from './fn/user/api-user-me-profile-picture-delete-json';
+export { apiUserMeProfilePictureDelete$Json as apiUserMeProfilePictureDelete$Json } from './fn/user/api-user-me-profile-picture-delete-json';
 export type { ApiUserMePasswordPut$Params as ApiUserMePasswordPut$Params } from './fn/user/api-user-me-password-put';
 export { apiUserMePasswordPut as apiUserMePasswordPut } from './fn/user/api-user-me-password-put';
 export type { ApiUserGameIdGet$Plain$Params as ApiUserGameIdGet$Plain$Params } from './fn/user-game/api-user-game-id-get-plain';

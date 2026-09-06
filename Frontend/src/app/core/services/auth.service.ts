@@ -7,6 +7,8 @@ import { apiUserMeGet$Json } from '../../api/fn/user/api-user-me-get-json';
 import { apiUserMePut$Json } from '../../api/fn/user/api-user-me-put-json';
 import { apiUserMeDelete } from '../../api/fn/user/api-user-me-delete';
 import { apiUserMePasswordPut } from '../../api/fn/user/api-user-me-password-put';
+import { apiUserMeProfilePicturePost$Json } from '../../api/fn/user/api-user-me-profile-picture-post-json';
+import { apiUserMeProfilePictureDelete$Json } from '../../api/fn/user/api-user-me-profile-picture-delete-json';
 import { LoginDto } from '../../api/models/login-dto';
 import { UserAddDto } from '../../api/models/user-add-dto';
 import { UserDto } from '../../api/models/user-dto';
@@ -35,6 +37,16 @@ export class AuthService {
   async updateProfile(dto: UserModifyDto): Promise<void> {
     const response = await this.api.invoke(apiUserMePut$Json, { body: dto });
     this._user.set(response);
+  }
+
+  async uploadProfilePicture(file: File): Promise<void> {
+    const user = await this.api.invoke(apiUserMeProfilePicturePost$Json, { body: { file } });
+    this._user.set(user);
+  }
+
+  async removeProfilePicture(): Promise<void> {
+    const user = await this.api.invoke(apiUserMeProfilePictureDelete$Json);
+    this._user.set(user);
   }
 
   async changePassword(dto: ChangePasswordDto): Promise<void> {

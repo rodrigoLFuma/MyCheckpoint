@@ -5,6 +5,8 @@ import { AuthService } from '../../core/services/auth.service';
 import { Api } from '../../api/api';
 import { apiCategoryGet$Json } from '../../api/fn/category/api-category-get-json';
 import { CategoryDto } from '../../api/models/category-dto';
+import { UserAvatar } from '../../shared/components/user-avatar/user-avatar';
+import { extractErrorDetail } from '../../shared/utils/http-error';
 
 /**
  * Editar tus datos públicos (nombre, avatar, bio, géneros favoritos). Se
@@ -13,7 +15,7 @@ import { CategoryDto } from '../../api/models/category-dto';
  */
 @Component({
   selector: 'app-profile',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, UserAvatar],
   templateUrl: './profile.html',
 })
 export class Profile implements OnInit {
@@ -24,11 +26,16 @@ export class Profile implements OnInit {
   protected isSubmitting = signal(false);
   protected saved = signal(false);
 
+  // La foto de perfil tiene su propio endpoint (sube/borra un archivo) y por
+  // tanto su propio estado de carga/error, independiente del resto del
+  // formulario (nombre, bio, géneros), que se guarda aparte con "Guardar".
+  protected isUploadingPicture = signal(false);
+  protected pictureError = signal<string | null>(null);
+
   protected categories = signal<CategoryDto[]>([]);
   protected selectedGenreIds = signal<Set<number>>(new Set());
 
   userName = '';
-  profilePictureURL = '';
   bibliography = '';
 
   ngOnInit(): void {
@@ -36,9 +43,38 @@ export class Profile implements OnInit {
 
     const user = this.authService.user();
     this.userName = user?.userName ?? '';
-    this.profilePictureURL = user?.profilePictureURL ?? '';
     this.bibliography = user?.bibliography ?? '';
     this.selectedGenreIds.set(new Set(user?.favoriteGenres?.map((g) => g.id) ?? []));
+  }
+
+  async onPictureSelected(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    this.pictureError.set(null);
+    this.isUploadingPicture.set(true);
+    try {
+      await this.authService.uploadProfilePicture(file);
+    } catch (err) {
+      this.pictureError.set(extractErrorDetail(err) ?? 'No se ha podido subir la imagen.');
+    } finally {
+      this.isUploadingPicture.set(false);
+      // Para poder volver a elegir el mismo archivo si se quiere reintentar.
+      input.value = '';
+    }
+  }
+
+  async removePicture(): Promise<void> {
+    this.pictureError.set(null);
+    this.isUploadingPicture.set(true);
+    try {
+      await this.authService.removeProfilePicture();
+    } catch {
+      this.pictureError.set('No se ha podido quitar la foto.');
+    } finally {
+      this.isUploadingPicture.set(false);
+    }
   }
 
   private async loadCategories(): Promise<void> {
@@ -68,7 +104,6 @@ export class Profile implements OnInit {
     try {
       await this.authService.updateProfile({
         userName: this.userName,
-        profilePictureURL: this.profilePictureURL || null,
         bibliography: this.bibliography || null,
         favoriteGenreCategoryIds: Array.from(this.selectedGenreIds()),
       });
