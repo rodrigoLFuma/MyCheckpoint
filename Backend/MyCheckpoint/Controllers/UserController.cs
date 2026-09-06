@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyCheckpoint.Models.Dtos;
 using MyCheckpoint.Services.Contracts;
@@ -72,6 +73,21 @@ namespace MyCheckpoint.Controllers
         public async Task<ActionResult<UserDto>> UpdateProfile(UserModifyDto dto)
         {
             return Ok(await _userService.UpdateProfileAsync(this.GetUserId(), dto));
+        }
+
+        [HttpPost("me/profile-picture")]
+        [Authorize]
+        [RequestSizeLimit(5 * 1024 * 1024)]
+        public async Task<ActionResult<UserDto>> UploadProfilePicture(IFormFile file)
+        {
+            return Ok(await _userService.UpdateProfilePictureAsync(this.GetUserId(), file));
+        }
+
+        [HttpDelete("me/profile-picture")]
+        [Authorize]
+        public async Task<ActionResult<UserDto>> DeleteProfilePicture()
+        {
+            return Ok(await _userService.RemoveProfilePictureAsync(this.GetUserId()));
         }
 
         [HttpPut("me/password")]

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyCheckpoint.Data.Entities;
@@ -16,6 +17,7 @@ namespace MyCheckpoint.Services
         private readonly INotificationRepository _notificationRepository;
         private readonly IUserGameRepository _userGameRepository;
         private readonly IRepositoryBaseWithId<Category> _categoryRepository;
+        private readonly IFileStorageService _fileStorageService;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
@@ -25,6 +27,7 @@ namespace MyCheckpoint.Services
             INotificationRepository notificationRepository,
             IUserGameRepository userGameRepository,
             IRepositoryBaseWithId<Category> categoryRepository,
+            IFileStorageService fileStorageService,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
@@ -33,6 +36,7 @@ namespace MyCheckpoint.Services
             _notificationRepository = notificationRepository;
             _userGameRepository = userGameRepository;
             _categoryRepository = categoryRepository;
+            _fileStorageService = fileStorageService;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -183,6 +187,42 @@ namespace MyCheckpoint.Services
             var userDto = _mapper.Map<UserDto>(user);
             userDto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
             return userDto;
+        }
+
+        public async Task<UserDto> UpdateProfilePictureAsync(int userId, IFormFile file)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString())
+                ?? throw new NotFoundException("El usuario no existe.");
+
+            var previousUrl = user.ProfilePictureURL;
+            user.ProfilePictureURL = await _fileStorageService.SaveProfilePictureAsync(userId, file);
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+                throw new ConflictException(string.Join(" ", result.Errors.Select(e => e.Description)));
+
+            // Solo después de confirmar que el cambio se guardó: si algo falla
+            // antes, la foto anterior sigue siendo la válida y no se toca.
+            _fileStorageService.DeleteManagedFile(previousUrl);
+
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public async Task<UserDto> RemoveProfilePictureAsync(int userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString())
+                ?? throw new NotFoundException("El usuario no existe.");
+
+            var previousUrl = user.ProfilePictureURL;
+            user.ProfilePictureURL = null;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+                throw new ConflictException(string.Join(" ", result.Errors.Select(e => e.Description)));
+
+            _fileStorageService.DeleteManagedFile(previousUrl);
+
+            return _mapper.Map<UserDto>(user);
         }
 
         public async Task ChangePasswordAsync(int userId, ChangePasswordDto dto)

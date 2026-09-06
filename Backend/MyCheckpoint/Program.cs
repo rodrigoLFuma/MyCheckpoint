@@ -100,6 +100,7 @@ builder.Services.AddScoped<INotificationService, NotificationService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
 
@@ -134,6 +135,12 @@ if (app.Environment.IsDevelopment())
 app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
+
+// Las fotos de perfil subidas se guardan bajo wwwroot y se sirven como
+// archivos estáticos; hay que asegurar que la carpeta existe ya al arrancar,
+// porque el proveedor de archivos estáticos se crea una vez al inicio.
+Directory.CreateDirectory(Path.Combine(app.Environment.WebRootPath ?? Path.Combine(app.Environment.ContentRootPath, "wwwroot"), "uploads", "profile-pictures"));
+app.UseStaticFiles();
 
 app.UseCors("Frontend");
 

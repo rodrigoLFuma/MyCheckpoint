@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using MyCheckpoint.Models.Dtos;
 
 namespace MyCheckpoint.Services.Contracts
@@ -29,6 +30,11 @@ namespace MyCheckpoint.Services.Contracts
 
         Task<UserDto> GetMyProfileAsync(int userId);
         Task<UserDto> UpdateProfileAsync(int userId, UserModifyDto dto);
+
+        /// <summary>Sustituye la foto de perfil y borra la anterior si era una que gestionábamos nosotros.</summary>
+        Task<UserDto> UpdateProfilePictureAsync(int userId, IFormFile file);
+        Task<UserDto> RemoveProfilePictureAsync(int userId);
+
         Task ChangePasswordAsync(int userId, ChangePasswordDto dto);
         Task DeleteMyAccountAsync(int userId);
     }

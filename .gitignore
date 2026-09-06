@@ -20,3 +20,7 @@ secrets.json
 *.swp
 Thumbs.db
 .DS_Store
+
+# Fotos de perfil subidas por los usuarios: contenido generado en runtime,
+# no código fuente.
+Backend/MyCheckpoint/wwwroot/uploads/
