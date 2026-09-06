@@ -3,15 +3,24 @@
 
   <h1 class="mt-4 mb-4 text-xl font-bold">Reseñas de otros sobre tus juegos</h1>
 
-  @if (isLoading()) {
-    <p class="text-sm text-slate-500">Cargando...</p>
-  }
-
   @if (errorMessage()) {
     <p class="text-sm text-red-600">{{ errorMessage() }}</p>
   }
 
   <div class="flex flex-col gap-3">
+    @if (isLoading()) {
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="flex gap-3 rounded border p-3">
+          <app-skeleton class="h-24 w-20 shrink-0" />
+          <div class="min-w-0 flex-1">
+            <app-skeleton class="h-3 w-24" />
+            <app-skeleton class="mt-2 h-4 w-40" />
+            <app-skeleton class="mt-3 h-3 w-full" />
+            <app-skeleton class="mt-1 h-3 w-2/3" />
+          </div>
+        </div>
+      }
+    }
     @for (review of reviews(); track review.id) {
       <app-review-card
         [gameName]="review.game.name"

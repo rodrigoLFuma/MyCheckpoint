@@ -6,10 +6,11 @@ import { apiUserGameUserUserIdGet$Json } from '../../../api/fn/user-game/api-use
 import { UserSummaryDto } from '../../../api/models/user-summary-dto';
 import { UserGameDto } from '../../../api/models/user-game-dto';
 import { ReviewCard } from '../../../shared/components/review-card/review-card';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 @Component({
   selector: 'app-user-reviews',
-  imports: [RouterLink, ReviewCard],
+  imports: [RouterLink, ReviewCard, Skeleton],
   templateUrl: './user-reviews.html',
 })
 export class UserReviews implements OnInit {

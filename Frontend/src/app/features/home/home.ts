@@ -13,6 +13,7 @@ import { GameCard } from '../games/game-card/game-card';
 import { CreateReview } from '../games/create-review/create-review';
 import { ReviewCard } from '../../shared/components/review-card/review-card';
 import { UserAvatar } from '../../shared/components/user-avatar/user-avatar';
+import { Skeleton } from '../../shared/components/skeleton/skeleton';
 
 // Cuántas tarjetas se ven en la home antes de "Ver más" — el resto vive en
 // la página completa de cada apartado.
@@ -31,7 +32,7 @@ function shuffle<T>(items: T[]): T[] {
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, GameCard, CreateReview, ReviewCard, UserAvatar],
+  imports: [RouterLink, GameCard, CreateReview, ReviewCard, UserAvatar, Skeleton],
   templateUrl: './home.html',
 })
 export class Home implements OnInit {

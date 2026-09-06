@@ -10,10 +10,12 @@ import { apiGameListIdDelete } from '../../../api/fn/game-list/api-game-list-id-
 import { apiGameListIdItemsGameIdDelete } from '../../../api/fn/game-list/api-game-list-id-items-game-id-delete';
 import { GameListDto } from '../../../api/models/game-list-dto';
 import { GameCard } from '../../games/game-card/game-card';
+import { ListFollowButton } from '../../../shared/components/list-follow-button/list-follow-button';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 @Component({
   selector: 'app-list-detail',
-  imports: [FormsModule, GameCard],
+  imports: [FormsModule, GameCard, ListFollowButton, Skeleton],
   templateUrl: './list-detail.html',
 })
 export class ListDetail implements OnInit {

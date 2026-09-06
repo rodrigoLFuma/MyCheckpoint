@@ -4,6 +4,7 @@ import { Api } from '../../../api/api';
 import { apiGameGet$Json } from '../../../api/fn/game/api-game-get-json';
 import { apiGameRefreshPost$Json } from '../../../api/fn/game/api-game-refresh-post-json';
 import { GameDto } from '../../../api/models/game-dto';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 /**
  * Herramienta admin para refrescar desde RAWG los datos de juegos ya
@@ -14,7 +15,7 @@ import { GameDto } from '../../../api/models/game-dto';
  */
 @Component({
   selector: 'app-manage-games',
-  imports: [DatePipe],
+  imports: [DatePipe, Skeleton],
   templateUrl: './manage-games.html',
 })
 export class ManageGames implements OnInit {

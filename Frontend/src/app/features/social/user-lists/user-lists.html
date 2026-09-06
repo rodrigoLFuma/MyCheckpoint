@@ -1,12 +1,20 @@
 <div class="mx-auto mt-10 max-w-2xl">
   <a [routerLink]="['/users', userId]" class="text-sm text-blue-600 underline">&larr; Volver al perfil</a>
 
-  @if (isLoading()) {
-    <p class="mt-4 text-sm text-slate-500">Cargando...</p>
-  }
-
   @if (errorMessage()) {
     <p class="mt-4 text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (isLoading()) {
+    <app-skeleton class="mt-4 mb-4 h-6 w-48" />
+    <div class="flex flex-col gap-2">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="rounded border p-3">
+          <app-skeleton class="h-4 w-40" />
+          <app-skeleton class="mt-2 h-3 w-full" />
+        </div>
+      }
+    </div>
   }
 
   @if (profileUser(); as user) {
@@ -14,16 +22,54 @@
 
     <div class="flex flex-col gap-2">
       @for (list of lists(); track list.id) {
-        <a [routerLink]="['/lists', list.id]" class="block rounded border p-3 hover:bg-slate-50">
-          <div class="flex items-center justify-between">
-            <span class="font-semibold">{{ list.name }}</span>
-            <span class="text-xs text-slate-500">{{ list.isPublic ? 'Pública' : 'Privada' }}</span>
+        <div class="rounded border p-3">
+          <div class="flex items-start justify-between gap-2">
+            <a [routerLink]="['/lists', list.id]" class="min-w-0 flex-1 hover:underline">
+              <span class="font-semibold">{{ list.name }}</span>
+              <span class="ml-2 text-xs text-slate-500">{{ list.isPublic ? 'Pública' : 'Privada' }}</span>
+            </a>
+            @if (!isOwnProfile) {
+              <app-list-follow-button
+                [gameListId]="list.id"
+                [followerCount]="list.followerCount"
+                [followedByMe]="list.followedByMe"
+              />
+            }
           </div>
           @if (list.description) {
             <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
           }
-        </a>
+        </div>
       }
     </div>
+
+    @if (isOwnProfile) {
+      <h2 class="mt-8 mb-2 text-lg font-bold">Listas que sigo</h2>
+
+      @if (followedLists().length === 0) {
+        <p class="text-sm text-slate-500">
+          Todavía no sigues ninguna lista. Prueba a
+          <a routerLink="/lists/discover" class="text-blue-600 underline">descubrir listas</a>.
+        </p>
+      }
+
+      <div class="flex flex-col gap-2">
+        @for (list of followedLists(); track list.id) {
+          <div class="rounded border p-3">
+            <div class="flex items-start justify-between gap-2">
+              <a [routerLink]="['/lists', list.id]" class="min-w-0 flex-1 hover:underline">
+                <span class="font-semibold">{{ list.name }}</span>
+                <p class="text-xs text-slate-500">de {{ list.user.userName }}</p>
+              </a>
+              <app-list-follow-button
+                [gameListId]="list.id"
+                [followerCount]="list.followerCount"
+                [followedByMe]="list.followedByMe"
+              />
+            </div>
+          </div>
+        }
+      </div>
+    }
   }
 </div>

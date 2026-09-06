@@ -50,10 +50,23 @@
   }
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-    @for (result of results(); track result.id) {
-      <app-game-card [name]="result.name ?? ''" [imageUrl]="result.background_image" [releaseDate]="result.released">
-        <app-create-review [rawgId]="result.id!" [alreadyReviewed]="reviewedRawgIds().has(result.id!)" />
-      </app-game-card>
+    @if (isSearching()) {
+      @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
+        <div class="overflow-hidden rounded border shadow-sm">
+          <app-skeleton class="h-40 w-full rounded-none" />
+          <div class="p-3">
+            <app-skeleton class="h-4 w-3/4" />
+            <app-skeleton class="mt-2 h-3 w-10" />
+          </div>
+        </div>
+      }
+    }
+    @if (!isSearching()) {
+      @for (result of results(); track result.id) {
+        <app-game-card [name]="result.name ?? ''" [imageUrl]="result.background_image" [releaseDate]="result.released">
+          <app-create-review [rawgId]="result.id!" [alreadyReviewed]="reviewedRawgIds().has(result.id!)" />
+        </app-game-card>
+      }
     }
   </div>
 

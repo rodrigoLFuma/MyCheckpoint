@@ -3,15 +3,19 @@
 
   <h1 class="mt-4 mb-4 text-xl font-bold">Gente con tus mismos gustos</h1>
 
-  @if (isLoading()) {
-    <p class="text-sm text-slate-500">Cargando...</p>
-  }
-
   @if (errorMessage()) {
     <p class="text-sm text-red-600">{{ errorMessage() }}</p>
   }
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+    @if (isLoading()) {
+      @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
+        <div class="flex flex-col items-center gap-2 rounded border p-4">
+          <app-skeleton class="h-16 w-16 rounded-full" />
+          <app-skeleton class="h-3 w-16" />
+        </div>
+      }
+    }
     @for (user of users(); track user.id) {
       <a [routerLink]="['/users', user.id]" class="flex flex-col items-center gap-2 rounded border p-4 text-center hover:bg-slate-50">
         <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />

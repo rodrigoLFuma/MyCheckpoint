@@ -7,6 +7,7 @@ import { apiFollowFollowingUserIdGet$Json } from '../../../api/fn/follow/api-fol
 import { UserGameDto } from '../../../api/models/user-game-dto';
 import { ReviewCard } from '../../../shared/components/review-card/review-card';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 const PAGE_SIZE = 20;
 
@@ -17,7 +18,7 @@ const PAGE_SIZE = 20;
  */
 @Component({
   selector: 'app-activity-feed',
-  imports: [RouterLink, ReviewCard, UserAvatar],
+  imports: [RouterLink, ReviewCard, UserAvatar, Skeleton],
   templateUrl: './activity-feed.html',
 })
 export class ActivityFeed implements OnInit {

@@ -7,12 +7,13 @@ import { apiNotificationMarkReadPost } from '../../api/fn/notification/api-notif
 import { NotificationDto } from '../../api/models/notification-dto';
 import { NotificationsService } from '../../core/services/notifications.service';
 import { UserAvatar } from '../../shared/components/user-avatar/user-avatar';
+import { Skeleton } from '../../shared/components/skeleton/skeleton';
 
 const PAGE_SIZE = 20;
 
 @Component({
   selector: 'app-notifications',
-  imports: [RouterLink, DatePipe, UserAvatar],
+  imports: [RouterLink, DatePipe, UserAvatar, Skeleton],
   templateUrl: './notifications.html',
 })
 export class Notifications implements OnInit {

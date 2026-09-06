@@ -48,7 +48,11 @@
   }
 
   @if (isLoading()) {
-    <p class="text-sm text-slate-500">Cargando...</p>
+    <ul class="flex flex-col gap-2">
+      @for (i of [1, 2, 3]; track i) {
+        <li><app-skeleton class="h-14 w-full" /></li>
+      }
+    </ul>
   }
 
   @if (errorMessage()) {
@@ -71,6 +75,48 @@
             <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
           }
         </a>
+      </li>
+    }
+  </ul>
+
+  <div class="mt-8 mb-4 flex items-center justify-between">
+    <h2 class="text-lg font-bold">Listas que sigo</h2>
+    <a routerLink="/lists/discover" class="text-sm text-blue-600 underline">Descubrir listas</a>
+  </div>
+
+  @if (isLoadingFollowed()) {
+    <ul class="flex flex-col gap-2">
+      @for (i of [1, 2]; track i) {
+        <li><app-skeleton class="h-14 w-full" /></li>
+      }
+    </ul>
+  }
+
+  @if (!isLoadingFollowed() && followedLists().length === 0) {
+    <p class="text-sm text-slate-500">
+      Todavía no sigues ninguna lista. Prueba a
+      <a routerLink="/lists/discover" class="text-blue-600 underline">descubrir listas</a>
+      recomendadas para ti.
+    </p>
+  }
+
+  <ul class="flex flex-col gap-2">
+    @for (list of followedLists(); track list.id) {
+      <li class="rounded border p-3">
+        <div class="flex items-start justify-between gap-2">
+          <a [routerLink]="['/lists', list.id]" class="min-w-0 flex-1 hover:underline">
+            <span class="font-semibold">{{ list.name }}</span>
+            <p class="text-xs text-slate-500">de {{ list.user.userName }}</p>
+          </a>
+          <app-list-follow-button
+            [gameListId]="list.id"
+            [followerCount]="list.followerCount"
+            [followedByMe]="list.followedByMe"
+          />
+        </div>
+        @if (list.description) {
+          <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
+        }
       </li>
     }
   </ul>

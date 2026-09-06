@@ -2,7 +2,20 @@
   <h1 class="mb-4 text-xl font-bold">Mi biblioteca</h1>
 
   @if (isLoading()) {
-    <p class="text-sm text-slate-500">Cargando...</p>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="overflow-hidden rounded border shadow-sm">
+          <app-skeleton class="h-40 w-full rounded-none" />
+          <div class="p-3">
+            <app-skeleton class="h-4 w-3/4" />
+            <app-skeleton class="mt-2 h-3 w-10" />
+            <app-skeleton class="mt-3 h-3 w-full" />
+            <app-skeleton class="mt-1 h-3 w-2/3" />
+            <app-skeleton class="mt-3 h-7 w-full" />
+          </div>
+        </div>
+      }
+    </div>
   }
 
   @if (errorMessage()) {

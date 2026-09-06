@@ -10,10 +10,11 @@ import { RawgGameSummary } from '../../../api/models/rawg-game-summary';
 import { CategoryDto } from '../../../api/models/category-dto';
 import { GameCard } from '../game-card/game-card';
 import { CreateReview } from '../create-review/create-review';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 @Component({
   selector: 'app-game-search',
-  imports: [FormsModule, GameCard, CreateReview],
+  imports: [FormsModule, GameCard, CreateReview, Skeleton],
   templateUrl: './game-search.html',
 })
 export class GameSearch implements OnInit {

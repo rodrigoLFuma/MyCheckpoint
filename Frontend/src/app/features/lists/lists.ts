@@ -6,11 +6,14 @@ import { AuthService } from '../../core/services/auth.service';
 import { Api } from '../../api/api';
 import { apiGameListUserUserIdGet$Json } from '../../api/fn/game-list/api-game-list-user-user-id-get-json';
 import { apiGameListPost$Json } from '../../api/fn/game-list/api-game-list-post-json';
+import { apiGameListFollowedGet$Json } from '../../api/fn/game-list/api-game-list-followed-get-json';
 import { GameListDto } from '../../api/models/game-list-dto';
+import { ListFollowButton } from '../../shared/components/list-follow-button/list-follow-button';
+import { Skeleton } from '../../shared/components/skeleton/skeleton';
 
 @Component({
   selector: 'app-lists',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ListFollowButton, Skeleton],
   templateUrl: './lists.html',
 })
 export class Lists implements OnInit {
@@ -20,6 +23,9 @@ export class Lists implements OnInit {
   protected lists = signal<GameListDto[]>([]);
   protected isLoading = signal(true);
   protected errorMessage = signal<string | null>(null);
+
+  protected followedLists = signal<GameListDto[]>([]);
+  protected isLoadingFollowed = signal(true);
 
   protected isFormOpen = signal(false);
   protected isSubmitting = signal(false);
@@ -31,6 +37,18 @@ export class Lists implements OnInit {
 
   ngOnInit(): void {
     this.loadLists();
+    this.loadFollowedLists();
+  }
+
+  private async loadFollowedLists(): Promise<void> {
+    this.isLoadingFollowed.set(true);
+    try {
+      this.followedLists.set(await this.api.invoke(apiGameListFollowedGet$Json));
+    } catch {
+      // Sin listas seguidas, la sección se queda vacía.
+    } finally {
+      this.isLoadingFollowed.set(false);
+    }
   }
 
   async loadLists(): Promise<void> {

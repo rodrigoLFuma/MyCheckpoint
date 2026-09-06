@@ -5,7 +5,19 @@
     <h2 class="mb-2 font-semibold">Reseñas de otros sobre tus juegos</h2>
 
     @if (isLoadingReviews()) {
-      <p class="text-sm text-slate-500">Cargando...</p>
+      <div class="flex gap-4 overflow-x-auto pb-2">
+        @for (i of [1, 2, 3]; track i) {
+          <div class="flex w-72 shrink-0 gap-3 rounded border p-3">
+            <app-skeleton class="h-24 w-20 shrink-0" />
+            <div class="min-w-0 flex-1">
+              <app-skeleton class="h-3 w-20" />
+              <app-skeleton class="mt-2 h-4 w-32" />
+              <app-skeleton class="mt-3 h-3 w-full" />
+              <app-skeleton class="mt-1 h-3 w-2/3" />
+            </div>
+          </div>
+        }
+      </div>
     } @else if (discoverReviews().length === 0) {
       <p class="text-sm text-slate-500">
         Reseña algún juego en
@@ -64,7 +76,14 @@
     <h2 class="mb-2 font-semibold">Gente con tus mismos gustos</h2>
 
     @if (isLoadingUsers()) {
-      <p class="text-sm text-slate-500">Cargando...</p>
+      <div class="flex gap-4 overflow-x-auto pb-2">
+        @for (i of [1, 2, 3, 4]; track i) {
+          <div class="flex w-28 shrink-0 flex-col items-center gap-2 rounded border p-3">
+            <app-skeleton class="h-14 w-14 rounded-full" />
+            <app-skeleton class="h-3 w-16" />
+          </div>
+        }
+      </div>
     } @else if (similarUsers().length === 0) {
       @if (!authService.user()?.favoriteGenres?.length) {
         <p class="text-sm text-slate-500">
@@ -111,10 +130,6 @@
       <button type="button" (click)="closeDiscoverPopup()" class="text-sm text-slate-500 underline">Cerrar</button>
     </div>
 
-    @if (isDiscovering()) {
-      <p class="text-sm text-slate-500">Buscando en RAWG...</p>
-    }
-
     @if (discoverError()) {
       <p class="text-sm text-red-600">{{ discoverError() }}</p>
     }
@@ -124,6 +139,17 @@
     }
 
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+      @if (isDiscovering()) {
+        @for (i of [1, 2, 3, 4, 5]; track i) {
+          <div class="overflow-hidden rounded border shadow-sm">
+            <app-skeleton class="h-40 w-full rounded-none" />
+            <div class="p-3">
+              <app-skeleton class="h-4 w-3/4" />
+              <app-skeleton class="mt-2 h-3 w-10" />
+            </div>
+          </div>
+        }
+      }
       @for (pick of discoverPicks(); track pick.id) {
         <app-game-card [name]="pick.name ?? ''" [imageUrl]="pick.background_image" [releaseDate]="pick.released">
           <app-create-review [rawgId]="pick.id!" [alreadyReviewed]="reviewedRawgIds().has(pick.id!)" />

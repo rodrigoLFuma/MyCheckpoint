@@ -4,12 +4,13 @@ import { Api } from '../../../api/api';
 import { apiUserGameDiscoverReviewsGet$Json } from '../../../api/fn/user-game/api-user-game-discover-reviews-get-json';
 import { UserGameDto } from '../../../api/models/user-game-dto';
 import { ReviewCard } from '../../../shared/components/review-card/review-card';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 const PAGE_SIZE = 20;
 
 @Component({
   selector: 'app-discover-reviews',
-  imports: [RouterLink, ReviewCard],
+  imports: [RouterLink, ReviewCard, Skeleton],
   templateUrl: './discover-reviews.html',
 })
 export class DiscoverReviews implements OnInit {

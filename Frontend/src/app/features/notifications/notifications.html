@@ -1,10 +1,6 @@
 <div class="mx-auto mt-10 max-w-2xl">
   <h1 class="mb-4 text-xl font-bold">Notificaciones</h1>
 
-  @if (isLoading()) {
-    <p class="text-sm text-slate-500">Cargando...</p>
-  }
-
   @if (errorMessage()) {
     <p class="text-sm text-red-600">{{ errorMessage() }}</p>
   }
@@ -14,6 +10,17 @@
   }
 
   <div class="flex flex-col gap-2">
+    @if (isLoading()) {
+      @for (i of [1, 2, 3, 4]; track i) {
+        <div class="flex items-center gap-3 rounded border p-3">
+          <app-skeleton class="h-10 w-10 rounded-full" />
+          <div class="min-w-0 flex-1">
+            <app-skeleton class="h-3 w-56" />
+            <app-skeleton class="mt-2 h-3 w-24" />
+          </div>
+        </div>
+      }
+    }
     @for (notification of notifications(); track notification.id) {
       <div class="flex items-center gap-3 rounded border p-3" [class.bg-blue-50]="!notification.isRead">
         <app-user-avatar

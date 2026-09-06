@@ -11,6 +11,7 @@ import { UserGameDto } from '../../../api/models/user-game-dto';
 import { GameListDto } from '../../../api/models/game-list-dto';
 import { GameCard } from '../game-card/game-card';
 import { TruncatedText } from '../../../shared/components/truncated-text/truncated-text';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 // "Pendiente" no aparece aquí: una reseña ya creada implica que el juego
 // dejó de ser "solo pendiente" (eso vive en la lista "Juegos pendientes").
@@ -27,7 +28,7 @@ type SortOption = (typeof SORT_OPTIONS)[number]['value'];
 
 @Component({
   selector: 'app-library',
-  imports: [FormsModule, RouterLink, GameCard, TruncatedText],
+  imports: [FormsModule, RouterLink, GameCard, TruncatedText, Skeleton],
   templateUrl: './library.html',
 })
 export class Library implements OnInit {

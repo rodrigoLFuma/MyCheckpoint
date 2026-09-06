@@ -6,12 +6,13 @@ import { apiCategoryIdGet$Json } from '../../../api/fn/category/api-category-id-
 import { UserSummaryDto } from '../../../api/models/user-summary-dto';
 import { CategoryDto } from '../../../api/models/category-dto';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 const PAGE_SIZE = 20;
 
 @Component({
   selector: 'app-category-top',
-  imports: [RouterLink, UserAvatar],
+  imports: [RouterLink, UserAvatar, Skeleton],
   templateUrl: './category-top.html',
 })
 export class CategoryTop implements OnInit {

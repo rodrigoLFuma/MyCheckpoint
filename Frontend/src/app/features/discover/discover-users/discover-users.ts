@@ -4,12 +4,13 @@ import { Api } from '../../../api/api';
 import { apiUserSimilarGet$Json } from '../../../api/fn/user/api-user-similar-get-json';
 import { UserSummaryDto } from '../../../api/models/user-summary-dto';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 const PAGE_SIZE = 24;
 
 @Component({
   selector: 'app-discover-users',
-  imports: [RouterLink, UserAvatar],
+  imports: [RouterLink, UserAvatar, Skeleton],
   templateUrl: './discover-users.html',
 })
 export class DiscoverUsers implements OnInit {
