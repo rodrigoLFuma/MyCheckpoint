@@ -1,0 +1,15 @@
+@if (canFollow) {
+  <button
+    type="button"
+    (click)="toggle()"
+    [disabled]="isToggling()"
+    class="shrink-0 rounded px-3 py-1.5 text-sm disabled:opacity-50"
+    [class]="displayedFollowed ? 'border text-slate-700' : 'bg-blue-600 text-white'"
+  >
+    {{ displayedFollowed ? 'Siguiendo' : 'Seguir' }} · {{ displayedCount }}
+  </button>
+} @else {
+  <span class="text-sm text-slate-500">
+    {{ displayedCount }} {{ displayedCount === 1 ? 'seguidor' : 'seguidores' }}
+  </span>
+}

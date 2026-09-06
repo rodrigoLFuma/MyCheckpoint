@@ -6,6 +6,8 @@ import { UserSummaryDto } from '../models/user-summary-dto';
 export interface GameListDto {
   createdAt: string;
   description?: string | null;
+  followedByMe: boolean;
+  followerCount: number;
   games?: Array<GameListItemDto> | null;
   id: number;
   isPublic: boolean;

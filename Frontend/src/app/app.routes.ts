@@ -55,6 +55,14 @@ export const routes: Routes = [
     loadComponent: () => import('./features/social/user-lists/user-lists').then((m) => m.UserLists),
   },
   {
+    path: 'users/:id/followers',
+    loadComponent: () => import('./features/social/user-followers/user-followers').then((m) => m.UserFollowers),
+  },
+  {
+    path: 'users/:id/following',
+    loadComponent: () => import('./features/social/user-following/user-following').then((m) => m.UserFollowing),
+  },
+  {
     path: 'discover/reviews',
     canActivate: [authGuard],
     loadComponent: () => import('./features/discover/discover-reviews/discover-reviews').then((m) => m.DiscoverReviews),
@@ -70,6 +78,11 @@ export const routes: Routes = [
     loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
   },
   {
+    path: 'settings',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/settings/settings').then((m) => m.Settings),
+  },
+  {
     path: 'library',
     canActivate: [authGuard],
     loadComponent: () => import('./features/games/library/library').then((m) => m.Library),
@@ -78,6 +91,13 @@ export const routes: Routes = [
     path: 'lists',
     canActivate: [authGuard],
     loadComponent: () => import('./features/lists/lists').then((m) => m.Lists),
+  },
+  {
+    // Antes de 'lists/:id': Angular Router mira el orden de declaración, no
+    // la especificidad, así que un :id ahí delante se comería "discover".
+    path: 'lists/discover',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/lists/discover-lists/discover-lists').then((m) => m.DiscoverLists),
   },
   {
     path: 'lists/:id',

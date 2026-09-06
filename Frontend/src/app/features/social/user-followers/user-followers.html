@@ -1,0 +1,39 @@
+<div class="mx-auto mt-10 max-w-lg">
+  <a [routerLink]="['/users', userId]" class="text-sm text-blue-600 underline">&larr; Volver al perfil</a>
+
+  @if (errorMessage()) {
+    <p class="mt-4 text-sm text-red-600">{{ errorMessage() }}</p>
+  }
+
+  @if (isLoading()) {
+    <app-skeleton class="mt-4 mb-4 h-6 w-48" />
+    <div class="flex flex-col gap-2">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="flex items-center gap-3 rounded border p-3">
+          <app-skeleton class="h-10 w-10 rounded-full" />
+          <app-skeleton class="h-4 w-24" />
+        </div>
+      }
+    </div>
+  }
+
+  @if (profileUser(); as user) {
+    <h1 class="mt-4 mb-4 text-xl font-bold">Seguidores de {{ user.userName }}</h1>
+
+    @if (followers().length === 0) {
+      <p class="text-sm text-slate-500">Todavía no tiene seguidores.</p>
+    }
+
+    <div class="flex flex-col gap-2">
+      @for (follower of followers(); track follower.id) {
+        <a
+          [routerLink]="['/users', follower.id]"
+          class="flex items-center gap-3 rounded border p-3 hover:bg-slate-50"
+        >
+          <app-user-avatar [imageUrl]="follower.profilePictureURL" [name]="follower.userName" sizeClass="h-10 w-10" />
+          <span class="font-semibold">{{ follower.userName }}</span>
+        </a>
+      }
+    </div>
+  }
+</div>

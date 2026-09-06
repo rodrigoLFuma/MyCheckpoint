@@ -28,4 +28,5 @@ export type { UserGameAddDto } from './models/user-game-add-dto';
 export type { UserGameDto } from './models/user-game-dto';
 export type { UserGameModifyDto } from './models/user-game-modify-dto';
 export type { UserModifyDto } from './models/user-modify-dto';
+export type { UserStatsDto } from './models/user-stats-dto';
 export type { UserSummaryDto } from './models/user-summary-dto';

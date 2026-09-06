@@ -48,11 +48,18 @@
             Mis listas
           </a>
           <a
-            routerLink="/profile"
+            [routerLink]="['/users', authService.user()?.id]"
             (click)="closeMenu()"
             class="block w-full px-4 py-2 hover:bg-slate-700"
           >
             Mi perfil
+          </a>
+          <a
+            routerLink="/settings"
+            (click)="closeMenu()"
+            class="block w-full px-4 py-2 hover:bg-slate-700"
+          >
+            Configuración
           </a>
           @if (authService.isAdmin()) {
             <a
