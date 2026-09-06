@@ -1,13 +1,20 @@
-<div class="mx-auto mt-10 max-w-5xl">
-  <h1 class="mb-6 text-2xl font-bold">Bienvenido, {{ authService.user()?.userName }}</h1>
+<div class="mx-auto max-w-5xl">
+  <h1 class="mb-8 text-2xl font-bold text-ink">
+    Bienvenido, <span class="text-primary">{{ authService.user()?.userName }}</span>
+  </h1>
 
-  <section class="mb-8">
-    <h2 class="mb-2 font-semibold">Reseñas de otros sobre tus juegos</h2>
+  <section class="mb-10">
+    <div class="mb-3 flex items-center justify-between">
+      <h2 class="text-lg font-bold text-ink">Reseñas de otros sobre tus juegos</h2>
+      @if (hasMoreReviews()) {
+        <a routerLink="/discover/reviews" class="text-sm font-medium text-primary hover:underline">Ver todo</a>
+      }
+    </div>
 
     @if (isLoadingReviews()) {
       <div class="flex gap-4 overflow-x-auto pb-2">
         @for (i of [1, 2, 3]; track i) {
-          <div class="flex w-72 shrink-0 gap-3 rounded border p-3">
+          <div class="flex w-72 shrink-0 gap-3 rounded-lg border border-border bg-surface p-3">
             <app-skeleton class="h-24 w-20 shrink-0" />
             <div class="min-w-0 flex-1">
               <app-skeleton class="h-3 w-20" />
@@ -19,13 +26,13 @@
         }
       </div>
     } @else if (discoverReviews().length === 0) {
-      <p class="text-sm text-slate-500">
+      <p class="text-sm text-ink-muted">
         Reseña algún juego en
-        <a routerLink="/games/search" class="text-blue-600 underline">Buscar juegos</a>
+        <a routerLink="/games/search" class="font-medium text-primary hover:underline">Buscar juegos</a>
         para ver aquí lo que opina otra gente de esos mismos juegos.
       </p>
     } @else {
-      <div class="flex gap-4 overflow-x-auto pb-2">
+      <div class="rail flex gap-4 overflow-x-auto pb-2">
         @for (review of discoverReviews(); track review.id) {
           <div class="w-72 shrink-0">
             <app-review-card
@@ -43,7 +50,7 @@
         @if (hasMoreReviews()) {
           <a
             routerLink="/discover/reviews"
-            class="flex w-32 shrink-0 items-center justify-center rounded border text-sm text-blue-600 underline"
+            class="flex w-32 shrink-0 items-center justify-center rounded-lg border border-border text-sm font-medium text-primary hover:bg-surface-hover"
           >
             Ver más
           </a>
@@ -52,33 +59,38 @@
     }
   </section>
 
-  <section class="mb-8">
-    <h2 class="mb-2 font-semibold">Descubre tu nuevo juego favorito</h2>
+  <section class="mb-10">
+    <h2 class="mb-3 text-lg font-bold text-ink">Descubre tu nuevo juego favorito</h2>
 
     @if (!authService.user()?.favoriteGenres?.length) {
-      <p class="text-sm text-slate-500">
+      <p class="text-sm text-ink-muted">
         Marca tus géneros favoritos en tu
-        <a routerLink="/profile" class="text-blue-600 underline">perfil</a>
+        <a routerLink="/profile" class="font-medium text-primary hover:underline">perfil</a>
         para que te recomendemos juegos.
       </p>
     } @else {
       <button
         type="button"
         (click)="discoverNewFavorite()"
-        class="rounded bg-blue-600 px-4 py-2 text-sm text-white"
+        class="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
       >
-        Quiero descubrir mi nuevo juego favorito
+        ✨ Quiero descubrir mi nuevo juego favorito
       </button>
     }
   </section>
 
-  <section class="mb-8">
-    <h2 class="mb-2 font-semibold">Gente con tus mismos gustos</h2>
+  <section class="mb-10">
+    <div class="mb-3 flex items-center justify-between">
+      <h2 class="text-lg font-bold text-ink">Gente con tus mismos gustos</h2>
+      @if (hasMoreUsers()) {
+        <a routerLink="/discover/users" class="text-sm font-medium text-primary hover:underline">Ver todo</a>
+      }
+    </div>
 
     @if (isLoadingUsers()) {
       <div class="flex gap-4 overflow-x-auto pb-2">
         @for (i of [1, 2, 3, 4]; track i) {
-          <div class="flex w-28 shrink-0 flex-col items-center gap-2 rounded border p-3">
+          <div class="flex w-28 shrink-0 flex-col items-center gap-2 rounded-lg border border-border bg-surface p-3">
             <app-skeleton class="h-14 w-14 rounded-full" />
             <app-skeleton class="h-3 w-16" />
           </div>
@@ -86,32 +98,32 @@
       </div>
     } @else if (similarUsers().length === 0) {
       @if (!authService.user()?.favoriteGenres?.length) {
-        <p class="text-sm text-slate-500">
+        <p class="text-sm text-ink-muted">
           Marca tus géneros favoritos en tu
-          <a routerLink="/profile" class="text-blue-600 underline">perfil</a>
+          <a routerLink="/profile" class="font-medium text-primary hover:underline">perfil</a>
           para que te recomendemos gente con tus mismos gustos.
         </p>
       } @else {
-        <p class="text-sm text-slate-500">
+        <p class="text-sm text-ink-muted">
           De momento nadie más comparte tus géneros favoritos. Prueba a explorar en
-          <a routerLink="/social" class="text-blue-600 underline">Social</a>.
+          <a routerLink="/social" class="font-medium text-primary hover:underline">Social</a>.
         </p>
       }
     } @else {
-      <div class="flex gap-4 overflow-x-auto pb-2">
+      <div class="rail flex gap-4 overflow-x-auto pb-2">
         @for (user of similarUsers(); track user.id) {
           <a
             [routerLink]="['/users', user.id]"
-            class="flex w-28 shrink-0 flex-col items-center gap-2 rounded border p-3 text-center hover:bg-slate-50"
+            class="flex w-28 shrink-0 flex-col items-center gap-2 rounded-lg border border-border bg-surface p-3 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
           >
             <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-14 w-14" />
-            <span class="text-sm font-semibold">{{ user.userName }}</span>
+            <span class="truncate text-sm font-semibold text-ink">{{ user.userName }}</span>
           </a>
         }
         @if (hasMoreUsers()) {
           <a
             routerLink="/discover/users"
-            class="flex w-28 shrink-0 items-center justify-center rounded border text-sm text-blue-600 underline"
+            class="flex w-28 shrink-0 items-center justify-center rounded-lg border border-border text-sm font-medium text-primary hover:bg-surface-hover"
           >
             Ver más
           </a>
@@ -122,26 +134,26 @@
 </div>
 
 @if (isDiscoverPopupOpen()) {
-  <div class="fixed inset-0 z-40 bg-black/50" (click)="closeDiscoverPopup()"></div>
+  <div class="fixed inset-0 z-40 bg-black/60" (click)="closeDiscoverPopup()"></div>
 
-  <div class="fixed inset-x-4 top-10 z-50 mx-auto max-w-3xl rounded bg-white p-6 shadow-lg">
+  <div class="fixed inset-x-4 top-10 z-50 mx-auto max-w-3xl rounded-lg border border-border bg-surface p-6 shadow-xl">
     <div class="mb-4 flex items-center justify-between">
-      <h2 class="text-lg font-bold">Tu nuevo juego favorito podría ser...</h2>
-      <button type="button" (click)="closeDiscoverPopup()" class="text-sm text-slate-500 underline">Cerrar</button>
+      <h2 class="text-lg font-bold text-ink">Tu nuevo juego favorito podría ser...</h2>
+      <button type="button" (click)="closeDiscoverPopup()" class="text-sm text-ink-muted hover:text-ink">Cerrar ✕</button>
     </div>
 
     @if (discoverError()) {
-      <p class="text-sm text-red-600">{{ discoverError() }}</p>
+      <p class="text-sm text-danger">{{ discoverError() }}</p>
     }
 
     @if (!isDiscovering() && !discoverError() && discoverPicks().length === 0) {
-      <p class="text-sm text-slate-500">No se han encontrado juegos. Inténtalo otra vez.</p>
+      <p class="text-sm text-ink-muted">No se han encontrado juegos. Inténtalo otra vez.</p>
     }
 
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
       @if (isDiscovering()) {
         @for (i of [1, 2, 3, 4, 5]; track i) {
-          <div class="overflow-hidden rounded border shadow-sm">
+          <div class="overflow-hidden rounded-lg border border-border bg-surface">
             <app-skeleton class="h-40 w-full rounded-none" />
             <div class="p-3">
               <app-skeleton class="h-4 w-3/4" />

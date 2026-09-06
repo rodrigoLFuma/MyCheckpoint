@@ -1,7 +1,7 @@
-<div class="mx-auto mt-10 max-w-5xl">
-  <h1 class="mb-4 text-xl font-bold">Gestionar juegos</h1>
+<div class="mx-auto max-w-5xl">
+  <h1 class="mb-4 text-xl font-bold text-ink">Gestionar juegos</h1>
 
-  <p class="mb-4 text-sm text-slate-500">
+  <p class="mb-4 text-sm text-ink-muted">
     Los juegos importados se quedan tal cual estaban en RAWG en el momento de importarlos. Selecciona los que
     quieras refrescar con los datos actuales de RAWG (nombre, portada, descripción, Metacritic, géneros). Cada
     juego seleccionado es una llamada a RAWG.
@@ -10,7 +10,7 @@
   @if (isLoading()) {
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       @for (i of [1, 2, 3, 4]; track i) {
-        <div class="overflow-hidden rounded border shadow-sm">
+        <div class="overflow-hidden rounded-lg border border-border bg-surface">
           <app-skeleton class="h-32 w-full rounded-none" />
           <div class="p-3">
             <app-skeleton class="h-4 w-3/4" />
@@ -22,16 +22,20 @@
   }
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (!isLoading() && games().length === 0) {
-    <p class="text-sm text-slate-500">Todavía no hay juegos importados.</p>
+    <p class="text-sm text-ink-muted">Todavía no hay juegos importados.</p>
   }
 
   @if (games().length > 0) {
     <div class="mb-4 flex flex-wrap items-center gap-2">
-      <button type="button" (click)="allSelected() ? deselectAll() : selectAll()" class="rounded border px-3 py-2 text-sm">
+      <button
+        type="button"
+        (click)="allSelected() ? deselectAll() : selectAll()"
+        class="rounded-lg border border-border px-3 py-2 text-sm text-ink hover:bg-surface-hover"
+      >
         {{ allSelected() ? 'Deseleccionar todos' : 'Seleccionar todos' }}
       </button>
 
@@ -39,23 +43,25 @@
         type="button"
         (click)="refreshSelected()"
         [disabled]="isRefreshing() || selectedIds().size === 0"
-        class="rounded bg-blue-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+        class="rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
       >
         {{ isRefreshing() ? 'Actualizando...' : 'Actualizar seleccionados (' + selectedIds().size + ')' }}
       </button>
 
       @if (refreshMessage()) {
-        <span class="text-sm text-slate-600">{{ refreshMessage() }}</span>
+        <span class="text-sm text-ink-muted">{{ refreshMessage() }}</span>
       }
     </div>
 
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       @for (game of games(); track game.id) {
-        <label class="flex cursor-pointer flex-col overflow-hidden rounded border shadow-sm">
+        <label
+          class="flex cursor-pointer flex-col overflow-hidden rounded-lg border border-border bg-surface transition-colors has-checked:border-primary"
+        >
           @if (game.coverImageUrl) {
             <img [src]="game.coverImageUrl" [alt]="game.name" class="h-32 w-full object-cover" />
           } @else {
-            <div class="flex h-32 w-full items-center justify-center bg-slate-200 text-2xl font-bold text-slate-500">
+            <div class="flex h-32 w-full items-center justify-center bg-surface-hover text-2xl font-bold text-ink-faint">
               {{ game.name.charAt(0).toUpperCase() }}
             </div>
           }
@@ -65,13 +71,13 @@
               type="checkbox"
               [checked]="selectedIds().has(game.id)"
               (change)="toggleSelect(game.id)"
-              class="mt-1"
+              class="mt-1 accent-primary"
             />
             <div class="min-w-0">
-              <p class="truncate text-sm font-semibold">{{ game.name }}</p>
-              <p class="text-xs text-slate-500">{{ game.releaseDate | date: 'yyyy' }}</p>
+              <p class="truncate text-sm font-semibold text-ink">{{ game.name }}</p>
+              <p class="text-xs text-ink-muted">{{ game.releaseDate | date: 'yyyy' }}</p>
               @if (!game.rawgId) {
-                <p class="text-xs text-amber-600">Sin RawgId (no se puede refrescar)</p>
+                <p class="text-xs text-rating">Sin RawgId (no se puede refrescar)</p>
               }
             </div>
           </div>

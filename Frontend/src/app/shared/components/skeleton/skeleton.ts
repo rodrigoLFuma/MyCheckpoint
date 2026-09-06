@@ -10,6 +10,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-skeleton',
   template: '',
-  host: { class: 'block animate-pulse rounded bg-slate-200' },
+  host: { class: 'block animate-pulse rounded bg-surface-hover' },
 })
 export class Skeleton {}

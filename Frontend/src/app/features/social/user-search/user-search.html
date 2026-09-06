@@ -1,5 +1,5 @@
-<div class="mx-auto mt-10 max-w-4xl">
-  <h1 class="mb-4 text-xl font-bold">Social</h1>
+<div class="mx-auto max-w-4xl">
+  <h1 class="mb-4 text-xl font-bold text-ink">Social</h1>
 
   <form (ngSubmit)="onSubmit()" class="mb-6 flex gap-2">
     <input
@@ -7,9 +7,13 @@
       [(ngModel)]="term"
       name="term"
       placeholder="Nombre de usuario..."
-      class="flex-1 rounded border px-3 py-2"
+      class="flex-1 rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
     />
-    <select [(ngModel)]="selectedCategoryId" name="categoryId" class="rounded border px-3 py-2">
+    <select
+      [(ngModel)]="selectedCategoryId"
+      name="categoryId"
+      class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
+    >
       <option [ngValue]="null">Todos los géneros</option>
       @for (category of categories(); track category.id) {
         <option [ngValue]="category.id">{{ category.name }}</option>
@@ -18,36 +22,53 @@
     <button
       type="submit"
       [disabled]="isSearching()"
-      class="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50"
+      class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
     >
       {{ isSearching() ? 'Buscando...' : 'Buscar' }}
     </button>
   </form>
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (hasSearched()) {
     @if (!isSearching() && results().length === 0) {
-      <p class="text-sm text-slate-500">No se ha encontrado gente con esos criterios.</p>
+      <p class="text-sm text-ink-muted">No se ha encontrado gente con esos criterios.</p>
     }
 
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       @for (user of results(); track user.id) {
-        <a [routerLink]="['/users', user.id]" class="flex flex-col items-center gap-2 rounded border p-4 text-center hover:bg-slate-50">
+        <a
+          [routerLink]="['/users', user.id]"
+          class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
+        >
           <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />
-          <span class="font-semibold">{{ user.userName }}</span>
+          <span class="font-semibold text-ink">{{ user.userName }}</span>
         </a>
       }
     </div>
   } @else if (authService.isLoggedIn()) {
     @if (isLoadingTop()) {
-      <p class="text-sm text-slate-500">Cargando recomendaciones...</p>
+      <div class="flex flex-col gap-8">
+        @for (i of [1, 2]; track i) {
+          <div>
+            <app-skeleton class="mb-2 h-5 w-32" />
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+              @for (j of [1, 2, 3, 4, 5]; track j) {
+                <div class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4">
+                  <app-skeleton class="h-16 w-16 rounded-full" />
+                  <app-skeleton class="h-3 w-16" />
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
     } @else if (topByFavorites().length === 0) {
-      <p class="text-sm text-slate-500">
+      <p class="text-sm text-ink-muted">
         Marca tus géneros favoritos en tu
-        <a routerLink="/profile" class="text-blue-600 underline">perfil</a>
+        <a routerLink="/profile" class="font-medium text-primary hover:underline">perfil</a>
         para que te recomendemos gente con tus mismos gustos.
       </p>
     } @else {
@@ -55,18 +76,21 @@
         @for (group of topByFavorites(); track group.category.id) {
           <div>
             <div class="mb-2 flex items-center justify-between">
-              <h2 class="font-semibold">Top {{ group.category.name }}</h2>
+              <h2 class="font-semibold text-ink">Top {{ group.category.name }}</h2>
               @if (group.topUsers && group.topUsers.length >= 5) {
-                <a [routerLink]="['/social/category', group.category.id]" class="text-sm text-blue-600 underline">
+                <a [routerLink]="['/social/category', group.category.id]" class="text-sm font-medium text-primary hover:underline">
                   Ver más
                 </a>
               }
             </div>
             <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
               @for (user of group.topUsers; track user.id) {
-                <a [routerLink]="['/users', user.id]" class="flex flex-col items-center gap-2 rounded border p-4 text-center hover:bg-slate-50">
+                <a
+                  [routerLink]="['/users', user.id]"
+                  class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
+                >
                   <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />
-                  <span class="font-semibold">{{ user.userName }}</span>
+                  <span class="font-semibold text-ink">{{ user.userName }}</span>
                 </a>
               }
             </div>

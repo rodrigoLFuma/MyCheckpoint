@@ -1,17 +1,17 @@
-<div class="mx-auto mt-10 max-w-2xl">
-  <a routerLink="/lists" class="text-sm text-blue-600 underline">&larr; Volver a Mis listas</a>
+<div class="mx-auto max-w-2xl">
+  <a routerLink="/lists" class="text-sm font-medium text-primary hover:underline">&larr; Volver a Mis listas</a>
 
-  <h1 class="mt-4 mb-2 text-xl font-bold">Descubrir listas</h1>
-  <p class="mb-4 text-sm text-slate-500">
+  <h1 class="mt-4 mb-2 text-xl font-bold text-ink">Descubrir listas</h1>
+  <p class="mb-4 text-sm text-ink-muted">
     Listas públicas de otra gente que incluyen juegos que ya tienes, ordenadas por popularidad.
   </p>
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (!isLoading() && lists().length === 0) {
-    <p class="text-sm text-slate-500">
+    <p class="text-sm text-ink-muted">
       No hay listas que recomendarte todavía: o no coinciden juegos con nadie más, o ya sigues todas las que hay.
     </p>
   }
@@ -23,11 +23,11 @@
       }
     }
     @for (list of lists(); track list.id) {
-      <div class="rounded border p-3">
+      <div class="rounded-lg border border-border bg-surface p-3">
         <div class="flex items-start justify-between gap-2">
           <a [routerLink]="['/lists', list.id]" class="min-w-0 flex-1 hover:underline">
-            <span class="font-semibold">{{ list.name }}</span>
-            <p class="text-xs text-slate-500">de {{ list.user.userName }}</p>
+            <span class="font-semibold text-ink">{{ list.name }}</span>
+            <p class="text-xs text-ink-muted">de {{ list.user.userName }}</p>
           </a>
           <app-list-follow-button
             [gameListId]="list.id"
@@ -36,7 +36,7 @@
           />
         </div>
         @if (list.description) {
-          <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
+          <p class="mt-1 text-sm text-ink-muted">{{ list.description }}</p>
         }
       </div>
     }
@@ -48,7 +48,7 @@
         type="button"
         (click)="loadMore()"
         [disabled]="isLoadingMore()"
-        class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+        class="rounded-lg border border-border px-4 py-2 text-sm text-ink hover:bg-surface-hover disabled:opacity-50"
       >
         {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
       </button>

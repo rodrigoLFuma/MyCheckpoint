@@ -1,17 +1,19 @@
-<div class="overflow-hidden rounded border shadow-sm">
+<div
+  class="overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-ink-faint"
+>
   @if (imageUrl()) {
     <img [src]="imageUrl()" [alt]="name()" class="h-40 w-full object-cover" />
   } @else {
-    <div class="flex h-40 w-full items-center justify-center bg-slate-200 text-3xl font-bold text-slate-500">
+    <div class="flex h-40 w-full items-center justify-center bg-surface-hover text-3xl font-bold text-ink-faint">
       {{ name().charAt(0).toUpperCase() }}
     </div>
   }
 
   <div class="p-3">
-    <h3 class="font-semibold">{{ name() }}</h3>
+    <h3 class="font-semibold text-ink">{{ name() }}</h3>
 
     @if (releaseDate()) {
-      <p class="text-sm text-slate-500">{{ releaseDate() | date: 'yyyy' }}</p>
+      <p class="text-sm text-ink-muted">{{ releaseDate() | date: 'yyyy' }}</p>
     }
 
     <ng-content></ng-content>

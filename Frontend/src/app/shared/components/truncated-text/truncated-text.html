@@ -2,11 +2,11 @@
   <p class="whitespace-pre-line break-words">{{ visibleText }}</p>
   @if (isTruncated) {
     @if (reviewId() != null) {
-      <a [routerLink]="['/reviews', reviewId()]" class="mt-1 inline-block text-xs text-blue-600 underline">
+      <a [routerLink]="['/reviews', reviewId()]" class="mt-1 inline-block text-xs font-medium text-primary hover:underline">
         Ver más
       </a>
     } @else {
-      <button type="button" (click)="toggleExpanded()" class="mt-1 text-xs text-blue-600 underline">
+      <button type="button" (click)="toggleExpanded()" class="mt-1 text-xs font-medium text-primary hover:underline">
         {{ isExpanded() ? 'Ver menos' : 'Ver más' }}
       </button>
     }

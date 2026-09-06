@@ -1,48 +1,66 @@
-<div class="mx-auto mt-16 max-w-sm rounded border p-6">
-  <h1 class="mb-4 text-xl font-bold">Crear cuenta</h1>
+<div class="mx-auto grid max-w-4xl overflow-hidden rounded-2xl border border-border md:grid-cols-2">
+  <div class="hidden flex-col justify-between bg-gradient-to-br from-primary to-primary-hover p-10 text-white md:flex">
+    <div class="flex items-center gap-2 text-lg font-extrabold">
+      <span class="flex h-8 w-8 items-center justify-center rounded-md bg-white/15 text-lg">✓</span>
+      MyCheckpoint
+    </div>
 
-  <form (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
-    <input
-      type="text"
-      [(ngModel)]="userName"
-      name="userName"
-      placeholder="Nombre de usuario"
-      required
-      class="rounded border px-3 py-2"
-    />
-    <input
-      type="email"
-      [(ngModel)]="email"
-      name="email"
-      placeholder="Email"
-      required
-      class="rounded border px-3 py-2"
-    />
-    <input
-      type="password"
-      [(ngModel)]="password"
-      name="password"
-      placeholder="Contraseña"
-      required
-      minlength="8"
-      class="rounded border px-3 py-2"
-    />
-    <p class="text-xs text-gray-500">Mínimo 8 caracteres, con al menos una mayúscula y un número.</p>
+    <div>
+      <h2 class="text-2xl leading-tight font-extrabold">Tu historial de juegos, en un solo sitio.</h2>
+      <p class="mt-3 text-sm text-white/75">
+        Crea tu cuenta gratis y empieza a organizar lo que juegas, lo que quieres jugar y lo que opinas.
+      </p>
+    </div>
 
-    @if (errorMessage()) {
-      <p class="text-sm text-red-600">{{ errorMessage() }}</p>
-    }
+    <p class="text-xs text-white/50">Red social de seguimiento y crítica de videojuegos</p>
+  </div>
 
-    <button
-      type="submit"
-      [disabled]="isSubmitting()"
-      class="rounded bg-blue-600 px-3 py-2 text-white disabled:opacity-50"
-    >
-      {{ isSubmitting() ? 'Creando cuenta...' : 'Crear cuenta' }}
-    </button>
-  </form>
+  <div class="flex flex-col justify-center bg-surface p-8 sm:p-10">
+    <h1 class="mb-6 text-xl font-bold text-ink">Crear cuenta</h1>
 
-  <p class="mt-4 text-sm">
-    ¿Ya tienes cuenta? <a routerLink="/login" class="text-blue-600 underline">Inicia sesión</a>
-  </p>
+    <form (ngSubmit)="onSubmit()" class="flex flex-col gap-3">
+      <input
+        type="text"
+        [(ngModel)]="userName"
+        name="userName"
+        placeholder="Nombre de usuario"
+        required
+        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
+      />
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Email"
+        required
+        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
+      />
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Contraseña"
+        required
+        minlength="8"
+        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
+      />
+      <p class="text-xs text-ink-faint">Mínimo 8 caracteres, con al menos una mayúscula y un número.</p>
+
+      @if (errorMessage()) {
+        <p class="text-sm text-danger">{{ errorMessage() }}</p>
+      }
+
+      <button
+        type="submit"
+        [disabled]="isSubmitting()"
+        class="mt-1 rounded-lg bg-primary px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover disabled:opacity-50"
+      >
+        {{ isSubmitting() ? 'Creando cuenta...' : 'Crear cuenta' }}
+      </button>
+    </form>
+
+    <p class="mt-5 text-sm text-ink-muted">
+      ¿Ya tienes cuenta? <a routerLink="/login" class="font-medium text-primary hover:underline">Inicia sesión</a>
+    </p>
+  </div>
 </div>

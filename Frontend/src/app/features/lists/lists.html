@@ -1,48 +1,58 @@
-<div class="mx-auto mt-10 max-w-2xl">
+<div class="mx-auto max-w-2xl">
   <div class="mb-4 flex items-center justify-between">
-    <h1 class="text-xl font-bold">Mis listas</h1>
+    <h1 class="text-xl font-bold text-ink">Mis listas</h1>
     @if (!isFormOpen()) {
-      <button type="button" (click)="openForm()" class="rounded bg-blue-600 px-3 py-2 text-sm text-white">
+      <button
+        type="button"
+        (click)="openForm()"
+        class="rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-white hover:bg-primary-hover"
+      >
         Crear lista
       </button>
     }
   </div>
 
   @if (isFormOpen()) {
-    <form (ngSubmit)="onSubmit()" class="mb-6 flex flex-col gap-3 rounded border p-4">
+    <form (ngSubmit)="onSubmit()" class="mb-6 flex flex-col gap-3 rounded-lg border border-border bg-surface p-4">
       <input
         type="text"
         [(ngModel)]="name"
         name="name"
         placeholder="Nombre de la lista"
         required
-        class="rounded border px-3 py-2"
+        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
       />
       <textarea
         [(ngModel)]="description"
         name="description"
         placeholder="Descripción (opcional)"
         rows="2"
-        class="rounded border px-3 py-2"
+        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
       ></textarea>
-      <label class="flex items-center gap-2 text-sm">
+      <label class="flex items-center gap-2 text-sm text-ink">
         <input type="checkbox" [(ngModel)]="isPublic" name="isPublic" />
         Lista pública
       </label>
 
       @if (formError()) {
-        <p class="text-sm text-red-600">{{ formError() }}</p>
+        <p class="text-sm text-danger">{{ formError() }}</p>
       }
 
       <div class="flex gap-2">
         <button
           type="submit"
           [disabled]="isSubmitting()"
-          class="flex-1 rounded bg-blue-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+          class="flex-1 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
         >
           {{ isSubmitting() ? 'Creando...' : 'Crear' }}
         </button>
-        <button type="button" (click)="cancelForm()" class="rounded border px-3 py-2 text-sm">Cancelar</button>
+        <button
+          type="button"
+          (click)="cancelForm()"
+          class="rounded-lg border border-border px-3 py-2 text-sm text-ink hover:bg-surface-hover"
+        >
+          Cancelar
+        </button>
       </div>
     </form>
   }
@@ -56,23 +66,26 @@
   }
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (!isLoading() && lists().length === 0) {
-    <p class="text-sm text-slate-500">Todavía no has creado ninguna lista.</p>
+    <p class="text-sm text-ink-muted">Todavía no has creado ninguna lista.</p>
   }
 
   <ul class="flex flex-col gap-2">
     @for (list of lists(); track list.id) {
       <li>
-        <a [routerLink]="['/lists', list.id]" class="block rounded border p-3 hover:bg-slate-50">
+        <a
+          [routerLink]="['/lists', list.id]"
+          class="block rounded-lg border border-border bg-surface p-3 transition-colors hover:border-ink-faint hover:bg-surface-hover"
+        >
           <div class="flex items-center justify-between">
-            <span class="font-semibold">{{ list.name }}</span>
-            <span class="text-xs text-slate-500">{{ list.isPublic ? 'Pública' : 'Privada' }}</span>
+            <span class="font-semibold text-ink">{{ list.name }}</span>
+            <span class="text-xs text-ink-muted">{{ list.isPublic ? 'Pública' : 'Privada' }}</span>
           </div>
           @if (list.description) {
-            <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
+            <p class="mt-1 text-sm text-ink-muted">{{ list.description }}</p>
           }
         </a>
       </li>
@@ -80,8 +93,8 @@
   </ul>
 
   <div class="mt-8 mb-4 flex items-center justify-between">
-    <h2 class="text-lg font-bold">Listas que sigo</h2>
-    <a routerLink="/lists/discover" class="text-sm text-blue-600 underline">Descubrir listas</a>
+    <h2 class="text-lg font-bold text-ink">Listas que sigo</h2>
+    <a routerLink="/lists/discover" class="text-sm font-medium text-primary hover:underline">Descubrir listas</a>
   </div>
 
   @if (isLoadingFollowed()) {
@@ -93,20 +106,20 @@
   }
 
   @if (!isLoadingFollowed() && followedLists().length === 0) {
-    <p class="text-sm text-slate-500">
+    <p class="text-sm text-ink-muted">
       Todavía no sigues ninguna lista. Prueba a
-      <a routerLink="/lists/discover" class="text-blue-600 underline">descubrir listas</a>
+      <a routerLink="/lists/discover" class="font-medium text-primary hover:underline">descubrir listas</a>
       recomendadas para ti.
     </p>
   }
 
   <ul class="flex flex-col gap-2">
     @for (list of followedLists(); track list.id) {
-      <li class="rounded border p-3">
+      <li class="rounded-lg border border-border bg-surface p-3">
         <div class="flex items-start justify-between gap-2">
           <a [routerLink]="['/lists', list.id]" class="min-w-0 flex-1 hover:underline">
-            <span class="font-semibold">{{ list.name }}</span>
-            <p class="text-xs text-slate-500">de {{ list.user.userName }}</p>
+            <span class="font-semibold text-ink">{{ list.name }}</span>
+            <p class="text-xs text-ink-muted">de {{ list.user.userName }}</p>
           </a>
           <app-list-follow-button
             [gameListId]="list.id"
@@ -115,7 +128,7 @@
           />
         </div>
         @if (list.description) {
-          <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
+          <p class="mt-1 text-sm text-ink-muted">{{ list.description }}</p>
         }
       </li>
     }

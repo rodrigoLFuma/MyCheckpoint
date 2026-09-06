@@ -1,6 +1,6 @@
-<div class="mx-auto mt-10 max-w-2xl">
+<div class="mx-auto max-w-2xl">
   @if (isLoading()) {
-    <div class="flex items-start justify-between rounded border p-6">
+    <div class="flex items-start justify-between rounded-lg border border-border bg-surface p-6">
       <div class="flex items-center gap-4">
         <app-skeleton class="h-16 w-16 rounded-full" />
         <div>
@@ -18,7 +18,7 @@
       <app-skeleton class="mb-2 h-5 w-20" />
       <div class="flex flex-col gap-3">
         @for (i of [1, 2]; track i) {
-          <div class="flex gap-3 rounded border p-3">
+          <div class="flex gap-3 rounded-lg border border-border bg-surface p-3">
             <app-skeleton class="h-24 w-20 shrink-0" />
             <div class="min-w-0 flex-1">
               <app-skeleton class="h-3 w-24" />
@@ -41,41 +41,46 @@
   }
 
   @if (errorMessage() && !profileUser()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (profileUser(); as user) {
-    <div class="flex items-start justify-between rounded border p-6">
+    <div class="flex items-start justify-between rounded-lg border border-border bg-surface p-6">
       <div class="flex items-center gap-4">
         <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />
         <div>
-          <h1 class="text-xl font-bold">{{ user.userName }}</h1>
+          <h1 class="text-xl font-bold text-ink">{{ user.userName }}</h1>
           @if (user.bibliography) {
-            <p class="mt-1 max-w-sm text-sm text-slate-600 whitespace-pre-line">{{ user.bibliography }}</p>
+            <p class="mt-1 max-w-sm text-sm whitespace-pre-line text-ink-muted">{{ user.bibliography }}</p>
           }
 
           <div class="mt-2 flex gap-4 text-sm">
-            <a [routerLink]="['/users', user.id, 'followers']" class="hover:underline">
-              <span class="font-semibold">{{ followerCount() }}</span>
-              <span class="text-slate-500">{{ followerCount() === 1 ? 'seguidor' : 'seguidores' }}</span>
+            <a [routerLink]="['/users', user.id, 'followers']" class="text-ink-muted hover:underline">
+              <span class="font-semibold text-ink">{{ followerCount() }}</span>
+              {{ followerCount() === 1 ? 'seguidor' : 'seguidores' }}
             </a>
-            <a [routerLink]="['/users', user.id, 'following']" class="hover:underline">
-              <span class="font-semibold">{{ followingCount() }}</span>
-              <span class="text-slate-500">seguidos</span>
+            <a [routerLink]="['/users', user.id, 'following']" class="text-ink-muted hover:underline">
+              <span class="font-semibold text-ink">{{ followingCount() }}</span>
+              seguidos
             </a>
           </div>
         </div>
       </div>
 
       @if (isOwnProfile) {
-        <a routerLink="/profile" class="shrink-0 rounded border px-3 py-2 text-sm">Editar perfil</a>
+        <a
+          routerLink="/profile"
+          class="shrink-0 rounded-lg border border-border px-3 py-2 text-sm text-ink hover:bg-surface-hover"
+        >
+          Editar perfil
+        </a>
       } @else {
         <button
           type="button"
           (click)="toggleFollow()"
           [disabled]="isFollowBusy()"
-          class="shrink-0 rounded px-3 py-2 text-sm disabled:opacity-50"
-          [class]="isFollowing() ? 'border text-slate-700' : 'bg-blue-600 text-white'"
+          class="shrink-0 rounded-lg px-3 py-2 text-sm font-medium transition-colors disabled:opacity-50"
+          [class]="isFollowing() ? 'border border-border text-ink hover:bg-surface-hover' : 'bg-primary text-white hover:bg-primary-hover'"
         >
           {{ isFollowing() ? 'Siguiendo' : 'Seguir' }}
         </button>
@@ -83,26 +88,26 @@
     </div>
 
     @if (errorMessage()) {
-      <p class="mt-2 text-sm text-red-600">{{ errorMessage() }}</p>
+      <p class="mt-2 text-sm text-danger">{{ errorMessage() }}</p>
     }
 
     @if (stats(); as s) {
       @if (s.gamesCount > 0) {
-        <div class="mt-4 flex gap-6 rounded border p-4 text-sm">
+        <div class="mt-4 flex gap-6 rounded-lg border border-border bg-surface p-4 text-sm">
           <div>
-            <p class="text-lg font-bold">{{ s.gamesCount }}</p>
-            <p class="text-slate-500">{{ s.gamesCount === 1 ? 'juego' : 'juegos' }}</p>
+            <p class="text-lg font-bold text-ink">{{ s.gamesCount }}</p>
+            <p class="text-ink-muted">{{ s.gamesCount === 1 ? 'juego' : 'juegos' }}</p>
           </div>
           @if (s.averageRate != null) {
             <div>
-              <p class="text-lg font-bold">{{ s.averageRate | number: '1.1-1' }}</p>
-              <p class="text-slate-500">nota media</p>
+              <p class="text-lg font-bold text-ink">{{ s.averageRate | number: '1.1-1' }}</p>
+              <p class="text-ink-muted">nota media</p>
             </div>
           }
           @if (s.topGenre) {
             <div>
-              <p class="text-lg font-bold">{{ s.topGenre }}</p>
-              <p class="text-slate-500">género favorito</p>
+              <p class="text-lg font-bold text-ink">{{ s.topGenre }}</p>
+              <p class="text-ink-muted">género favorito</p>
             </div>
           }
         </div>
@@ -110,10 +115,10 @@
     }
 
     <div class="mt-6">
-      <h2 class="mb-2 font-semibold">Reseñas</h2>
+      <h2 class="mb-2 font-semibold text-ink">Reseñas</h2>
 
       @if (reviews().length === 0) {
-        <p class="text-sm text-slate-500">Todavía no ha reseñado ningún juego.</p>
+        <p class="text-sm text-ink-muted">Todavía no ha reseñado ningún juego.</p>
       }
 
       <div class="flex flex-col gap-3">
@@ -132,26 +137,26 @@
       </div>
 
       @if (reviewCount() > reviews().length) {
-        <a [routerLink]="['/users', user.id, 'reviews']" class="mt-3 inline-block text-sm text-blue-600 underline">
+        <a [routerLink]="['/users', user.id, 'reviews']" class="mt-3 inline-block text-sm font-medium text-primary hover:underline">
           Ver más ({{ reviewCount() }} en total)
         </a>
       }
     </div>
 
     <div class="mt-6">
-      <h2 class="mb-2 font-semibold">Listas</h2>
+      <h2 class="mb-2 font-semibold text-ink">Listas</h2>
 
       @if (lists().length === 0) {
-        <p class="text-sm text-slate-500">Todavía no tiene listas.</p>
+        <p class="text-sm text-ink-muted">Todavía no tiene listas.</p>
       }
 
       <div class="flex flex-col gap-2">
         @for (list of lists(); track list.id) {
-          <div class="rounded border p-3">
+          <div class="rounded-lg border border-border bg-surface p-3">
             <div class="flex items-start justify-between gap-2">
               <a [routerLink]="['/lists', list.id]" class="min-w-0 flex-1 hover:underline">
-                <span class="font-semibold">{{ list.name }}</span>
-                <span class="ml-2 text-xs text-slate-500">{{ list.isPublic ? 'Pública' : 'Privada' }}</span>
+                <span class="font-semibold text-ink">{{ list.name }}</span>
+                <span class="ml-2 text-xs text-ink-muted">{{ list.isPublic ? 'Pública' : 'Privada' }}</span>
               </a>
               @if (!isOwnProfile) {
                 <app-list-follow-button
@@ -162,14 +167,14 @@
               }
             </div>
             @if (list.description) {
-              <p class="mt-1 text-sm text-slate-600">{{ list.description }}</p>
+              <p class="mt-1 text-sm text-ink-muted">{{ list.description }}</p>
             }
           </div>
         }
       </div>
 
       @if (listCount() > lists().length) {
-        <a [routerLink]="['/users', user.id, 'lists']" class="mt-3 inline-block text-sm text-blue-600 underline">
+        <a [routerLink]="['/users', user.id, 'lists']" class="mt-3 inline-block text-sm font-medium text-primary hover:underline">
           Ver más ({{ listCount() }} en total)
         </a>
       }
@@ -177,22 +182,22 @@
 
     @if (isOwnProfile) {
       <div class="mt-6">
-        <h2 class="mb-2 font-semibold">Listas que sigo</h2>
+        <h2 class="mb-2 font-semibold text-ink">Listas que sigo</h2>
 
         @if (followedLists().length === 0) {
-          <p class="text-sm text-slate-500">
+          <p class="text-sm text-ink-muted">
             Todavía no sigues ninguna lista. Prueba a
-            <a routerLink="/lists/discover" class="text-blue-600 underline">descubrir listas</a>.
+            <a routerLink="/lists/discover" class="font-medium text-primary hover:underline">descubrir listas</a>.
           </p>
         }
 
         <div class="flex flex-col gap-2">
           @for (list of followedLists(); track list.id) {
-            <div class="rounded border p-3">
+            <div class="rounded-lg border border-border bg-surface p-3">
               <div class="flex items-start justify-between gap-2">
                 <a [routerLink]="['/lists', list.id]" class="min-w-0 flex-1 hover:underline">
-                  <span class="font-semibold">{{ list.name }}</span>
-                  <p class="text-xs text-slate-500">de {{ list.user.userName }}</p>
+                  <span class="font-semibold text-ink">{{ list.name }}</span>
+                  <p class="text-xs text-ink-muted">de {{ list.user.userName }}</p>
                 </a>
                 <app-list-follow-button
                   [gameListId]="list.id"
@@ -205,7 +210,7 @@
         </div>
 
         @if (followedListCount() > followedLists().length) {
-          <a routerLink="/lists" class="mt-3 inline-block text-sm text-blue-600 underline">
+          <a routerLink="/lists" class="mt-3 inline-block text-sm font-medium text-primary hover:underline">
             Ver más ({{ followedListCount() }} en total)
           </a>
         }

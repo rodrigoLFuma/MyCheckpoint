@@ -1,10 +1,10 @@
-<div class="mx-auto mt-10 max-w-4xl">
-  <h1 class="mb-4 text-xl font-bold">Mi biblioteca</h1>
+<div class="mx-auto max-w-4xl">
+  <h1 class="mb-4 text-xl font-bold text-ink">Mi biblioteca</h1>
 
   @if (isLoading()) {
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       @for (i of [1, 2, 3, 4]; track i) {
-        <div class="overflow-hidden rounded border shadow-sm">
+        <div class="overflow-hidden rounded-lg border border-border bg-surface">
           <app-skeleton class="h-40 w-full rounded-none" />
           <div class="p-3">
             <app-skeleton class="h-4 w-3/4" />
@@ -19,13 +19,13 @@
   }
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (!isLoading() && userGames().length === 0) {
-    <p class="text-sm text-slate-500">
+    <p class="text-sm text-ink-muted">
       Todavía no has reseñado ningún juego. Búscalos en
-      <a routerLink="/games/search" class="text-blue-600 underline">Buscar juegos</a>.
+      <a routerLink="/games/search" class="font-medium text-primary hover:underline">Buscar juegos</a>.
     </p>
   }
 
@@ -36,13 +36,13 @@
         [ngModel]="searchTerm()"
         (ngModelChange)="searchTerm.set($event)"
         placeholder="Buscar por juego o título..."
-        class="min-w-48 flex-1 rounded border px-3 py-2 text-sm"
+        class="min-w-48 flex-1 rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
       />
 
       <select
         [ngModel]="statusFilter()"
         (ngModelChange)="statusFilter.set($event)"
-        class="rounded border px-3 py-2 text-sm"
+        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
       >
         <option value="Todos">Todos los estados</option>
         @for (option of statuses; track option) {
@@ -53,7 +53,7 @@
       <select
         [ngModel]="sortBy()"
         (ngModelChange)="sortBy.set($event)"
-        class="rounded border px-3 py-2 text-sm"
+        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
       >
         @for (option of sortOptions; track option.value) {
           <option [value]="option.value">{{ option.label }}</option>
@@ -62,7 +62,7 @@
     </div>
 
     @if (filteredGames().length === 0) {
-      <p class="text-sm text-slate-500">Ningún juego coincide con la búsqueda o el filtro.</p>
+      <p class="text-sm text-ink-muted">Ningún juego coincide con la búsqueda o el filtro.</p>
     }
   }
 
@@ -75,24 +75,34 @@
       >
         @if (pendingDeleteId() === userGame.id) {
           <div class="mt-2 flex flex-col gap-2">
-            <p class="text-xs text-red-600">¿Borrar esta reseña?</p>
+            <p class="text-xs text-danger">¿Borrar esta reseña?</p>
             <div class="flex gap-2">
               <button
                 type="button"
                 (click)="confirmDelete(userGame.id)"
-                class="flex-1 rounded bg-red-600 px-2 py-1 text-sm text-white"
+                class="flex-1 rounded-lg bg-danger px-2 py-1 text-sm font-semibold text-white"
               >
                 Sí, borrar
               </button>
-              <button type="button" (click)="cancelDelete()" class="rounded border px-2 py-1 text-sm">Cancelar</button>
+              <button
+                type="button"
+                (click)="cancelDelete()"
+                class="rounded-lg border border-border px-2 py-1 text-sm text-ink hover:bg-surface-hover"
+              >
+                Cancelar
+              </button>
             </div>
           </div>
         } @else if (addingToListForGameId() === userGame.game.id) {
           <div class="mt-2 flex flex-col gap-2">
             @if (lists().length === 0) {
-              <p class="text-xs text-slate-500">No tienes listas todavía.</p>
+              <p class="text-xs text-ink-muted">No tienes listas todavía.</p>
             } @else {
-              <select [(ngModel)]="selectedListId" name="listId" class="w-full rounded border px-2 py-1 text-sm">
+              <select
+                [(ngModel)]="selectedListId"
+                name="listId"
+                class="w-full rounded-lg border border-border bg-bg-raised px-2 py-1 text-sm text-ink"
+              >
                 @for (list of lists(); track list.id) {
                   <option [value]="list.id">{{ list.name }}</option>
                 }
@@ -100,7 +110,7 @@
             }
 
             @if (addToListMessage()) {
-              <p class="text-xs text-slate-600">{{ addToListMessage() }}</p>
+              <p class="text-xs text-ink-muted">{{ addToListMessage() }}</p>
             }
 
             <div class="flex gap-2">
@@ -108,21 +118,27 @@
                 <button
                   type="button"
                   (click)="confirmAddToList(userGame.game.id)"
-                  class="flex-1 rounded bg-blue-600 px-2 py-1 text-sm text-white"
+                  class="flex-1 rounded-lg bg-primary px-2 py-1 text-sm font-semibold text-white hover:bg-primary-hover"
                 >
                   Añadir
                 </button>
               }
-              <button type="button" (click)="cancelAddToList()" class="rounded border px-2 py-1 text-sm">Cerrar</button>
+              <button
+                type="button"
+                (click)="cancelAddToList()"
+                class="rounded-lg border border-border px-2 py-1 text-sm text-ink hover:bg-surface-hover"
+              >
+                Cerrar
+              </button>
             </div>
           </div>
         } @else {
           <div class="mt-2 text-sm">
-            <p class="font-semibold">{{ userGame.status }} · {{ userGame.rate }}/10</p>
+            <p class="font-semibold text-ink">{{ userGame.status }} · {{ userGame.rate }}/10</p>
             @if (userGame.title) {
-              <p class="mt-1 font-semibold">{{ userGame.title }}</p>
+              <p class="mt-1 font-semibold text-ink">{{ userGame.title }}</p>
             }
-            <div class="mt-1 text-slate-600">
+            <div class="mt-1 text-ink-muted">
               <app-truncated-text [text]="userGame.review" [reviewId]="userGame.id" />
             </div>
           </div>
@@ -131,15 +147,23 @@
             <div class="flex gap-2">
               <a
                 [routerLink]="['/reviews', userGame.id, 'edit']"
-                class="flex-1 rounded border px-2 py-1 text-center text-sm"
+                class="flex-1 rounded-lg border border-border px-2 py-1 text-center text-sm text-ink hover:bg-surface-hover"
               >
                 Editar
               </a>
-              <button type="button" (click)="askDelete(userGame.id)" class="rounded border px-2 py-1 text-sm text-red-600">
+              <button
+                type="button"
+                (click)="askDelete(userGame.id)"
+                class="rounded-lg border border-border px-2 py-1 text-sm text-danger hover:bg-danger-soft"
+              >
                 Borrar
               </button>
             </div>
-            <button type="button" (click)="openAddToList(userGame.game.id)" class="w-full rounded border px-2 py-1 text-sm">
+            <button
+              type="button"
+              (click)="openAddToList(userGame.game.id)"
+              class="w-full rounded-lg border border-border px-2 py-1 text-sm text-ink hover:bg-surface-hover"
+            >
               + Añadir a lista
             </button>
           </div>

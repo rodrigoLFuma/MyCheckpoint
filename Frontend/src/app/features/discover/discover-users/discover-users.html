@@ -1,25 +1,28 @@
-<div class="mx-auto mt-10 max-w-4xl">
-  <a routerLink="/" class="text-sm text-blue-600 underline">&larr; Volver a inicio</a>
+<div class="mx-auto max-w-4xl">
+  <a routerLink="/" class="text-sm font-medium text-primary hover:underline">&larr; Volver a inicio</a>
 
-  <h1 class="mt-4 mb-4 text-xl font-bold">Gente con tus mismos gustos</h1>
+  <h1 class="mt-4 mb-4 text-xl font-bold text-ink">Gente con tus mismos gustos</h1>
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
     @if (isLoading()) {
       @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
-        <div class="flex flex-col items-center gap-2 rounded border p-4">
+        <div class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4">
           <app-skeleton class="h-16 w-16 rounded-full" />
           <app-skeleton class="h-3 w-16" />
         </div>
       }
     }
     @for (user of users(); track user.id) {
-      <a [routerLink]="['/users', user.id]" class="flex flex-col items-center gap-2 rounded border p-4 text-center hover:bg-slate-50">
+      <a
+        [routerLink]="['/users', user.id]"
+        class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
+      >
         <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />
-        <span class="font-semibold">{{ user.userName }}</span>
+        <span class="font-semibold text-ink">{{ user.userName }}</span>
       </a>
     }
   </div>
@@ -30,7 +33,7 @@
         type="button"
         (click)="loadMore()"
         [disabled]="isLoadingMore()"
-        class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+        class="rounded-lg border border-border px-4 py-2 text-sm text-ink hover:bg-surface-hover disabled:opacity-50"
       >
         {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
       </button>

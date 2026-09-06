@@ -1,16 +1,16 @@
-<div class="mx-auto mt-10 max-w-2xl">
-  <a routerLink="/" class="text-sm text-blue-600 underline">&larr; Volver a inicio</a>
+<div class="mx-auto max-w-2xl">
+  <a routerLink="/" class="text-sm font-medium text-primary hover:underline">&larr; Volver a inicio</a>
 
-  <h1 class="mt-4 mb-4 text-xl font-bold">Reseñas de otros sobre tus juegos</h1>
+  <h1 class="mt-4 mb-4 text-xl font-bold text-ink">Reseñas de otros sobre tus juegos</h1>
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   <div class="flex flex-col gap-3">
     @if (isLoading()) {
       @for (i of [1, 2, 3, 4]; track i) {
-        <div class="flex gap-3 rounded border p-3">
+        <div class="flex gap-3 rounded-lg border border-border bg-surface p-3">
           <app-skeleton class="h-24 w-20 shrink-0" />
           <div class="min-w-0 flex-1">
             <app-skeleton class="h-3 w-24" />
@@ -41,7 +41,7 @@
         type="button"
         (click)="loadMore()"
         [disabled]="isLoadingMore()"
-        class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+        class="rounded-lg border border-border px-4 py-2 text-sm text-ink hover:bg-surface-hover disabled:opacity-50"
       >
         {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
       </button>

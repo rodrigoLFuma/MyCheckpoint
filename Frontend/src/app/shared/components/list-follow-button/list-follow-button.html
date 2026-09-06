@@ -3,13 +3,13 @@
     type="button"
     (click)="toggle()"
     [disabled]="isToggling()"
-    class="shrink-0 rounded px-3 py-1.5 text-sm disabled:opacity-50"
-    [class]="displayedFollowed ? 'border text-slate-700' : 'bg-blue-600 text-white'"
+    class="shrink-0 rounded-full px-3 py-1.5 text-sm font-medium transition-colors disabled:opacity-50"
+    [class]="displayedFollowed ? 'border border-border text-ink hover:bg-surface-hover' : 'bg-primary text-white hover:bg-primary-hover'"
   >
     {{ displayedFollowed ? 'Siguiendo' : 'Seguir' }} · {{ displayedCount }}
   </button>
 } @else {
-  <span class="text-sm text-slate-500">
+  <span class="text-sm text-ink-muted">
     {{ displayedCount }} {{ displayedCount === 1 ? 'seguidor' : 'seguidores' }}
   </span>
 }

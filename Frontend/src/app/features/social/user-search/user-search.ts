@@ -10,10 +10,11 @@ import { UserSummaryDto } from '../../../api/models/user-summary-dto';
 import { CategoryDto } from '../../../api/models/category-dto';
 import { CategoryTopUsersDto } from '../../../api/models/category-top-users-dto';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
+import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 @Component({
   selector: 'app-user-search',
-  imports: [FormsModule, RouterLink, UserAvatar],
+  imports: [FormsModule, RouterLink, UserAvatar, Skeleton],
   templateUrl: './user-search.html',
 })
 export class UserSearch implements OnInit {

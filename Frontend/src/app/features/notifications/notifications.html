@@ -1,18 +1,18 @@
-<div class="mx-auto mt-10 max-w-2xl">
-  <h1 class="mb-4 text-xl font-bold">Notificaciones</h1>
+<div class="mx-auto max-w-2xl">
+  <h1 class="mb-4 text-xl font-bold text-ink">Notificaciones</h1>
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (!isLoading() && notifications().length === 0) {
-    <p class="text-sm text-slate-500">No tienes notificaciones todavía.</p>
+    <p class="text-sm text-ink-muted">No tienes notificaciones todavía.</p>
   }
 
   <div class="flex flex-col gap-2">
     @if (isLoading()) {
       @for (i of [1, 2, 3, 4]; track i) {
-        <div class="flex items-center gap-3 rounded border p-3">
+        <div class="flex items-center gap-3 rounded-lg border border-border bg-surface p-3">
           <app-skeleton class="h-10 w-10 rounded-full" />
           <div class="min-w-0 flex-1">
             <app-skeleton class="h-3 w-56" />
@@ -22,14 +22,17 @@
       }
     }
     @for (notification of notifications(); track notification.id) {
-      <div class="flex items-center gap-3 rounded border p-3" [class.bg-blue-50]="!notification.isRead">
+      <div
+        class="flex items-center gap-3 rounded-lg border p-3"
+        [class]="notification.isRead ? 'border-border bg-surface' : 'border-primary/30 bg-primary-soft'"
+      >
         <app-user-avatar
           [imageUrl]="notification.actor.profilePictureURL"
           [name]="notification.actor.userName"
           sizeClass="h-10 w-10"
         />
 
-        <div class="min-w-0 flex-1 text-sm">
+        <div class="min-w-0 flex-1 text-sm text-ink">
           @if (notification.type === 'Follow') {
             <p>
               <a [routerLink]="['/users', notification.actor.id]" class="font-semibold hover:underline">{{
@@ -56,7 +59,7 @@
             </p>
           }
 
-          <p class="mt-1 text-xs text-slate-400">{{ notification.createdAt | date: 'medium' }}</p>
+          <p class="mt-1 text-xs text-ink-faint">{{ notification.createdAt | date: 'medium' }}</p>
         </div>
       </div>
     }
@@ -68,7 +71,7 @@
         type="button"
         (click)="loadMore()"
         [disabled]="isLoadingMore()"
-        class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+        class="rounded-lg border border-border px-4 py-2 text-sm text-ink hover:bg-surface-hover disabled:opacity-50"
       >
         {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
       </button>

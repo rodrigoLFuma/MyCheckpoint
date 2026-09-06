@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { extractErrorDetail } from '../../../shared/utils/http-error';
 
 @Component({
   selector: 'app-register',
@@ -30,8 +30,7 @@ export class Register {
       });
       this.router.navigateByUrl('/');
     } catch (err) {
-      const detail = err instanceof HttpErrorResponse ? err.error?.detail : null;
-      this.errorMessage.set(detail ?? 'No se ha podido completar el registro.');
+      this.errorMessage.set(extractErrorDetail(err) ?? 'No se ha podido completar el registro.');
     } finally {
       this.isSubmitting.set(false);
     }

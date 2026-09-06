@@ -3,15 +3,15 @@
     type="button"
     (click)="toggle()"
     [disabled]="isToggling()"
-    class="flex items-center gap-1 text-sm disabled:opacity-50"
-    [class.text-red-600]="displayedLikedByMe"
-    [class.text-slate-500]="!displayedLikedByMe"
+    class="flex items-center gap-1 text-sm transition-colors hover:text-danger disabled:opacity-50"
+    [class.text-danger]="displayedLikedByMe"
+    [class.text-ink-muted]="!displayedLikedByMe"
   >
     <span>{{ displayedLikedByMe ? '♥' : '♡' }}</span>
     <span>{{ displayedLikeCount }}</span>
   </button>
 } @else {
-  <span class="flex items-center gap-1 text-sm text-slate-500">
+  <span class="flex items-center gap-1 text-sm text-ink-muted">
     <span>♡</span>
     <span>{{ displayedLikeCount }}</span>
   </span>

@@ -1,15 +1,15 @@
-<div class="mx-auto mt-10 max-w-4xl">
-  <a routerLink="/social" class="text-sm text-blue-600 underline">&larr; Volver a Social</a>
+<div class="mx-auto max-w-4xl">
+  <a routerLink="/social" class="text-sm font-medium text-primary hover:underline">&larr; Volver a Social</a>
 
   @if (errorMessage()) {
-    <p class="mt-4 text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="mt-4 text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (isLoading()) {
     <app-skeleton class="mt-4 mb-4 h-6 w-40" />
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
-        <div class="flex flex-col items-center gap-2 rounded border p-4">
+        <div class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4">
           <app-skeleton class="h-16 w-16 rounded-full" />
           <app-skeleton class="h-3 w-16" />
         </div>
@@ -18,14 +18,17 @@
   }
 
   @if (category(); as cat) {
-    <h1 class="mt-4 mb-4 text-xl font-bold">Top {{ cat.name }}</h1>
+    <h1 class="mt-4 mb-4 text-xl font-bold text-ink">Top {{ cat.name }}</h1>
 
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       @for (user of users(); track user.id; let i = $index) {
-        <a [routerLink]="['/users', user.id]" class="flex flex-col items-center gap-2 rounded border p-4 text-center hover:bg-slate-50">
-          <span class="text-xs font-semibold text-slate-400">#{{ i + 1 }}</span>
+        <a
+          [routerLink]="['/users', user.id]"
+          class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
+        >
+          <span class="text-xs font-semibold text-ink-faint">#{{ i + 1 }}</span>
           <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />
-          <span class="font-semibold">{{ user.userName }}</span>
+          <span class="font-semibold text-ink">{{ user.userName }}</span>
         </a>
       }
     </div>
@@ -36,7 +39,7 @@
           type="button"
           (click)="loadMore()"
           [disabled]="isLoadingMore()"
-          class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+          class="rounded-lg border border-border px-4 py-2 text-sm text-ink hover:bg-surface-hover disabled:opacity-50"
         >
           {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
         </button>
