@@ -22,6 +22,12 @@ namespace MyCheckpoint.Controllers
             return Ok(await _userService.GetByIdAsync(id));
         }
 
+        [HttpGet("{id}/stats")]
+        public async Task<ActionResult<UserStatsDto>> GetStats(int id)
+        {
+            return Ok(await _userService.GetStatsAsync(id));
+        }
+
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<UserSummaryDto>>> Search(
             [FromQuery] string? term, [FromQuery] int? categoryId)

@@ -5,6 +5,7 @@ namespace MyCheckpoint.Services.Contracts
     public interface IUserService
     {
         Task<UserSummaryDto> GetByIdAsync(int id);
+        Task<UserStatsDto> GetStatsAsync(int userId);
         Task<IEnumerable<UserSummaryDto>> SearchAsync(string? term, int? categoryId);
 
         /// <summary>

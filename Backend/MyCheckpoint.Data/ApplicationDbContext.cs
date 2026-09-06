@@ -23,6 +23,7 @@ namespace MyCheckpoint.Data
         public DbSet<UserFavoriteGenre> UserFavoriteGenres => Set<UserFavoriteGenre>();
         public DbSet<ReviewLike> ReviewLikes => Set<ReviewLike>();
         public DbSet<Notification> Notifications => Set<Notification>();
+        public DbSet<GameListFollow> GameListFollows => Set<GameListFollow>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,6 +41,7 @@ namespace MyCheckpoint.Data
             modelBuilder.Entity<UserFavoriteGenre>().ToTable("user_favorite_genres");
             modelBuilder.Entity<ReviewLike>().ToTable("review_likes");
             modelBuilder.Entity<Notification>().ToTable("notifications");
+            modelBuilder.Entity<GameListFollow>().ToTable("game_list_follows");
 
             modelBuilder.Entity<Follow>()
             .HasKey(f => new { f.FollowerId, f.FollowedId });
@@ -89,6 +91,14 @@ namespace MyCheckpoint.Data
 
             modelBuilder.Entity<GameListItem>()
                 .HasKey(x => new { x.GameListId, x.GameId });
+
+            // Solo una nav property de tipo User (a diferencia de Follow o
+            // Notification), así que aquí la convención por defecto basta:
+            // sin Restrict, sin problema (mismo patrón que ya funciona en
+            // ReviewLike, que tiene la misma forma de "converge en User por
+            // dos caminos" y no dio ningún problema en Postgres).
+            modelBuilder.Entity<GameListFollow>()
+                .HasKey(glf => new { glf.UserId, glf.GameListId });
 
             modelBuilder.Entity<Game>()
                 .HasIndex(g => g.RawgId)

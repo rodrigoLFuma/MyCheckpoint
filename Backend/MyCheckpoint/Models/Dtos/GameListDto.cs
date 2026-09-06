@@ -16,6 +16,10 @@ namespace MyCheckpoint.Models.Dtos
         [Required]
         public UserSummaryDto User {  get; set; }
         public List<GameListItemDto> Games { get; set; }
+        [Required]
+        public int FollowerCount { get; set; }
+        [Required]
+        public bool FollowedByMe { get; set; }
 
     }
 }

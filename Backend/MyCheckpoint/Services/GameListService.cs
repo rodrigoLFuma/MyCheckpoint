@@ -14,6 +14,8 @@ namespace MyCheckpoint.Services
         private readonly IGameListRepository _gameListRepository;
         private readonly IGameListItemRepository _gameListItemRepository;
         private readonly IGameRepository _gameRepository;
+        private readonly IUserGameRepository _userGameRepository;
+        private readonly IGameListFollowRepository _gameListFollowRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
@@ -21,12 +23,16 @@ namespace MyCheckpoint.Services
             IGameListRepository gameListRepository,
             IGameListItemRepository gameListItemRepository,
             IGameRepository gameRepository,
+            IUserGameRepository userGameRepository,
+            IGameListFollowRepository gameListFollowRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
             _gameListRepository = gameListRepository;
             _gameListItemRepository = gameListItemRepository;
             _gameRepository = gameRepository;
+            _userGameRepository = userGameRepository;
+            _gameListFollowRepository = gameListFollowRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
@@ -39,19 +45,22 @@ namespace MyCheckpoint.Services
             if (!gameList.IsPublic && gameList.UserId != viewerUserId)
                 throw new ForbiddenException("No tienes permiso para ver esta lista.");
 
-            return _mapper.Map<GameListDto>(gameList);
+            var dto = _mapper.Map<GameListDto>(gameList);
+            return (await EnrichWithFollowInfoAsync(new[] { dto }, viewerUserId)).Single();
         }
 
         public async Task<IEnumerable<GameListDto>> GetByUserIdAsync(int userId, int? viewerUserId)
         {
             var gameLists = await _gameListRepository.GetByUserIdAsync(userId, viewerUserId);
-            return _mapper.Map<IEnumerable<GameListDto>>(gameLists);
+            var dtos = _mapper.Map<IEnumerable<GameListDto>>(gameLists);
+            return await EnrichWithFollowInfoAsync(dtos, viewerUserId);
         }
 
         public async Task<IEnumerable<GameListDto>> SearchByNameAsync(string term, int? viewerUserId)
         {
             var gameLists = await _gameListRepository.SearchByNameAsync(term, viewerUserId);
-            return _mapper.Map<IEnumerable<GameListDto>>(gameLists);
+            var dtos = _mapper.Map<IEnumerable<GameListDto>>(gameLists);
+            return await EnrichWithFollowInfoAsync(dtos, viewerUserId);
         }
 
         public async Task<GameListDto> CreateAsync(GameListAddDto dto, int userId)
@@ -172,6 +181,84 @@ namespace MyCheckpoint.Services
                 return;
 
             await RemoveItemAsync(pendingList.Id, gameId, userId);
+        }
+
+        public async Task<IEnumerable<GameListDto>> GetRecommendedAsync(int userId, int skip, int take)
+        {
+            var myGames = await _userGameRepository.GetByUserIdAsync(userId);
+            var myGameIds = myGames.Select(ug => ug.GameId).ToList();
+
+            var followedLists = await _gameListFollowRepository.GetFollowedListsAsync(userId);
+            var excludeIds = followedLists.Select(gl => gl.Id).ToList();
+
+            var recommended = await _gameListRepository.GetRecommendedAsync(userId, myGameIds, excludeIds, skip, take);
+            var dtos = _mapper.Map<IEnumerable<GameListDto>>(recommended);
+            return await EnrichWithFollowInfoAsync(dtos, userId);
+        }
+
+        public async Task<IEnumerable<GameListDto>> GetFollowedListsAsync(int userId)
+        {
+            var lists = await _gameListFollowRepository.GetFollowedListsAsync(userId);
+            var dtos = _mapper.Map<IEnumerable<GameListDto>>(lists);
+            return await EnrichWithFollowInfoAsync(dtos, userId);
+        }
+
+        public async Task FollowAsync(int gameListId, int userId)
+        {
+            var gameList = await _gameListRepository.GetByIdAsync(gameListId)
+                ?? throw new NotFoundException("La lista no existe.");
+
+            if (!gameList.IsPublic)
+                throw new ForbiddenException("No puedes seguir una lista privada.");
+
+            if (gameList.UserId == userId)
+                throw new BadRequestException("No puedes seguir tu propia lista.");
+
+            if (await _gameListFollowRepository.GetAsync(userId, gameListId) is null)
+            {
+                await _gameListFollowRepository.CreateAsync(new GameListFollow
+                {
+                    UserId = userId,
+                    GameListId = gameListId,
+                    CreatedAt = DateTime.UtcNow
+                });
+                await _unitOfWork.SaveChangesAsync();
+            }
+        }
+
+        public async Task UnfollowAsync(int gameListId, int userId)
+        {
+            var existing = await _gameListFollowRepository.GetAsync(userId, gameListId)
+                ?? throw new NotFoundException("No sigues esta lista.");
+
+            _gameListFollowRepository.Delete(existing);
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Rellena FollowerCount y FollowedByMe en lote (nada de una consulta
+        /// por cada lista). viewerUserId nulo cuando nadie ha iniciado sesión:
+        /// se rellena el conteo igualmente, FollowedByMe se queda en false.
+        /// </summary>
+        private async Task<IEnumerable<GameListDto>> EnrichWithFollowInfoAsync(IEnumerable<GameListDto> dtos, int? viewerUserId)
+        {
+            var list = dtos.ToList();
+            var ids = list.Select(d => d.Id).ToList();
+            if (ids.Count == 0)
+                return list;
+
+            var counts = await _gameListFollowRepository.GetFollowerCountsAsync(ids);
+            var followed = viewerUserId is not null
+                ? await _gameListFollowRepository.GetFollowedListIdsAsync(viewerUserId.Value, ids)
+                : new HashSet<int>();
+
+            foreach (var dto in list)
+            {
+                dto.FollowerCount = counts.GetValueOrDefault(dto.Id);
+                dto.FollowedByMe = followed.Contains(dto.Id);
+            }
+
+            return list;
         }
 
         private async Task<GameList> GetOrCreatePendingListAsync(int userId)

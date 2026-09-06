@@ -39,5 +39,17 @@ namespace MyCheckpoint.Services.Contracts
         /// lista si todavía no la tiene (a diferencia de las otras).
         /// </summary>
         Task<IEnumerable<int>> GetPendingGameIdsAsync(int userId);
+
+        /// <summary>
+        /// Listas públicas ajenas que contienen algún juego que ya tienes,
+        /// ordenadas por nº de seguidores. No repite las que ya sigues.
+        /// </summary>
+        Task<IEnumerable<GameListDto>> GetRecommendedAsync(int userId, int skip, int take);
+
+        /// <summary>Las listas ajenas que sigues (no las que has creado tú).</summary>
+        Task<IEnumerable<GameListDto>> GetFollowedListsAsync(int userId);
+
+        Task FollowAsync(int gameListId, int userId);
+        Task UnfollowAsync(int gameListId, int userId);
     }
 }

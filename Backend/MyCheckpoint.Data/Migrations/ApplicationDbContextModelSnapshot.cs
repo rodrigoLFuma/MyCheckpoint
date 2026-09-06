@@ -250,6 +250,24 @@ namespace MyCheckpoint.Data.Migrations
                     b.ToTable("game_lists", (string)null);
                 });
 
+            modelBuilder.Entity("MyCheckpoint.Data.Entities.GameListFollow", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("GameListId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("UserId", "GameListId");
+
+                    b.HasIndex("GameListId");
+
+                    b.ToTable("game_list_follows", (string)null);
+                });
+
             modelBuilder.Entity("MyCheckpoint.Data.Entities.GameListItem", b =>
                 {
                     b.Property<int>("GameListId")
@@ -582,6 +600,25 @@ namespace MyCheckpoint.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyCheckpoint.Data.Entities.GameListFollow", b =>
+                {
+                    b.HasOne("MyCheckpoint.Data.Entities.GameList", "GameList")
+                        .WithMany()
+                        .HasForeignKey("GameListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyCheckpoint.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GameList");
 
                     b.Navigation("User");
                 });

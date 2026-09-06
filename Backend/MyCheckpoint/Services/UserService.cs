@@ -14,6 +14,7 @@ namespace MyCheckpoint.Services
         private readonly UserManager<User> _userManager;
         private readonly IFollowRepository _followRepository;
         private readonly INotificationRepository _notificationRepository;
+        private readonly IUserGameRepository _userGameRepository;
         private readonly IRepositoryBaseWithId<Category> _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -22,6 +23,7 @@ namespace MyCheckpoint.Services
             UserManager<User> userManager,
             IFollowRepository followRepository,
             INotificationRepository notificationRepository,
+            IUserGameRepository userGameRepository,
             IRepositoryBaseWithId<Category> categoryRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
@@ -29,6 +31,7 @@ namespace MyCheckpoint.Services
             _userManager = userManager;
             _followRepository = followRepository;
             _notificationRepository = notificationRepository;
+            _userGameRepository = userGameRepository;
             _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
@@ -40,6 +43,19 @@ namespace MyCheckpoint.Services
                 ?? throw new NotFoundException("El usuario no existe.");
 
             return _mapper.Map<UserSummaryDto>(user);
+        }
+
+        public async Task<UserStatsDto> GetStatsAsync(int userId)
+        {
+            if (await _userManager.FindByIdAsync(userId.ToString()) is null)
+                throw new NotFoundException("El usuario no existe.");
+
+            return new UserStatsDto
+            {
+                GamesCount = await _userGameRepository.CountByUserIdAsync(userId),
+                AverageRate = await _userGameRepository.GetAverageRateAsync(userId),
+                TopGenre = await _userGameRepository.GetTopGenreNameAsync(userId)
+            };
         }
 
         public async Task<IEnumerable<UserSummaryDto>> SearchAsync(string? term, int? categoryId)

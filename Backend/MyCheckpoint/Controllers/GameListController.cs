@@ -80,5 +80,36 @@ namespace MyCheckpoint.Controllers
             await _gameListService.AddToPendingListAsync(dto.GameId, this.GetUserId());
             return NoContent();
         }
+
+        [HttpGet("recommended")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<GameListDto>>> GetRecommended(
+            [FromQuery] int skip = 0, [FromQuery] int take = 10)
+        {
+            return Ok(await _gameListService.GetRecommendedAsync(this.GetUserId(), skip, take));
+        }
+
+        [HttpGet("followed")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<GameListDto>>> GetFollowed()
+        {
+            return Ok(await _gameListService.GetFollowedListsAsync(this.GetUserId()));
+        }
+
+        [HttpPost("{id}/follow")]
+        [Authorize]
+        public async Task<IActionResult> Follow(int id)
+        {
+            await _gameListService.FollowAsync(id, this.GetUserId());
+            return NoContent();
+        }
+
+        [HttpDelete("{id}/follow")]
+        [Authorize]
+        public async Task<IActionResult> Unfollow(int id)
+        {
+            await _gameListService.UnfollowAsync(id, this.GetUserId());
+            return NoContent();
+        }
     }
 }

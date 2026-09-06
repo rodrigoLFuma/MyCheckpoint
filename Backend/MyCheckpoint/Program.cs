@@ -87,6 +87,7 @@ builder.Services.AddScoped<IFollowRepository, FollowRepository>();
 builder.Services.AddScoped<IUserGameRepository, UserGameRepository>();
 builder.Services.AddScoped<IReviewLikeRepository, ReviewLikeRepository>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<IGameListFollowRepository, GameListFollowRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IRepositoryBaseWithId<Category>>(sp => sp.GetRequiredService<ICategoryRepository>());
 

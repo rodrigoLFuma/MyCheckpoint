@@ -18,5 +18,11 @@ namespace MyCheckpoint.Data.Repositories.Contracts
         /// más recientes primero — el feed de actividad de gente que sigues.
         /// </summary>
         Task<IEnumerable<UserGame>> GetByUserIdsAsync(IEnumerable<int> userIds, int skip, int take);
+
+        Task<int> CountByUserIdAsync(int userId);
+        Task<double?> GetAverageRateAsync(int userId);
+
+        /// <summary>Nombre del género que más se repite entre los juegos de este usuario (null si no tiene ninguno).</summary>
+        Task<string?> GetTopGenreNameAsync(int userId);
     }
 }

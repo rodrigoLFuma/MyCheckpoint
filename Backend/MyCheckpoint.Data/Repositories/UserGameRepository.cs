@@ -55,5 +55,31 @@ namespace MyCheckpoint.Data.Repositories
                     .Take(take)
                     .ToListAsync();
         }
+
+        public async Task<int> CountByUserIdAsync(int userId)
+        {
+            return await _context.Set<UserGame>().CountAsync(ug => ug.UserId == userId);
+        }
+
+        public async Task<double?> GetAverageRateAsync(int userId)
+        {
+            var rates = await _context.Set<UserGame>()
+                    .Where(ug => ug.UserId == userId && ug.Rate != null)
+                    .Select(ug => ug.Rate!.Value)
+                    .ToListAsync();
+
+            return rates.Count > 0 ? rates.Average() : null;
+        }
+
+        public async Task<string?> GetTopGenreNameAsync(int userId)
+        {
+            return await _context.Set<UserGame>()
+                    .Where(ug => ug.UserId == userId)
+                    .SelectMany(ug => ug.Game.GameCategories)
+                    .GroupBy(gc => gc.Category.Name)
+                    .OrderByDescending(g => g.Count())
+                    .Select(g => g.Key)
+                    .FirstOrDefaultAsync();
+        }
     }
 }
