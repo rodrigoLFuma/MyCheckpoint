@@ -51,7 +51,9 @@ namespace MyCheckpoint.Services
 
         public async Task<AuthResponseDto> LoginAsync(LoginDto dto)
         {
-            var user = await _userManager.FindByEmailAsync(dto.Email);
+            var user = await _userManager.FindByEmailAsync(dto.EmailOrUserName)
+                ?? await _userManager.FindByNameAsync(dto.EmailOrUserName);
+
             if (user is null || !await _userManager.CheckPasswordAsync(user, dto.Password))
                 throw new UnauthorizedException("Credenciales inválidas.");
 
