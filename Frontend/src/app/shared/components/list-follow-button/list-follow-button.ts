@@ -1,4 +1,4 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Api } from '../../../api/api';
 import { apiGameListIdFollowPost } from '../../../api/fn/game-list/api-game-list-id-follow-post';
@@ -22,6 +22,12 @@ export class ListFollowButton {
   followerCount = input<number>(0);
   followedByMe = input<boolean>(false);
   isOwner = input<boolean>(false);
+
+  // Para que quien nos use pueda reflejar el nuevo recuento donde lo tenga
+  // mostrado aparte del propio botón (p. ej. list-detail), ya que el
+  // recuento que le pasaron por @Input se queda congelado en el valor con
+  // el que se cargó la lista.
+  followerCountChange = output<number>();
 
   private localCount = signal<number | null>(null);
   private localFollowed = signal<boolean | null>(null);
@@ -54,6 +60,7 @@ export class ListFollowButton {
         this.localFollowed.set(true);
         this.localCount.set(this.displayedCount + 1);
       }
+      this.followerCountChange.emit(this.displayedCount);
     } catch {
       // Si falla, se queda como estaba: no hay nada más que mostrar aquí.
     } finally {

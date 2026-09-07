@@ -114,6 +114,10 @@ export class ListDetail implements OnInit {
     this.router.navigateByUrl('/lists');
   }
 
+  onFollowerCountChange(count: number): void {
+    this.list.update((current) => (current ? { ...current, followerCount: count } : current));
+  }
+
   async removeGame(gameId: number): Promise<void> {
     const list = this.list();
     if (!list) return;

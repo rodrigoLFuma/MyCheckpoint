@@ -13,10 +13,12 @@ export const routes: Routes = [
   { path: 'register', loadComponent: () => import('./features/auth/register/register').then((m) => m.Register) },
   {
     path: 'games/search',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/games/search/game-search').then((m) => m.GameSearch),
   },
   {
     path: 'social',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/social/user-search/user-search').then((m) => m.UserSearch),
   },
   {

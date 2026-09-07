@@ -32,6 +32,9 @@
           <h1 class="text-xl font-bold text-ink">{{ list.name }}</h1>
           <p class="text-xs text-ink-muted">
             {{ list.isPublic ? 'Pública' : 'Privada' }} · de {{ list.user.userName }}
+            @if (list.isPublic) {
+              · {{ list.followerCount }} {{ list.followerCount === 1 ? 'seguidor' : 'seguidores' }}
+            }
           </p>
           @if (list.description) {
             <p class="mt-2 text-sm text-ink-muted">{{ list.description }}</p>
@@ -60,6 +63,7 @@
             [gameListId]="list.id"
             [followerCount]="list.followerCount"
             [followedByMe]="list.followedByMe"
+            (followerCountChange)="onFollowerCountChange($event)"
           />
         }
       </div>

@@ -3,27 +3,27 @@
 >
   <div class="flex items-center gap-6">
     <a routerLink="/" class="flex items-center gap-2 text-lg font-extrabold tracking-tight text-ink">
-      <span class="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-sm text-white">✓</span>
+      <img src="logo-192.png" alt="" class="h-7 w-7 rounded-md" />
       My<span class="text-primary">Checkpoint</span>
     </a>
 
-    <nav class="hidden items-center gap-5 sm:flex">
-      <a
-        routerLink="/games/search"
-        routerLinkActive="text-ink"
-        class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
-      >
-        Buscar juegos
-      </a>
-      <a
-        routerLink="/social"
-        routerLinkActive="text-ink"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
-      >
-        Social
-      </a>
-      @if (authService.isLoggedIn()) {
+    @if (authService.isLoggedIn()) {
+      <nav class="hidden items-center gap-5 sm:flex">
+        <a
+          routerLink="/games/search"
+          routerLinkActive="text-ink"
+          class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
+        >
+          Buscar juegos
+        </a>
+        <a
+          routerLink="/social"
+          routerLinkActive="text-ink"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
+        >
+          Social
+        </a>
         <a
           routerLink="/social/activity"
           routerLinkActive="text-ink"
@@ -31,8 +31,8 @@
         >
           Actividad
         </a>
-      }
-    </nav>
+      </nav>
+    }
   </div>
 
   @if (authService.isLoggedIn()) {
