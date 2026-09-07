@@ -39,26 +39,9 @@
         class="min-w-48 flex-1 rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
       />
 
-      <select
-        [ngModel]="statusFilter()"
-        (ngModelChange)="statusFilter.set($event)"
-        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
-      >
-        <option value="Todos">Todos los estados</option>
-        @for (option of statuses; track option) {
-          <option [value]="option">{{ option }}</option>
-        }
-      </select>
+      <app-select [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)" [options]="statusFilterOptions" />
 
-      <select
-        [ngModel]="sortBy()"
-        (ngModelChange)="sortBy.set($event)"
-        class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
-      >
-        @for (option of sortOptions; track option.value) {
-          <option [value]="option.value">{{ option.label }}</option>
-        }
-      </select>
+      <app-select [ngModel]="sortBy()" (ngModelChange)="sortBy.set($event)" [options]="sortOptions" />
     </div>
 
     @if (filteredGames().length === 0) {
@@ -98,15 +81,7 @@
             @if (lists().length === 0) {
               <p class="text-xs text-ink-muted">No tienes listas todavía.</p>
             } @else {
-              <select
-                [(ngModel)]="selectedListId"
-                name="listId"
-                class="w-full rounded-lg border border-border bg-bg-raised px-2 py-1 text-sm text-ink"
-              >
-                @for (list of lists(); track list.id) {
-                  <option [value]="list.id">{{ list.name }}</option>
-                }
-              </select>
+              <app-select class="w-full" [(ngModel)]="selectedListId" name="listId" [options]="listOptions()" />
             }
 
             @if (addToListMessage()) {

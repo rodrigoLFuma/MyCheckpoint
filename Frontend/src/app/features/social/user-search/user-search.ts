@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -11,10 +11,11 @@ import { CategoryDto } from '../../../api/models/category-dto';
 import { CategoryTopUsersDto } from '../../../api/models/category-top-users-dto';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
+import { Select, SelectOption } from '../../../shared/components/select/select';
 
 @Component({
   selector: 'app-user-search',
-  imports: [FormsModule, RouterLink, UserAvatar, Skeleton],
+  imports: [FormsModule, RouterLink, UserAvatar, Skeleton, Select],
   templateUrl: './user-search.html',
 })
 export class UserSearch implements OnInit {
@@ -29,6 +30,10 @@ export class UserSearch implements OnInit {
   hasSearched = signal(false);
 
   protected categories = signal<CategoryDto[]>([]);
+  protected categoryOptions = computed<SelectOption[]>(() => [
+    { value: null, label: 'Todos los géneros' },
+    ...this.categories().map((c) => ({ value: c.id, label: c.name })),
+  ]);
 
   // Top por categorías favoritas: es lo que se ve por defecto, antes de
   // que el usuario busque nada explícitamente.

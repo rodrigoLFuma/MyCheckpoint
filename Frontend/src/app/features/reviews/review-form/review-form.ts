@@ -13,6 +13,8 @@ import { GameDto } from '../../../api/models/game-dto';
 import { AuthService } from '../../../core/services/auth.service';
 import { extractErrorDetail } from '../../../shared/utils/http-error';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
+import { Select, SelectOption } from '../../../shared/components/select/select';
+import { RatingPicker } from '../../../shared/components/rating-picker/rating-picker';
 
 // "Pendiente" solo tiene sentido al crear (no has jugado nada todavía): al
 // editar una reseña ya existente deja de aplicar, igual que en Mi biblioteca.
@@ -30,7 +32,7 @@ const REVIEW_MAX_LENGTH = 2000;
  */
 @Component({
   selector: 'app-review-form',
-  imports: [FormsModule, DatePipe, Skeleton],
+  imports: [FormsModule, DatePipe, Skeleton, Select, RatingPicker],
   templateUrl: './review-form.html',
 })
 export class ReviewForm implements OnInit {
@@ -64,6 +66,10 @@ export class ReviewForm implements OnInit {
 
   protected get statuses(): readonly string[] {
     return this.isEditMode() ? EDIT_STATUSES : CREATE_STATUSES;
+  }
+
+  protected get statusOptions(): SelectOption[] {
+    return this.statuses.map((status) => ({ value: status, label: status }));
   }
 
   ngOnInit(): void {

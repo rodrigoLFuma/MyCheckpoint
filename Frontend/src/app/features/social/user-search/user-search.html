@@ -9,16 +9,7 @@
       placeholder="Nombre de usuario..."
       class="flex-1 rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
     />
-    <select
-      [(ngModel)]="selectedCategoryId"
-      name="categoryId"
-      class="rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
-    >
-      <option [ngValue]="null">Todos los géneros</option>
-      @for (category of categories(); track category.id) {
-        <option [ngValue]="category.id">{{ category.name }}</option>
-      }
-    </select>
+    <app-select [(ngModel)]="selectedCategoryId" name="categoryId" [options]="categoryOptions()" />
     <button
       type="submit"
       [disabled]="isSearching()"

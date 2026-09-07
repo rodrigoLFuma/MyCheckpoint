@@ -71,22 +71,16 @@
 
         <label class="text-sm font-semibold text-ink">
           Estado
-          <select
-            [(ngModel)]="status"
-            name="status"
-            class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink focus:border-primary focus:outline-none"
-          >
-            @for (option of statuses; track option) {
-              <option [value]="option">{{ option }}</option>
-            }
-          </select>
+          <app-select class="mt-1 w-full" [(ngModel)]="status" name="status" [options]="statusOptions" />
         </label>
 
         @if (status !== 'Pendiente') {
-          <label class="text-sm font-semibold text-ink">
+          <div class="text-sm font-semibold text-ink">
             Puntuación ({{ rate }}/10)
-            <input type="range" min="1" max="10" [(ngModel)]="rate" name="rate" class="mt-1 w-full accent-primary" />
-          </label>
+            <div class="mt-1">
+              <app-rating-picker [(ngModel)]="rate" name="rate" />
+            </div>
+          </div>
 
           <label class="text-sm font-semibold text-ink">
             Título

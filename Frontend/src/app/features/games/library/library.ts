@@ -12,6 +12,7 @@ import { GameListDto } from '../../../api/models/game-list-dto';
 import { GameCard } from '../game-card/game-card';
 import { TruncatedText } from '../../../shared/components/truncated-text/truncated-text';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
+import { Select, SelectOption } from '../../../shared/components/select/select';
 
 // "Pendiente" no aparece aquí: una reseña ya creada implica que el juego
 // dejó de ser "solo pendiente" (eso vive en la lista "Juegos pendientes").
@@ -28,7 +29,7 @@ type SortOption = (typeof SORT_OPTIONS)[number]['value'];
 
 @Component({
   selector: 'app-library',
-  imports: [FormsModule, RouterLink, GameCard, TruncatedText, Skeleton],
+  imports: [FormsModule, RouterLink, GameCard, TruncatedText, Skeleton, Select],
   templateUrl: './library.html',
 })
 export class Library implements OnInit {
@@ -37,6 +38,10 @@ export class Library implements OnInit {
 
   protected readonly statuses = STATUSES;
   protected readonly sortOptions = SORT_OPTIONS;
+  protected readonly statusFilterOptions: SelectOption[] = [
+    { value: 'Todos', label: 'Todos los estados' },
+    ...STATUSES.map((status) => ({ value: status, label: status })),
+  ];
   protected userGames = signal<UserGameDto[]>([]);
   protected isLoading = signal(true);
   protected errorMessage = signal<string | null>(null);
@@ -87,6 +92,9 @@ export class Library implements OnInit {
   protected pendingDeleteId = signal<number | null>(null);
 
   protected lists = signal<GameListDto[]>([]);
+  protected listOptions = computed<SelectOption[]>(() =>
+    this.lists().map((list) => ({ value: list.id, label: list.name })),
+  );
   protected addingToListForGameId = signal<number | null>(null);
   protected addToListMessage = signal<string | null>(null);
   selectedListId: number | null = null;

@@ -1,0 +1,14 @@
+<div class="inline-flex overflow-hidden rounded-lg border border-border" (mouseleave)="onLeave()">
+  @for (n of numbers(); track n) {
+    <button
+      type="button"
+      [disabled]="isDisabled()"
+      (click)="onClick(n)"
+      (mouseenter)="onHover(n)"
+      class="flex h-9 w-9 shrink-0 items-center justify-center border-r border-border text-sm font-medium transition-colors last:border-r-0 disabled:opacity-50"
+      [class]="n <= displayValue() ? 'bg-primary text-white' : 'bg-bg-raised text-ink-muted hover:bg-surface-hover'"
+    >
+      {{ n }}
+    </button>
+  }
+</div>

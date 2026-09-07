@@ -1,18 +1,18 @@
 @if (alreadyReviewed()) {
-  <p class="mt-2 w-full rounded bg-slate-100 px-2 py-1 text-center text-sm text-slate-500">Reseña creada</p>
+  <p class="mt-2 w-full rounded-lg bg-surface-hover px-2 py-1 text-center text-sm text-ink-muted">Reseña creada</p>
 } @else if (!authService.isLoggedIn()) {
-  <a routerLink="/login" class="mt-2 block text-sm text-blue-600 underline">Inicia sesión para reseñar</a>
+  <a routerLink="/login" class="mt-2 block text-sm font-medium text-primary hover:underline">Inicia sesión para reseñar</a>
 } @else {
   <button
     type="button"
     (click)="startReview()"
     [disabled]="isImporting()"
-    class="mt-2 w-full rounded bg-blue-600 px-2 py-1 text-sm text-white disabled:opacity-50"
+    class="mt-2 w-full rounded-lg bg-primary px-2 py-1 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
   >
     {{ isImporting() ? 'Cargando...' : 'Crear reseña' }}
   </button>
 
   @if (errorMessage()) {
-    <p class="mt-1 text-xs text-red-600">{{ errorMessage() }}</p>
+    <p class="mt-1 text-xs text-danger">{{ errorMessage() }}</p>
   }
 }

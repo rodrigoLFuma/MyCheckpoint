@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Api } from '../../../api/api';
@@ -11,10 +11,11 @@ import { CategoryDto } from '../../../api/models/category-dto';
 import { GameCard } from '../game-card/game-card';
 import { CreateReview } from '../create-review/create-review';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
+import { Select, SelectOption } from '../../../shared/components/select/select';
 
 @Component({
   selector: 'app-game-search',
-  imports: [FormsModule, GameCard, CreateReview, Skeleton],
+  imports: [FormsModule, GameCard, CreateReview, Skeleton, Select],
   templateUrl: './game-search.html',
 })
 export class GameSearch implements OnInit {
@@ -43,6 +44,10 @@ export class GameSearch implements OnInit {
   // Categorías locales (sincronizadas desde el catálogo de géneros de
   // RAWG), para el filtro. Solo cuesta una lectura a tu propia BD.
   protected categories = signal<CategoryDto[]>([]);
+  protected categoryOptions = computed<SelectOption[]>(() => [
+    { value: null, label: 'Todas las categorías' },
+    ...this.categories().map((c) => ({ value: c.id, label: c.name })),
+  ]);
   protected isSyncingCategories = signal(false);
   protected syncError = signal<string | null>(null);
 

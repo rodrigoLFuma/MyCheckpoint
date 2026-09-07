@@ -1,13 +1,13 @@
-<div class="mx-auto mt-10 max-w-4xl">
+<div class="mx-auto max-w-4xl">
   <div class="mb-4 flex items-center justify-between">
-    <h1 class="text-xl font-bold">Buscar juegos</h1>
+    <h1 class="text-xl font-bold text-ink">Buscar juegos</h1>
 
     @if (authService.isAdmin()) {
       <button
         type="button"
         (click)="syncCategoriesFromRawg()"
         [disabled]="isSyncingCategories()"
-        class="rounded border px-3 py-2 text-sm disabled:opacity-50"
+        class="rounded-lg border border-border px-3 py-2 text-sm text-ink hover:bg-surface-hover disabled:opacity-50"
       >
         {{ isSyncingCategories() ? 'Actualizando...' : 'Actualizar categorías' }}
       </button>
@@ -15,7 +15,7 @@
   </div>
 
   @if (syncError()) {
-    <p class="mb-2 text-sm text-red-600">{{ syncError() }}</p>
+    <p class="mb-2 text-sm text-danger">{{ syncError() }}</p>
   }
 
   <form (ngSubmit)="onSubmit()" class="mb-6 flex gap-2">
@@ -24,35 +24,30 @@
       [(ngModel)]="term"
       name="term"
       placeholder="Nombre del juego..."
-      class="flex-1 rounded border px-3 py-2"
+      class="flex-1 rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
     />
-    <select [(ngModel)]="selectedCategoryId" name="categoryId" class="rounded border px-3 py-2">
-      <option [ngValue]="null">Todas las categorías</option>
-      @for (category of categories(); track category.id) {
-        <option [ngValue]="category.id">{{ category.name }}</option>
-      }
-    </select>
+    <app-select [(ngModel)]="selectedCategoryId" name="categoryId" [options]="categoryOptions()" />
     <button
       type="submit"
       [disabled]="isSearching()"
-      class="rounded bg-blue-600 px-4 py-2 text-white disabled:opacity-50"
+      class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
     >
       {{ isSearching() ? 'Buscando...' : 'Buscar' }}
     </button>
   </form>
 
   @if (errorMessage()) {
-    <p class="text-sm text-red-600">{{ errorMessage() }}</p>
+    <p class="text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (hasSearched() && !isSearching() && results().length === 0) {
-    <p class="text-sm text-slate-500">No se han encontrado juegos con esos criterios.</p>
+    <p class="text-sm text-ink-muted">No se han encontrado juegos con esos criterios.</p>
   }
 
   <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
     @if (isSearching()) {
       @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
-        <div class="overflow-hidden rounded border shadow-sm">
+        <div class="overflow-hidden rounded-lg border border-border bg-surface">
           <app-skeleton class="h-40 w-full rounded-none" />
           <div class="p-3">
             <app-skeleton class="h-4 w-3/4" />
@@ -76,7 +71,7 @@
         type="button"
         (click)="loadMore()"
         [disabled]="isLoadingMore()"
-        class="rounded border px-4 py-2 text-sm disabled:opacity-50"
+        class="rounded-lg border border-border px-4 py-2 text-sm text-ink hover:bg-surface-hover disabled:opacity-50"
       >
         {{ isLoadingMore() ? 'Cargando...' : 'Cargar más' }}
       </button>
