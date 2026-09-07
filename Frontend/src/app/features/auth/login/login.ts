@@ -12,7 +12,7 @@ export class Login {
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  email = '';
+  emailOrUserName = '';
   password = '';
   errorMessage = signal<string | null>(null);
   isSubmitting = signal(false);
@@ -21,7 +21,7 @@ export class Login {
     this.errorMessage.set(null);
     this.isSubmitting.set(true);
     try {
-      await this.authService.login({ email: this.email, password: this.password });
+      await this.authService.login({ emailOrUserName: this.emailOrUserName, password: this.password });
       this.router.navigateByUrl('/');
     } catch {
       this.errorMessage.set('Credenciales inválidas.');
