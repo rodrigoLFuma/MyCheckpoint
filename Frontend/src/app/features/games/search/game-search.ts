@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import { Api } from '../../../api/api';
@@ -11,11 +11,10 @@ import { CategoryDto } from '../../../api/models/category-dto';
 import { GameCard } from '../game-card/game-card';
 import { CreateReview } from '../create-review/create-review';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
-import { Select, SelectOption } from '../../../shared/components/select/select';
 
 @Component({
   selector: 'app-game-search',
-  imports: [FormsModule, GameCard, CreateReview, Skeleton, Select],
+  imports: [FormsModule, GameCard, CreateReview, Skeleton],
   templateUrl: './game-search.html',
 })
 export class GameSearch implements OnInit {
@@ -23,7 +22,9 @@ export class GameSearch implements OnInit {
   private api = inject(Api);
 
   term = '';
-  selectedCategoryId: number | null = null;
+  // Varias categorías a la vez, seleccionadas sin buscar todavía: solo se
+  // llama a RAWG cuando se pulsa buscar (ver comentario en toggleCategory).
+  protected selectedCategoryIds = signal<Set<number>>(new Set());
   results = signal<RawgGameSummary[]>([]);
   isSearching = signal(false);
   isLoadingMore = signal(false);
@@ -44,10 +45,6 @@ export class GameSearch implements OnInit {
   // Categorías locales (sincronizadas desde el catálogo de géneros de
   // RAWG), para el filtro. Solo cuesta una lectura a tu propia BD.
   protected categories = signal<CategoryDto[]>([]);
-  protected categoryOptions = computed<SelectOption[]>(() => [
-    { value: null, label: 'Todas las categorías' },
-    ...this.categories().map((c) => ({ value: c.id, label: c.name })),
-  ]);
   protected isSyncingCategories = signal(false);
   protected syncError = signal<string | null>(null);
 
@@ -90,9 +87,26 @@ export class GameSearch implements OnInit {
     }
   }
 
+  // Las categorías son píldoras, no un <select>: pulsarlas solo las marca o
+  // desmarca, sin llamar a RAWG todavía — se pueden ir clicando varias y
+  // solo se busca (una única llamada, con todas juntas) al pulsar el botón
+  // de buscar.
+  toggleCategory(categoryId: number): void {
+    this.selectedCategoryIds.update((ids) => {
+      const next = new Set(ids);
+      next.has(categoryId) ? next.delete(categoryId) : next.add(categoryId);
+      return next;
+    });
+  }
+
   async onSubmit(): Promise<void> {
     const term = this.term.trim();
-    const genres = this.categories().find((c) => c.id === this.selectedCategoryId)?.rawgSlug ?? undefined;
+    const genres =
+      this.categories()
+        .filter((c) => this.selectedCategoryIds().has(c.id))
+        .map((c) => c.rawgSlug)
+        .filter((slug): slug is string => !!slug)
+        .join(',') || undefined;
     if (!term && !genres) return;
 
     this.lastTerm = term || undefined;
