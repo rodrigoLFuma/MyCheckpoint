@@ -40,5 +40,14 @@ namespace MyCheckpoint.Services.Contracts
 
         Task ChangePasswordAsync(int userId, ChangePasswordDto dto);
         Task DeleteMyAccountAsync(int userId);
+
+        /// <summary>Todos los usuarios de la app, para el panel de administración.</summary>
+        Task<IEnumerable<UserDto>> GetAllAsync();
+
+        /// <summary>Borra a un usuario cualquiera (a diferencia de DeleteMyAccountAsync, pensado para el panel de admin).</summary>
+        Task DeleteUserAsync(int userId);
+
+        /// <summary>Da o quita el rol Admin a un usuario.</summary>
+        Task<UserDto> SetAdminRoleAsync(int userId, bool isAdmin);
     }
 }

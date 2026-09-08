@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MyCheckpoint.Exceptions;
 using MyCheckpoint.Models.Dtos;
 using MyCheckpoint.Services.Contracts;
 
@@ -15,6 +16,13 @@ namespace MyCheckpoint.Controllers
         public UserController(IUserService userService)
         {
             _userService = userService;
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAll()
+        {
+            return Ok(await _userService.GetAllAsync());
         }
 
         [HttpGet("{id}")]
@@ -111,6 +119,27 @@ namespace MyCheckpoint.Controllers
         {
             await _userService.DeleteMyAccountAsync(this.GetUserId());
             return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            if (id == this.GetUserId())
+                throw new BadRequestException("No puedes eliminar tu propia cuenta desde aquí; usa tu perfil.");
+
+            await _userService.DeleteUserAsync(id);
+            return NoContent();
+        }
+
+        [HttpPut("{id}/admin-role")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<UserDto>> SetAdminRole(int id, SetAdminRoleDto dto)
+        {
+            if (id == this.GetUserId() && !dto.IsAdmin)
+                throw new BadRequestException("No puedes quitarte el rol de admin a ti mismo.");
+
+            return Ok(await _userService.SetAdminRoleAsync(id, dto.IsAdmin));
         }
     }
 }

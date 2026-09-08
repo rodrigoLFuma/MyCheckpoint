@@ -12,7 +12,10 @@ namespace MyCheckpoint.Services
 {
     public class UserService : IUserService
     {
+        private const string AdminRole = "Admin";
+
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Role> _roleManager;
         private readonly IFollowRepository _followRepository;
         private readonly INotificationRepository _notificationRepository;
         private readonly IUserGameRepository _userGameRepository;
@@ -23,6 +26,7 @@ namespace MyCheckpoint.Services
 
         public UserService(
             UserManager<User> userManager,
+            RoleManager<Role> roleManager,
             IFollowRepository followRepository,
             INotificationRepository notificationRepository,
             IUserGameRepository userGameRepository,
@@ -32,6 +36,7 @@ namespace MyCheckpoint.Services
             IMapper mapper)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _followRepository = followRepository;
             _notificationRepository = notificationRepository;
             _userGameRepository = userGameRepository;
@@ -252,7 +257,52 @@ namespace MyCheckpoint.Services
                 throw new BadRequestException(string.Join(" ", result.Errors.Select(e => e.Description)));
         }
 
-        public async Task DeleteMyAccountAsync(int userId)
+        public Task DeleteMyAccountAsync(int userId) => DeleteUserCoreAsync(userId);
+
+        public async Task<IEnumerable<UserDto>> GetAllAsync()
+        {
+            var users = await _userManager.Users.OrderBy(u => u.UserName).ToListAsync();
+
+            var dtos = new List<UserDto>();
+            foreach (var user in users)
+            {
+                var dto = _mapper.Map<UserDto>(user);
+                dto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
+                dtos.Add(dto);
+            }
+            return dtos;
+        }
+
+        public Task DeleteUserAsync(int userId) => DeleteUserCoreAsync(userId);
+
+        public async Task<UserDto> SetAdminRoleAsync(int userId, bool isAdmin)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString())
+                ?? throw new NotFoundException("El usuario no existe.");
+
+            var isCurrentlyAdmin = await _userManager.IsInRoleAsync(user, AdminRole);
+
+            if (isAdmin && !isCurrentlyAdmin)
+            {
+                if (!await _roleManager.RoleExistsAsync(AdminRole))
+                    await _roleManager.CreateAsync(new Role { Name = AdminRole });
+
+                await _userManager.AddToRoleAsync(user, AdminRole);
+            }
+            else if (!isAdmin && isCurrentlyAdmin)
+            {
+                await _userManager.RemoveFromRoleAsync(user, AdminRole);
+            }
+
+            var dto = _mapper.Map<UserDto>(user);
+            dto.Roles = (await _userManager.GetRolesAsync(user)).ToList();
+            return dto;
+        }
+
+        // Compartida entre "borrar mi cuenta" y "borrar a un usuario desde el
+        // panel de admin": ambas necesitan la misma limpieza manual de filas
+        // antes de poder borrar al usuario (ver comentarios de abajo).
+        private async Task DeleteUserCoreAsync(int userId)
         {
             var user = await _userManager.FindByIdAsync(userId.ToString())
                 ?? throw new NotFoundException("El usuario no existe.");
