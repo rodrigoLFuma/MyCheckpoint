@@ -1,81 +1,73 @@
-<div class="mx-auto max-w-4xl">
-  <h1 class="mb-4 text-xl font-bold text-ink">Social</h1>
+<!--
+  Dos columnas: buscador + recomendaciones a la izquierda, panel de
+  notificaciones recientes a la derecha (como el resto de vistas "de
+  marca" — home, descubrir, rankings — con títulos en font-display y
+  formas redondeadas en vez de tarjetas cuadradas con borde).
+-->
+<div class="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1fr_320px]">
+  <div>
+    <form (ngSubmit)="onSubmit()" class="relative mx-auto max-w-2xl">
+      <input
+        type="text"
+        [(ngModel)]="term"
+        name="term"
+        placeholder="Busca un usuario"
+        class="w-full rounded-full border border-border bg-surface py-4 pr-16 pl-6 text-base text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
+      />
+      <button
+        type="submit"
+        [disabled]="isSearching()"
+        class="absolute top-1/2 right-2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-white transition-colors hover:bg-primary-hover disabled:opacity-50"
+      >
+        <svg viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+          <path
+            fill-rule="evenodd"
+            d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </form>
 
-  <form (ngSubmit)="onSubmit()" class="mb-6 flex gap-2">
-    <input
-      type="text"
-      [(ngModel)]="term"
-      name="term"
-      placeholder="Nombre de usuario..."
-      class="flex-1 rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus:border-primary focus:outline-none"
-    />
-    <app-select [(ngModel)]="selectedCategoryId" name="categoryId" [options]="categoryOptions()" />
-    <button
-      type="submit"
-      [disabled]="isSearching()"
-      class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
-    >
-      {{ isSearching() ? 'Buscando...' : 'Buscar' }}
-    </button>
-  </form>
-
-  @if (errorMessage()) {
-    <p class="text-sm text-danger">{{ errorMessage() }}</p>
-  }
-
-  @if (hasSearched()) {
-    @if (!isSearching() && results().length === 0) {
-      <p class="text-sm text-ink-muted">No se ha encontrado gente con esos criterios.</p>
+    @if (errorMessage()) {
+      <p class="mt-4 text-center text-sm text-danger">{{ errorMessage() }}</p>
     }
 
-    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-      @for (user of results(); track user.id) {
-        <a
-          [routerLink]="['/users', user.id]"
-          class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
-        >
-          <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />
-          <span class="font-semibold text-ink">{{ user.userName }}</span>
-        </a>
+    @if (hasSearched()) {
+      @if (!isSearching() && results().length === 0) {
+        <p class="mt-8 text-center text-sm text-ink-muted">No se ha encontrado gente con esos criterios.</p>
       }
-    </div>
-  } @else if (authService.isLoggedIn()) {
-    @if (isLoadingTop()) {
-      <div class="flex flex-col gap-8">
-        @for (i of [1, 2]; track i) {
-          <div>
-            <app-skeleton class="mb-2 h-5 w-32" />
-            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-              @for (j of [1, 2, 3, 4, 5]; track j) {
-                <div class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4">
-                  <app-skeleton class="h-16 w-16 rounded-full" />
-                  <app-skeleton class="h-3 w-16" />
-                </div>
-              }
-            </div>
-          </div>
+
+      <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+        @for (user of results(); track user.id) {
+          <a
+            [routerLink]="['/users', user.id]"
+            class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
+          >
+            <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-16 w-16" />
+            <span class="font-semibold text-ink">{{ user.userName }}</span>
+          </a>
         }
       </div>
-    } @else if (topByFavorites().length === 0) {
-      <p class="text-sm text-ink-muted">
-        Marca tus géneros favoritos en tu
-        <a routerLink="/profile" class="font-medium text-primary hover:underline">perfil</a>
-        para que te recomendemos gente con tus mismos gustos.
-      </p>
-    } @else {
-      <div class="flex flex-col gap-8">
-        @for (group of topByFavorites(); track group.category.id) {
-          <div>
-            <div class="mb-2 flex items-center justify-between">
-              <h2 class="font-semibold text-ink">Top {{ group.category.name }}</h2>
-              @if (group.topUsers && group.topUsers.length >= 5) {
-                <a [routerLink]="['/social/category', group.category.id]" class="text-sm font-medium text-primary hover:underline">
-                  Ver más
-                </a>
-              }
-            </div>
-            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-              @for (user of group.topUsers; track user.id) {
+    } @else if (authService.isLoggedIn()) {
+      <section class="mt-8">
+        <h2 class="font-display text-lg text-ink">Usuarios recomendados</h2>
+
+        @if (isLoadingRecommended()) {
+          <div class="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+              <div class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4">
+                <app-skeleton class="h-16 w-16 rounded-full" />
+                <app-skeleton class="h-3 w-16" />
+              </div>
+            }
+          </div>
+        } @else if (hasFavoriteGenres()) {
+          @if (similarUsers().length === 0) {
+            <p class="mt-3 text-sm text-ink-muted">Todavía nadie más comparte tus géneros favoritos.</p>
+          } @else {
+            <div class="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3">
+              @for (user of similarUsers(); track user.id) {
                 <a
                   [routerLink]="['/users', user.id]"
                   class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
@@ -85,9 +77,88 @@
                 </a>
               }
             </div>
+          }
+        } @else {
+          <!-- Sin géneros favoritos marcados: no hay nada "afín" que
+               recomendar todavía, así que se enseña la gente con más
+               seguidores de toda la app en su lugar. -->
+          @if (topFollowed().length === 0) {
+            <p class="mt-3 text-sm text-ink-muted">Todavía no hay gente que seguir.</p>
+          } @else {
+            <div class="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3">
+              @for (ranked of topFollowed(); track ranked.user.id) {
+                <a
+                  [routerLink]="['/users', ranked.user.id]"
+                  class="flex flex-col items-center gap-2 rounded-lg border border-border bg-surface p-4 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
+                >
+                  <app-user-avatar [imageUrl]="ranked.user.profilePictureURL" [name]="ranked.user.userName" sizeClass="h-16 w-16" />
+                  <span class="font-semibold text-ink">{{ ranked.user.userName }}</span>
+                </a>
+              }
+            </div>
+          }
+          <p class="mt-4 text-sm text-ink-muted">
+            Marca tus géneros favoritos en tu
+            <a routerLink="/profile" class="font-medium text-primary hover:underline">perfil</a>
+            para que te recomendemos gente con tus mismos gustos.
+          </p>
+        }
+      </section>
+    }
+  </div>
+
+  @if (authService.isLoggedIn()) {
+    <aside>
+      <h2 class="font-display mb-4 text-lg text-ink">Notificaciones</h2>
+
+      <div class="rounded-2xl border border-border bg-surface p-3">
+        @if (isLoadingNotifications()) {
+          <div class="flex flex-col gap-3">
+            @for (i of [1, 2, 3]; track i) {
+              <div class="flex items-center gap-3 p-1">
+                <app-skeleton class="h-9 w-9 rounded-full" />
+                <app-skeleton class="h-3 w-32" />
+              </div>
+            }
+          </div>
+        } @else if (notifications().length === 0) {
+          <p class="p-2 text-sm text-ink-muted">No tienes notificaciones todavía.</p>
+        } @else {
+          <div class="flex flex-col gap-1">
+            @for (notification of notifications(); track notification.id) {
+              <div class="flex items-center gap-3 rounded-lg p-2" [class.bg-primary-soft]="!notification.isRead">
+                <app-user-avatar
+                  [imageUrl]="notification.actor.profilePictureURL"
+                  [name]="notification.actor.userName"
+                  sizeClass="h-9 w-9 shrink-0"
+                />
+                <div class="min-w-0 flex-1 text-sm text-ink">
+                  @if (notification.type === 'Follow') {
+                    <p>
+                      <a [routerLink]="['/users', notification.actor.id]" class="font-semibold hover:underline">{{
+                        notification.actor.userName
+                      }}</a>
+                      te ha seguido.
+                    </p>
+                  } @else if (notification.type === 'Like') {
+                    <p>
+                      <a [routerLink]="['/users', notification.actor.id]" class="font-semibold hover:underline">{{
+                        notification.actor.userName
+                      }}</a>
+                      le ha dado ♥ a tu reseña.
+                    </p>
+                  }
+                  <p class="text-xs text-ink-faint">{{ notification.createdAt | date: 'short' }}</p>
+                </div>
+              </div>
+            }
           </div>
         }
+
+        <a routerLink="/notifications" class="mt-2 block text-center text-sm font-medium text-primary hover:underline">
+          Ver todas
+        </a>
       </div>
-    }
+    </aside>
   }
 </div>

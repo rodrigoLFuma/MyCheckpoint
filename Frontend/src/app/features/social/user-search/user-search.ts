@@ -1,21 +1,25 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
 import { Api } from '../../../api/api';
 import { apiUserSearchGet$Json } from '../../../api/fn/user/api-user-search-get-json';
-import { apiUserTopByFavoritesGet$Json } from '../../../api/fn/user/api-user-top-by-favorites-get-json';
-import { apiCategoryGet$Json } from '../../../api/fn/category/api-category-get-json';
+import { apiUserSimilarGet$Json } from '../../../api/fn/user/api-user-similar-get-json';
+import { apiUserTopFollowedGet$Json } from '../../../api/fn/user/api-user-top-followed-get-json';
+import { apiNotificationGet$Json } from '../../../api/fn/notification/api-notification-get-json';
 import { UserSummaryDto } from '../../../api/models/user-summary-dto';
-import { CategoryDto } from '../../../api/models/category-dto';
-import { CategoryTopUsersDto } from '../../../api/models/category-top-users-dto';
+import { RankedUserDto } from '../../../api/models/ranked-user-dto';
+import { NotificationDto } from '../../../api/models/notification-dto';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
-import { Select, SelectOption } from '../../../shared/components/select/select';
+
+const RECOMMENDED_COUNT = 10;
+const NOTIFICATIONS_PREVIEW_COUNT = 5;
 
 @Component({
   selector: 'app-user-search',
-  imports: [FormsModule, RouterLink, UserAvatar, Skeleton, Select],
+  imports: [FormsModule, RouterLink, DatePipe, UserAvatar, Skeleton],
   templateUrl: './user-search.html',
 })
 export class UserSearch implements OnInit {
@@ -23,46 +27,65 @@ export class UserSearch implements OnInit {
   private api = inject(Api);
 
   term = '';
-  selectedCategoryId: number | null = null;
   results = signal<UserSummaryDto[]>([]);
   isSearching = signal(false);
   errorMessage = signal<string | null>(null);
   hasSearched = signal(false);
 
-  protected categories = signal<CategoryDto[]>([]);
-  protected categoryOptions = computed<SelectOption[]>(() => [
-    { value: null, label: 'Todos los géneros' },
-    ...this.categories().map((c) => ({ value: c.id, label: c.name })),
-  ]);
+  // Recomendación por defecto, antes de que el usuario busque nada
+  // explícitamente: un único listado (no agrupado por categoría) de gente
+  // que comparte tus géneros favoritos, ordenado por cuántos compartís y
+  // luego por número de seguidores (así lo hace GetSimilarUsersAsync en el
+  // backend). Si no tienes géneros favoritos marcados, no hay nada "afín"
+  // que recomendar todavía, así que se enseña en su lugar la gente con más
+  // seguidores de toda la app.
+  protected hasFavoriteGenres = computed(() => (this.authService.user()?.favoriteGenres?.length ?? 0) > 0);
+  protected similarUsers = signal<UserSummaryDto[]>([]);
+  protected topFollowed = signal<RankedUserDto[]>([]);
+  protected isLoadingRecommended = signal(false);
 
-  // Top por categorías favoritas: es lo que se ve por defecto, antes de
-  // que el usuario busque nada explícitamente.
-  protected topByFavorites = signal<CategoryTopUsersDto[]>([]);
-  protected isLoadingTop = signal(false);
+  // Panel de notificaciones recientes junto al buscador: un adelanto, no
+  // sustituye a /notifications (aquí no se marcan como leídas).
+  protected notifications = signal<NotificationDto[]>([]);
+  protected isLoadingNotifications = signal(true);
 
   ngOnInit(): void {
-    this.loadCategories();
     if (this.authService.isLoggedIn()) {
-      this.loadTopByFavorites();
+      this.hasFavoriteGenres() ? this.loadSimilarUsers() : this.loadTopFollowed();
+      this.loadNotifications();
     }
   }
 
-  private async loadCategories(): Promise<void> {
+  private async loadSimilarUsers(): Promise<void> {
+    this.isLoadingRecommended.set(true);
     try {
-      this.categories.set(await this.api.invoke(apiCategoryGet$Json));
-    } catch {
-      // Sin categorías, el filtro simplemente queda vacío.
-    }
-  }
-
-  private async loadTopByFavorites(): Promise<void> {
-    this.isLoadingTop.set(true);
-    try {
-      this.topByFavorites.set(await this.api.invoke(apiUserTopByFavoritesGet$Json));
+      this.similarUsers.set(await this.api.invoke(apiUserSimilarGet$Json, { take: RECOMMENDED_COUNT }));
     } catch {
       // Si falla, simplemente no se muestran recomendaciones.
     } finally {
-      this.isLoadingTop.set(false);
+      this.isLoadingRecommended.set(false);
+    }
+  }
+
+  private async loadTopFollowed(): Promise<void> {
+    this.isLoadingRecommended.set(true);
+    try {
+      this.topFollowed.set(await this.api.invoke(apiUserTopFollowedGet$Json, { take: RECOMMENDED_COUNT }));
+    } catch {
+      // Si falla, simplemente no se muestran recomendaciones.
+    } finally {
+      this.isLoadingRecommended.set(false);
+    }
+  }
+
+  private async loadNotifications(): Promise<void> {
+    this.isLoadingNotifications.set(true);
+    try {
+      this.notifications.set(await this.api.invoke(apiNotificationGet$Json, { skip: 0, take: NOTIFICATIONS_PREVIEW_COUNT }));
+    } catch {
+      // Si falla, el panel simplemente queda vacío.
+    } finally {
+      this.isLoadingNotifications.set(false);
     }
   }
 
@@ -70,10 +93,7 @@ export class UserSearch implements OnInit {
     this.errorMessage.set(null);
     this.isSearching.set(true);
     try {
-      const found = await this.api.invoke(apiUserSearchGet$Json, {
-        term: this.term.trim() || undefined,
-        categoryId: this.selectedCategoryId ?? undefined,
-      });
+      const found = await this.api.invoke(apiUserSearchGet$Json, { term: this.term.trim() || undefined });
       this.results.set(found);
       this.hasSearched.set(true);
     } catch {
