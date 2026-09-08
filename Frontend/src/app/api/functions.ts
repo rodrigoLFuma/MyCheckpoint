@@ -141,10 +141,16 @@ export type { ApiNotificationUnreadCountGet$Json$Params as ApiNotificationUnread
 export { apiNotificationUnreadCountGet$Json as apiNotificationUnreadCountGet$Json } from './fn/notification/api-notification-unread-count-get-json';
 export type { ApiNotificationMarkReadPost$Params as ApiNotificationMarkReadPost$Params } from './fn/notification/api-notification-mark-read-post';
 export { apiNotificationMarkReadPost as apiNotificationMarkReadPost } from './fn/notification/api-notification-mark-read-post';
+export type { ApiUserGet$Plain$Params as ApiUserGet$Plain$Params } from './fn/user/api-user-get-plain';
+export { apiUserGet$Plain as apiUserGet$Plain } from './fn/user/api-user-get-plain';
+export type { ApiUserGet$Json$Params as ApiUserGet$Json$Params } from './fn/user/api-user-get-json';
+export { apiUserGet$Json as apiUserGet$Json } from './fn/user/api-user-get-json';
 export type { ApiUserIdGet$Plain$Params as ApiUserIdGet$Plain$Params } from './fn/user/api-user-id-get-plain';
 export { apiUserIdGet$Plain as apiUserIdGet$Plain } from './fn/user/api-user-id-get-plain';
 export type { ApiUserIdGet$Json$Params as ApiUserIdGet$Json$Params } from './fn/user/api-user-id-get-json';
 export { apiUserIdGet$Json as apiUserIdGet$Json } from './fn/user/api-user-id-get-json';
+export type { ApiUserIdDelete$Params as ApiUserIdDelete$Params } from './fn/user/api-user-id-delete';
+export { apiUserIdDelete as apiUserIdDelete } from './fn/user/api-user-id-delete';
 export type { ApiUserIdStatsGet$Plain$Params as ApiUserIdStatsGet$Plain$Params } from './fn/user/api-user-id-stats-get-plain';
 export { apiUserIdStatsGet$Plain as apiUserIdStatsGet$Plain } from './fn/user/api-user-id-stats-get-plain';
 export type { ApiUserIdStatsGet$Json$Params as ApiUserIdStatsGet$Json$Params } from './fn/user/api-user-id-stats-get-json';
@@ -189,6 +195,10 @@ export type { ApiUserMeProfilePictureDelete$Json$Params as ApiUserMeProfilePictu
 export { apiUserMeProfilePictureDelete$Json as apiUserMeProfilePictureDelete$Json } from './fn/user/api-user-me-profile-picture-delete-json';
 export type { ApiUserMePasswordPut$Params as ApiUserMePasswordPut$Params } from './fn/user/api-user-me-password-put';
 export { apiUserMePasswordPut as apiUserMePasswordPut } from './fn/user/api-user-me-password-put';
+export type { ApiUserIdAdminRolePut$Plain$Params as ApiUserIdAdminRolePut$Plain$Params } from './fn/user/api-user-id-admin-role-put-plain';
+export { apiUserIdAdminRolePut$Plain as apiUserIdAdminRolePut$Plain } from './fn/user/api-user-id-admin-role-put-plain';
+export type { ApiUserIdAdminRolePut$Json$Params as ApiUserIdAdminRolePut$Json$Params } from './fn/user/api-user-id-admin-role-put-json';
+export { apiUserIdAdminRolePut$Json as apiUserIdAdminRolePut$Json } from './fn/user/api-user-id-admin-role-put-json';
 export type { ApiUserGameIdGet$Plain$Params as ApiUserGameIdGet$Plain$Params } from './fn/user-game/api-user-game-id-get-plain';
 export { apiUserGameIdGet$Plain as apiUserGameIdGet$Plain } from './fn/user-game/api-user-game-id-get-plain';
 export type { ApiUserGameIdGet$Json$Params as ApiUserGameIdGet$Json$Params } from './fn/user-game/api-user-game-id-get-json';

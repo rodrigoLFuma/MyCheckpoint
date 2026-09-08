@@ -23,6 +23,7 @@ export type { LoginDto } from './models/login-dto';
 export type { NotificationDto } from './models/notification-dto';
 export type { RankedUserDto } from './models/ranked-user-dto';
 export type { RawgGameSummary } from './models/rawg-game-summary';
+export type { SetAdminRoleDto } from './models/set-admin-role-dto';
 export type { TopRatedGameDto } from './models/top-rated-game-dto';
 export type { UserAddDto } from './models/user-add-dto';
 export type { UserDto } from './models/user-dto';
