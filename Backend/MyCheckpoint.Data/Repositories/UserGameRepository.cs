@@ -56,6 +56,30 @@ namespace MyCheckpoint.Data.Repositories
                     .ToListAsync();
         }
 
+        public async Task<IEnumerable<UserGame>> GetTopLikedAsync(int skip, int take)
+        {
+            var likeCounts = await _context.Set<ReviewLike>()
+                    .GroupBy(rl => rl.UserGameId)
+                    .Select(g => new { UserGameId = g.Key, Count = g.Count() })
+                    .ToListAsync();
+            var countsById = likeCounts.ToDictionary(x => x.UserGameId, x => x.Count);
+
+            // El dataset de reseñas de un TFG es pequeño: se trae todo a
+            // memoria y se ordena ahí, igual que GetDiscoverReviewsAsync.
+            var reviewed = await _context.Set<UserGame>()
+                    .Include(ug => ug.Game)
+                    .Include(ug => ug.User)
+                    .Where(ug => ug.Review != null && ug.Review != "")
+                    .ToListAsync();
+
+            return reviewed
+                    .OrderByDescending(ug => countsById.GetValueOrDefault(ug.Id))
+                    .ThenByDescending(ug => ug.CreatedAt)
+                    .Skip(skip)
+                    .Take(take)
+                    .ToList();
+        }
+
         public async Task<int> CountByUserIdAsync(int userId)
         {
             return await _context.Set<UserGame>().CountAsync(ug => ug.UserId == userId);

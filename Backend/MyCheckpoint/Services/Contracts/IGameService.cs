@@ -9,6 +9,9 @@ namespace MyCheckpoint.Services.Contracts
         Task<IEnumerable<GameDto>> GetAllAsync();
         Task<IEnumerable<GameDto>> GetByCategoryAsync(IEnumerable<int> categoryIds);
         Task<IEnumerable<GameDto>> SearchByNameAsync(string term);
+
+        /// <summary>Juegos mejor valorados de toda la app (nota media), para la página de rankings.</summary>
+        Task<IEnumerable<TopRatedGameDto>> GetTopRatedAsync(int skip, int take);
         Task<GameDto> CreateAsync(GameAddDto dto);
         Task<GameDto> UpdateAsync(int id, GameModifyDto dto);
         Task DeleteAsync(int id);

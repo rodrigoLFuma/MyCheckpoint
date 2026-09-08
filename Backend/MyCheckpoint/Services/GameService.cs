@@ -56,6 +56,17 @@ namespace MyCheckpoint.Services
             return _mapper.Map<IEnumerable<GameDto>>(games);
         }
 
+        public async Task<IEnumerable<TopRatedGameDto>> GetTopRatedAsync(int skip, int take)
+        {
+            var summaries = await _gameRepository.GetTopRatedAsync(skip, take);
+            return summaries.Select(s => new TopRatedGameDto
+            {
+                Game = _mapper.Map<GameDto>(s.Game),
+                AverageRate = s.AverageRate,
+                RatingsCount = s.RatingsCount
+            });
+        }
+
         public async Task<GameDto> CreateAsync(GameAddDto dto)
         {
             var categoryLookup = await GetCategoriesByIdsAsync(dto.CategoryIds);

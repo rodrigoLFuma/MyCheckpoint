@@ -22,6 +22,9 @@ namespace MyCheckpoint.Services.Contracts
         /// el feed de actividad de tu red dentro de la app.
         /// </summary>
         Task<IEnumerable<UserGameDto>> GetFollowingActivityAsync(int userId, int skip, int take);
+
+        /// <summary>Reseñas de toda la app ordenadas por "me gusta" — para la página de rankings, pública.</summary>
+        Task<IEnumerable<UserGameDto>> GetTopLikedAsync(int skip, int take, int? viewerUserId);
         Task<UserGameDto> CreateAsync(UserGameAddDto dto, int userId);
         Task<UserGameDto> UpdateAsync(int id, UserGameModifyDto dto, int userId);
         Task DeleteAsync(int id, int userId);

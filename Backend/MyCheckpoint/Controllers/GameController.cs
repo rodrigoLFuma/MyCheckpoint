@@ -35,6 +35,13 @@ namespace MyCheckpoint.Controllers
             return Ok(await _gameService.SearchByNameAsync(term));
         }
 
+        [HttpGet("top-rated")]
+        public async Task<ActionResult<IEnumerable<TopRatedGameDto>>> GetTopRated(
+            [FromQuery] int skip = 0, [FromQuery] int take = 10)
+        {
+            return Ok(await _gameService.GetTopRatedAsync(skip, take));
+        }
+
         [HttpGet("category")]
         public async Task<ActionResult<IEnumerable<GameDto>>> GetByCategory([FromQuery] IEnumerable<int> categoryIds)
         {

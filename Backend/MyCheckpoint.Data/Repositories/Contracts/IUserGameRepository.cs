@@ -19,6 +19,9 @@ namespace MyCheckpoint.Data.Repositories.Contracts
         /// </summary>
         Task<IEnumerable<UserGame>> GetByUserIdsAsync(IEnumerable<int> userIds, int skip, int take);
 
+        /// <summary>Reseñas (con texto) de toda la app ordenadas por nº de "me gusta", para el ranking público.</summary>
+        Task<IEnumerable<UserGame>> GetTopLikedAsync(int skip, int take);
+
         Task<int> CountByUserIdAsync(int userId);
         Task<double?> GetAverageRateAsync(int userId);
 

@@ -11,5 +11,7 @@ namespace MyCheckpoint.Data.Repositories.Contracts
         Task<IEnumerable<Game>> SearchByNameAsync(string term);
         Task<Game?> GetByRawgIdAsync(int rawgId);
 
+        /// <summary>Juegos ordenados por nota media (solo los que tienen alguna puntuación), de mejor a peor.</summary>
+        Task<IEnumerable<GameRatingSummary>> GetTopRatedAsync(int skip, int take);
     }
 }

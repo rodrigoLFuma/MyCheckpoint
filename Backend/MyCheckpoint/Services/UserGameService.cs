@@ -83,6 +83,13 @@ namespace MyCheckpoint.Services
             return await EnrichWithLikesAsync(dtos, userId);
         }
 
+        public async Task<IEnumerable<UserGameDto>> GetTopLikedAsync(int skip, int take, int? viewerUserId)
+        {
+            var topLiked = await _userGameRepository.GetTopLikedAsync(skip, take);
+            var dtos = _mapper.Map<IEnumerable<UserGameDto>>(topLiked);
+            return await EnrichWithLikesAsync(dtos, viewerUserId);
+        }
+
         public async Task<UserGameDto> CreateAsync(UserGameAddDto dto, int userId)
         {
             if (await _gameRepository.GetByIdAsync(dto.GameId) is null)

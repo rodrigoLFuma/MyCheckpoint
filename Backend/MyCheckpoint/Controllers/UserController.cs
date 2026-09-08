@@ -53,6 +53,13 @@ namespace MyCheckpoint.Controllers
             return Ok(await _userService.GetTopInCategoryAsync(categoryId, excludeUserId: null, skip, take));
         }
 
+        [HttpGet("top-followed")]
+        public async Task<ActionResult<IEnumerable<RankedUserDto>>> GetTopByFollowers(
+            [FromQuery] int skip = 0, [FromQuery] int take = 10)
+        {
+            return Ok(await _userService.GetTopByFollowersAsync(skip, take));
+        }
+
         [HttpGet("similar")]
         [Authorize]
         public async Task<ActionResult<IEnumerable<UserSummaryDto>>> GetSimilar(

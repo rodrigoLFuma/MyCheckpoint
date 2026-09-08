@@ -21,6 +21,9 @@ namespace MyCheckpoint.Services.Contracts
 
         Task<IEnumerable<int>> GetFavoriteGenreCategoryIdsAsync(int userId);
 
+        /// <summary>Usuarios con más seguidores de toda la app, para la página de rankings.</summary>
+        Task<IEnumerable<RankedUserDto>> GetTopByFollowersAsync(int skip, int take);
+
         /// <summary>
         /// Un único listado de gente con más géneros favoritos en común
         /// contigo (a diferencia de GetTopByFavoriteGenresAsync, que agrupa

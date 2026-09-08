@@ -148,6 +148,23 @@ namespace MyCheckpoint.Services
             return _mapper.Map<IEnumerable<UserSummaryDto>>(users);
         }
 
+        public async Task<IEnumerable<RankedUserDto>> GetTopByFollowersAsync(int skip, int take)
+        {
+            var users = await _userManager.Users
+                .Include(u => u.Followeds)
+                .OrderByDescending(u => u.Followeds.Count)
+                .ThenBy(u => u.CreatedAt)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+
+            return users.Select(u => new RankedUserDto
+            {
+                User = _mapper.Map<UserSummaryDto>(u),
+                FollowerCount = u.Followeds.Count
+            });
+        }
+
         public async Task<UserDto> GetMyProfileAsync(int userId)
         {
             var user = await GetWithFavoriteGenresAsync(userId)
