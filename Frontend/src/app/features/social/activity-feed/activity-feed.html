@@ -1,7 +1,7 @@
 <div class="mx-auto max-w-2xl">
   <a routerLink="/social" class="text-sm font-medium text-primary hover:underline">&larr; Volver a Social</a>
 
-  <h1 class="mt-4 mb-4 text-xl font-bold text-ink">Actividad de gente que sigues</h1>
+  <h1 class="font-display mt-4 mb-4 text-xl text-ink">Actividad de gente que sigues</h1>
 
   @if (errorMessage()) {
     <p class="text-sm text-danger">{{ errorMessage() }}</p>
@@ -22,7 +22,7 @@
   <div class="flex flex-col gap-3">
     @if (isLoading()) {
       @for (i of [1, 2, 3]; track i) {
-        <div class="rounded-lg border border-border bg-surface p-3">
+        <div class="rounded-2xl border border-border bg-surface p-3">
           <div class="mb-2 flex items-center gap-2">
             <app-skeleton class="h-6 w-6 rounded-full" />
             <app-skeleton class="h-3 w-20" />

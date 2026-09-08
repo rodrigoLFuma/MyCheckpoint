@@ -8,14 +8,17 @@ import { apiUserSearchGet$Json } from '../../../api/fn/user/api-user-search-get-
 import { apiUserSimilarGet$Json } from '../../../api/fn/user/api-user-similar-get-json';
 import { apiUserTopFollowedGet$Json } from '../../../api/fn/user/api-user-top-followed-get-json';
 import { apiNotificationGet$Json } from '../../../api/fn/notification/api-notification-get-json';
+import { apiUserGameFollowingActivityGet$Json } from '../../../api/fn/user-game/api-user-game-following-activity-get-json';
 import { UserSummaryDto } from '../../../api/models/user-summary-dto';
 import { RankedUserDto } from '../../../api/models/ranked-user-dto';
 import { NotificationDto } from '../../../api/models/notification-dto';
+import { UserGameDto } from '../../../api/models/user-game-dto';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 const RECOMMENDED_COUNT = 10;
 const NOTIFICATIONS_PREVIEW_COUNT = 5;
+const ACTIVITY_PREVIEW_COUNT = 3;
 
 @Component({
   selector: 'app-user-search',
@@ -49,10 +52,16 @@ export class UserSearch implements OnInit {
   protected notifications = signal<NotificationDto[]>([]);
   protected isLoadingNotifications = signal(true);
 
+  // Mismo patrón para "Actividad": un adelanto de las últimas reseñas de la
+  // gente que sigues, con enlace a /social/activity para ver todas.
+  protected activityPreview = signal<UserGameDto[]>([]);
+  protected isLoadingActivity = signal(true);
+
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.hasFavoriteGenres() ? this.loadSimilarUsers() : this.loadTopFollowed();
       this.loadNotifications();
+      this.loadActivityPreview();
     }
   }
 
@@ -86,6 +95,19 @@ export class UserSearch implements OnInit {
       // Si falla, el panel simplemente queda vacío.
     } finally {
       this.isLoadingNotifications.set(false);
+    }
+  }
+
+  private async loadActivityPreview(): Promise<void> {
+    this.isLoadingActivity.set(true);
+    try {
+      this.activityPreview.set(
+        await this.api.invoke(apiUserGameFollowingActivityGet$Json, { skip: 0, take: ACTIVITY_PREVIEW_COUNT }),
+      );
+    } catch {
+      // Si falla, el panel simplemente queda vacío.
+    } finally {
+      this.isLoadingActivity.set(false);
     }
   }
 

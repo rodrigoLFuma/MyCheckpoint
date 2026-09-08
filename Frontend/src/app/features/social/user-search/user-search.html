@@ -159,6 +159,59 @@
           Ver todas
         </a>
       </div>
+
+      <!--
+        Antes vivía en el desplegable del menú de usuario de la navbar;
+        ahora cuelga de Social, debajo de las notificaciones, con el mismo
+        patrón: un adelanto de 2-3 elementos y "Ver todas" para ir a la
+        vista completa (/social/activity).
+      -->
+      <h2 class="font-display mt-4 mb-4 text-lg text-ink">Actividad</h2>
+
+      <div class="rounded-2xl border border-border bg-surface p-3">
+        @if (isLoadingActivity()) {
+          <div class="flex flex-col gap-3">
+            @for (i of [1, 2, 3]; track i) {
+              <div class="flex items-center gap-3 p-1">
+                <app-skeleton class="h-9 w-9 rounded-full" />
+                <app-skeleton class="h-3 w-32" />
+              </div>
+            }
+          </div>
+        } @else if (activityPreview().length === 0) {
+          <p class="p-2 text-sm text-ink-muted">
+            La gente que sigues todavía no ha escrito ninguna reseña.
+          </p>
+        } @else {
+          <div class="flex flex-col gap-1">
+            @for (item of activityPreview(); track item.id) {
+              <a
+                [routerLink]="['/reviews', item.id]"
+                class="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-surface-hover"
+              >
+                <app-user-avatar
+                  [imageUrl]="item.userSummary.profilePictureURL"
+                  [name]="item.userSummary.userName"
+                  sizeClass="h-9 w-9 shrink-0"
+                />
+                <div class="min-w-0 flex-1 text-sm text-ink">
+                  <p class="truncate">
+                    <span class="font-semibold">{{ item.userSummary.userName }}</span>
+                    reseñó <span class="font-semibold">{{ item.game.name }}</span>
+                  </p>
+                  @if (item.rate != null) {
+                    <p class="text-xs text-ink-faint">{{ item.rate }}/10</p>
+                  }
+                </div>
+              </a>
+            }
+          </div>
+        }
+
+        <a routerLink="/social/activity" class="mt-2 block text-center text-sm font-medium text-primary hover:underline">
+          Ver todas
+        </a>
+      </div>
     </aside>
   }
 </div>

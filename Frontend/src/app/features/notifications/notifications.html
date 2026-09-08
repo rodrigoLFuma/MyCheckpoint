@@ -1,5 +1,5 @@
 <div class="mx-auto max-w-2xl">
-  <h1 class="mb-4 text-xl font-bold text-ink">Notificaciones</h1>
+  <h1 class="font-display mb-4 text-xl text-ink">Notificaciones</h1>
 
   @if (errorMessage()) {
     <p class="text-sm text-danger">{{ errorMessage() }}</p>
@@ -12,7 +12,7 @@
   <div class="flex flex-col gap-2">
     @if (isLoading()) {
       @for (i of [1, 2, 3, 4]; track i) {
-        <div class="flex items-center gap-3 rounded-lg border border-border bg-surface p-3">
+        <div class="flex items-center gap-3 rounded-2xl border border-border bg-surface p-3">
           <app-skeleton class="h-10 w-10 rounded-full" />
           <div class="min-w-0 flex-1">
             <app-skeleton class="h-3 w-56" />
@@ -23,7 +23,7 @@
     }
     @for (notification of notifications(); track notification.id) {
       <div
-        class="flex items-center gap-3 rounded-lg border p-3"
+        class="flex items-center gap-3 rounded-2xl border p-3"
         [class]="notification.isRead ? 'border-border bg-surface' : 'border-primary/30 bg-primary-soft'"
       >
         <app-user-avatar
