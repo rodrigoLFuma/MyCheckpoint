@@ -1,38 +1,36 @@
 <header
-  class="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-bg-raised/95 px-6 py-3 backdrop-blur"
+  class="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-bg-raised/30 px-6 py-3 shadow-[0_8px_32px_-12px_rgba(124,92,255,0.35)] backdrop-blur-xl backdrop-saturate-150"
 >
   <div class="flex items-center gap-6">
-    <a routerLink="/" class="flex items-center gap-2 text-lg font-extrabold tracking-tight text-ink">
+    <a routerLink="/" class="flex items-center gap-2 font-display text-lg tracking-tight text-ink">
       <img src="logo-192.png" alt="" class="h-7 w-7 rounded-md" />
       My<span class="text-primary">Checkpoint</span>
     </a>
 
-    @if (authService.isLoggedIn()) {
-      <nav class="hidden items-center gap-5 sm:flex">
-        <a
-          routerLink="/games/search"
-          routerLinkActive="text-ink"
-          class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
-        >
-          Buscar juegos
-        </a>
-        <a
-          routerLink="/social"
-          routerLinkActive="text-ink"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
-        >
-          Social
-        </a>
-        <a
-          routerLink="/social/activity"
-          routerLinkActive="text-ink"
-          class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
-        >
-          Actividad
-        </a>
-      </nav>
-    }
+    <nav class="hidden items-center gap-5 sm:flex">
+      <a
+        routerLink="/games/search"
+        routerLinkActive="text-ink"
+        class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
+      >
+        Descubrir
+      </a>
+      <a
+        routerLink="/social"
+        routerLinkActive="text-ink"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
+      >
+        Social
+      </a>
+      <a
+        routerLink="/rankings"
+        routerLinkActive="text-ink"
+        class="text-sm font-medium text-ink-muted transition-colors hover:text-ink"
+      >
+        Ranking
+      </a>
+    </nav>
   </div>
 
   @if (authService.isLoggedIn()) {
@@ -77,6 +75,13 @@
           <div
             class="absolute right-0 z-20 mt-2 w-48 overflow-hidden rounded-lg border border-border bg-surface py-1 shadow-xl"
           >
+            <a
+              routerLink="/social/activity"
+              (click)="closeMenu()"
+              class="block w-full px-4 py-2 text-sm text-ink hover:bg-surface-hover"
+            >
+              Actividad
+            </a>
             <a
               routerLink="/library"
               (click)="closeMenu()"
@@ -127,9 +132,17 @@
       </div>
     </div>
   } @else {
-    <a routerLink="/login" class="rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-white hover:bg-primary-hover">
-      Iniciar sesión
-    </a>
+    <div class="flex items-center gap-3">
+      <a routerLink="/login" class="text-sm font-medium text-ink-muted transition-colors hover:text-ink">
+        Iniciar sesión
+      </a>
+      <a
+        routerLink="/register"
+        class="rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-white hover:bg-primary-hover"
+      >
+        Regístrate
+      </a>
+    </div>
   }
 </header>
 

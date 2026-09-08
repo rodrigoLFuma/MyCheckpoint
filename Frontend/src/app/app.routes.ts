@@ -5,8 +5,10 @@ import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   {
+    // Sin guard a propósito: "/" es la misma landing pública para todo el
+    // mundo, con sesión iniciada o sin ella (ya no hay un panel personal
+    // aparte para usuarios logueados).
     path: '',
-    canActivate: [authGuard],
     loadComponent: () => import('./features/home/home').then((m) => m.Home),
   },
   { path: 'login', loadComponent: () => import('./features/auth/login/login').then((m) => m.Login) },
@@ -104,6 +106,11 @@ export const routes: Routes = [
   {
     path: 'lists/:id',
     loadComponent: () => import('./features/lists/list-detail/list-detail').then((m) => m.ListDetail),
+  },
+  {
+    path: 'rankings',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/rankings/rankings').then((m) => m.Rankings),
   },
   {
     path: 'notifications',

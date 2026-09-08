@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class Login {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   emailOrUserName = '';
   password = '';
@@ -22,7 +23,11 @@ export class Login {
     this.isSubmitting.set(true);
     try {
       await this.authService.login({ emailOrUserName: this.emailOrUserName, password: this.password });
-      this.router.navigateByUrl('/');
+      // Si nos han mandado aquí desde un botón que exigía sesión (p. ej.
+      // "Social" sin haber iniciado sesión), volvemos a esa misma página en
+      // vez de dejar siempre en el inicio.
+      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+      this.router.navigateByUrl(returnUrl || '/');
     } catch {
       this.errorMessage.set('Credenciales inválidas.');
     } finally {

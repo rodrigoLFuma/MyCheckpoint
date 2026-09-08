@@ -71,6 +71,10 @@ export type { ApiGameSearchGet$Plain$Params as ApiGameSearchGet$Plain$Params } f
 export { apiGameSearchGet$Plain as apiGameSearchGet$Plain } from './fn/game/api-game-search-get-plain';
 export type { ApiGameSearchGet$Json$Params as ApiGameSearchGet$Json$Params } from './fn/game/api-game-search-get-json';
 export { apiGameSearchGet$Json as apiGameSearchGet$Json } from './fn/game/api-game-search-get-json';
+export type { ApiGameTopRatedGet$Plain$Params as ApiGameTopRatedGet$Plain$Params } from './fn/game/api-game-top-rated-get-plain';
+export { apiGameTopRatedGet$Plain as apiGameTopRatedGet$Plain } from './fn/game/api-game-top-rated-get-plain';
+export type { ApiGameTopRatedGet$Json$Params as ApiGameTopRatedGet$Json$Params } from './fn/game/api-game-top-rated-get-json';
+export { apiGameTopRatedGet$Json as apiGameTopRatedGet$Json } from './fn/game/api-game-top-rated-get-json';
 export type { ApiGameCategoryGet$Plain$Params as ApiGameCategoryGet$Plain$Params } from './fn/game/api-game-category-get-plain';
 export { apiGameCategoryGet$Plain as apiGameCategoryGet$Plain } from './fn/game/api-game-category-get-plain';
 export type { ApiGameCategoryGet$Json$Params as ApiGameCategoryGet$Json$Params } from './fn/game/api-game-category-get-json';
@@ -157,6 +161,10 @@ export type { ApiUserCategoryCategoryIdTopGet$Plain$Params as ApiUserCategoryCat
 export { apiUserCategoryCategoryIdTopGet$Plain as apiUserCategoryCategoryIdTopGet$Plain } from './fn/user/api-user-category-category-id-top-get-plain';
 export type { ApiUserCategoryCategoryIdTopGet$Json$Params as ApiUserCategoryCategoryIdTopGet$Json$Params } from './fn/user/api-user-category-category-id-top-get-json';
 export { apiUserCategoryCategoryIdTopGet$Json as apiUserCategoryCategoryIdTopGet$Json } from './fn/user/api-user-category-category-id-top-get-json';
+export type { ApiUserTopFollowedGet$Plain$Params as ApiUserTopFollowedGet$Plain$Params } from './fn/user/api-user-top-followed-get-plain';
+export { apiUserTopFollowedGet$Plain as apiUserTopFollowedGet$Plain } from './fn/user/api-user-top-followed-get-plain';
+export type { ApiUserTopFollowedGet$Json$Params as ApiUserTopFollowedGet$Json$Params } from './fn/user/api-user-top-followed-get-json';
+export { apiUserTopFollowedGet$Json as apiUserTopFollowedGet$Json } from './fn/user/api-user-top-followed-get-json';
 export type { ApiUserSimilarGet$Plain$Params as ApiUserSimilarGet$Plain$Params } from './fn/user/api-user-similar-get-plain';
 export { apiUserSimilarGet$Plain as apiUserSimilarGet$Plain } from './fn/user/api-user-similar-get-plain';
 export type { ApiUserSimilarGet$Json$Params as ApiUserSimilarGet$Json$Params } from './fn/user/api-user-similar-get-json';
@@ -191,6 +199,10 @@ export type { ApiUserGameIdPut$Json$Params as ApiUserGameIdPut$Json$Params } fro
 export { apiUserGameIdPut$Json as apiUserGameIdPut$Json } from './fn/user-game/api-user-game-id-put-json';
 export type { ApiUserGameIdDelete$Params as ApiUserGameIdDelete$Params } from './fn/user-game/api-user-game-id-delete';
 export { apiUserGameIdDelete as apiUserGameIdDelete } from './fn/user-game/api-user-game-id-delete';
+export type { ApiUserGameTopLikedGet$Plain$Params as ApiUserGameTopLikedGet$Plain$Params } from './fn/user-game/api-user-game-top-liked-get-plain';
+export { apiUserGameTopLikedGet$Plain as apiUserGameTopLikedGet$Plain } from './fn/user-game/api-user-game-top-liked-get-plain';
+export type { ApiUserGameTopLikedGet$Json$Params as ApiUserGameTopLikedGet$Json$Params } from './fn/user-game/api-user-game-top-liked-get-json';
+export { apiUserGameTopLikedGet$Json as apiUserGameTopLikedGet$Json } from './fn/user-game/api-user-game-top-liked-get-json';
 export type { ApiUserGameDiscoverReviewsGet$Plain$Params as ApiUserGameDiscoverReviewsGet$Plain$Params } from './fn/user-game/api-user-game-discover-reviews-get-plain';
 export { apiUserGameDiscoverReviewsGet$Plain as apiUserGameDiscoverReviewsGet$Plain } from './fn/user-game/api-user-game-discover-reviews-get-plain';
 export type { ApiUserGameDiscoverReviewsGet$Json$Params as ApiUserGameDiscoverReviewsGet$Json$Params } from './fn/user-game/api-user-game-discover-reviews-get-json';
