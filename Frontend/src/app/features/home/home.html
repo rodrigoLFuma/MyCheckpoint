@@ -1,172 +1,108 @@
-<div class="mx-auto max-w-5xl">
-  <h1 class="mb-8 text-2xl font-bold text-ink">
-    Bienvenido, <span class="text-primary">{{ authService.user()?.userName }}</span>
-  </h1>
+<!--
+  Patrón del logo (.logo-pattern): capa "position: fixed" a pantalla
+  completa (definida en styles.css), fuera del flujo normal — se ve por
+  TODA la página, centro y márgenes por igual. El degradado de fondo
+  (.landing-backdrop), en cambio, va DENTRO del wrapper de abajo en vez de
+  fijo a la ventana: si fuera "fixed" su transición de color quedaría
+  anclada a coordenadas de la ventana, no del documento, y al hacer scroll
+  el borde inferior del hero (que sí se mueve con el documento) dejaría de
+  coincidir con el tono del degradado en ese punto — una costura de color
+  visible que se desplazaba al hacer scroll. Anclado al wrapper (que mide
+  igual que todo el contenido de la landing) el degradado se mueve con el
+  hero y siempre coincide, dando un fundido limpio de la imagen al fondo.
+  Todos los botones llevan a rutas que exigen sesión, así que el propio
+  guard te manda a /login y te trae de vuelta.
+-->
+<div class="logo-pattern"></div>
 
-  <section class="mb-10">
-    <div class="mb-3 flex items-center justify-between">
-      <h2 class="text-lg font-bold text-ink">Reseñas de otros sobre tus juegos</h2>
-      @if (hasMoreReviews()) {
-        <a routerLink="/discover/reviews" class="text-sm font-medium text-primary hover:underline">Ver todo</a>
-      }
+<div class="relative">
+  <div class="landing-backdrop"></div>
+
+  <!--
+    Hero a pantalla completa: se sale del ancho de la columna (max-w-3xl)
+    con el mismo truco "left-1/2 w-screen -translate-x-1/2" que usa el
+    patrón de fondo, para que sea un auténtico banner de borde a borde en
+    vez de una tarjeta pequeña metida dentro del contenido. El
+    "-mt-[57px]" lo sube por detrás de la navbar (que mide justo eso) para
+    que la imagen llegue hasta el borde superior real de la ventana; la
+    navbar, translúcida y con z-index propio, queda flotando encima. El
+    degradado interior (from-bg en la base, hacia transparente arriba) es
+    el que funde la imagen con el fondo de la página en su borde inferior.
+  -->
+  <!--
+    Texto del hero alineado a la derecha (en vez de centrado): deja ver
+    más imagen a la izquierda y rompe la simetría estricta de la landing.
+  -->
+  <section
+    class="hero-bg relative left-1/2 -mt-[57px] flex min-h-[calc(70vh+57px)] w-screen -translate-x-1/2 flex-col items-end justify-center overflow-hidden pt-[57px]"
+  >
+    <div class="absolute inset-0 bg-gradient-to-t from-bg from-5% via-bg/60 via-45% to-transparent to-95%"></div>
+    <div class="relative z-10 mx-auto w-full max-w-5xl px-6 md:px-12">
+      <div class="ml-auto max-w-xl text-right">
+        <h1 class="font-display text-4xl leading-tight text-ink sm:text-5xl">Tu nueva aventura empieza aquí</h1>
+        <p class="mt-4 text-lg text-ink-muted">
+          Lleva el registro de cada juego que juegas, puntúa, reseña y descubre qué opina gente con tus mismos gustos.
+        </p>
+        <a
+          routerLink="/games/search"
+          class="mt-8 inline-block rounded-full bg-primary px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-primary-hover"
+        >
+          Añade juegos a tu lista
+        </a>
+      </div>
     </div>
-
-    @if (isLoadingReviews()) {
-      <div class="flex gap-4 overflow-x-auto pb-2">
-        @for (i of [1, 2, 3]; track i) {
-          <div class="flex w-72 shrink-0 gap-3 rounded-lg border border-border bg-surface p-3">
-            <app-skeleton class="h-24 w-20 shrink-0" />
-            <div class="min-w-0 flex-1">
-              <app-skeleton class="h-3 w-20" />
-              <app-skeleton class="mt-2 h-4 w-32" />
-              <app-skeleton class="mt-3 h-3 w-full" />
-              <app-skeleton class="mt-1 h-3 w-2/3" />
-            </div>
-          </div>
-        }
-      </div>
-    } @else if (discoverReviews().length === 0) {
-      <p class="text-sm text-ink-muted">
-        Reseña algún juego en
-        <a routerLink="/games/search" class="font-medium text-primary hover:underline">Buscar juegos</a>
-        para ver aquí lo que opina otra gente de esos mismos juegos.
-      </p>
-    } @else {
-      <div class="rail flex gap-4 overflow-x-auto pb-2">
-        @for (review of discoverReviews(); track review.id) {
-          <div class="w-72 shrink-0">
-            <app-review-card
-              [gameName]="review.game.name"
-              [gameImageUrl]="review.game.coverImageUrl"
-              [title]="review.title"
-              [description]="review.review"
-              [rate]="review.rate"
-              [reviewId]="review.id"
-              [likeCount]="review.likeCount"
-              [likedByMe]="review.likedByMe"
-            />
-          </div>
-        }
-        @if (hasMoreReviews()) {
-          <a
-            routerLink="/discover/reviews"
-            class="flex w-32 shrink-0 items-center justify-center rounded-lg border border-border text-sm font-medium text-primary hover:bg-surface-hover"
-          >
-            Ver más
-          </a>
-        }
-      </div>
-    }
   </section>
 
-  <section class="mb-10">
-    <h2 class="mb-3 text-lg font-bold text-ink">Descubre tu nuevo juego favorito</h2>
+  <div class="relative mx-auto max-w-5xl px-6 pb-28">
+    <section class="mt-24 text-center">
+      <div class="mb-2 text-lg tracking-widest text-rating">★★★★★</div>
+      <h2 class="font-display text-2xl text-ink">Lo mejor valorado</h2>
 
-    @if (!authService.user()?.favoriteGenres?.length) {
-      <p class="text-sm text-ink-muted">
-        Marca tus géneros favoritos en tu
-        <a routerLink="/profile" class="font-medium text-primary hover:underline">perfil</a>
-        para que te recomendemos juegos.
-      </p>
-    } @else {
-      <button
-        type="button"
-        (click)="discoverNewFavorite()"
-        class="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
+      @if (landingTopGames().length > 0) {
+        <div class="rail mx-auto mt-8 flex max-w-3xl gap-4 overflow-x-auto px-2 pb-2">
+          @for (entry of landingTopGames(); track entry.game.id) {
+            <div class="w-36 shrink-0 transition-transform hover:-translate-y-1">
+              <app-game-card [name]="entry.game.name" [imageUrl]="entry.game.coverImageUrl" [releaseDate]="entry.game.releaseDate" />
+            </div>
+          }
+        </div>
+      }
+
+      <a
+        routerLink="/games/search"
+        class="mt-10 inline-block rounded-full bg-primary px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-primary-hover"
       >
-        ✨ Quiero descubrir mi nuevo juego favorito
-      </button>
-    }
-  </section>
+        Empieza a reseñar
+      </a>
+    </section>
 
-  <section class="mb-10">
-    <div class="mb-3 flex items-center justify-between">
-      <h2 class="text-lg font-bold text-ink">Gente con tus mismos gustos</h2>
-      @if (hasMoreUsers()) {
-        <a routerLink="/discover/users" class="text-sm font-medium text-primary hover:underline">Ver todo</a>
-      }
-    </div>
-
-    @if (isLoadingUsers()) {
-      <div class="flex gap-4 overflow-x-auto pb-2">
-        @for (i of [1, 2, 3, 4]; track i) {
-          <div class="flex w-28 shrink-0 flex-col items-center gap-2 rounded-lg border border-border bg-surface p-3">
-            <app-skeleton class="h-14 w-14 rounded-full" />
-            <app-skeleton class="h-3 w-16" />
-          </div>
-        }
-      </div>
-    } @else if (similarUsers().length === 0) {
-      @if (!authService.user()?.favoriteGenres?.length) {
-        <p class="text-sm text-ink-muted">
-          Marca tus géneros favoritos en tu
-          <a routerLink="/profile" class="font-medium text-primary hover:underline">perfil</a>
-          para que te recomendemos gente con tus mismos gustos.
-        </p>
-      } @else {
-        <p class="text-sm text-ink-muted">
-          De momento nadie más comparte tus géneros favoritos. Prueba a explorar en
-          <a routerLink="/social" class="font-medium text-primary hover:underline">Social</a>.
-        </p>
-      }
-    } @else {
-      <div class="rail flex gap-4 overflow-x-auto pb-2">
-        @for (user of similarUsers(); track user.id) {
-          <a
-            [routerLink]="['/users', user.id]"
-            class="flex w-28 shrink-0 flex-col items-center gap-2 rounded-lg border border-border bg-surface p-3 text-center transition-colors hover:border-ink-faint hover:bg-surface-hover"
+    @if (featuredReview(); as review) {
+      <!-- Cita destacada tipo editorial: texto anclado a la izquierda
+           sobre un scrim que se desvanece hacia la derecha, dejando la
+           carátula del juego visible en ese lado en vez de centrar todo
+           sobre la imagen entera. -->
+      <section class="relative mt-24 overflow-hidden rounded-3xl py-24">
+        <!-- Carátula del propio juego reseñado, no una imagen fija: cambia con la reseña destacada. -->
+        <img [src]="review.game.coverImageUrl" [alt]="review.game.name" class="absolute inset-0 h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-r from-bg from-10% via-bg/75 via-55% to-bg/10 to-95%"></div>
+        <div class="relative z-10 max-w-md px-8 md:px-12">
+          <p class="text-5xl leading-none text-primary [text-shadow:0_2px_16px_rgba(0,0,0,0.9)]">&ldquo;</p>
+          <blockquote
+            class="-mt-4 text-2xl leading-snug font-bold text-ink [text-shadow:0_2px_16px_rgba(0,0,0,0.9)] sm:text-3xl"
           >
-            <app-user-avatar [imageUrl]="user.profilePictureURL" [name]="user.userName" sizeClass="h-14 w-14" />
-            <span class="truncate text-sm font-semibold text-ink">{{ user.userName }}</span>
-          </a>
-        }
-        @if (hasMoreUsers()) {
+            {{ review.review }}
+          </blockquote>
+          <p class="mt-4 text-sm text-ink-muted [text-shadow:0_2px_12px_rgba(0,0,0,0.9)]">
+            {{ review.userSummary.userName }}, sobre <span class="font-semibold text-ink">{{ review.game.name }}</span>
+          </p>
           <a
-            routerLink="/discover/users"
-            class="flex w-28 shrink-0 items-center justify-center rounded-lg border border-border text-sm font-medium text-primary hover:bg-surface-hover"
+            routerLink="/social"
+            class="mt-8 inline-block rounded-full bg-primary px-8 py-3 text-base font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-primary-hover"
           >
-            Ver más
+            Conoce a más jugadores
           </a>
-        }
-      </div>
+        </div>
+      </section>
     }
-  </section>
-</div>
-
-@if (isDiscoverPopupOpen()) {
-  <div class="fixed inset-0 z-40 bg-black/60" (click)="closeDiscoverPopup()"></div>
-
-  <div class="fixed inset-x-4 top-10 z-50 mx-auto max-w-3xl rounded-lg border border-border bg-surface p-6 shadow-xl">
-    <div class="mb-4 flex items-center justify-between">
-      <h2 class="text-lg font-bold text-ink">Tu nuevo juego favorito podría ser...</h2>
-      <button type="button" (click)="closeDiscoverPopup()" class="text-sm text-ink-muted hover:text-ink">Cerrar ✕</button>
-    </div>
-
-    @if (discoverError()) {
-      <p class="text-sm text-danger">{{ discoverError() }}</p>
-    }
-
-    @if (!isDiscovering() && !discoverError() && discoverPicks().length === 0) {
-      <p class="text-sm text-ink-muted">No se han encontrado juegos. Inténtalo otra vez.</p>
-    }
-
-    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-      @if (isDiscovering()) {
-        @for (i of [1, 2, 3, 4, 5]; track i) {
-          <div class="overflow-hidden rounded-lg border border-border bg-surface">
-            <app-skeleton class="h-40 w-full rounded-none" />
-            <div class="p-3">
-              <app-skeleton class="h-4 w-3/4" />
-              <app-skeleton class="mt-2 h-3 w-10" />
-            </div>
-          </div>
-        }
-      }
-      @for (pick of discoverPicks(); track pick.id) {
-        <app-game-card [name]="pick.name ?? ''" [imageUrl]="pick.background_image" [releaseDate]="pick.released">
-          <app-create-review [rawgId]="pick.id!" [alreadyReviewed]="reviewedRawgIds().has(pick.id!)" />
-        </app-game-card>
-      }
-    </div>
   </div>
-}
+</div>
