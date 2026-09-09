@@ -3,15 +3,18 @@
     type="button"
     (click)="toggle()"
     [disabled]="isToggling()"
-    class="flex items-center gap-1 text-sm transition-colors hover:text-danger disabled:opacity-50"
-    [class.text-danger]="displayedLikedByMe"
-    [class.text-ink-muted]="!displayedLikedByMe"
+    class="flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors disabled:opacity-50"
+    [class]="
+      displayedLikedByMe
+        ? 'border-danger/30 bg-danger-soft text-danger'
+        : 'border-border text-ink-muted hover:border-danger/30 hover:bg-danger-soft hover:text-danger'
+    "
   >
     <span>{{ displayedLikedByMe ? '♥' : '♡' }}</span>
     <span>{{ displayedLikeCount }}</span>
   </button>
 } @else {
-  <span class="flex items-center gap-1 text-sm text-ink-muted">
+  <span class="flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1 text-xs text-ink-muted">
     <span>♡</span>
     <span>{{ displayedLikeCount }}</span>
   </span>

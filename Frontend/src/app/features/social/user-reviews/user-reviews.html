@@ -29,6 +29,8 @@
         <app-review-card
           [gameName]="review.game.name"
           [gameImageUrl]="review.game.coverImageUrl"
+          [gameId]="review.game.id"
+          [ownerId]="review.userSummary.id"
           [title]="review.title"
           [description]="review.review"
           [rate]="review.rate"

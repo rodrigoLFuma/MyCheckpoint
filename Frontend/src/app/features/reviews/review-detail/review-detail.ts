@@ -1,17 +1,19 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { DatePipe, Location } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Api } from '../../../api/api';
 import { apiUserGameIdGet$Json } from '../../../api/fn/user-game/api-user-game-id-get-json';
 import { UserGameDto } from '../../../api/models/user-game-dto';
+import { AuthService } from '../../../core/services/auth.service';
 import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
 import { LikeButton } from '../../../shared/components/like-button/like-button';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 /**
- * Vista completa de una reseña: a donde lleva "Ver más" en cualquier tarjeta
- * de reseña (ReviewCard o Mi biblioteca), en vez de desplegar el texto ahí
- * mismo. Pública (como la vista de un perfil), no solo para tus reseñas.
+ * Vista completa de una reseña: a donde lleva pulsar en cualquier tarjeta de
+ * reseña (ReviewCard o Mi biblioteca), en vez de desplegar el texto ahí
+ * mismo. Pública (como la vista de un perfil), no solo para tus reseñas: si
+ * es tuya se ofrece "Editar"; si es de otra persona, "Añadir a mis reseñas".
  */
 @Component({
   selector: 'app-review-detail',
@@ -22,10 +24,13 @@ export class ReviewDetail implements OnInit {
   private route = inject(ActivatedRoute);
   private api = inject(Api);
   private location = inject(Location);
+  protected authService = inject(AuthService);
 
   protected userGame = signal<UserGameDto | null>(null);
   protected isLoading = signal(true);
   protected errorMessage = signal<string | null>(null);
+
+  protected isOwnReview = computed(() => this.userGame()?.userSummary.id === this.authService.user()?.id);
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));

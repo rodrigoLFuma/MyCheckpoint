@@ -55,6 +55,8 @@
         <app-review-card
           [gameName]="item.game.name"
           [gameImageUrl]="item.game.coverImageUrl"
+          [gameId]="item.game.id"
+          [ownerId]="item.userSummary.id"
           [title]="item.title"
           [description]="item.review"
           [rate]="item.rate"

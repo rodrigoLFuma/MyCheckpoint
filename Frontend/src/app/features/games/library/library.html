@@ -108,39 +108,31 @@
             </div>
           </div>
         } @else {
-          <div class="mt-2 text-sm">
+          <!--
+            Toda la vista previa lleva a la reseña completa (igual que
+            ReviewCard): antes el "Ver más" de la descripción solo aparecía
+            si el texto era largo, así que una reseña corta o sin texto no
+            tenía nada clicable. El botón de editar (lápiz) se quitó de
+            aquí: para eso está pulsar en la reseña, que ahora sí lleva a
+            /reviews/:id, y desde ahí (si es tuya) hay un botón "Editar".
+          -->
+          <a [routerLink]="['/reviews', userGame.id]" class="mt-2 block text-sm">
             <p class="font-semibold text-ink">{{ userGame.status }} · {{ userGame.rate }}/10</p>
             @if (userGame.title) {
               <p class="mt-1 font-semibold text-ink">{{ userGame.title }}</p>
             }
             <div class="mt-1 text-ink-muted">
-              <app-truncated-text [text]="userGame.review" [reviewId]="userGame.id" />
+              <app-truncated-text [text]="userGame.review" />
             </div>
-          </div>
+          </a>
 
-          <div class="mt-3 flex items-center justify-between">
-            <a
-              [routerLink]="['/reviews', userGame.id, 'edit']"
-              title="Editar"
-              aria-label="Editar"
-              class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-ink-muted transition-colors hover:bg-surface-hover hover:text-ink"
-            >
-              <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-                <path
-                  d="M13.586 3.586a2 2 0 1 1 2.828 2.828l-.793.793-2.828-2.828.793-.793ZM11.379 5.793 3 14.172V17h2.828l8.38-8.379-2.83-2.828Z"
-                />
-              </svg>
-            </a>
+          <div class="mt-3 flex items-center justify-between gap-2">
             <button
               type="button"
               (click)="openAddToList(userGame.game.id)"
-              title="Añadir a lista"
-              aria-label="Añadir a lista"
-              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white shadow-sm transition-colors hover:bg-primary-hover"
+              class="rounded-full bg-primary-soft px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
             >
-              <svg viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
-                <path d="M10 4a.75.75 0 0 1 .75.75v4.5h4.5a.75.75 0 0 1 0 1.5h-4.5v4.5a.75.75 0 0 1-1.5 0v-4.5h-4.5a.75.75 0 0 1 0-1.5h4.5v-4.5A.75.75 0 0 1 10 4Z" />
-              </svg>
+              + Añadir a lista
             </button>
             <button
               type="button"

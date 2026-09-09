@@ -98,8 +98,24 @@
         <p class="mt-3 text-sm text-ink-faint">Sin texto de reseña.</p>
       }
 
-      <div class="mt-3">
+      <div class="mt-3 flex items-center justify-between gap-2">
         <app-like-button [reviewId]="review.id" [likeCount]="review.likeCount" [likedByMe]="review.likedByMe" />
+
+        @if (isOwnReview()) {
+          <a
+            [routerLink]="['/reviews', review.id, 'edit']"
+            class="rounded-full bg-primary-soft px-3 py-1.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+          >
+            Editar
+          </a>
+        } @else if (authService.isLoggedIn()) {
+          <a
+            [routerLink]="['/reviews/new', review.game.id]"
+            class="rounded-full bg-primary-soft px-3 py-1.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+          >
+            + Añadir a mis reseñas
+          </a>
+        }
       </div>
     </div>
   }
