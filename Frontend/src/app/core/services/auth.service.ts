@@ -61,19 +61,13 @@ export class AuthService {
   async deleteAccount(): Promise<void> {
     await this.api.invoke(apiUserMeDelete);
     try {
-      // La cuenta ya no existe, pero la cookie HttpOnly sigue en el
-      // navegador hasta que el propio backend la borre explícitamente.
+
       await this.api.invoke(apiAuthLogoutPost);
     } finally {
       this._user.set(null);
     }
   }
 
-  /**
-   * Limpia la sesión solo en el cliente, sin llamar al backend. Úsalo cuando
-   * ya sabes que la sesión dejó de ser válida ahí (p. ej. un 401 inesperado),
-   * no como sustituto de logout().
-   */
   clearLocalSession(): void {
     this._user.set(null);
   }

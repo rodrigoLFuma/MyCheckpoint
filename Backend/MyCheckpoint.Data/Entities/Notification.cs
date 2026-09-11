@@ -10,10 +10,8 @@ namespace MyCheckpoint.Data.Entities
         public int ActorUserId { get; set; }
         public User ActorUser { get; set; }
 
-        // "Follow" o "Like".
         public string Type { get; set; }
 
-        // Solo para notificaciones de tipo "Like": la reseña a la que enlaza.
         public int? UserGameId { get; set; }
         public UserGame? UserGame { get; set; }
 

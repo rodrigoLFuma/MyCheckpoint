@@ -1,18 +1,5 @@
 @import 'tailwindcss';
 
-/*
- * Paleta oscura de MyCheckpoint. Se definen como tokens de tema de
- * Tailwind v4 (`@theme`), así que generan automáticamente utilidades:
- * `bg-bg`, `bg-surface`, `text-ink`, `text-ink-muted`, `border-border`,
- * `bg-primary`, `text-primary`, `bg-rating`, `text-danger`, etc.
- *
- * - bg / surface / border: fondo de página, tarjetas y bordes, de más
- *   oscuro a más claro.
- * - ink: texto, de más a menos énfasis (ink > ink-muted > ink-faint).
- * - primary: acento principal (enlaces, botones, estados activos).
- * - rating: acento cálido reservado para puntuaciones y estrellas.
- * - success / danger: estados positivos/destructivos (seguir, borrar...).
- */
 @theme {
   --color-bg: #14171c;
   --color-bg-raised: #1a1e25;
@@ -40,9 +27,6 @@
   --font-sans:
     'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  /* Solo para titulares "de marca" (logo, hero, cabeceras de la landing),
-     nunca para párrafos ni botones: es un único grosor muy negrita, pensado
-     para textos cortos. Genera la utilidad `font-display`. */
   --font-display: 'Archivo Black', 'Manrope', ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -56,8 +40,6 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Carriles de tarjetas con scroll horizontal (home, descubrir...): se
-   desplazan con normalidad pero sin la barra de scroll a la vista. */
 .rail {
   scrollbar-width: none;
 }
@@ -70,52 +52,18 @@ body {
   color: white;
 }
 
-/*
- * Fondo de la portada del hero, en la landing pública (Home sin sesión).
- * Usa tu propia imagen si existe en Frontend/public/hero-bg.png; si no
- * está o no carga, el navegador simplemente no pinta esa capa y se ve el
- * degradado de abajo igual — así el hero nunca se queda vacío. La cita
- * destacada, en cambio, no tiene imagen fija: usa de fondo la carátula del
- * propio juego reseñado (se pone directamente en la plantilla, no aquí).
- */
 .hero-bg {
   background-image: url('/hero-bg.png'), linear-gradient(135deg, var(--color-primary-soft), var(--color-bg) 70%);
   background-size: cover;
   background-position: center;
 }
 
-/*
- * Panel decorativo de login/registro: foto real de un mando bajo luces de
- * neón (Frontend/public/auth-bg.jpg). A diferencia del dibujo que hubo
- * antes (que traía su propio degradado incorporado), esta foto tiene luces
- * repartidas por todas partes, así que aquí SÍ hace falta un velo oscuro
- * uniforme por encima para que el texto se lea bien caiga donde caiga —
- * ese velo va en la plantilla (login.html/register.html), no aquí.
- */
 .auth-bg {
   background-image: url('/auth-bg.jpg'), linear-gradient(135deg, var(--color-primary-soft), var(--color-bg) 70%);
   background-size: cover;
   background-position: center;
 }
 
-/*
- * Fondo de toda la landing pública, en dos capas.
- *
- * .landing-backdrop es el degradado de color: va DENTRO de un wrapper
- * "position: relative" que envuelve todo el contenido de la landing (en
- * home.html), como "position: absolute; inset: 0" — así su alto se ajusta
- * siempre al del propio contenido (documento), no al de la ventana. Antes
- * era "position: fixed" (atado a la ventana): eso evitaba que un fondo
- * opaco en flujo normal tapara el patrón (ver más abajo), pero como su
- * degradado se posiciona en coordenadas de VENTANA y el borde inferior del
- * hero se mueve con el DOCUMENTO al hacer scroll, ambos dejaban de
- * coincidir — una costura de color visible y cambiante según el scroll,
- * justo donde el hero debía fundirse con el fondo. Al no ser un degradado
- * rotado, no tiene el problema de huecos en las esquinas que sí obliga a
- * .logo-pattern a seguir siendo "fixed" (ver abajo), así que puede volver a
- * ser "absolute" sin reintroducir el problema original: sigue sin estar en
- * flujo normal (así no tapa nada), pero ahora se mueve con el documento.
- */
 .landing-backdrop {
   position: absolute;
   inset: 0;
@@ -128,21 +76,6 @@ body {
   );
 }
 
-/*
- * Patrón del logo en diagonal, por encima del degradado de arriba. Usa
- * Frontend/public/logo.png; si no existe, esta capa simplemente no pinta
- * nada (el degradado de fondo se ve igual, sin huecos).
- *
- * A diferencia de .landing-backdrop, este SÍ se queda "position: fixed"
- * (atado a la ventana, no al documento): el rectángulo rotado de su
- * "::before" está sobredimensionado (200%) para cubrir su contenedor sin
- * dejar huecos en las esquinas tras el giro, pero esa matemática solo
- * funciona si el contenedor tiene una proporción razonable — dentro de una
- * columna de contenido muy alta y estrecha, 200% no basta y aparecen
- * huecos arriba/abajo. Con "fixed" el contenedor es siempre la ventana
- * (proporción acotada), así que la cobertura nunca falla, sin importar
- * cuánto mida la página ni por dónde se haga scroll.
- */
 .logo-pattern {
   position: fixed;
   inset: 0;

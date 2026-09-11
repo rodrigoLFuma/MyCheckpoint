@@ -4,10 +4,10 @@
 
 namespace MyCheckpoint.Data.Migrations
 {
-    /// <inheritdoc />
+
     public partial class SyncModelChanges : Migration
     {
-        /// <inheritdoc />
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
@@ -45,7 +45,6 @@ namespace MyCheckpoint.Data.Migrations
                 oldMaxLength: 256);
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(

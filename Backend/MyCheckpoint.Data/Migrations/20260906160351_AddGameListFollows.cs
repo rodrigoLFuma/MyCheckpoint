@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyCheckpoint.Data.Migrations
 {
-    /// <inheritdoc />
+
     public partial class AddGameListFollows : Migration
     {
-        /// <inheritdoc />
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -42,7 +42,6 @@ namespace MyCheckpoint.Data.Migrations
                 column: "GameListId");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

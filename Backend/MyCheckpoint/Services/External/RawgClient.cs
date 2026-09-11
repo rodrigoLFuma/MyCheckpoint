@@ -42,8 +42,7 @@ namespace MyCheckpoint.Services.External
 
         public async Task<IEnumerable<RawgGenreSummary>> GetGenresAsync()
         {
-            // RAWG solo tiene ~19 géneros en total; con page_size=40 entran
-            // todos en una sola página, sin tener que paginar.
+
             var response = await _httpClient.GetFromJsonAsync<RawgGenreListResponse>(
                 $"genres?page_size=40&key={_apiKey}");
 

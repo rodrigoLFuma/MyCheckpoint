@@ -4,13 +4,6 @@ import { Api } from '../../../api/api';
 import { apiUserGameIdLikePost$Json } from '../../../api/fn/user-game/api-user-game-id-like-post-json';
 import { apiUserGameIdLikeDelete$Json } from '../../../api/fn/user-game/api-user-game-id-like-delete-json';
 
-/**
- * Botón de "me gusta" de una reseña. Habla con la API por su cuenta (solo
- * necesita el reviewId), con estado optimista local: al pulsar, manda lo que
- * devuelve la API sobre lo que venga por input, para no depender de que el
- * padre recargue la lista entera. Sin sesión iniciada se muestra el conteo
- * pero no es interactivo.
- */
 @Component({
   selector: 'app-like-button',
   templateUrl: './like-button.html',
@@ -51,7 +44,7 @@ export class LikeButton {
       this.localLikeCount.set(updated.likeCount);
       this.localLikedByMe.set(updated.likedByMe);
     } catch {
-      // Si falla, se queda como estaba: no hay nada más que mostrar aquí.
+
     } finally {
       this.isToggling.set(false);
     }

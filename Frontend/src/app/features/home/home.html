@@ -1,38 +1,8 @@
-<!--
-  Patrón del logo (.logo-pattern): capa "position: fixed" a pantalla
-  completa (definida en styles.css), fuera del flujo normal — se ve por
-  TODA la página, centro y márgenes por igual. El degradado de fondo
-  (.landing-backdrop), en cambio, va DENTRO del wrapper de abajo en vez de
-  fijo a la ventana: si fuera "fixed" su transición de color quedaría
-  anclada a coordenadas de la ventana, no del documento, y al hacer scroll
-  el borde inferior del hero (que sí se mueve con el documento) dejaría de
-  coincidir con el tono del degradado en ese punto — una costura de color
-  visible que se desplazaba al hacer scroll. Anclado al wrapper (que mide
-  igual que todo el contenido de la landing) el degradado se mueve con el
-  hero y siempre coincide, dando un fundido limpio de la imagen al fondo.
-  Todos los botones llevan a rutas que exigen sesión, así que el propio
-  guard te manda a /login y te trae de vuelta.
--->
 <div class="logo-pattern"></div>
 
 <div class="relative">
   <div class="landing-backdrop"></div>
 
-  <!--
-    Hero a pantalla completa: se sale del ancho de la columna (max-w-3xl)
-    con el mismo truco "left-1/2 w-screen -translate-x-1/2" que usa el
-    patrón de fondo, para que sea un auténtico banner de borde a borde en
-    vez de una tarjeta pequeña metida dentro del contenido. El
-    "-mt-[57px]" lo sube por detrás de la navbar (que mide justo eso) para
-    que la imagen llegue hasta el borde superior real de la ventana; la
-    navbar, translúcida y con z-index propio, queda flotando encima. El
-    degradado interior (from-bg en la base, hacia transparente arriba) es
-    el que funde la imagen con el fondo de la página en su borde inferior.
-  -->
-  <!--
-    Texto del hero alineado a la derecha (en vez de centrado): deja ver
-    más imagen a la izquierda y rompe la simetría estricta de la landing.
-  -->
   <section
     class="hero-bg relative left-1/2 -mt-[57px] flex min-h-[calc(70vh+57px)] w-screen -translate-x-1/2 flex-col items-end justify-center overflow-hidden pt-[57px]"
   >
@@ -59,9 +29,10 @@
       <h2 class="font-display text-2xl text-ink">Lo mejor valorado</h2>
 
       @if (landingTopGames().length > 0) {
-        <div class="rail mx-auto mt-8 flex max-w-3xl gap-4 overflow-x-auto px-2 pb-2">
+
+        <div class="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-4 px-2 pb-2">
           @for (entry of landingTopGames(); track entry.game.id) {
-            <div class="w-36 shrink-0 transition-transform hover:-translate-y-1">
+            <div class="w-36 transition-transform hover:-translate-y-1">
               <app-game-card [name]="entry.game.name" [imageUrl]="entry.game.coverImageUrl" [releaseDate]="entry.game.releaseDate" />
             </div>
           }
@@ -77,12 +48,9 @@
     </section>
 
     @if (featuredReview(); as review) {
-      <!-- Cita destacada tipo editorial: texto anclado a la izquierda
-           sobre un scrim que se desvanece hacia la derecha, dejando la
-           carátula del juego visible en ese lado en vez de centrar todo
-           sobre la imagen entera. -->
+
       <section class="relative mt-24 overflow-hidden rounded-3xl py-24">
-        <!-- Carátula del propio juego reseñado, no una imagen fija: cambia con la reseña destacada. -->
+
         <img [src]="review.game.coverImageUrl" [alt]="review.game.name" class="absolute inset-0 h-full w-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-r from-bg from-10% via-bg/75 via-55% to-bg/10 to-95%"></div>
         <div class="relative z-10 max-w-md px-8 md:px-12">

@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyCheckpoint.Data.Migrations
 {
-    /// <inheritdoc />
+
     public partial class MakeUserGameFieldsNullable : Migration
     {
-        /// <inheritdoc />
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
@@ -28,7 +28,6 @@ namespace MyCheckpoint.Data.Migrations
                 oldType: "timestamp with time zone");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(

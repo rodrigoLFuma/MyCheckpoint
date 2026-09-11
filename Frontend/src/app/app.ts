@@ -40,9 +40,7 @@ export class App {
     try {
       await this.authService.logout();
     } finally {
-      // Aunque la llamada al backend falle, cerramos la sesión en el
-      // cliente igualmente: la cookie HttpOnly expira sola y lo que
-      // importa es que la UI refleje la intención del usuario.
+
       this.authService.clearLocalSession();
       this.router.navigateByUrl('/login');
     }

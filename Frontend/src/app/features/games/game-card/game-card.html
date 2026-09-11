@@ -1,10 +1,8 @@
-<div
-  class="overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-ink-faint"
->
+<div class="relative rounded-lg border border-border bg-surface transition-colors hover:border-ink-faint">
   @if (imageUrl()) {
-    <img [src]="imageUrl()" [alt]="name()" class="h-40 w-full object-cover" />
+    <img [src]="imageUrl()" [alt]="name()" class="h-40 w-full rounded-t-lg object-cover" />
   } @else {
-    <div class="flex h-40 w-full items-center justify-center bg-surface-hover text-3xl font-bold text-ink-faint">
+    <div class="flex h-40 w-full items-center justify-center rounded-t-lg bg-surface-hover text-3xl font-bold text-ink-faint">
       {{ name().charAt(0).toUpperCase() }}
     </div>
   }
@@ -18,4 +16,9 @@
 
     <ng-content></ng-content>
   </div>
+
+  @if (link(); as target) {
+
+    <a [routerLink]="target" [attr.aria-label]="name()" class="absolute inset-0 z-0 rounded-lg"></a>
+  }
 </div>

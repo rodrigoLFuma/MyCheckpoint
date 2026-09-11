@@ -7,6 +7,12 @@ using System.Text;
 
 namespace MyCheckpoint.Data.Repositories
 {
+    public class GameRatingSummary
+    {
+        public Game Game { get; set; } = null!;
+        public double AverageRate { get; set; }
+        public int RatingsCount { get; set; }
+    }
     public class GameRepository : RepositoryBaseWithId<Game>, IGameRepository
     {
         public GameRepository(ApplicationDbContext context) : base(context)
@@ -54,8 +60,6 @@ namespace MyCheckpoint.Data.Repositories
                     .FirstOrDefaultAsync(g => g.RawgId == rawgId);
         }
 
-        // Nº mínimo de votos para que la nota de un juego cuente con
-        // confianza casi plena en el ranking (ver fórmula más abajo).
         private const double MinVotesForFullConfidence = 5;
 
         public async Task<IEnumerable<GameRatingSummary>> GetTopRatedAsync(int skip, int take)
@@ -69,12 +73,6 @@ namespace MyCheckpoint.Data.Repositories
             if (ratings.Count == 0)
                 return Enumerable.Empty<GameRatingSummary>();
 
-            // Media pura, no: un juego con una sola reseña de 6 no debería
-            // ganar a uno con cien reseñas de media 5.9. Se usa una media
-            // bayesiana ponderada (la misma idea que el Top 250 de IMDB):
-            // con pocos votos (v) la nota se atempera hacia la media global
-            // (C); con muchos votos se acerca a la media real del juego (R).
-            //   NotaPonderada = (v / (v + m)) * R + (m / (v + m)) * C
             var globalAverage = await _context.Set<UserGame>()
                     .Where(ug => ug.Rate != null)
                     .AverageAsync(ug => ug.Rate!.Value);
@@ -94,8 +92,6 @@ namespace MyCheckpoint.Data.Repositories
                     .ToListAsync();
             var gamesById = games.ToDictionary(g => g.Id);
 
-            // Where(Contains) no conserva el orden del ranking, así que se
-            // reordena a mano según la lista ya ordenada por nota media.
             return ranked.Select(r => new GameRatingSummary
             {
                 Game = gamesById[r.GameId],

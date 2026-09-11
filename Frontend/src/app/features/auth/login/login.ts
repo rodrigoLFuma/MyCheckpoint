@@ -23,9 +23,7 @@ export class Login {
     this.isSubmitting.set(true);
     try {
       await this.authService.login({ emailOrUserName: this.emailOrUserName, password: this.password });
-      // Si nos han mandado aquí desde un botón que exigía sesión (p. ej.
-      // "Social" sin haber iniciado sesión), volvemos a esa misma página en
-      // vez de dejar siempre en el inicio.
+
       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
       this.router.navigateByUrl(returnUrl || '/');
     } catch {

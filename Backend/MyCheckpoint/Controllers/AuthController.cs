@@ -47,11 +47,7 @@ namespace MyCheckpoint.Controllers
         {
             HttpOnly = true,
             Secure = true,
-            // El frontend (http://localhost:4200) y esta API (https://localhost:7018)
-            // tienen esquemas distintos, así que el navegador los trata como sitios
-            // distintos ("schemeful same-site"). Strict/Lax bloquearían la cookie en
-            // cualquier petición cross-origin; None es lo correcto aquí, no un parche
-            // — la protección real la da la política de CORS (origen exacto + credenciales).
+
             SameSite = SameSiteMode.None
         };
     }

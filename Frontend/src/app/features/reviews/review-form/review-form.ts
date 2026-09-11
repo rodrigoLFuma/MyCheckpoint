@@ -16,20 +16,10 @@ import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 import { Select, SelectOption } from '../../../shared/components/select/select';
 import { RatingPicker } from '../../../shared/components/rating-picker/rating-picker';
 
-// "Pendiente" solo tiene sentido al crear (no has jugado nada todavía): al
-// editar una reseña ya existente deja de aplicar, igual que en Mi biblioteca.
 const CREATE_STATUSES = ['Jugando', 'Completado', 'Abandonado', 'Pendiente'] as const;
 const EDIT_STATUSES = ['Jugando', 'Completado', 'Abandonado'] as const;
 const REVIEW_MAX_LENGTH = 2000;
 
-/**
- * Pantalla completa para crear o editar una reseña: a donde llevan tanto
- * "Crear reseña" (búsqueda, popup de descubrimiento) como "Editar" en Mi
- * biblioteca, en vez de un formulario metido dentro de la tarjeta pequeña.
- *
- * /reviews/new/:gameId → crear (el juego ya está importado en la BD local)
- * /reviews/:id/edit     → editar una reseña propia existente
- */
 @Component({
   selector: 'app-review-form',
   imports: [FormsModule, DatePipe, Skeleton, Select, RatingPicker],
@@ -132,8 +122,7 @@ export class ReviewForm implements OnInit {
           body: { status: this.status, rate: this.rate, title: this.title || null, review: this.review || null },
         });
       } else if (this.status === 'Pendiente') {
-        // "Pendiente" no es una reseña: solo apunta el juego en tu lista de
-        // backlog, sin crear un UserGame.
+
         await this.api.invoke(apiGameListPendingItemsPost, { body: { gameId: this.gameId! } });
       } else {
         await this.api.invoke(apiUserGamePost$Json, {

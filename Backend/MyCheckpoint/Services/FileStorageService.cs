@@ -10,8 +10,6 @@ namespace MyCheckpoint.Services
         private const long MaxSizeBytes = 5 * 1024 * 1024;
         private const string ProfilePicturesFolder = "uploads/profile-pictures";
 
-        // Se valida por content-type, no por la extensión del nombre de
-        // archivo que manda el cliente (esa no es de fiar).
         private static readonly Dictionary<string, string> AllowedContentTypes = new()
         {
             ["image/jpeg"] = ".jpg",

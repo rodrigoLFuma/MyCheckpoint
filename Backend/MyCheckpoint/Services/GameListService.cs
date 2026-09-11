@@ -163,8 +163,6 @@ namespace MyCheckpoint.Services
             if (pendingListSummary is null)
                 return Enumerable.Empty<int>();
 
-            // GetByUserIdAsync no incluye GameListItems; hay que volver a
-            // pedir la lista por Id (ese sí los incluye) para leerlos.
             var pendingList = await _gameListRepository.GetByIdAsync(pendingListSummary.Id);
             return pendingList?.GameListItems.Select(gli => gli.GameId) ?? Enumerable.Empty<int>();
         }
@@ -235,11 +233,6 @@ namespace MyCheckpoint.Services
             await _unitOfWork.SaveChangesAsync();
         }
 
-        /// <summary>
-        /// Rellena FollowerCount y FollowedByMe en lote (nada de una consulta
-        /// por cada lista). viewerUserId nulo cuando nadie ha iniciado sesión:
-        /// se rellena el conteo igualmente, FollowedByMe se queda en false.
-        /// </summary>
         private async Task<IEnumerable<GameListDto>> EnrichWithFollowInfoAsync(IEnumerable<GameListDto> dtos, int? viewerUserId)
         {
             var list = dtos.ToList();

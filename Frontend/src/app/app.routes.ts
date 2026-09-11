@@ -5,9 +5,7 @@ import { adminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   {
-    // Sin guard a propósito: "/" es la misma landing pública para todo el
-    // mundo, con sesión iniciada o sin ella (ya no hay un panel personal
-    // aparte para usuarios logueados).
+
     path: '',
     loadComponent: () => import('./features/home/home').then((m) => m.Home),
   },
@@ -67,16 +65,6 @@ export const routes: Routes = [
     loadComponent: () => import('./features/social/user-following/user-following').then((m) => m.UserFollowing),
   },
   {
-    path: 'discover/reviews',
-    canActivate: [authGuard],
-    loadComponent: () => import('./features/discover/discover-reviews/discover-reviews').then((m) => m.DiscoverReviews),
-  },
-  {
-    path: 'discover/users',
-    canActivate: [authGuard],
-    loadComponent: () => import('./features/discover/discover-users/discover-users').then((m) => m.DiscoverUsers),
-  },
-  {
     path: 'profile',
     canActivate: [authGuard],
     loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
@@ -97,8 +85,7 @@ export const routes: Routes = [
     loadComponent: () => import('./features/lists/lists').then((m) => m.Lists),
   },
   {
-    // Antes de 'lists/:id': Angular Router mira el orden de declaración, no
-    // la especificidad, así que un :id ahí delante se comería "discover".
+
     path: 'lists/discover',
     canActivate: [authGuard],
     loadComponent: () => import('./features/lists/discover-lists/discover-lists').then((m) => m.DiscoverLists),

@@ -4,12 +4,6 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Api } from '../../../api/api';
 import { apiGameImportRawgIdPost$Json } from '../../../api/fn/game/api-game-import-rawg-id-post-json';
 
-/**
- * Botón para reseñar un juego encontrado en RAWG. Solo importa el juego a
- * la BD local (import es idempotente: si ya existe por RawgId, no duplica,
- * solo lo devuelve) y navega a la pantalla completa de "nueva reseña"
- * (/reviews/new/:gameId), donde se rellena el formulario.
- */
 @Component({
   selector: 'app-create-review',
   imports: [RouterLink],

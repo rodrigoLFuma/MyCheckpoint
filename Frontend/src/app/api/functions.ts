@@ -213,10 +213,6 @@ export type { ApiUserGameTopLikedGet$Plain$Params as ApiUserGameTopLikedGet$Plai
 export { apiUserGameTopLikedGet$Plain as apiUserGameTopLikedGet$Plain } from './fn/user-game/api-user-game-top-liked-get-plain';
 export type { ApiUserGameTopLikedGet$Json$Params as ApiUserGameTopLikedGet$Json$Params } from './fn/user-game/api-user-game-top-liked-get-json';
 export { apiUserGameTopLikedGet$Json as apiUserGameTopLikedGet$Json } from './fn/user-game/api-user-game-top-liked-get-json';
-export type { ApiUserGameDiscoverReviewsGet$Plain$Params as ApiUserGameDiscoverReviewsGet$Plain$Params } from './fn/user-game/api-user-game-discover-reviews-get-plain';
-export { apiUserGameDiscoverReviewsGet$Plain as apiUserGameDiscoverReviewsGet$Plain } from './fn/user-game/api-user-game-discover-reviews-get-plain';
-export type { ApiUserGameDiscoverReviewsGet$Json$Params as ApiUserGameDiscoverReviewsGet$Json$Params } from './fn/user-game/api-user-game-discover-reviews-get-json';
-export { apiUserGameDiscoverReviewsGet$Json as apiUserGameDiscoverReviewsGet$Json } from './fn/user-game/api-user-game-discover-reviews-get-json';
 export type { ApiUserGameFollowingActivityGet$Plain$Params as ApiUserGameFollowingActivityGet$Plain$Params } from './fn/user-game/api-user-game-following-activity-get-plain';
 export { apiUserGameFollowingActivityGet$Plain as apiUserGameFollowingActivityGet$Plain } from './fn/user-game/api-user-game-following-activity-get-plain';
 export type { ApiUserGameFollowingActivityGet$Json$Params as ApiUserGameFollowingActivityGet$Json$Params } from './fn/user-game/api-user-game-following-activity-get-json';

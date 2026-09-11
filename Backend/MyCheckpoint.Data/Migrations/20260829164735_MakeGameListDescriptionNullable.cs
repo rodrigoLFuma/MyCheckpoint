@@ -4,10 +4,10 @@
 
 namespace MyCheckpoint.Data.Migrations
 {
-    /// <inheritdoc />
+
     public partial class MakeGameListDescriptionNullable : Migration
     {
-        /// <inheritdoc />
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
@@ -19,7 +19,6 @@ namespace MyCheckpoint.Data.Migrations
                 oldType: "text");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(

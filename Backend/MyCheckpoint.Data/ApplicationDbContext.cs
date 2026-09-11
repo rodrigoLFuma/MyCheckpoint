@@ -11,7 +11,7 @@ namespace MyCheckpoint.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
+
         }
         public DbSet<Game> Games => Set<Game>();
         public DbSet<GameList> GameLists => Set<GameList>();
@@ -67,10 +67,6 @@ namespace MyCheckpoint.Data
             modelBuilder.Entity<ReviewLike>()
                 .HasKey(rl => new { rl.UserId, rl.UserGameId });
 
-            // Igual que Follow: dos FKs a User en la misma entidad, así que
-            // ambas necesitan Restrict para evitar el ciclo de cascada.
-            // DeleteMyAccountAsync borra a mano las notificaciones antes de
-            // borrar al usuario, igual que ya hace con los follows.
             modelBuilder.Entity<Notification>()
                 .HasOne(n => n.RecipientUser)
                 .WithMany()
@@ -92,11 +88,6 @@ namespace MyCheckpoint.Data
             modelBuilder.Entity<GameListItem>()
                 .HasKey(x => new { x.GameListId, x.GameId });
 
-            // Solo una nav property de tipo User (a diferencia de Follow o
-            // Notification), así que aquí la convención por defecto basta:
-            // sin Restrict, sin problema (mismo patrón que ya funciona en
-            // ReviewLike, que tiene la misma forma de "converge en User por
-            // dos caminos" y no dio ningún problema en Postgres).
             modelBuilder.Entity<GameListFollow>()
                 .HasKey(glf => new { glf.UserId, glf.GameListId });
 

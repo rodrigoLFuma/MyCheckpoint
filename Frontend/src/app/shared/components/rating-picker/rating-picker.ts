@@ -1,13 +1,6 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-/**
- * Selector de puntuación como fila de casillas numeradas pegadas (0 a
- * max, ambos incluidos), al estilo de un control segmentado. Al pasar el
- * ratón por encima de un número se resaltan todas las casillas desde el 0
- * hasta esa, para previsualizar la puntuación antes de confirmarla con clic.
- * Implementa ControlValueAccessor para poder usarse con [(ngModel)].
- */
 @Component({
   selector: 'app-rating-picker',
   templateUrl: './rating-picker.html',
@@ -29,7 +22,6 @@ export class RatingPicker implements ControlValueAccessor {
   protected hovered = signal<number | null>(null);
   protected isDisabled = signal(false);
 
-  // El valor a pintar: el de hover si el ratón está encima, si no el real.
   protected displayValue = computed(() => this.hovered() ?? this.value());
 
   private onChange: (value: number) => void = () => {};

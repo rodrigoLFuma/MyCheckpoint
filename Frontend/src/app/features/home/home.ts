@@ -7,14 +7,6 @@ import { UserGameDto } from '../../api/models/user-game-dto';
 import { TopRatedGameDto } from '../../api/models/top-rated-game-dto';
 import { GameCard } from '../games/game-card/game-card';
 
-/**
- * Home pública: la misma landing para todo el mundo, con sesión iniciada o
- * sin ella (antes había un panel personal aparte para usuarios logueados;
- * se quitó para que "/" sea siempre esta única vista). Muestra los juegos
- * mejor valorados y una reseña destacada con datos reales de la app; los
- * botones llevan a rutas que exigen sesión, así que sin ella el propio
- * guard te manda a /login y te trae de vuelta a donde ibas.
- */
 @Component({
   selector: 'app-home',
   imports: [RouterLink, GameCard],
@@ -33,9 +25,9 @@ export class Home implements OnInit {
 
   private async loadLandingTopGames(): Promise<void> {
     try {
-      this.landingTopGames.set(await this.api.invoke(apiGameTopRatedGet$Json, { take: 10 }));
+      this.landingTopGames.set(await this.api.invoke(apiGameTopRatedGet$Json, { take: 5 }));
     } catch {
-      // Sin juegos puntuados todavía, el carrusel simplemente no aparece.
+
     }
   }
 
@@ -44,7 +36,7 @@ export class Home implements OnInit {
       const [top] = await this.api.invoke(apiUserGameTopLikedGet$Json, { take: 1 });
       this.featuredReview.set(top ?? null);
     } catch {
-      // Sin reseñas destacadas todavía, esa sección simplemente no aparece.
+
     }
   }
 }

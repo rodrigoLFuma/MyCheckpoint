@@ -1,7 +1,7 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
 import { Api } from '../../../api/api';
 import { apiUserSearchGet$Json } from '../../../api/fn/user/api-user-search-get-json';
@@ -22,7 +22,7 @@ const ACTIVITY_PREVIEW_COUNT = 3;
 
 @Component({
   selector: 'app-user-search',
-  imports: [FormsModule, RouterLink, DatePipe, UserAvatar, Skeleton],
+  imports: [FormsModule, RouterLink, DatePipe, NgClass, UserAvatar, Skeleton],
   templateUrl: './user-search.html',
 })
 export class UserSearch implements OnInit {
@@ -35,25 +35,16 @@ export class UserSearch implements OnInit {
   errorMessage = signal<string | null>(null);
   hasSearched = signal(false);
 
-  // Recomendación por defecto, antes de que el usuario busque nada
-  // explícitamente: un único listado (no agrupado por categoría) de gente
-  // que comparte tus géneros favoritos, ordenado por cuántos compartís y
-  // luego por número de seguidores (así lo hace GetSimilarUsersAsync en el
-  // backend). Si no tienes géneros favoritos marcados, no hay nada "afín"
-  // que recomendar todavía, así que se enseña en su lugar la gente con más
-  // seguidores de toda la app.
   protected hasFavoriteGenres = computed(() => (this.authService.user()?.favoriteGenres?.length ?? 0) > 0);
   protected similarUsers = signal<UserSummaryDto[]>([]);
   protected topFollowed = signal<RankedUserDto[]>([]);
   protected isLoadingRecommended = signal(false);
 
-  // Panel de notificaciones recientes junto al buscador: un adelanto, no
-  // sustituye a /notifications (aquí no se marcan como leídas).
+  protected recommendedExpanded = signal(false);
+
   protected notifications = signal<NotificationDto[]>([]);
   protected isLoadingNotifications = signal(true);
 
-  // Mismo patrón para "Actividad": un adelanto de las últimas reseñas de la
-  // gente que sigues, con enlace a /social/activity para ver todas.
   protected activityPreview = signal<UserGameDto[]>([]);
   protected isLoadingActivity = signal(true);
 
@@ -70,7 +61,7 @@ export class UserSearch implements OnInit {
     try {
       this.similarUsers.set(await this.api.invoke(apiUserSimilarGet$Json, { take: RECOMMENDED_COUNT }));
     } catch {
-      // Si falla, simplemente no se muestran recomendaciones.
+
     } finally {
       this.isLoadingRecommended.set(false);
     }
@@ -81,7 +72,7 @@ export class UserSearch implements OnInit {
     try {
       this.topFollowed.set(await this.api.invoke(apiUserTopFollowedGet$Json, { take: RECOMMENDED_COUNT }));
     } catch {
-      // Si falla, simplemente no se muestran recomendaciones.
+
     } finally {
       this.isLoadingRecommended.set(false);
     }
@@ -92,7 +83,7 @@ export class UserSearch implements OnInit {
     try {
       this.notifications.set(await this.api.invoke(apiNotificationGet$Json, { skip: 0, take: NOTIFICATIONS_PREVIEW_COUNT }));
     } catch {
-      // Si falla, el panel simplemente queda vacío.
+
     } finally {
       this.isLoadingNotifications.set(false);
     }
@@ -105,17 +96,24 @@ export class UserSearch implements OnInit {
         await this.api.invoke(apiUserGameFollowingActivityGet$Json, { skip: 0, take: ACTIVITY_PREVIEW_COUNT }),
       );
     } catch {
-      // Si falla, el panel simplemente queda vacío.
+
     } finally {
       this.isLoadingActivity.set(false);
     }
   }
 
   async onSubmit(): Promise<void> {
+    const term = this.term.trim();
+
+    if (!term) {
+      this.hasSearched.set(false);
+      return;
+    }
+
     this.errorMessage.set(null);
     this.isSearching.set(true);
     try {
-      const found = await this.api.invoke(apiUserSearchGet$Json, { term: this.term.trim() || undefined });
+      const found = await this.api.invoke(apiUserSearchGet$Json, { term });
       this.results.set(found);
       this.hasSearched.set(true);
     } catch {

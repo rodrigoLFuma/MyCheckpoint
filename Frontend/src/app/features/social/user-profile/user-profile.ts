@@ -82,15 +82,13 @@ export class UserProfile implements OnInit {
       this.followerCount.set(followers.length);
       this.followingCount.set(following.length);
 
-      // Las listas que sigues (de otros) solo se ven en tu propio perfil,
-      // nunca en el de nadie más te busque a ti.
       if (isOwn) {
         try {
           const followedLists = await this.api.invoke(apiGameListFollowedGet$Json);
           this.followedListCount.set(followedLists.length);
           this.followedLists.set(followedLists.slice(0, PREVIEW_COUNT));
         } catch {
-          // Sin listas seguidas, la sección se queda vacía.
+
         }
       }
 
@@ -98,7 +96,7 @@ export class UserProfile implements OnInit {
         try {
           this.isFollowing.set(await this.api.invoke(apiFollowIsFollowingFollowedIdGet$Json, { followedId: id }));
         } catch {
-          // Si falla la comprobación, se queda como "no siguiendo".
+
         }
       }
     } catch {

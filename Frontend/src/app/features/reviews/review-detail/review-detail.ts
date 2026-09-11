@@ -9,12 +9,6 @@ import { UserAvatar } from '../../../shared/components/user-avatar/user-avatar';
 import { LikeButton } from '../../../shared/components/like-button/like-button';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
-/**
- * Vista completa de una reseña: a donde lleva pulsar en cualquier tarjeta de
- * reseña (ReviewCard o Mi biblioteca), en vez de desplegar el texto ahí
- * mismo. Pública (como la vista de un perfil), no solo para tus reseñas: si
- * es tuya se ofrece "Editar"; si es de otra persona, "Añadir a mis reseñas".
- */
 @Component({
   selector: 'app-review-detail',
   imports: [DatePipe, RouterLink, UserAvatar, LikeButton, Skeleton],

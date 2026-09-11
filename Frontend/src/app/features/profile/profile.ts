@@ -8,11 +8,6 @@ import { CategoryDto } from '../../api/models/category-dto';
 import { UserAvatar } from '../../shared/components/user-avatar/user-avatar';
 import { extractErrorDetail } from '../../shared/utils/http-error';
 
-/**
- * Editar tus datos públicos (nombre, avatar, bio, géneros favoritos). Se
- * llega aquí desde el botón "Editar perfil" de tu propio perfil público
- * (/users/:id); seguridad y borrar cuenta viven en /settings.
- */
 @Component({
   selector: 'app-profile',
   imports: [FormsModule, RouterLink, UserAvatar],
@@ -26,9 +21,6 @@ export class Profile implements OnInit {
   protected isSubmitting = signal(false);
   protected saved = signal(false);
 
-  // La foto de perfil tiene su propio endpoint (sube/borra un archivo) y por
-  // tanto su propio estado de carga/error, independiente del resto del
-  // formulario (nombre, bio, géneros), que se guarda aparte con "Guardar".
   protected isUploadingPicture = signal(false);
   protected pictureError = signal<string | null>(null);
 
@@ -60,7 +52,7 @@ export class Profile implements OnInit {
       this.pictureError.set(extractErrorDetail(err) ?? 'No se ha podido subir la imagen.');
     } finally {
       this.isUploadingPicture.set(false);
-      // Para poder volver a elegir el mismo archivo si se quiere reintentar.
+
       input.value = '';
     }
   }
@@ -81,7 +73,7 @@ export class Profile implements OnInit {
     try {
       this.categories.set(await this.api.invoke(apiCategoryGet$Json));
     } catch {
-      // Sin categorías, el selector de géneros favoritos queda vacío.
+
     }
   }
 

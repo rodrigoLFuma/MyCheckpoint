@@ -6,13 +6,6 @@ import { apiGameRefreshPost$Json } from '../../../api/fn/game/api-game-refresh-p
 import { GameDto } from '../../../api/models/game-dto';
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
-/**
- * Herramienta admin para refrescar desde RAWG los datos de juegos ya
- * importados (se quedan congelados desde el momento en que se importaron:
- * nombre, portada, descripción, Metacritic, géneros...). Cada juego
- * seleccionado supone una llamada a RAWG, así que la selección es
- * deliberada, no automática.
- */
 @Component({
   selector: 'app-manage-games',
   imports: [DatePipe, Skeleton],

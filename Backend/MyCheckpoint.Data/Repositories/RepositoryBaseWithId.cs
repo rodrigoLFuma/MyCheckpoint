@@ -9,10 +9,10 @@ namespace MyCheckpoint.Data.Repositories
 {
     public class RepositoryBaseWithId<T> : RepositoryBase<T>, IRepositoryBaseWithId<T> where T : class, IEntity
     {
-        
+
         public RepositoryBaseWithId(ApplicationDbContext context) : base(context)
         {
-            
+
         }
 
         public virtual async Task<T?> GetByIdAsync(int id)

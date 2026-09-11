@@ -2,12 +2,6 @@ import { Component, input } from '@angular/core';
 
 const DEFAULT_LIMIT = 30;
 
-/**
- * Texto que se recorta a `limit` caracteres con "…" si hace falta. Puramente
- * visual, sin interacción propia: se usa siempre dentro de una tarjeta que ya
- * es un enlace a la reseña completa (ReviewCard, Mi biblioteca), así que
- * "ver el resto" ya lo resuelve pulsar en cualquier parte de la tarjeta.
- */
 @Component({
   selector: 'app-truncated-text',
   templateUrl: './truncated-text.html',

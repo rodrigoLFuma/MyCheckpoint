@@ -10,7 +10,5 @@ export const authGuard: CanActivateFn = (_route, state) => {
     return true;
   }
 
-  // Se guarda a dónde intentaba ir para volver ahí justo después de
-  // iniciar sesión, en vez de dejarlo siempre en el inicio.
   return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } });
 };

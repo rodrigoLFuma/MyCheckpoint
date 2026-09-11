@@ -45,7 +45,7 @@ export class Lists implements OnInit {
     try {
       this.followedLists.set(await this.api.invoke(apiGameListFollowedGet$Json));
     } catch {
-      // Sin listas seguidas, la sección se queda vacía.
+
     } finally {
       this.isLoadingFollowed.set(false);
     }

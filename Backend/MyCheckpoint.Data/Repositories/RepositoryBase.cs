@@ -21,7 +21,7 @@ namespace MyCheckpoint.Data.Repositories
         {
             _context.Set<T>().Add(entity);
             return Task.CompletedTask;
-            
+
         }
         public void Update(T entity)
         {

@@ -108,9 +108,6 @@ namespace MyCheckpoint.Services
             if (excludeUserId is not null)
                 query = query.Where(u => u.Id != excludeUserId);
 
-            // Followeds = filas de Follow donde este usuario es el "Followed",
-            // es decir, la gente que LE sigue a él (contraintuitivo por el
-            // nombre, pero así está modelada la relación en ApplicationDbContext).
             var users = await query
                 .OrderByDescending(u => u.Followeds.Count)
                 .ThenBy(u => u.CreatedAt)
@@ -133,9 +130,6 @@ namespace MyCheckpoint.Services
         {
             var myGenreIds = await GetFavoriteGenreCategoryIdsAsync(userId);
 
-            // Un único listado (a diferencia de top-by-favorites, que agrupa
-            // por categoría): ordenado por cuántos géneros favoritos
-            // compartís, y solo como desempate por nº de seguidores.
             var users = await _userManager.Users
                 .Where(u => u.Id != userId && u.FavoriteGenres.Any(fg => myGenreIds.Contains(fg.CategoryId)))
                 .Select(u => new
@@ -223,8 +217,6 @@ namespace MyCheckpoint.Services
             if (!result.Succeeded)
                 throw new ConflictException(string.Join(" ", result.Errors.Select(e => e.Description)));
 
-            // Solo después de confirmar que el cambio se guardó: si algo falla
-            // antes, la foto anterior sigue siendo la válida y no se toca.
             _fileStorageService.DeleteManagedFile(previousUrl);
 
             return _mapper.Map<UserDto>(user);
@@ -299,26 +291,16 @@ namespace MyCheckpoint.Services
             return dto;
         }
 
-        // Compartida entre "borrar mi cuenta" y "borrar a un usuario desde el
-        // panel de admin": ambas necesitan la misma limpieza manual de filas
-        // antes de poder borrar al usuario (ver comentarios de abajo).
         private async Task DeleteUserCoreAsync(int userId)
         {
             var user = await _userManager.FindByIdAsync(userId.ToString())
                 ?? throw new NotFoundException("El usuario no existe.");
 
-            // Follow tiene OnDelete(Restrict) en sus dos relaciones con User
-            // (evita el problema de doble cascada sobre la misma tabla), así
-            // que hay que borrar a mano las filas de follows antes de poder
-            // borrar al usuario.
             var followers = await _followRepository.GetFollowersAsync(userId);
             var following = await _followRepository.GetFollowingAsync(userId);
             foreach (var follow in followers.Concat(following))
                 _followRepository.Delete(follow);
 
-            // Notification tiene el mismo problema de doble FK a User que
-            // Follow: hay que borrar a mano tanto las que recibió como las
-            // que generó él mismo.
             var notifications = await _notificationRepository.GetAllForUserAsync(userId);
             foreach (var notification in notifications)
                 _notificationRepository.Delete(notification);

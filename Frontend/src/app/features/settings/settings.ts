@@ -4,10 +4,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { extractErrorDetail } from '../../shared/utils/http-error';
 
-/**
- * Seguridad (cambio de contraseña) y zona de peligro (borrar cuenta) — antes
- * vivían dentro de /profile, ahora separadas de la edición de datos públicos.
- */
 @Component({
   selector: 'app-settings',
   imports: [FormsModule],

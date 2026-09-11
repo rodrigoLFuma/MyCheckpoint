@@ -29,14 +29,6 @@ namespace MyCheckpoint.Controllers
             return Ok(await _userGameService.GetTopLikedAsync(skip, take, this.GetUserIdOrNull()));
         }
 
-        [HttpGet("discover-reviews")]
-        [Authorize]
-        public async Task<ActionResult<IEnumerable<UserGameDto>>> DiscoverReviews(
-            [FromQuery] int skip = 0, [FromQuery] int take = 6)
-        {
-            return Ok(await _userGameService.GetDiscoverReviewsAsync(this.GetUserId(), skip, take));
-        }
-
         [HttpGet("following-activity")]
         [Authorize]
         public async Task<ActionResult<IEnumerable<UserGameDto>>> FollowingActivity(

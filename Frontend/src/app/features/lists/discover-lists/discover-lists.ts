@@ -8,11 +8,6 @@ import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 const PAGE_SIZE = 10;
 
-/**
- * Listas públicas ajenas que contienen algún juego que ya tienes, ordenadas
- * por nº de seguidores — la recomendación es "juegos en común + popularidad",
- * no una búsqueda libre de listas.
- */
 @Component({
   selector: 'app-discover-lists',
   imports: [RouterLink, ListFollowButton, Skeleton],

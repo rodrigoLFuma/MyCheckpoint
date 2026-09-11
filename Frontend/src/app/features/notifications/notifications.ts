@@ -41,8 +41,6 @@ export class Notifications implements OnInit {
       this.loaded = notifications.length;
       this.hasMore.set(notifications.length === PAGE_SIZE);
 
-      // Entrar aquí es lo que marca todo como leído: se limpia el badge de
-      // la campana en la cabecera igual que se limpiaría en el servidor.
       await this.api.invoke(apiNotificationMarkReadPost);
       this.notificationsService.clear();
     } catch {

@@ -22,6 +22,5 @@ namespace MyCheckpoint.Data.Entities
 
         public List<GameCategory> GameCategories { get; set; }
 
-
     }
 }

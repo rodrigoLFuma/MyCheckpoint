@@ -33,17 +33,6 @@ namespace MyCheckpoint.Data.Repositories
                     .FirstOrDefaultAsync(ug => ug.UserId == userId && ug.GameId == gameId);
         }
 
-        public async Task<IEnumerable<UserGame>> GetOtherReviewsForGamesAsync(IEnumerable<int> gameIds, int excludeUserId)
-        {
-            return await _context.Set<UserGame>()
-                    .Include(ug => ug.Game)
-                    .Include(ug => ug.User)
-                    .Where(ug => gameIds.Contains(ug.GameId)
-                              && ug.UserId != excludeUserId
-                              && ug.Review != null && ug.Review != "")
-                    .ToListAsync();
-        }
-
         public async Task<IEnumerable<UserGame>> GetByUserIdsAsync(IEnumerable<int> userIds, int skip, int take)
         {
             return await _context.Set<UserGame>()
@@ -64,8 +53,6 @@ namespace MyCheckpoint.Data.Repositories
                     .ToListAsync();
             var countsById = likeCounts.ToDictionary(x => x.UserGameId, x => x.Count);
 
-            // El dataset de reseñas de un TFG es pequeño: se trae todo a
-            // memoria y se ordena ahí, igual que GetDiscoverReviewsAsync.
             var reviewed = await _context.Set<UserGame>()
                     .Include(ug => ug.Game)
                     .Include(ug => ug.User)

@@ -12,8 +12,6 @@ namespace MyCheckpoint.Mapping
                 .ForMember(dest => dest.Categories,
                     opt => opt.MapFrom(src => src.GameCategories.Select(gc => gc.Category)));
 
-            // GameCategories se reconcilia a mano en GameService (evita conflictos
-            // de AutoMapper reemplazando una colección ya rastreada por EF Core).
             CreateMap<GameAddDto, Game>()
                 .ForMember(dest => dest.GameCategories, opt => opt.Ignore());
 

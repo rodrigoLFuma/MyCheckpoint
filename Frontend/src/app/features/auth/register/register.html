@@ -1,24 +1,9 @@
-<!--
-  Solo el patrón del logo (igual que el resto de vistas públicas), sin el
-  degradado .landing-backdrop: ese va dentro de un contenedor limitado al
-  ancho de <main>, así que aquí se veía como un recuadro de color suelto
-  flotando encima de la tarjeta en vez de un fondo a pantalla completa
-  (en el home no pasa porque el hero se sale de <main> a ancho completo).
--->
 <div class="logo-pattern"></div>
 
 <div class="relative">
   <div class="relative flex min-h-[80vh] items-center justify-center">
     <div class="grid w-full max-w-4xl overflow-hidden rounded-2xl md:grid-cols-2">
-      <!--
-        Foto real de un mando bajo luces de neón (Frontend/public/auth-bg.jpg).
-        A diferencia del dibujo que había antes, esta foto no trae ninguna
-        zona oscura de por sí (tiene luces por todas partes), así que aquí
-        SÍ hace falta un velo oscuro uniforme por encima para que el texto
-        se lea bien caiga donde caiga — no es el mismo caso que el "fade"
-        que se quitó antes (aquello sobraba porque el dibujo ya traía su
-        propio degradado; esta foto no).
-      -->
+
       <div class="auth-bg relative hidden flex-col justify-between overflow-hidden p-10 text-white md:flex">
         <div class="absolute inset-0 bg-bg/55"></div>
 
@@ -38,11 +23,7 @@
       </div>
 
       <div class="flex flex-col justify-center bg-surface p-8 sm:p-10">
-        <!--
-          Dos pasos en vez de un único formulario largo: el 1º (cuenta)
-          queda del mismo tamaño aproximado que el de iniciar sesión; los
-          géneros favoritos —opcionales— van en un 2º paso aparte.
-        -->
+
         @if (step() === 1) {
           <h1 class="font-display mb-6 text-xl text-ink">Crear cuenta</h1>
 

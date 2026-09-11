@@ -8,7 +8,6 @@ namespace MyCheckpoint.Data.Repositories.Contracts
         Task<int> GetUnreadCountAsync(int recipientUserId);
         Task MarkAllAsReadAsync(int recipientUserId);
 
-        /// <summary>Como destinatario o como actor — para borrar todo al eliminar una cuenta.</summary>
         Task<IEnumerable<Notification>> GetAllForUserAsync(int userId);
     }
 }

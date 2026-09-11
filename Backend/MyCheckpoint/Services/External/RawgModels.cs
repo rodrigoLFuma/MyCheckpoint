@@ -5,7 +5,7 @@ namespace MyCheckpoint.Services.External
     public class RawgSearchResponse
     {
         public List<RawgGameSummary> Results { get; set; } = new();
-        // Si RAWG manda una URL aquí, hay más páginas de resultados.
+
         public string? Next { get; set; }
     }
 

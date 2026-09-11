@@ -10,9 +10,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      // Solo nos importa el 401 si ANTES estábamos logueados: la propia
-      // comprobación de sesión al arrancar la app (checkSession) también
-      // recibe 401 cuando no hay sesión, y eso es normal, no un problema.
+
       if (error.status === 401 && authService.isLoggedIn()) {
         authService.clearLocalSession();
         router.navigate(['/login']);

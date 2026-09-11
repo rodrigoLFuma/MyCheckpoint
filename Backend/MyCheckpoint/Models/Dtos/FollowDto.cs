@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyCheckpoint.Models.Dtos
 {
-    public class FollowDto 
+    public class FollowDto
     {
         [Required]
         public UserSummaryDto Follower { get; set; }

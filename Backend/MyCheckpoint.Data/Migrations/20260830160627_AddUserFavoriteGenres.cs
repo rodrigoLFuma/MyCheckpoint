@@ -4,10 +4,10 @@
 
 namespace MyCheckpoint.Data.Migrations
 {
-    /// <inheritdoc />
+
     public partial class AddUserFavoriteGenres : Migration
     {
-        /// <inheritdoc />
+
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -40,7 +40,6 @@ namespace MyCheckpoint.Data.Migrations
                 column: "CategoryId");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

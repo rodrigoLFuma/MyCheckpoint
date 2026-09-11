@@ -55,9 +55,10 @@
         [name]="userGame.game.name"
         [imageUrl]="userGame.game.coverImageUrl"
         [releaseDate]="userGame.game.releaseDate"
+        [link]="['/reviews', userGame.id]"
       >
         @if (pendingDeleteId() === userGame.id) {
-          <div class="mt-2 flex flex-col gap-2">
+          <div class="relative z-10 mt-2 flex flex-col gap-2">
             <p class="text-xs text-danger">¿Borrar esta reseña?</p>
             <div class="flex gap-2">
               <button
@@ -77,7 +78,7 @@
             </div>
           </div>
         } @else if (addingToListForGameId() === userGame.game.id) {
-          <div class="mt-2 flex flex-col gap-2">
+          <div class="relative z-10 mt-2 flex flex-col gap-2">
             @if (lists().length === 0) {
               <p class="text-xs text-ink-muted">No tienes listas todavía.</p>
             } @else {
@@ -108,25 +109,16 @@
             </div>
           </div>
         } @else {
-          <!--
-            Toda la vista previa lleva a la reseña completa (igual que
-            ReviewCard): antes el "Ver más" de la descripción solo aparecía
-            si el texto era largo, así que una reseña corta o sin texto no
-            tenía nada clicable. El botón de editar (lápiz) se quitó de
-            aquí: para eso está pulsar en la reseña, que ahora sí lleva a
-            /reviews/:id, y desde ahí (si es tuya) hay un botón "Editar".
-          -->
-          <a [routerLink]="['/reviews', userGame.id]" class="mt-2 block text-sm">
-            <p class="font-semibold text-ink">{{ userGame.status }} · {{ userGame.rate }}/10</p>
-            @if (userGame.title) {
-              <p class="mt-1 font-semibold text-ink">{{ userGame.title }}</p>
-            }
-            <div class="mt-1 text-ink-muted">
-              <app-truncated-text [text]="userGame.review" />
-            </div>
-          </a>
 
-          <div class="mt-3 flex items-center justify-between gap-2">
+          <div class="mt-2 flex h-28 flex-col text-sm">
+            <p class="font-semibold text-ink">{{ userGame.status }} · {{ userGame.rate }}/10</p>
+            <p class="mt-1 min-h-5 font-semibold text-ink">{{ userGame.title }}</p>
+            <div class="mt-1 flex-1 overflow-hidden text-ink-muted">
+              <app-truncated-text [text]="userGame.review" [limit]="90" />
+            </div>
+          </div>
+
+          <div class="relative z-10 mt-3 flex items-center justify-between gap-2">
             <button
               type="button"
               (click)="openAddToList(userGame.game.id)"

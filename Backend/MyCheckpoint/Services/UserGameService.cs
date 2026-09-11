@@ -54,22 +54,6 @@ namespace MyCheckpoint.Services
             return await EnrichWithLikesAsync(dtos, viewerUserId);
         }
 
-        public async Task<IEnumerable<UserGameDto>> GetDiscoverReviewsAsync(int userId, int skip, int take)
-        {
-            var myGames = await _userGameRepository.GetByUserIdAsync(userId);
-            var myGameIds = myGames.Select(ug => ug.GameId).ToList();
-
-            var candidates = (await _userGameRepository.GetOtherReviewsForGamesAsync(myGameIds, userId)).ToList();
-
-            // Orden aleatorio: es un feed de descubrimiento, no un ranking
-            // donde la consistencia entre páginas importe.
-            var random = new Random();
-            var shuffled = candidates.OrderBy(_ => random.Next()).Skip(skip).Take(take);
-
-            var dtos = _mapper.Map<IEnumerable<UserGameDto>>(shuffled);
-            return await EnrichWithLikesAsync(dtos, userId);
-        }
-
         public async Task<IEnumerable<UserGameDto>> GetFollowingActivityAsync(int userId, int skip, int take)
         {
             var following = await _followRepository.GetFollowingAsync(userId);
@@ -109,8 +93,6 @@ namespace MyCheckpoint.Services
             await _userGameRepository.CreateAsync(userGame);
             await _unitOfWork.SaveChangesAsync();
 
-            // Si el juego estaba en el backlog de "Juegos pendientes", ya no
-            // pinta ahí: acaba de recibir una reseña de verdad.
             await _gameListService.RemoveFromPendingListIfPresentAsync(dto.GameId, userId);
 
             var created = await _userGameRepository.GetByIdAsync(userGame.Id);
@@ -182,11 +164,6 @@ namespace MyCheckpoint.Services
             return (await EnrichWithLikesAsync(new[] { dto }, userId)).Single();
         }
 
-        /// <summary>
-        /// Rellena LikeCount y LikedByMe en lote (nada de una consulta por
-        /// cada reseña). viewerUserId nulo cuando nadie ha iniciado sesión:
-        /// se rellena el conteo igualmente, LikedByMe se queda en false.
-        /// </summary>
         private async Task<IEnumerable<UserGameDto>> EnrichWithLikesAsync(IEnumerable<UserGameDto> dtos, int? viewerUserId)
         {
             var list = dtos.ToList();

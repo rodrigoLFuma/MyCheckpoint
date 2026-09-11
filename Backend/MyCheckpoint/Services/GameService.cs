@@ -150,9 +150,7 @@ namespace MyCheckpoint.Services
             var game = new Game
             {
                 Name = rawgGame.Name,
-                // Postgres guarda ReleaseDate como timestamptz, y exige Kind=Utc.
-                // Tanto el valor por defecto como lo que deserializa RAWG llegan
-                // con Kind=Unspecified, así que hay que forzarlo explícitamente.
+
                 ReleaseDate = DateTime.SpecifyKind(rawgGame.Released ?? DateTime.MinValue, DateTimeKind.Utc),
                 RawgId = rawgGame.Id,
                 Developer = rawgGame.Developers.Count > 0
@@ -184,11 +182,11 @@ namespace MyCheckpoint.Services
             {
                 var game = await _gameRepository.GetByIdAsync(id);
                 if (game is null || game.RawgId is null)
-                    continue; // no importado de RAWG, no hay nada que refrescar
+                    continue;
 
                 var rawgGame = await _rawgClient.GetByIdAsync(game.RawgId.Value);
                 if (rawgGame is null)
-                    continue; // ya no existe en RAWG; se deja el juego como está
+                    continue;
 
                 var categoryLookup = await GetOrCreateCategoriesByNameAsync(rawgGame.Genres.Select(g => g.Name));
 

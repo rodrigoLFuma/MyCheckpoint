@@ -15,7 +15,6 @@ using MyCheckpoint.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")
@@ -125,7 +124,6 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -136,9 +134,6 @@ app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
-// Las fotos de perfil subidas se guardan bajo wwwroot y se sirven como
-// archivos estáticos; hay que asegurar que la carpeta existe ya al arrancar,
-// porque el proveedor de archivos estáticos se crea una vez al inicio.
 Directory.CreateDirectory(Path.Combine(app.Environment.WebRootPath ?? Path.Combine(app.Environment.ContentRootPath, "wwwroot"), "uploads", "profile-pictures"));
 app.UseStaticFiles();
 

@@ -10,14 +10,12 @@ namespace MyCheckpoint.Data.Entities
 
         public List<Follow> Followers { get; set; }
         public List<Follow> Followeds { get; set; }
-        
 
         public List<GameList> GameLists { get; set; }
 
         public List<UserGame> UserGames { get; set; }
 
         public List<UserFavoriteGenre> FavoriteGenres { get; set; }
-
 
     }
 }

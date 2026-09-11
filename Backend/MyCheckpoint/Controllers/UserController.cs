@@ -55,9 +55,7 @@ namespace MyCheckpoint.Controllers
         public async Task<ActionResult<IEnumerable<UserSummaryDto>>> GetTopInCategory(
             int categoryId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
         {
-            // Ranking completo de la categoría: no se excluye a nadie, ni
-            // siquiera a quien lo consulta (a diferencia de top-by-favorites,
-            // que sí te excluye porque ahí no tiene sentido recomendarte a ti).
+
             return Ok(await _userService.GetTopInCategoryAsync(categoryId, excludeUserId: null, skip, take));
         }
 

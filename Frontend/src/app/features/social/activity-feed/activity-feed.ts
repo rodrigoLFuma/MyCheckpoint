@@ -11,11 +11,6 @@ import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 const PAGE_SIZE = 20;
 
-/**
- * Reseñas recientes de la gente que sigues, más recientes primero — a
- * diferencia de "Reseñas de otros sobre tus juegos" (esa es sobre juegos que
- * TÚ ya jugaste), esta es sobre lo que sea que hayan reseñado ellos.
- */
 @Component({
   selector: 'app-activity-feed',
   imports: [RouterLink, ReviewCard, UserAvatar, Skeleton],
@@ -31,8 +26,6 @@ export class ActivityFeed implements OnInit {
   protected hasMore = signal(false);
   protected errorMessage = signal<string | null>(null);
 
-  // Para distinguir "no sigues a nadie" de "la gente que sigues no ha
-  // reseñado nada todavía" en el estado vacío.
   protected followsAnyone = signal(true);
 
   private loaded = 0;

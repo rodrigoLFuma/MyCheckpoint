@@ -14,8 +14,6 @@ import { TruncatedText } from '../../../shared/components/truncated-text/truncat
 import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 import { Select, SelectOption } from '../../../shared/components/select/select';
 
-// "Pendiente" no aparece aquí: una reseña ya creada implica que el juego
-// dejó de ser "solo pendiente" (eso vive en la lista "Juegos pendientes").
 const STATUSES = ['Jugando', 'Completado', 'Abandonado'] as const;
 
 const SORT_OPTIONS = [
@@ -110,7 +108,7 @@ export class Library implements OnInit {
     try {
       this.lists.set(await this.api.invoke(apiGameListUserUserIdGet$Json, { userId }));
     } catch {
-      // Si no cargan las listas, simplemente no se ofrece la opción de añadir.
+
     }
   }
 

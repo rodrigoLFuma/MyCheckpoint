@@ -12,12 +12,6 @@ import { Skeleton } from '../../../shared/components/skeleton/skeleton';
 
 const ADMIN_ROLE = 'Admin';
 
-/**
- * Panel admin para ver a todos los usuarios y, para cualquiera que no seas
- * tú mismo, borrarlo o darle/quitarle el rol de Admin. No puedes tocar tu
- * propia fila (ni el backend te deja): así nunca te quedas sin acceso por
- * accidente.
- */
 @Component({
   selector: 'app-manage-users',
   imports: [DatePipe, RouterLink, UserAvatar, Skeleton],
@@ -31,8 +25,6 @@ export class ManageUsers implements OnInit {
   protected isLoading = signal(true);
   protected errorMessage = signal<string | null>(null);
 
-  // Id del usuario cuya acción está en curso (deshabilita solo esa fila) y,
-  // aparte, el id que está en el paso de "¿seguro que quieres borrar?".
   protected busyUserId = signal<number | null>(null);
   protected pendingDeleteId = signal<number | null>(null);
 

@@ -22,8 +22,7 @@ export class GameSearch implements OnInit {
   private api = inject(Api);
 
   term = '';
-  // Varias categorías a la vez, seleccionadas sin buscar todavía: solo se
-  // llama a RAWG cuando se pulsa buscar (ver comentario en toggleCategory).
+
   protected selectedCategoryIds = signal<Set<number>>(new Set());
   results = signal<RawgGameSummary[]>([]);
   isSearching = signal(false);
@@ -32,18 +31,12 @@ export class GameSearch implements OnInit {
   hasSearched = signal(false);
   hasMore = signal(false);
 
-  // Término y categoría de la última búsqueda lanzada, para que "Cargar
-  // más" repita los mismos criterios en la página siguiente.
   private lastTerm: string | undefined;
   private lastGenres: string | undefined;
   private currentPage = 1;
 
-  // RawgId de los juegos que el usuario ya tiene reseñados, para no
-  // ofrecerle "Crear reseña" otra vez en los resultados de búsqueda.
   protected reviewedRawgIds = signal<Set<number>>(new Set());
 
-  // Categorías locales (sincronizadas desde el catálogo de géneros de
-  // RAWG), para el filtro. Solo cuesta una lectura a tu propia BD.
   protected categories = signal<CategoryDto[]>([]);
   protected isSyncingCategories = signal(false);
   protected syncError = signal<string | null>(null);
@@ -57,7 +50,7 @@ export class GameSearch implements OnInit {
     try {
       this.categories.set(await this.api.invoke(apiCategoryGet$Json));
     } catch {
-      // Sin categorías, el filtro simplemente queda vacío.
+
     }
   }
 
@@ -83,14 +76,10 @@ export class GameSearch implements OnInit {
         .filter((id): id is number => id != null);
       this.reviewedRawgIds.set(new Set(rawgIds));
     } catch {
-      // Si no cargan, simplemente no se marca ningún resultado como reseñado.
+
     }
   }
 
-  // Las categorías son píldoras, no un <select>: pulsarlas solo las marca o
-  // desmarca, sin llamar a RAWG todavía — se pueden ir clicando varias y
-  // solo se busca (una única llamada, con todas juntas) al pulsar el botón
-  // de buscar.
   toggleCategory(categoryId: number): void {
     this.selectedCategoryIds.update((ids) => {
       const next = new Set(ids);

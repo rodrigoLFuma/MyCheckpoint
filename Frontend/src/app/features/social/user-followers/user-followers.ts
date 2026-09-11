@@ -36,8 +36,7 @@ export class UserFollowers implements OnInit {
         this.api.invoke(apiFollowFollowersUserIdGet$Json, { userId: this.userId }),
       ]);
       this.profileUser.set(user);
-      // GetFollowersAsync(userId) -> filas donde Followed = userId; el otro
-      // lado de cada fila (Follower) es quien le sigue.
+
       this.followers.set(follows.map((f) => f.follower));
     } catch {
       this.errorMessage.set('No se han podido cargar los seguidores.');

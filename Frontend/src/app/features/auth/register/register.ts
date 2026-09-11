@@ -23,14 +23,8 @@ export class Register implements OnInit {
   errorMessage = signal<string | null>(null);
   isSubmitting = signal(false);
 
-  // Formulario en dos pasos: el 1º (cuenta) queda del mismo tamaño que el
-  // de iniciar sesión; los géneros favoritos —opcionales— van en un 2º
-  // paso aparte en vez de alargar el primero.
   protected step = signal<1 | 2>(1);
 
-  // Géneros favoritos opcionales: se pueden elegir ya aquí para no tener
-  // que ir luego al perfil, pero no son obligatorios — se pueden marcar (o
-  // cambiar) en cualquier momento después desde ahí.
   protected categories = signal<CategoryDto[]>([]);
   protected selectedGenreIds = signal<Set<number>>(new Set());
 
@@ -38,9 +32,6 @@ export class Register implements OnInit {
     this.loadCategories();
   }
 
-  // El paso 1 no es un <form> que se envíe de verdad (el submit real pasa
-  // en el paso 2), así que sus "required" del HTML no se comprueban solos
-  // — se valida a mano antes de avanzar.
   goToStep2(): void {
     this.errorMessage.set(null);
 
@@ -65,7 +56,7 @@ export class Register implements OnInit {
     try {
       this.categories.set(await this.api.invoke(apiCategoryGet$Json));
     } catch {
-      // Sin categorías, el selector de géneros favoritos queda vacío.
+
     }
   }
 
@@ -98,8 +89,7 @@ export class Register implements OnInit {
             favoriteGenreCategoryIds: Array.from(this.selectedGenreIds()),
           });
         } catch {
-          // Son opcionales: si falla guardarlos, la cuenta ya se ha creado
-          // igual y se pueden marcar luego sin problema desde el perfil.
+
         }
       }
 

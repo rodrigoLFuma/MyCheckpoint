@@ -13,13 +13,6 @@ import { GameCard } from '../games/game-card/game-card';
 import { ReviewCard } from '../../shared/components/review-card/review-card';
 import { Skeleton } from '../../shared/components/skeleton/skeleton';
 
-/**
- * Página pública de rankings: gente con más seguidores, reseñas con más
- * "me gusta" y juegos mejor valorados de toda la app. Las tres listas salen
- * de endpoints sin autenticación (para poder enseñarlas también desde la
- * landing), pero la propia ruta /rankings exige sesión igual que el resto
- * de botones del navbar.
- */
 @Component({
   selector: 'app-rankings',
   imports: [RouterLink, DecimalPipe, UserAvatar, GameCard, ReviewCard, Skeleton],
@@ -45,9 +38,10 @@ export class Rankings implements OnInit {
 
   private async loadTopUsers(): Promise<void> {
     try {
-      this.topUsers.set(await this.api.invoke(apiUserTopFollowedGet$Json, { take: 10 }));
+
+      this.topUsers.set(await this.api.invoke(apiUserTopFollowedGet$Json, { take: 20 }));
     } catch {
-      // Sin ranking de usuarios, esa sección simplemente queda vacía.
+
     } finally {
       this.isLoadingUsers.set(false);
     }
@@ -55,9 +49,9 @@ export class Rankings implements OnInit {
 
   private async loadTopReviews(): Promise<void> {
     try {
-      this.topReviews.set(await this.api.invoke(apiUserGameTopLikedGet$Json, { take: 10 }));
+      this.topReviews.set(await this.api.invoke(apiUserGameTopLikedGet$Json, { take: 5 }));
     } catch {
-      // Sin ranking de reseñas, esa sección simplemente queda vacía.
+
     } finally {
       this.isLoadingReviews.set(false);
     }
@@ -65,9 +59,9 @@ export class Rankings implements OnInit {
 
   private async loadTopGames(): Promise<void> {
     try {
-      this.topGames.set(await this.api.invoke(apiGameTopRatedGet$Json, { take: 10 }));
+      this.topGames.set(await this.api.invoke(apiGameTopRatedGet$Json, { take: 3 }));
     } catch {
-      // Sin ranking de juegos, esa sección simplemente queda vacía.
+
     } finally {
       this.isLoadingGames.set(false);
     }

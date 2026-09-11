@@ -56,8 +56,6 @@ namespace MyCheckpoint.Data.Repositories
                           && !excludeIds.Contains(gl.Id)
                           && gl.GameListItems.Any(gli => gameIds.Contains(gli.GameId)));
 
-            // Orden por nº de seguidores vía subconsulta correlacionada: no
-            // hace falta traer todo a memoria para poder ordenar por eso.
             var ordered = candidates
                 .OrderByDescending(gl => _context.Set<GameListFollow>().Count(f => f.GameListId == gl.Id))
                 .Skip(skip)
@@ -73,8 +71,6 @@ namespace MyCheckpoint.Data.Repositories
                 .Where(gl => ids.Contains(gl.Id))
                 .ToListAsync();
 
-            // El Where posterior no conserva el orden del ranking: hay que
-            // reordenar en memoria según la lista de ids ya ordenada.
             return ids.Select(id => lists.First(gl => gl.Id == id));
         }
     }

@@ -6,14 +6,6 @@ export interface SelectOption {
   label: string;
 }
 
-/**
- * Reemplazo de <select> con estilo propio: el desplegable nativo del
- * navegador no respeta el tema oscuro (el listado de opciones lo pinta el
- * sistema operativo, no la página), así que en su lugar dibujamos nosotros
- * el botón y la lista. Implementa ControlValueAccessor para poder usarse
- * exactamente igual que un <select> con [(ngModel)] o
- * [ngModel]+(ngModelChange), name incluido dentro de un <form>.
- */
 @Component({
   selector: 'app-select',
   templateUrl: './select.html',
@@ -70,7 +62,6 @@ export class Select implements ControlValueAccessor {
     this.isOpen.set(false);
   }
 
-  // Cierra el desplegable al clicar fuera, igual que haría uno nativo.
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     if (this.isOpen() && !this.elementRef.nativeElement.contains(event.target as Node)) {
