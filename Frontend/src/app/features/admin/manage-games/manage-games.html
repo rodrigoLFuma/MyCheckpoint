@@ -1,5 +1,143 @@
 <div class="mx-auto max-w-5xl">
-  <h1 class="mb-4 text-xl font-bold text-ink">Gestionar juegos</h1>
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-2">
+    <h1 class="text-xl font-bold text-ink">Gestionar juegos</h1>
+    @if (!isFormOpen()) {
+      <button
+        type="button"
+        (click)="openCreate()"
+        class="rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-white hover:bg-primary-hover"
+      >
+        Nuevo juego
+      </button>
+    }
+  </div>
+
+  @if (isFormOpen()) {
+    <form
+      (ngSubmit)="saveGame()"
+      class="mb-6 flex flex-col gap-3 rounded-lg border border-border bg-surface p-4"
+    >
+      <h2 class="text-base font-bold text-ink">{{ editingId() === null ? 'Nuevo juego' : 'Editar juego' }}</h2>
+
+      <div class="grid gap-3 sm:grid-cols-2">
+        <label class="text-sm font-semibold text-ink">
+          Nombre
+          <input
+            type="text"
+            [(ngModel)]="form.name"
+            name="name"
+            required
+            class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm font-normal text-ink focus:border-primary focus:outline-none"
+          />
+        </label>
+
+        <label class="text-sm font-semibold text-ink">
+          Fecha de lanzamiento
+          <input
+            type="date"
+            [(ngModel)]="form.releaseDate"
+            name="releaseDate"
+            required
+            class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm font-normal text-ink focus:border-primary focus:outline-none"
+          />
+        </label>
+
+        <label class="text-sm font-semibold text-ink">
+          Desarrolladora
+          <input
+            type="text"
+            [(ngModel)]="form.developer"
+            name="developer"
+            class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm font-normal text-ink focus:border-primary focus:outline-none"
+          />
+        </label>
+
+        <label class="text-sm font-semibold text-ink">
+          Distribuidora
+          <input
+            type="text"
+            [(ngModel)]="form.publisher"
+            name="publisher"
+            class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm font-normal text-ink focus:border-primary focus:outline-none"
+          />
+        </label>
+
+        <label class="text-sm font-semibold text-ink">
+          URL de la portada
+          <input
+            type="url"
+            [(ngModel)]="form.coverImageUrl"
+            name="coverImageUrl"
+            class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm font-normal text-ink focus:border-primary focus:outline-none"
+          />
+        </label>
+
+        <label class="text-sm font-semibold text-ink">
+          Metacritic (0-100)
+          <input
+            type="number"
+            min="0"
+            max="100"
+            [(ngModel)]="form.metacritic"
+            name="metacritic"
+            class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm font-normal text-ink focus:border-primary focus:outline-none"
+          />
+        </label>
+      </div>
+
+      <label class="text-sm font-semibold text-ink">
+        Descripción
+        <textarea
+          [(ngModel)]="form.description"
+          name="description"
+          rows="4"
+          class="mt-1 w-full rounded-lg border border-border bg-bg-raised px-3 py-2 text-sm font-normal text-ink focus:border-primary focus:outline-none"
+        ></textarea>
+      </label>
+
+      <div class="text-sm font-semibold text-ink">
+        Géneros
+        <div class="mt-1 flex flex-wrap gap-2">
+          @for (category of categories(); track category.id) {
+            <label
+              class="flex cursor-pointer items-center gap-1 rounded-lg border border-border px-2 py-1 text-xs font-normal text-ink-muted has-checked:border-primary has-checked:text-ink"
+            >
+              <input
+                type="checkbox"
+                [checked]="selectedCategoryIds().has(category.id)"
+                (change)="toggleCategory(category.id)"
+              />
+              {{ category.name }}
+            </label>
+          } @empty {
+            <span class="text-xs font-normal text-ink-faint">No hay categorías disponibles.</span>
+          }
+        </div>
+      </div>
+
+      @if (formError()) {
+        <p class="text-sm text-danger">{{ formError() }}</p>
+      }
+
+      <div class="flex gap-2">
+        <button
+          type="submit"
+          [disabled]="isSaving()"
+          class="rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-white hover:bg-primary-hover disabled:opacity-50"
+        >
+          {{ isSaving() ? 'Guardando...' : 'Guardar' }}
+        </button>
+        <button
+          type="button"
+          (click)="closeForm()"
+          [disabled]="isSaving()"
+          class="rounded-lg border border-border px-3 py-2 text-sm text-ink hover:bg-surface-hover disabled:opacity-50"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  }
 
   <p class="mb-4 text-sm text-ink-muted">
     Los juegos importados se quedan tal cual estaban en RAWG en el momento de importarlos. Selecciona los que
@@ -22,11 +160,11 @@
   }
 
   @if (errorMessage()) {
-    <p class="text-sm text-danger">{{ errorMessage() }}</p>
+    <p class="mb-4 text-sm text-danger">{{ errorMessage() }}</p>
   }
 
   @if (!isLoading() && games().length === 0) {
-    <p class="text-sm text-ink-muted">Todavía no hay juegos importados.</p>
+    <p class="text-sm text-ink-muted">Todavía no hay juegos.</p>
   }
 
   @if (games().length > 0) {
@@ -55,8 +193,8 @@
 
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
       @for (game of games(); track game.id) {
-        <label
-          class="flex cursor-pointer flex-col overflow-hidden rounded-lg border border-border bg-surface transition-colors has-checked:border-primary"
+        <div
+          class="flex flex-col overflow-hidden rounded-lg border border-border bg-surface transition-colors has-[input[type=checkbox]:checked]:border-primary"
         >
           @if (game.coverImageUrl) {
             <img [src]="game.coverImageUrl" [alt]="game.name" class="h-32 w-full object-cover" />
@@ -66,22 +204,63 @@
             </div>
           }
 
-          <div class="flex items-start gap-2 p-3">
-            <input
-              type="checkbox"
-              [checked]="selectedIds().has(game.id)"
-              (change)="toggleSelect(game.id)"
-              class="mt-1 accent-primary"
-            />
-            <div class="min-w-0">
-              <p class="truncate text-sm font-semibold text-ink">{{ game.name }}</p>
-              <p class="text-xs text-ink-muted">{{ game.releaseDate | date: 'yyyy' }}</p>
-              @if (!game.rawgId) {
-                <p class="text-xs text-rating">Sin RawgId (no se puede refrescar)</p>
+          <div class="flex flex-1 flex-col gap-2 p-3">
+            <label class="flex cursor-pointer items-start gap-2">
+              <input
+                type="checkbox"
+                [checked]="selectedIds().has(game.id)"
+                (change)="toggleSelect(game.id)"
+                class="mt-1 accent-primary"
+              />
+              <span class="min-w-0">
+                <span class="block truncate text-sm font-semibold text-ink">{{ game.name }}</span>
+                <span class="block text-xs text-ink-muted">{{ game.releaseDate | date: 'yyyy' }}</span>
+                @if (!game.rawgId) {
+                  <span class="block text-xs text-rating">Sin RawgId (no se puede refrescar)</span>
+                }
+              </span>
+            </label>
+
+            <div class="mt-auto flex flex-wrap items-center gap-1">
+              @if (pendingDeleteId() === game.id) {
+                <span class="w-full text-xs text-danger">
+                  ¿Seguro? Se borrarán también las reseñas y entradas de lista de este juego.
+                </span>
+                <button
+                  type="button"
+                  (click)="confirmDelete(game)"
+                  [disabled]="busyGameId() === game.id"
+                  class="rounded-lg bg-danger px-2 py-1 text-xs font-semibold text-white disabled:opacity-50"
+                >
+                  Sí, borrar
+                </button>
+                <button
+                  type="button"
+                  (click)="cancelDelete()"
+                  [disabled]="busyGameId() === game.id"
+                  class="rounded-lg border border-border px-2 py-1 text-xs text-ink hover:bg-surface-hover disabled:opacity-50"
+                >
+                  Cancelar
+                </button>
+              } @else {
+                <button
+                  type="button"
+                  (click)="openEdit(game)"
+                  class="rounded-lg border border-border px-2 py-1 text-xs text-ink hover:bg-surface-hover"
+                >
+                  Editar
+                </button>
+                <button
+                  type="button"
+                  (click)="askDelete(game.id)"
+                  class="rounded-lg border border-danger px-2 py-1 text-xs text-danger hover:bg-danger-soft"
+                >
+                  Borrar
+                </button>
               }
             </div>
           </div>
-        </label>
+        </div>
       }
     </div>
   }

@@ -72,6 +72,7 @@ namespace MyCheckpoint.Services
             var categoryLookup = await GetCategoriesByIdsAsync(dto.CategoryIds);
 
             var game = _mapper.Map<Game>(dto);
+            game.ReleaseDate = DateTime.SpecifyKind(dto.ReleaseDate, DateTimeKind.Utc);
             game.GameCategories = dto.CategoryIds
                 .Select(id => new GameCategory { CategoryId = id, Category = categoryLookup[id] })
                 .ToList();
@@ -90,7 +91,12 @@ namespace MyCheckpoint.Services
             var categoryLookup = await GetCategoriesByIdsAsync(dto.CategoryIds);
 
             game.Name = dto.Name;
-            game.ReleaseDate = dto.ReleaseDate;
+            game.ReleaseDate = DateTime.SpecifyKind(dto.ReleaseDate, DateTimeKind.Utc);
+            game.Developer = dto.Developer;
+            game.Publisher = dto.Publisher;
+            game.Description = dto.Description;
+            game.CoverImageUrl = dto.CoverImageUrl;
+            game.Metacritic = dto.Metacritic;
 
             game.GameCategories.RemoveAll(gc => !dto.CategoryIds.Contains(gc.CategoryId));
 

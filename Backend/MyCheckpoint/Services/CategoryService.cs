@@ -74,8 +74,7 @@ namespace MyCheckpoint.Services
                 ?? throw new NotFoundException("La categoría no existe.");
 
             if (await _categoryRepository.IsInUseAsync(id))
-                throw new ConflictException(
-                    "No se puede borrar: la categoría está asignada a algún juego o en los géneros favoritos de algún usuario.");
+                throw new ConflictException("No se puede borrar: la categoría está asignada a algún juego o en los géneros favoritos de algún usuario.");
 
             _categoryRepository.Delete(category);
             await _unitOfWork.SaveChangesAsync();

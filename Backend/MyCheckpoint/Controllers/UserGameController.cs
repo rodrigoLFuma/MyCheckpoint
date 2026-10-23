@@ -23,16 +23,14 @@ namespace MyCheckpoint.Controllers
         }
 
         [HttpGet("top-liked")]
-        public async Task<ActionResult<IEnumerable<UserGameDto>>> GetTopLiked(
-            [FromQuery] int skip = 0, [FromQuery] int take = 10)
+        public async Task<ActionResult<IEnumerable<UserGameDto>>> GetTopLiked([FromQuery] int skip = 0, [FromQuery] int take = 10)
         {
             return Ok(await _userGameService.GetTopLikedAsync(skip, take, this.GetUserIdOrNull()));
         }
 
         [HttpGet("following-activity")]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<UserGameDto>>> FollowingActivity(
-            [FromQuery] int skip = 0, [FromQuery] int take = 20)
+        public async Task<ActionResult<IEnumerable<UserGameDto>>> FollowingActivity([FromQuery] int skip = 0, [FromQuery] int take = 20)
         {
             return Ok(await _userGameService.GetFollowingActivityAsync(this.GetUserId(), skip, take));
         }

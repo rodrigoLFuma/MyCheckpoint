@@ -52,8 +52,7 @@ namespace MyCheckpoint.Controllers
         }
 
         [HttpGet("category/{categoryId}/top")]
-        public async Task<ActionResult<IEnumerable<UserSummaryDto>>> GetTopInCategory(
-            int categoryId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
+        public async Task<ActionResult<IEnumerable<UserSummaryDto>>> GetTopInCategory(int categoryId, [FromQuery] int skip = 0, [FromQuery] int take = 20)
         {
 
             return Ok(await _userService.GetTopInCategoryAsync(categoryId, excludeUserId: null, skip, take));

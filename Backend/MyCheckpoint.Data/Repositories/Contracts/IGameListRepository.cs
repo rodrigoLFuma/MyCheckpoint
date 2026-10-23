@@ -8,7 +8,6 @@ namespace MyCheckpoint.Data.Repositories.Contracts
         Task<IEnumerable<GameList>> SearchByNameAsync(string term, int? viewerUserId);
         Task<bool> ExistsByNameForUserAsync(int userId, string name, int? excludeListId = null);
 
-        Task<IEnumerable<GameList>> GetRecommendedAsync(
-            int userId, IEnumerable<int> myGameIds, IEnumerable<int> excludeListIds, int skip, int take);
+        Task<IEnumerable<GameList>> GetRecommendedAsync(int userId, IEnumerable<int> myGameIds, IEnumerable<int> excludeListIds, int skip, int take);
     }
 }

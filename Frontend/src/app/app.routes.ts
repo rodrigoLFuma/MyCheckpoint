@@ -110,6 +110,12 @@ export const routes: Routes = [
     loadComponent: () => import('./features/admin/manage-games/manage-games').then((m) => m.ManageGames),
   },
   {
+    path: 'admin/categories',
+    canActivate: [authGuard, adminGuard],
+    loadComponent: () =>
+      import('./features/admin/manage-categories/manage-categories').then((m) => m.ManageCategories),
+  },
+  {
     path: 'admin/users',
     canActivate: [authGuard, adminGuard],
     loadComponent: () => import('./features/admin/manage-users/manage-users').then((m) => m.ManageUsers),
