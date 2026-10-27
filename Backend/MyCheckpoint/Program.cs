@@ -100,6 +100,7 @@ builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
+builder.Services.AddScoped<InitialSeeder>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
 
@@ -123,6 +124,18 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        await scope.ServiceProvider.GetRequiredService<InitialSeeder>().SeedAsync();
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "No se han podido inicializar los datos iniciales.");
+    }
+}
 
 if (app.Environment.IsDevelopment())
 {
