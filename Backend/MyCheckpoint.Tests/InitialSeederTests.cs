@@ -59,7 +59,7 @@ namespace MyCheckpoint.Tests
             await _sut.SeedAsync();
 
             _userManager.Verify(m => m.CreateAsync(
-                It.Is<User>(u => u.UserName == "admin" && u.Email == "admin@mycheckpoint.test"),
+                It.Is<User>(u => u.UserName == "Admin" && u.Email == "Admin@Admin.es"),
                 It.Is<string>(password => !string.IsNullOrEmpty(password))), Times.Once);
             _userManager.Verify(m => m.AddToRolesAsync(
                 It.IsAny<User>(),
@@ -71,8 +71,8 @@ namespace MyCheckpoint.Tests
         public async Task SeedAsync_AdminEmailAlreadyExists_DoesNotCreateNorModifyIt()
         {
             _userManager
-                .Setup(m => m.FindByEmailAsync("admin@mycheckpoint.test"))
-                .ReturnsAsync(new User { Id = 1, UserName = "otro", Email = "admin@mycheckpoint.test" });
+                .Setup(m => m.FindByEmailAsync("Admin@Admin.es"))
+                .ReturnsAsync(new User { Id = 1, UserName = "otro", Email = "Admin@Admin.es" });
 
             await _sut.SeedAsync();
 
@@ -84,8 +84,8 @@ namespace MyCheckpoint.Tests
         public async Task SeedAsync_AdminUserNameAlreadyExists_DoesNotCreateIt()
         {
             _userManager
-                .Setup(m => m.FindByNameAsync("admin"))
-                .ReturnsAsync(new User { Id = 1, UserName = "admin", Email = "otro@test.es" });
+                .Setup(m => m.FindByNameAsync("Admin"))
+                .ReturnsAsync(new User { Id = 1, UserName = "Admin", Email = "otro@test.es" });
 
             await _sut.SeedAsync();
 

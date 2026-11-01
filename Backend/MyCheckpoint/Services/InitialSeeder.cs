@@ -9,9 +9,9 @@ namespace MyCheckpoint.Services
         private const string UserRole = "User";
         private const string AdminRole = "Admin";
 
-        private const string AdminUserName = "admin";
-        private const string AdminEmail = "admin@mycheckpoint.test";
-        private const string AdminPassword = "MyCheckpoint2026";
+        private const string AdminUserName = "Admin";
+        private const string AdminEmail = "Admin@Admin.es";
+        private const string AdminPassword = "Admin1234";
 
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
