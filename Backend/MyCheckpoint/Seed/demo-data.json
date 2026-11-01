@@ -1,0 +1,6058 @@
+{
+ "categories": [
+  {
+   "id": 1,
+   "name": "Action",
+   "rawgSlug": "action"
+  },
+  {
+   "id": 2,
+   "name": "Indie",
+   "rawgSlug": "indie"
+  },
+  {
+   "id": 3,
+   "name": "Adventure",
+   "rawgSlug": "adventure"
+  },
+  {
+   "id": 4,
+   "name": "RPG",
+   "rawgSlug": "role-playing-games-rpg"
+  },
+  {
+   "id": 5,
+   "name": "Strategy",
+   "rawgSlug": "strategy"
+  },
+  {
+   "id": 6,
+   "name": "Shooter",
+   "rawgSlug": "shooter"
+  },
+  {
+   "id": 7,
+   "name": "Casual",
+   "rawgSlug": "casual"
+  },
+  {
+   "id": 8,
+   "name": "Simulation",
+   "rawgSlug": "simulation"
+  },
+  {
+   "id": 9,
+   "name": "Puzzle",
+   "rawgSlug": "puzzle"
+  },
+  {
+   "id": 10,
+   "name": "Arcade",
+   "rawgSlug": "arcade"
+  },
+  {
+   "id": 11,
+   "name": "Platformer",
+   "rawgSlug": "platformer"
+  },
+  {
+   "id": 12,
+   "name": "Massively Multiplayer",
+   "rawgSlug": "massively-multiplayer"
+  },
+  {
+   "id": 13,
+   "name": "Racing",
+   "rawgSlug": "racing"
+  },
+  {
+   "id": 14,
+   "name": "Sports",
+   "rawgSlug": "sports"
+  },
+  {
+   "id": 15,
+   "name": "Fighting",
+   "rawgSlug": "fighting"
+  },
+  {
+   "id": 16,
+   "name": "Family",
+   "rawgSlug": "family"
+  },
+  {
+   "id": 17,
+   "name": "Board Games",
+   "rawgSlug": "board-games"
+  },
+  {
+   "id": 18,
+   "name": "Card",
+   "rawgSlug": "card"
+  },
+  {
+   "id": 19,
+   "name": "Educational",
+   "rawgSlug": "educational"
+  }
+ ],
+ "games": [
+  {
+   "id": 1,
+   "name": "Grand Theft Auto V",
+   "releaseDate": "2013-09-17T02:00:00+02:00",
+   "rawgId": 3498,
+   "developer": "Rockstar North, Rockstar Games",
+   "publisher": "Rockstar Games",
+   "coverImageUrl": "https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg",
+   "metacritic": 92,
+   "categoryIds": [
+    1
+   ]
+  },
+  {
+   "id": 2,
+   "name": "The Witcher 3: Wild Hunt",
+   "releaseDate": "2015-05-18T02:00:00+02:00",
+   "rawgId": 3328,
+   "developer": "CD PROJEKT RED",
+   "publisher": "CD PROJEKT RED",
+   "coverImageUrl": "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg",
+   "metacritic": 92,
+   "categoryIds": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": 3,
+   "name": "Red Dead Redemption 2",
+   "releaseDate": "2018-10-26T02:00:00+02:00",
+   "rawgId": 28,
+   "developer": "Rockstar Games",
+   "publisher": "Rockstar Games",
+   "coverImageUrl": "https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg",
+   "metacritic": 96,
+   "categoryIds": [
+    1
+   ]
+  },
+  {
+   "id": 4,
+   "name": "The Legend of Zelda: Breath of the Wild",
+   "releaseDate": "2017-03-03T01:00:00+01:00",
+   "rawgId": 22511,
+   "developer": "Nintendo",
+   "publisher": "Nintendo",
+   "coverImageUrl": "https://media.rawg.io/media/games/cc1/cc196a5ad763955d6532cdba236f730c.jpg",
+   "metacritic": 97,
+   "categoryIds": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": 5,
+   "name": "Elden Ring",
+   "releaseDate": "2022-02-25T01:00:00+01:00",
+   "rawgId": 326243,
+   "developer": "FromSoftware",
+   "publisher": "Bandai Namco Entertainment, FromSoftware",
+   "coverImageUrl": "https://media.rawg.io/media/games/b29/b294fdd866dcdb643e7bab370a552855.jpg",
+   "metacritic": 95,
+   "categoryIds": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": 6,
+   "name": "Minecraft",
+   "releaseDate": "2009-05-10T02:00:00+02:00",
+   "rawgId": 22509,
+   "developer": "4J Studios, Mojang",
+   "publisher": "Microsoft Studios, Mojang",
+   "coverImageUrl": "https://media.rawg.io/media/games/b4e/b4e4c73d5aa4ec66bbf75375c4847a2b.jpg",
+   "metacritic": 83,
+   "categoryIds": [
+    1,
+    2,
+    8,
+    10,
+    12
+   ]
+  },
+  {
+   "id": 7,
+   "name": "Stardew Valley",
+   "releaseDate": "2016-02-25T01:00:00+01:00",
+   "rawgId": 654,
+   "developer": "Chucklefish, ConcernedApe",
+   "publisher": "Chucklefish, ConcernedApe",
+   "coverImageUrl": "https://media.rawg.io/media/games/713/713269608dc8f2f40f5a670a14b2de94.jpg",
+   "metacritic": 89,
+   "categoryIds": [
+    2,
+    4,
+    8
+   ]
+  },
+  {
+   "id": 8,
+   "name": "Hollow Knight",
+   "releaseDate": "2017-02-23T01:00:00+01:00",
+   "rawgId": 9767,
+   "developer": "Team Cherry",
+   "publisher": "Team Cherry",
+   "coverImageUrl": "https://media.rawg.io/media/games/4cf/4cfc6b7f1850590a4634b08bfab308ab.jpg",
+   "metacritic": 88,
+   "categoryIds": [
+    1,
+    2,
+    11
+   ]
+  },
+  {
+   "id": 9,
+   "name": "Hades",
+   "releaseDate": "2020-09-17T02:00:00+02:00",
+   "rawgId": 274755,
+   "developer": "Supergiant Games",
+   "publisher": "Supergiant Games",
+   "coverImageUrl": "https://media.rawg.io/media/games/1f4/1f47a270b8f241e4676b14d39ec620f7.jpg",
+   "metacritic": 93,
+   "categoryIds": [
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": 10,
+   "name": "Portal 2",
+   "releaseDate": "2011-04-18T02:00:00+02:00",
+   "rawgId": 4200,
+   "developer": "Valve Software",
+   "publisher": "Electronic Arts, Valve",
+   "coverImageUrl": "https://media.rawg.io/media/games/2ba/2bac0e87cf45e5b508f227d281c9252a.jpg",
+   "metacritic": 95,
+   "categoryIds": [
+    6,
+    9
+   ]
+  },
+  {
+   "id": 11,
+   "name": "Half-Life 2",
+   "releaseDate": "2004-11-16T01:00:00+01:00",
+   "rawgId": 13537,
+   "developer": "Valve Software, NVIDIA Lightspeed Studios",
+   "publisher": "Valve",
+   "coverImageUrl": "https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg",
+   "metacritic": 96,
+   "categoryIds": [
+    1,
+    6
+   ]
+  },
+  {
+   "id": 12,
+   "name": "Terraria",
+   "releaseDate": "2011-05-16T02:00:00+02:00",
+   "rawgId": 422,
+   "developer": "Engine Software, Codeglue, Pipeworks Studio, Re-Logic",
+   "publisher": "505 Games, Headup Games, Spike Chunsoft, Re-Logic",
+   "coverImageUrl": "https://media.rawg.io/media/games/f46/f466571d536f2e3ea9e815ad17177501.jpg",
+   "metacritic": 81,
+   "categoryIds": [
+    1,
+    2,
+    11
+   ]
+  },
+  {
+   "id": 13,
+   "name": "Among Us",
+   "releaseDate": "2018-07-25T02:00:00+02:00",
+   "rawgId": 356714,
+   "developer": "Innersloth",
+   "publisher": "Innersloth",
+   "coverImageUrl": "https://media.rawg.io/media/games/e74/e74458058b35e01c1ae3feeb39a3f724.jpg",
+   "metacritic": 82,
+   "categoryIds": [
+    1,
+    7,
+    8
+   ]
+  },
+  {
+   "id": 14,
+   "name": "Fall Guys: Ultimate Knockout",
+   "releaseDate": "2020-08-04T02:00:00+02:00",
+   "rawgId": 326292,
+   "developer": "Mediatonic",
+   "publisher": "Devolver Digital",
+   "coverImageUrl": "https://media.rawg.io/media/games/5eb/5eb49eb2fa0738fdb5bacea557b1bc57.jpg",
+   "metacritic": 80,
+   "categoryIds": [
+    1,
+    2,
+    7,
+    12,
+    14
+   ]
+  },
+  {
+   "id": 15,
+   "name": "Overwatch 2",
+   "releaseDate": "2022-10-04T02:00:00+02:00",
+   "rawgId": 388308,
+   "developer": "Activision Blizzard",
+   "publisher": "Activision Blizzard, Blizzard Entertainment",
+   "coverImageUrl": "https://media.rawg.io/media/games/95a/95a10817d1fc648cff1153f3fa8ef6c5.jpg",
+   "metacritic": 78,
+   "categoryIds": [
+    1,
+    6,
+    12
+   ]
+  },
+  {
+   "id": 16,
+   "name": "Counter-Strike 2",
+   "releaseDate": "2023-09-27T02:00:00+02:00",
+   "rawgId": 965470,
+   "developer": "Valve Software",
+   "publisher": "Valve",
+   "coverImageUrl": "https://media.rawg.io/media/games/ec4/ec4b02bdb3eb5c6212992c19bc05697e.jpg",
+   "metacritic": null,
+   "categoryIds": [
+    6
+   ]
+  },
+  {
+   "id": 17,
+   "name": "Fortnite Battle Royale",
+   "releaseDate": "2017-09-26T02:00:00+02:00",
+   "rawgId": 47137,
+   "developer": "Epic Games",
+   "publisher": "Epic Games Publishing",
+   "coverImageUrl": "https://media.rawg.io/media/games/dcb/dcbb67f371a9a28ea38ffd73ee0f53f3.jpg",
+   "metacritic": null,
+   "categoryIds": [
+    1,
+    6
+   ]
+  },
+  {
+   "id": 18,
+   "name": "Apex Legends",
+   "releaseDate": "2019-02-04T01:00:00+01:00",
+   "rawgId": 290856,
+   "developer": "Respawn Entertainment",
+   "publisher": "Electronic Arts",
+   "coverImageUrl": "https://media.rawg.io/media/games/737/737ea5662211d2e0bbd6f5989189e4f1.jpg",
+   "metacritic": 80,
+   "categoryIds": [
+    1,
+    6
+   ]
+  },
+  {
+   "id": 19,
+   "name": "Animal Crossing: New Horizons",
+   "releaseDate": "2020-03-20T01:00:00+01:00",
+   "rawgId": 421698,
+   "developer": "Nintendo",
+   "publisher": "Nintendo",
+   "coverImageUrl": "https://media.rawg.io/media/games/42f/42fe1abd4d7c11ca92d93a0fb0f8662b.jpg",
+   "metacritic": 90,
+   "categoryIds": [
+    8
+   ]
+  },
+  {
+   "id": 20,
+   "name": "Sekiro: Shadows Die Twice",
+   "releaseDate": "2019-03-22T01:00:00+01:00",
+   "rawgId": 50734,
+   "developer": "FromSoftware",
+   "publisher": "FromSoftware, Activision Value Publishing, 方块游戏",
+   "coverImageUrl": "https://media.rawg.io/media/games/67f/67f62d1f062a6164f57575e0604ee9f6.jpg",
+   "metacritic": 90,
+   "categoryIds": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": 21,
+   "name": "Bloodborne",
+   "releaseDate": "2015-03-24T01:00:00+01:00",
+   "rawgId": 3387,
+   "developer": "FromSoftware",
+   "publisher": "Sony Computer Entertainment, Sony Interactive Entertainment",
+   "coverImageUrl": "https://media.rawg.io/media/games/214/214b29aeff13a0ae6a70fc4426e85991.jpg",
+   "metacritic": 92,
+   "categoryIds": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": 22,
+   "name": "God of War I",
+   "releaseDate": "2005-03-22T01:00:00+01:00",
+   "rawgId": 29179,
+   "developer": "SCE Santa Monica Studio",
+   "publisher": "Sony Computer Entertainment",
+   "coverImageUrl": "https://media.rawg.io/media/games/1aa/1aa4ca34a8a6bb57a2e065c8332dc230.jpg",
+   "metacritic": 94,
+   "categoryIds": [
+    1
+   ]
+  },
+  {
+   "id": 23,
+   "name": "Horizon Zero Dawn",
+   "releaseDate": "2017-02-28T01:00:00+01:00",
+   "rawgId": 278,
+   "developer": "Guerrilla Games",
+   "publisher": "Sony Computer Entertainment",
+   "coverImageUrl": "https://media.rawg.io/media/games/b7d/b7d3f1715fa8381a4e780173a197a615.jpg",
+   "metacritic": 89,
+   "categoryIds": [
+    1,
+    4
+   ]
+  },
+  {
+   "id": 24,
+   "name": "Cyberpunk 2077",
+   "releaseDate": "2020-12-10T01:00:00+01:00",
+   "rawgId": 41494,
+   "developer": "CD PROJEKT RED, CD PROJEKT",
+   "publisher": "CD PROJEKT RED",
+   "coverImageUrl": "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg",
+   "metacritic": 73,
+   "categoryIds": [
+    1,
+    4,
+    6
+   ]
+  },
+  {
+   "id": 25,
+   "name": "Persona 5",
+   "releaseDate": "2016-09-15T02:00:00+02:00",
+   "rawgId": 49,
+   "developer": "Atlus",
+   "publisher": "Deep Silver, Buka Entertainment, Atlus",
+   "coverImageUrl": "https://media.rawg.io/media/games/3ea/3ea0e57ede873970c0f1130e30d88749.jpg",
+   "metacritic": 93,
+   "categoryIds": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": 26,
+   "name": "Divinity: Original Sin 2",
+   "releaseDate": "2017-09-14T02:00:00+02:00",
+   "rawgId": 10073,
+   "developer": "Larian Studios",
+   "publisher": "Larian Studios",
+   "coverImageUrl": "https://media.rawg.io/media/games/424/424facd40f4eb1f2794fe4b4bb28a277.jpg",
+   "metacritic": 95,
+   "categoryIds": [
+    4,
+    5
+   ]
+  },
+  {
+   "id": 27,
+   "name": "Baldur's Gate III",
+   "releaseDate": "2023-08-03T02:00:00+02:00",
+   "rawgId": 324997,
+   "developer": "Larian Studios",
+   "publisher": "Larian Studios",
+   "coverImageUrl": "https://media.rawg.io/media/games/699/69907ecf13f172e9e144069769c3be73.jpg",
+   "metacritic": 97,
+   "categoryIds": [
+    3,
+    4,
+    5
+   ]
+  },
+  {
+   "id": 28,
+   "name": "Sid Meier’s Civilization VI",
+   "releaseDate": "2016-10-20T02:00:00+02:00",
+   "rawgId": 10297,
+   "developer": "Aspyr Media, Firaxis",
+   "publisher": "2K Games, Aspyr",
+   "coverImageUrl": "https://media.rawg.io/media/games/997/997ab4d67e96fb20a4092383477d4463.jpg",
+   "metacritic": 88,
+   "categoryIds": [
+    5,
+    8
+   ]
+  },
+  {
+   "id": 29,
+   "name": "Age of Empires II: Age of Kings",
+   "releaseDate": "1999-09-30T02:00:00+02:00",
+   "rawgId": 32595,
+   "developer": "Ensemble Studios",
+   "publisher": "Microsoft Studios",
+   "coverImageUrl": "https://media.rawg.io/media/screenshots/e90/e90a4f0b878b0206888a56c4155705c8.jpg",
+   "metacritic": 92,
+   "categoryIds": [
+    5
+   ]
+  },
+  {
+   "id": 30,
+   "name": "XCOM 2",
+   "releaseDate": "2016-02-04T01:00:00+01:00",
+   "rawgId": 1256,
+   "developer": "Feral Interactive, 2K, Firaxis",
+   "publisher": "2K Games, Feral Interactive",
+   "coverImageUrl": "https://media.rawg.io/media/games/9bf/9bfac18ff678f41a4674250fa0e04a52.jpg",
+   "metacritic": 88,
+   "categoryIds": [
+    4,
+    5
+   ]
+  },
+  {
+   "id": 31,
+   "name": "Resident Evil 2",
+   "releaseDate": "2019-01-25T01:00:00+01:00",
+   "rawgId": 58813,
+   "developer": "Capcom",
+   "publisher": "Capcom",
+   "coverImageUrl": "https://media.rawg.io/media/games/053/053fc543bf488349610f1ae2d0c1b51b.jpg",
+   "metacritic": 91,
+   "categoryIds": [
+    1,
+    3
+   ]
+  },
+  {
+   "id": 32,
+   "name": "Dead by Daylight",
+   "releaseDate": "2016-06-14T02:00:00+02:00",
+   "rawgId": 9966,
+   "developer": "Behaviour Interactive, Behaviour Digital",
+   "publisher": "Koch Media, Behaviour Interactive, Starbreeze Studios",
+   "coverImageUrl": "https://media.rawg.io/media/games/e11/e11325e2f89151d31f612e38dee3b6a0.jpg",
+   "metacritic": 72,
+   "categoryIds": [
+    1
+   ]
+  },
+  {
+   "id": 33,
+   "name": "It Takes Two",
+   "releaseDate": "2021-03-26T01:00:00+01:00",
+   "rawgId": 455597,
+   "developer": "Hazelight",
+   "publisher": "Electronic Arts",
+   "coverImageUrl": "https://media.rawg.io/media/games/d47/d479582ed0a46496ad34f65c7099d7e5.jpg",
+   "metacritic": 88,
+   "categoryIds": [
+    1,
+    3,
+    11
+   ]
+  },
+  {
+   "id": 34,
+   "name": "Untitled Goose Game",
+   "releaseDate": "2019-09-20T02:00:00+02:00",
+   "rawgId": 59637,
+   "developer": "House House",
+   "publisher": "Panic",
+   "coverImageUrl": "https://media.rawg.io/media/games/199/1996ab6448cadb2ce4bea31536466333.jpg",
+   "metacritic": 80,
+   "categoryIds": [
+    1,
+    2,
+    9,
+    16
+   ]
+  },
+  {
+   "id": 35,
+   "name": "Ori and the Blind Forest",
+   "releaseDate": "2015-03-10T01:00:00+01:00",
+   "rawgId": 19590,
+   "developer": "Moon Studios",
+   "publisher": "Microsoft Studios",
+   "coverImageUrl": "https://media.rawg.io/media/games/f8c/f8c6a262ead4c16b47e1219310210eb3.jpg",
+   "metacritic": 88,
+   "categoryIds": [
+    3,
+    11
+   ]
+  },
+  {
+   "id": 36,
+   "name": "Cuphead",
+   "releaseDate": "2017-09-29T02:00:00+02:00",
+   "rawgId": 28154,
+   "developer": "Studio MDHR",
+   "publisher": "StudioMDHR Entertainment, Studio MDHR",
+   "coverImageUrl": "https://media.rawg.io/media/games/226/2262cea0b385db6cf399f4be831603b0.jpg",
+   "metacritic": 87,
+   "categoryIds": [
+    1,
+    2,
+    11
+   ]
+  },
+  {
+   "id": 37,
+   "name": "Rocket League",
+   "releaseDate": "2015-07-07T02:00:00+02:00",
+   "rawgId": 3272,
+   "developer": "Psyonix",
+   "publisher": "Psyonix",
+   "coverImageUrl": "https://media.rawg.io/media/games/8cc/8cce7c0e99dcc43d66c8efd42f9d03e3.jpg",
+   "metacritic": 86,
+   "categoryIds": [
+    2,
+    13,
+    14
+   ]
+  },
+  {
+   "id": 38,
+   "name": "Slay the Spire",
+   "releaseDate": "2019-01-22T01:00:00+01:00",
+   "rawgId": 28121,
+   "developer": "Humble Bundle, Mega Crit",
+   "publisher": "Humble Bundle, Mega Crit Games",
+   "coverImageUrl": "https://media.rawg.io/media/games/f52/f5206d55f918edf8ee07803101106fa6.jpg",
+   "metacritic": 86,
+   "categoryIds": [
+    2,
+    4,
+    5,
+    18
+   ]
+  },
+  {
+   "id": 39,
+   "name": "Journey",
+   "releaseDate": "2012-03-13T01:00:00+01:00",
+   "rawgId": 3254,
+   "developer": "thatgamecompany, チョコマメ",
+   "publisher": "Sony Computer Entertainment, Sony Interactive Entertainment, Annapurna Interactive, チョコマメ",
+   "coverImageUrl": "https://media.rawg.io/media/games/baf/baf9905270314e07e6850cffdb51df41.jpg",
+   "metacritic": 92,
+   "categoryIds": [
+    2,
+    3,
+    16
+   ]
+  },
+  {
+   "id": 40,
+   "name": "Celeste",
+   "releaseDate": "2018-01-25T01:00:00+01:00",
+   "rawgId": 22121,
+   "developer": "Matt Makes Games, Extremely OK Games, Noel",
+   "publisher": "Matt Makes Games",
+   "coverImageUrl": "https://media.rawg.io/media/games/594/59487800889ebac294c7c2c070d02356.jpg",
+   "metacritic": 91,
+   "categoryIds": [
+    2,
+    11
+   ]
+  },
+  {
+   "id": 41,
+   "name": "Call of Duty: Black Ops 7",
+   "releaseDate": "2025-11-13T01:00:00+01:00",
+   "rawgId": 1007995,
+   "developer": "Raven Software, Treyarch, Infinity Ward, Beenox, Sledgehammer Games, High Moon Studios, Activision Shanghai, Demonware",
+   "publisher": "Activision Blizzard, Activision Value Publishing",
+   "coverImageUrl": "https://media.rawg.io/media/games/4ca/4cabe38446288beb37fc73b2fe047b08.jpg",
+   "metacritic": null,
+   "categoryIds": [
+    1,
+    6
+   ]
+  },
+  {
+   "id": 43,
+   "name": "Destiny 2",
+   "releaseDate": "2017-09-06T02:00:00+02:00",
+   "rawgId": 32,
+   "developer": "Bungie",
+   "publisher": "Activision Blizzard, Bungie",
+   "coverImageUrl": "https://media.rawg.io/media/games/34b/34b1f1850a1c06fd971bc6ab3ac0ce0e.jpg",
+   "metacritic": 82,
+   "categoryIds": [
+    1,
+    6
+   ]
+  }
+ ],
+ "users": [
+  {
+   "id": 1,
+   "userName": "NeonRider87",
+   "email": "NeonRider87@NeonRider87.es",
+   "bibliography": "Fan de la velocidad y las luces de neón. Si tiene motores o balas, lo he jugado.",
+   "createdAt": "2026-09-09T19:21:05.873825+02:00",
+   "roles": [
+    "Admin",
+    "User"
+   ],
+   "favoriteGenreIds": [
+    1,
+    7,
+    12
+   ]
+  },
+  {
+   "id": 2,
+   "userName": "PixelQueen",
+   "email": "PixelQueen@PixelQueen.es",
+   "bibliography": "Coleccionista de perlas indie y pixel art. Siempre busco la próxima joya escondida.",
+   "createdAt": "2026-09-09T19:21:06.090912+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    2,
+    10,
+    11
+   ]
+  },
+  {
+   "id": 3,
+   "userName": "DragonSlayer99",
+   "email": "DragonSlayer99@DragonSlayer99.es",
+   "bibliography": "100+ horas en cualquier RPG que se precie. La historia siempre gana a los gráficos.",
+   "createdAt": "2026-09-09T19:21:06.258711+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": 4,
+   "userName": "SnipeMaster",
+   "email": "SnipeMaster@SnipeMaster.es",
+   "bibliography": "Competitivo de nacimiento. Si hay ranking, ahí estoy.",
+   "createdAt": "2026-09-09T19:21:06.44459+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    1,
+    6,
+    14
+   ]
+  },
+  {
+   "id": 5,
+   "userName": "CozyGamerAna",
+   "email": "CozyGamerAna@CozyGamerAna.es",
+   "bibliography": "Prefiero cultivar mi granja virtual antes que salvar el mundo. Juegos tranquilos, vida tranquila.",
+   "createdAt": "2026-09-09T19:21:06.609128+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    7,
+    8,
+    9
+   ]
+  },
+  {
+   "id": 6,
+   "userName": "RetroVault",
+   "email": "RetroVault@RetroVault.es",
+   "bibliography": "Nostálgico profesional. Todo lo bueno se inventó antes del 2005.",
+   "createdAt": "2026-09-09T19:21:06.77217+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    10,
+    11,
+    15
+   ]
+  },
+  {
+   "id": 7,
+   "userName": "SpeedrunTom",
+   "email": "SpeedrunTom@SpeedrunTom.es",
+   "bibliography": "Cada segundo cuenta. Si se puede hacer más rápido, lo intentaré.",
+   "createdAt": "2026-09-09T19:21:06.971492+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    1,
+    10,
+    11
+   ]
+  },
+  {
+   "id": 8,
+   "userName": "LoreMaster",
+   "email": "LoreMaster@LoreMaster.es",
+   "bibliography": "Leo todos los diarios, hablo con todos los NPC. El lore es sagrado.",
+   "createdAt": "2026-09-09T19:21:07.121305+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": 9,
+   "userName": "CoopKing",
+   "email": "CoopKing@CoopKing.es",
+   "bibliography": "Los juegos se disfrutan el doble en compañía. Siempre con hueco para un dúo más.",
+   "createdAt": "2026-09-09T19:21:07.296573+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    1,
+    6,
+    12
+   ]
+  },
+  {
+   "id": 10,
+   "userName": "IndieDiver",
+   "email": "IndieDiver@IndieDiver.es",
+   "bibliography": "Buceando en itch.io y Steam en busca de rarezas que nadie más ha descubierto.",
+   "createdAt": "2026-09-09T19:21:07.542348+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    2,
+    3,
+    9
+   ]
+  },
+  {
+   "id": 11,
+   "userName": "StrategyOwl",
+   "email": "StrategyOwl@StrategyOwl.es",
+   "bibliography": "Pienso diez turnos por delante. La paciencia es mi mejor arma.",
+   "createdAt": "2026-09-09T19:21:07.7327+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    5,
+    8
+   ]
+  },
+  {
+   "id": 12,
+   "userName": "NightmareFuel",
+   "email": "NightmareFuel@NightmareFuel.es",
+   "bibliography": "Cuanto más oscuro y perturbador, mejor. Duermo con la luz encendida por elección propia.",
+   "createdAt": "2026-09-09T19:21:08.010266+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    2,
+    3,
+    6
+   ]
+  },
+  {
+   "id": 13,
+   "userName": "SoulsVeteran",
+   "email": "SoulsVeteran@SoulsVeteran.es",
+   "bibliography": "Git gud o vuelve a intentarlo. Cada muerte es una lección.",
+   "createdAt": "2026-09-09T19:21:08.204689+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    1,
+    3,
+    4
+   ]
+  },
+  {
+   "id": 14,
+   "userName": "CasualClara",
+   "email": "CasualClara@CasualClara.es",
+   "bibliography": "Diez minutos entre tarea y tarea, eso es lo mío. Nada de estrés, solo diversión.",
+   "createdAt": "2026-09-09T19:21:08.419793+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    7,
+    9,
+    16
+   ]
+  },
+  {
+   "id": 15,
+   "userName": "WanderingNomad",
+   "email": "WanderingNomad@WanderingNomad.es",
+   "bibliography": "Si el mapa tiene más de tres iconos sin descubrir, ya soy feliz.",
+   "createdAt": "2026-09-09T19:21:08.589215+02:00",
+   "roles": [
+    "User"
+   ],
+   "favoriteGenreIds": [
+    3,
+    4,
+    12
+   ]
+  },
+  {
+   "id": 16,
+   "userName": "Admin",
+   "email": "Admin@Admin.es",
+   "bibliography": null,
+   "createdAt": "2026-10-23T17:58:58.909758+02:00",
+   "roles": [
+    "Admin",
+    "User"
+   ],
+   "favoriteGenreIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  }
+ ],
+ "userGames": [
+  {
+   "id": 1,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Bueno, con sus peros",
+   "review": "Among Us tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:42.556904+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.556904+02:00",
+   "userId": 1,
+   "gameId": 13
+  },
+  {
+   "id": 2,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Horizon Zero Dawn me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:42.583315+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.583315+02:00",
+   "userId": 1,
+   "gameId": 23
+  },
+  {
+   "id": 3,
+   "status": "Jugando",
+   "rate": 8,
+   "title": "Una experiencia inolvidable",
+   "review": "No esperaba engancharme tanto a Sid Meier’s Civilization VI, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:42.607107+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.607107+02:00",
+   "userId": 1,
+   "gameId": 28
+  },
+  {
+   "id": 4,
+   "status": "Abandonado",
+   "rate": 6,
+   "title": "Correcto, nada más",
+   "review": "Hades tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:42.627264+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.627264+02:00",
+   "userId": 1,
+   "gameId": 9
+  },
+  {
+   "id": 5,
+   "status": "Jugando",
+   "rate": 9,
+   "title": "Uno de mis favoritos del año",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Bloodborne lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:42.645887+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.645887+02:00",
+   "userId": 1,
+   "gameId": 21
+  },
+  {
+   "id": 6,
+   "status": "Completado",
+   "rate": 3,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Fall Guys: Ultimate Knockout, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:42.667168+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.667169+02:00",
+   "userId": 1,
+   "gameId": 14
+  },
+  {
+   "id": 7,
+   "status": "Completado",
+   "rate": 8,
+   "title": "Uno de mis favoritos del año",
+   "review": "It Takes Two me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:42.691869+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.69187+02:00",
+   "userId": 1,
+   "gameId": 33
+  },
+  {
+   "id": 8,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: Terraria entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:42.718003+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.718003+02:00",
+   "userId": 1,
+   "gameId": 12
+  },
+  {
+   "id": 9,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "No podía dejar de jugar",
+   "review": "Divinity: Original Sin 2 me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:42.741614+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.741614+02:00",
+   "userId": 1,
+   "gameId": 26
+  },
+  {
+   "id": 10,
+   "status": "Completado",
+   "rate": 7,
+   "title": "No podía dejar de jugar",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. God of War I lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:42.765464+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.765464+02:00",
+   "userId": 1,
+   "gameId": 22
+  },
+  {
+   "id": 11,
+   "status": "Completado",
+   "rate": 4,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a XCOM 2, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:42.790071+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.790071+02:00",
+   "userId": 2,
+   "gameId": 30
+  },
+  {
+   "id": 12,
+   "status": "Completado",
+   "rate": 8,
+   "title": "Una experiencia inolvidable",
+   "review": "God of War I me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:42.817372+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.817373+02:00",
+   "userId": 2,
+   "gameId": 22
+  },
+  {
+   "id": 13,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Bueno, con sus peros",
+   "review": "Overwatch 2 tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:42.839517+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.839517+02:00",
+   "userId": 2,
+   "gameId": 15
+  },
+  {
+   "id": 14,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Superó todas mis expectativas",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Hades lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:42.864655+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.864655+02:00",
+   "userId": 2,
+   "gameId": 9
+  },
+  {
+   "id": 15,
+   "status": "Jugando",
+   "rate": 8,
+   "title": "No podía dejar de jugar",
+   "review": "No esperaba engancharme tanto a It Takes Two, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:42.887749+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.887749+02:00",
+   "userId": 2,
+   "gameId": 33
+  },
+  {
+   "id": 16,
+   "status": "Completado",
+   "rate": 7,
+   "title": "No podía dejar de jugar",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Portal 2 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:42.913664+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.913664+02:00",
+   "userId": 2,
+   "gameId": 10
+  },
+  {
+   "id": 17,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "Uno de mis favoritos del año",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Terraria lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:42.934091+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.934091+02:00",
+   "userId": 2,
+   "gameId": 12
+  },
+  {
+   "id": 18,
+   "status": "Completado",
+   "rate": 10,
+   "title": "No podía dejar de jugar",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Hollow Knight lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:42.956045+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.956045+02:00",
+   "userId": 2,
+   "gameId": 8
+  },
+  {
+   "id": 19,
+   "status": "Completado",
+   "rate": 10,
+   "title": "Uno de mis favoritos del año",
+   "review": "No esperaba engancharme tanto a The Legend of Zelda: Breath of the Wild, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:42.98178+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:42.981781+02:00",
+   "userId": 2,
+   "gameId": 4
+  },
+  {
+   "id": 20,
+   "status": "Abandonado",
+   "rate": 9,
+   "title": "No podía dejar de jugar",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Untitled Goose Game lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.005908+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.005908+02:00",
+   "userId": 2,
+   "gameId": 34
+  },
+  {
+   "id": 21,
+   "status": "Jugando",
+   "rate": 9,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Grand Theft Auto V me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:43.024606+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.024606+02:00",
+   "userId": 3,
+   "gameId": 1
+  },
+  {
+   "id": 22,
+   "status": "Jugando",
+   "rate": 8,
+   "title": "Superó todas mis expectativas",
+   "review": "Ori and the Blind Forest me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:43.040072+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.040072+02:00",
+   "userId": 3,
+   "gameId": 35
+  },
+  {
+   "id": 23,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "Uno de mis favoritos del año",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Cuphead lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.055006+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.055007+02:00",
+   "userId": 3,
+   "gameId": 36
+  },
+  {
+   "id": 24,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: Portal 2 entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:43.075159+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.075159+02:00",
+   "userId": 3,
+   "gameId": 10
+  },
+  {
+   "id": 25,
+   "status": "Completado",
+   "rate": 8,
+   "title": "Enganchado desde el primer minuto",
+   "review": "No esperaba engancharme tanto a The Legend of Zelda: Breath of the Wild, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.098473+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.098473+02:00",
+   "userId": 3,
+   "gameId": 4
+  },
+  {
+   "id": 26,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Se deja jugar",
+   "review": "Ni fu ni fa: It Takes Two entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:43.12208+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.12208+02:00",
+   "userId": 3,
+   "gameId": 33
+  },
+  {
+   "id": 27,
+   "status": "Completado",
+   "rate": 10,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. God of War I lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.142373+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.142373+02:00",
+   "userId": 3,
+   "gameId": 22
+  },
+  {
+   "id": 28,
+   "status": "Completado",
+   "rate": 4,
+   "title": "No es para mí",
+   "review": "Le tenía muchas ganas a Hades, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.167177+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.167177+02:00",
+   "userId": 3,
+   "gameId": 9
+  },
+  {
+   "id": 29,
+   "status": "Completado",
+   "rate": 1,
+   "title": "No es para mí",
+   "review": "Le tenía muchas ganas a Hollow Knight, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.190458+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.190459+02:00",
+   "userId": 3,
+   "gameId": 8
+  },
+  {
+   "id": 30,
+   "status": "Completado",
+   "rate": 8,
+   "title": "Superó todas mis expectativas",
+   "review": "No esperaba engancharme tanto a Fortnite Battle Royale, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.232845+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.232845+02:00",
+   "userId": 3,
+   "gameId": 17
+  },
+  {
+   "id": 31,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Uno de mis favoritos del año",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Half-Life 2 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.253391+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.253391+02:00",
+   "userId": 4,
+   "gameId": 11
+  },
+  {
+   "id": 32,
+   "status": "Jugando",
+   "rate": 6,
+   "title": "Correcto, nada más",
+   "review": "Ni fu ni fa: Stardew Valley entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:43.268898+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.268898+02:00",
+   "userId": 4,
+   "gameId": 7
+  },
+  {
+   "id": 33,
+   "status": "Jugando",
+   "rate": 10,
+   "title": "Superó todas mis expectativas",
+   "review": "Untitled Goose Game me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:43.284546+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.284546+02:00",
+   "userId": 4,
+   "gameId": 34
+  },
+  {
+   "id": 34,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Sekiro: Shadows Die Twice me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:43.302046+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.302047+02:00",
+   "userId": 4,
+   "gameId": 20
+  },
+  {
+   "id": 35,
+   "status": "Jugando",
+   "rate": 9,
+   "title": "No podía dejar de jugar",
+   "review": "No esperaba engancharme tanto a The Witcher 3: Wild Hunt, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.320107+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.320107+02:00",
+   "userId": 4,
+   "gameId": 2
+  },
+  {
+   "id": 36,
+   "status": "Completado",
+   "rate": 8,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Bloodborne me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:43.33698+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.33698+02:00",
+   "userId": 4,
+   "gameId": 21
+  },
+  {
+   "id": 37,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Superó todas mis expectativas",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Ori and the Blind Forest lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.354015+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.354016+02:00",
+   "userId": 4,
+   "gameId": 35
+  },
+  {
+   "id": 38,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Se deja jugar",
+   "review": "Minecraft tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:43.377872+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.377872+02:00",
+   "userId": 4,
+   "gameId": 6
+  },
+  {
+   "id": 39,
+   "status": "Abandonado",
+   "rate": 8,
+   "title": "No podía dejar de jugar",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. God of War I lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.39985+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.39985+02:00",
+   "userId": 4,
+   "gameId": 22
+  },
+  {
+   "id": 40,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Uno de mis favoritos del año",
+   "review": "No esperaba engancharme tanto a Red Dead Redemption 2, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.421097+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.421098+02:00",
+   "userId": 4,
+   "gameId": 3
+  },
+  {
+   "id": 41,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Uno de mis favoritos del año",
+   "review": "No esperaba engancharme tanto a Terraria, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.448701+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.448701+02:00",
+   "userId": 5,
+   "gameId": 12
+  },
+  {
+   "id": 42,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Se deja jugar",
+   "review": "Ni fu ni fa: Hades entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:43.47451+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.47451+02:00",
+   "userId": 5,
+   "gameId": 9
+  },
+  {
+   "id": 43,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Cumple, sin sorprender",
+   "review": "Baldur's Gate III tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:43.499236+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.499236+02:00",
+   "userId": 5,
+   "gameId": 27
+  },
+  {
+   "id": 44,
+   "status": "Completado",
+   "rate": 10,
+   "title": "No podía dejar de jugar",
+   "review": "Sekiro: Shadows Die Twice me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:43.519042+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.519042+02:00",
+   "userId": 5,
+   "gameId": 20
+  },
+  {
+   "id": 45,
+   "status": "Jugando",
+   "rate": 6,
+   "title": "Correcto, nada más",
+   "review": "Ni fu ni fa: Portal 2 entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:43.538639+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.538639+02:00",
+   "userId": 5,
+   "gameId": 10
+  },
+  {
+   "id": 46,
+   "status": "Jugando",
+   "rate": 4,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Divinity: Original Sin 2, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.554277+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.554277+02:00",
+   "userId": 5,
+   "gameId": 26
+  },
+  {
+   "id": 47,
+   "status": "Abandonado",
+   "rate": 4,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Counter-Strike 2, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.570637+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.570638+02:00",
+   "userId": 5,
+   "gameId": 16
+  },
+  {
+   "id": 48,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Bloodborne lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.586317+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.586318+02:00",
+   "userId": 5,
+   "gameId": 21
+  },
+  {
+   "id": 49,
+   "status": "Jugando",
+   "rate": 3,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Stardew Valley, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.607447+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.607447+02:00",
+   "userId": 5,
+   "gameId": 7
+  },
+  {
+   "id": 50,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: God of War I entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:43.62842+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.62842+02:00",
+   "userId": 5,
+   "gameId": 22
+  },
+  {
+   "id": 51,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Uno de mis favoritos del año",
+   "review": "No esperaba engancharme tanto a Horizon Zero Dawn, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.652977+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.652977+02:00",
+   "userId": 6,
+   "gameId": 23
+  },
+  {
+   "id": 52,
+   "status": "Completado",
+   "rate": 7,
+   "title": "No podía dejar de jugar",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Divinity: Original Sin 2 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.67505+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.675051+02:00",
+   "userId": 6,
+   "gameId": 26
+  },
+  {
+   "id": 53,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Bueno, con sus peros",
+   "review": "Animal Crossing: New Horizons tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:43.699254+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.699254+02:00",
+   "userId": 6,
+   "gameId": 19
+  },
+  {
+   "id": 54,
+   "status": "Abandonado",
+   "rate": 1,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Minecraft, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.722927+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.722927+02:00",
+   "userId": 6,
+   "gameId": 6
+  },
+  {
+   "id": 55,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Una experiencia inolvidable",
+   "review": "XCOM 2 me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:43.74373+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.74373+02:00",
+   "userId": 6,
+   "gameId": 30
+  },
+  {
+   "id": 56,
+   "status": "Completado",
+   "rate": 10,
+   "title": "Enganchado desde el primer minuto",
+   "review": "No esperaba engancharme tanto a Cuphead, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.76577+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.76577+02:00",
+   "userId": 6,
+   "gameId": 36
+  },
+  {
+   "id": 57,
+   "status": "Abandonado",
+   "rate": 10,
+   "title": "Superó todas mis expectativas",
+   "review": "No esperaba engancharme tanto a Hollow Knight, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.788226+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.788226+02:00",
+   "userId": 6,
+   "gameId": 8
+  },
+  {
+   "id": 58,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Se deja jugar",
+   "review": "The Witcher 3: Wild Hunt tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:43.8081+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.8081+02:00",
+   "userId": 6,
+   "gameId": 2
+  },
+  {
+   "id": 59,
+   "status": "Abandonado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: Untitled Goose Game entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:43.827838+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.827838+02:00",
+   "userId": 6,
+   "gameId": 34
+  },
+  {
+   "id": 60,
+   "status": "Completado",
+   "rate": 9,
+   "title": "No podía dejar de jugar",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Cyberpunk 2077 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.844564+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.844564+02:00",
+   "userId": 6,
+   "gameId": 24
+  },
+  {
+   "id": 61,
+   "status": "Completado",
+   "rate": 2,
+   "title": "No es para mí",
+   "review": "Le tenía muchas ganas a Slay the Spire, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.866167+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.866167+02:00",
+   "userId": 7,
+   "gameId": 38
+  },
+  {
+   "id": 62,
+   "status": "Jugando",
+   "rate": 5,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: Rocket League entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:43.891918+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.891919+02:00",
+   "userId": 7,
+   "gameId": 37
+  },
+  {
+   "id": 63,
+   "status": "Completado",
+   "rate": 3,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Persona 5, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.913305+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.913305+02:00",
+   "userId": 7,
+   "gameId": 25
+  },
+  {
+   "id": 64,
+   "status": "Jugando",
+   "rate": 4,
+   "title": "No es para mí",
+   "review": "Le tenía muchas ganas a Cyberpunk 2077, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:43.938306+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.938307+02:00",
+   "userId": 7,
+   "gameId": 24
+  },
+  {
+   "id": 65,
+   "status": "Jugando",
+   "rate": 7,
+   "title": "Enganchado desde el primer minuto",
+   "review": "No esperaba engancharme tanto a Portal 2, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:43.964534+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.964534+02:00",
+   "userId": 7,
+   "gameId": 10
+  },
+  {
+   "id": 66,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "Una experiencia inolvidable",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. XCOM 2 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:43.987824+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:43.987825+02:00",
+   "userId": 7,
+   "gameId": 30
+  },
+  {
+   "id": 67,
+   "status": "Jugando",
+   "rate": 9,
+   "title": "Una experiencia inolvidable",
+   "review": "God of War I me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:44.007186+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.007186+02:00",
+   "userId": 7,
+   "gameId": 22
+  },
+  {
+   "id": 68,
+   "status": "Completado",
+   "rate": 3,
+   "title": "No es para mí",
+   "review": "Le tenía muchas ganas a Elden Ring, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.027113+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.027113+02:00",
+   "userId": 7,
+   "gameId": 5
+  },
+  {
+   "id": 69,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Bueno, con sus peros",
+   "review": "Ni fu ni fa: Among Us entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.044551+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.044552+02:00",
+   "userId": 7,
+   "gameId": 13
+  },
+  {
+   "id": 70,
+   "status": "Completado",
+   "rate": 10,
+   "title": "Superó todas mis expectativas",
+   "review": "No esperaba engancharme tanto a Half-Life 2, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:44.061769+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.061769+02:00",
+   "userId": 7,
+   "gameId": 11
+  },
+  {
+   "id": 71,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Se deja jugar",
+   "review": "Grand Theft Auto V tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:44.084208+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.084208+02:00",
+   "userId": 8,
+   "gameId": 1
+  },
+  {
+   "id": 72,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "No podía dejar de jugar",
+   "review": "Animal Crossing: New Horizons me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:44.107478+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.107478+02:00",
+   "userId": 8,
+   "gameId": 19
+  },
+  {
+   "id": 73,
+   "status": "Abandonado",
+   "rate": 5,
+   "title": "Cumple, sin sorprender",
+   "review": "Persona 5 tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:44.130996+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.130996+02:00",
+   "userId": 8,
+   "gameId": 25
+  },
+  {
+   "id": 74,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Uno de mis favoritos del año",
+   "review": "No esperaba engancharme tanto a Fall Guys: Ultimate Knockout, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:44.15427+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.15427+02:00",
+   "userId": 8,
+   "gameId": 14
+  },
+  {
+   "id": 75,
+   "status": "Jugando",
+   "rate": 6,
+   "title": "Se deja jugar",
+   "review": "Ni fu ni fa: God of War I entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.175572+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.175572+02:00",
+   "userId": 8,
+   "gameId": 22
+  },
+  {
+   "id": 76,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: Counter-Strike 2 entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.192939+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.192939+02:00",
+   "userId": 8,
+   "gameId": 16
+  },
+  {
+   "id": 77,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "Enganchado desde el primer minuto",
+   "review": "No esperaba engancharme tanto a Red Dead Redemption 2, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:44.21254+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.212541+02:00",
+   "userId": 8,
+   "gameId": 3
+  },
+  {
+   "id": 78,
+   "status": "Completado",
+   "rate": 4,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Half-Life 2, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.226881+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.226881+02:00",
+   "userId": 8,
+   "gameId": 11
+  },
+  {
+   "id": 79,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. The Witcher 3: Wild Hunt lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:44.252182+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.252182+02:00",
+   "userId": 8,
+   "gameId": 2
+  },
+  {
+   "id": 80,
+   "status": "Completado",
+   "rate": 4,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Stardew Valley, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.276179+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.276179+02:00",
+   "userId": 8,
+   "gameId": 7
+  },
+  {
+   "id": 81,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Elden Ring tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:44.294932+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.294932+02:00",
+   "userId": 9,
+   "gameId": 5
+  },
+  {
+   "id": 82,
+   "status": "Completado",
+   "rate": 2,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Terraria, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.309373+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.309373+02:00",
+   "userId": 9,
+   "gameId": 12
+  },
+  {
+   "id": 83,
+   "status": "Completado",
+   "rate": 2,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Persona 5, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.325189+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.325189+02:00",
+   "userId": 9,
+   "gameId": 25
+  },
+  {
+   "id": 84,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Correcto, nada más",
+   "review": "Ni fu ni fa: Fortnite Battle Royale entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.342536+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.342536+02:00",
+   "userId": 9,
+   "gameId": 17
+  },
+  {
+   "id": 85,
+   "status": "Completado",
+   "rate": 10,
+   "title": "No podía dejar de jugar",
+   "review": "No esperaba engancharme tanto a Half-Life 2, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:44.361536+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.361537+02:00",
+   "userId": 9,
+   "gameId": 11
+  },
+  {
+   "id": 86,
+   "status": "Completado",
+   "rate": 4,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Animal Crossing: New Horizons, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.383034+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.383034+02:00",
+   "userId": 9,
+   "gameId": 19
+  },
+  {
+   "id": 87,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Bueno, con sus peros",
+   "review": "Apex Legends tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:44.40714+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.407141+02:00",
+   "userId": 9,
+   "gameId": 18
+  },
+  {
+   "id": 88,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Una experiencia inolvidable",
+   "review": "No esperaba engancharme tanto a The Witcher 3: Wild Hunt, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:44.43066+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.43066+02:00",
+   "userId": 9,
+   "gameId": 2
+  },
+  {
+   "id": 89,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Una experiencia inolvidable",
+   "review": "Untitled Goose Game me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:44.457036+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.457036+02:00",
+   "userId": 9,
+   "gameId": 34
+  },
+  {
+   "id": 90,
+   "status": "Completado",
+   "rate": 3,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Celeste, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.476825+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.476825+02:00",
+   "userId": 9,
+   "gameId": 40
+  },
+  {
+   "id": 91,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Uno de mis favoritos del año",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Divinity: Original Sin 2 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:44.493963+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.493963+02:00",
+   "userId": 10,
+   "gameId": 26
+  },
+  {
+   "id": 92,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Uno de mis favoritos del año",
+   "review": "No esperaba engancharme tanto a Sekiro: Shadows Die Twice, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:44.513262+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.513263+02:00",
+   "userId": 10,
+   "gameId": 20
+  },
+  {
+   "id": 93,
+   "status": "Completado",
+   "rate": 10,
+   "title": "Superó todas mis expectativas",
+   "review": "No esperaba engancharme tanto a Minecraft, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:44.535651+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.535652+02:00",
+   "userId": 10,
+   "gameId": 6
+  },
+  {
+   "id": 94,
+   "status": "Jugando",
+   "rate": 5,
+   "title": "Correcto, nada más",
+   "review": "Stardew Valley tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:44.580394+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.580394+02:00",
+   "userId": 10,
+   "gameId": 7
+  },
+  {
+   "id": 95,
+   "status": "Completado",
+   "rate": 3,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Baldur's Gate III, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.600824+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.600825+02:00",
+   "userId": 10,
+   "gameId": 27
+  },
+  {
+   "id": 96,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "The Witcher 3: Wild Hunt tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:44.620906+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.620906+02:00",
+   "userId": 10,
+   "gameId": 2
+  },
+  {
+   "id": 97,
+   "status": "Jugando",
+   "rate": 7,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Among Us lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:44.642409+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.642409+02:00",
+   "userId": 10,
+   "gameId": 13
+  },
+  {
+   "id": 98,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Enganchado desde el primer minuto",
+   "review": "No esperaba engancharme tanto a Fall Guys: Ultimate Knockout, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:44.667338+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.667339+02:00",
+   "userId": 10,
+   "gameId": 14
+  },
+  {
+   "id": 99,
+   "status": "Abandonado",
+   "rate": 6,
+   "title": "Bueno, con sus peros",
+   "review": "Ni fu ni fa: Grand Theft Auto V entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.692558+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.692558+02:00",
+   "userId": 10,
+   "gameId": 1
+  },
+  {
+   "id": 100,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Se deja jugar",
+   "review": "Ni fu ni fa: Persona 5 entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.719203+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.719203+02:00",
+   "userId": 10,
+   "gameId": 25
+  },
+  {
+   "id": 101,
+   "status": "Completado",
+   "rate": 8,
+   "title": "Superó todas mis expectativas",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Hollow Knight lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:44.742701+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.742702+02:00",
+   "userId": 11,
+   "gameId": 8
+  },
+  {
+   "id": 102,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Se deja jugar",
+   "review": "Ni fu ni fa: God of War I entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.765568+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.765569+02:00",
+   "userId": 11,
+   "gameId": 22
+  },
+  {
+   "id": 103,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Enganchado desde el primer minuto",
+   "review": "Bloodborne me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:44.786494+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.786494+02:00",
+   "userId": 11,
+   "gameId": 21
+  },
+  {
+   "id": 104,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Correcto, nada más",
+   "review": "Ni fu ni fa: Dead by Daylight entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.806376+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.806377+02:00",
+   "userId": 11,
+   "gameId": 32
+  },
+  {
+   "id": 105,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: The Legend of Zelda: Breath of the Wild entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.828184+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.828185+02:00",
+   "userId": 11,
+   "gameId": 4
+  },
+  {
+   "id": 106,
+   "status": "Completado",
+   "rate": 2,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Overwatch 2, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:44.853451+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.853451+02:00",
+   "userId": 11,
+   "gameId": 15
+  },
+  {
+   "id": 107,
+   "status": "Jugando",
+   "rate": 6,
+   "title": "Correcto, nada más",
+   "review": "It Takes Two tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:44.874831+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.874832+02:00",
+   "userId": 11,
+   "gameId": 33
+  },
+  {
+   "id": 108,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "Una experiencia inolvidable",
+   "review": "Grand Theft Auto V me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:44.895486+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.895486+02:00",
+   "userId": 11,
+   "gameId": 1
+  },
+  {
+   "id": 109,
+   "status": "Abandonado",
+   "rate": 6,
+   "title": "Correcto, nada más",
+   "review": "Ni fu ni fa: Fall Guys: Ultimate Knockout entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:44.919098+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.919098+02:00",
+   "userId": 11,
+   "gameId": 14
+  },
+  {
+   "id": 110,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Uno de mis favoritos del año",
+   "review": "Among Us me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:44.943759+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.943759+02:00",
+   "userId": 11,
+   "gameId": 13
+  },
+  {
+   "id": 111,
+   "status": "Jugando",
+   "rate": 8,
+   "title": "Una experiencia inolvidable",
+   "review": "Bloodborne me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:44.967702+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.967703+02:00",
+   "userId": 12,
+   "gameId": 21
+  },
+  {
+   "id": 112,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Correcto, nada más",
+   "review": "Stardew Valley tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:44.985578+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:44.985578+02:00",
+   "userId": 12,
+   "gameId": 7
+  },
+  {
+   "id": 113,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Uno de mis favoritos del año",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. The Legend of Zelda: Breath of the Wild lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.004949+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.00495+02:00",
+   "userId": 12,
+   "gameId": 4
+  },
+  {
+   "id": 114,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Superó todas mis expectativas",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. XCOM 2 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.024518+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.024518+02:00",
+   "userId": 12,
+   "gameId": 30
+  },
+  {
+   "id": 115,
+   "status": "Jugando",
+   "rate": 6,
+   "title": "Bueno, con sus peros",
+   "review": "Ni fu ni fa: Slay the Spire entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:45.042683+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.042683+02:00",
+   "userId": 12,
+   "gameId": 38
+  },
+  {
+   "id": 116,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Correcto, nada más",
+   "review": "Hollow Knight tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:45.06136+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.06136+02:00",
+   "userId": 12,
+   "gameId": 8
+  },
+  {
+   "id": 117,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: Terraria entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:45.08307+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.08307+02:00",
+   "userId": 12,
+   "gameId": 12
+  },
+  {
+   "id": 118,
+   "status": "Abandonado",
+   "rate": 10,
+   "title": "Uno de mis favoritos del año",
+   "review": "Horizon Zero Dawn me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:45.103293+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.103293+02:00",
+   "userId": 12,
+   "gameId": 23
+  },
+  {
+   "id": 119,
+   "status": "Completado",
+   "rate": 5,
+   "title": "Bueno, con sus peros",
+   "review": "Overwatch 2 tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:45.125406+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.125407+02:00",
+   "userId": 12,
+   "gameId": 15
+  },
+  {
+   "id": 120,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Una experiencia inolvidable",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Resident Evil 2 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.149044+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.149044+02:00",
+   "userId": 12,
+   "gameId": 31
+  },
+  {
+   "id": 121,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Superó todas mis expectativas",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Apex Legends lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.171362+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.171362+02:00",
+   "userId": 13,
+   "gameId": 18
+  },
+  {
+   "id": 122,
+   "status": "Abandonado",
+   "rate": 1,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Animal Crossing: New Horizons, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:45.196341+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.196341+02:00",
+   "userId": 13,
+   "gameId": 19
+  },
+  {
+   "id": 123,
+   "status": "Jugando",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Elden Ring tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:45.221611+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.221611+02:00",
+   "userId": 13,
+   "gameId": 5
+  },
+  {
+   "id": 124,
+   "status": "Abandonado",
+   "rate": 3,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Baldur's Gate III, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:45.248816+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.248816+02:00",
+   "userId": 13,
+   "gameId": 27
+  },
+  {
+   "id": 125,
+   "status": "Jugando",
+   "rate": 1,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a The Witcher 3: Wild Hunt, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:45.270157+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.270157+02:00",
+   "userId": 13,
+   "gameId": 2
+  },
+  {
+   "id": 126,
+   "status": "Jugando",
+   "rate": 6,
+   "title": "Bueno, con sus peros",
+   "review": "Minecraft tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:45.291113+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.291114+02:00",
+   "userId": 13,
+   "gameId": 6
+  },
+  {
+   "id": 127,
+   "status": "Abandonado",
+   "rate": 9,
+   "title": "No podía dejar de jugar",
+   "review": "Journey me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:45.310374+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.310374+02:00",
+   "userId": 13,
+   "gameId": 39
+  },
+  {
+   "id": 128,
+   "status": "Completado",
+   "rate": 8,
+   "title": "Enganchado desde el primer minuto",
+   "review": "No esperaba engancharme tanto a Grand Theft Auto V, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:45.328607+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.328607+02:00",
+   "userId": 13,
+   "gameId": 1
+  },
+  {
+   "id": 129,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Counter-Strike 2 tiene ideas muy buenas, pero se nota que le falta un pulido más. Aun así, lo he disfrutado.",
+   "createdAt": "2026-09-09T19:21:45.344972+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.344972+02:00",
+   "userId": 13,
+   "gameId": 16
+  },
+  {
+   "id": 130,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "Uno de mis favoritos del año",
+   "review": "Persona 5 me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:45.365233+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.365233+02:00",
+   "userId": 13,
+   "gameId": 25
+  },
+  {
+   "id": 131,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Se deja jugar",
+   "review": "Ni fu ni fa: Stardew Valley entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:45.38813+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.388131+02:00",
+   "userId": 14,
+   "gameId": 7
+  },
+  {
+   "id": 132,
+   "status": "Completado",
+   "rate": 8,
+   "title": "Una experiencia inolvidable",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. The Legend of Zelda: Breath of the Wild lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.411083+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.411083+02:00",
+   "userId": 14,
+   "gameId": 4
+  },
+  {
+   "id": 133,
+   "status": "Jugando",
+   "rate": 5,
+   "title": "Bueno, con sus peros",
+   "review": "Ni fu ni fa: Hollow Knight entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:45.428835+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.428835+02:00",
+   "userId": 14,
+   "gameId": 8
+  },
+  {
+   "id": 134,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Correcto, nada más",
+   "review": "Ni fu ni fa: Half-Life 2 entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:45.447099+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.447099+02:00",
+   "userId": 14,
+   "gameId": 11
+  },
+  {
+   "id": 135,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Una experiencia inolvidable",
+   "review": "Grand Theft Auto V me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:45.463184+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.463184+02:00",
+   "userId": 14,
+   "gameId": 1
+  },
+  {
+   "id": 136,
+   "status": "Jugando",
+   "rate": 8,
+   "title": "No podía dejar de jugar",
+   "review": "Elden Ring me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:45.481363+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.481363+02:00",
+   "userId": 14,
+   "gameId": 5
+  },
+  {
+   "id": 137,
+   "status": "Completado",
+   "rate": 4,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a The Witcher 3: Wild Hunt, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:45.495213+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.495213+02:00",
+   "userId": 14,
+   "gameId": 2
+  },
+  {
+   "id": 138,
+   "status": "Abandonado",
+   "rate": 7,
+   "title": "Enganchado desde el primer minuto",
+   "review": "No esperaba engancharme tanto a Animal Crossing: New Horizons, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:45.510806+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.510806+02:00",
+   "userId": 14,
+   "gameId": 19
+  },
+  {
+   "id": 139,
+   "status": "Jugando",
+   "rate": 10,
+   "title": "Uno de mis favoritos del año",
+   "review": "No esperaba engancharme tanto a Celeste, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:45.528979+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.528979+02:00",
+   "userId": 14,
+   "gameId": 40
+  },
+  {
+   "id": 140,
+   "status": "Completado",
+   "rate": 7,
+   "title": "Uno de mis favoritos del año",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Minecraft lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.547045+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.547046+02:00",
+   "userId": 14,
+   "gameId": 6
+  },
+  {
+   "id": 141,
+   "status": "Completado",
+   "rate": 9,
+   "title": "No podía dejar de jugar",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Animal Crossing: New Horizons lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.56644+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.56644+02:00",
+   "userId": 15,
+   "gameId": 19
+  },
+  {
+   "id": 142,
+   "status": "Abandonado",
+   "rate": 4,
+   "title": "Esperaba más",
+   "review": "Le tenía muchas ganas a Grand Theft Auto V, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:45.585367+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.585367+02:00",
+   "userId": 15,
+   "gameId": 1
+  },
+  {
+   "id": 143,
+   "status": "Jugando",
+   "rate": 7,
+   "title": "Superó todas mis expectativas",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. Overwatch 2 lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.604743+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.604744+02:00",
+   "userId": 15,
+   "gameId": 15
+  },
+  {
+   "id": 144,
+   "status": "Completado",
+   "rate": 4,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Portal 2, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:45.623933+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.623933+02:00",
+   "userId": 15,
+   "gameId": 10
+  },
+  {
+   "id": 145,
+   "status": "Completado",
+   "rate": 9,
+   "title": "Una experiencia inolvidable",
+   "review": "No esperaba engancharme tanto a Divinity: Original Sin 2, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:45.642859+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.64286+02:00",
+   "userId": 15,
+   "gameId": 26
+  },
+  {
+   "id": 146,
+   "status": "Completado",
+   "rate": 10,
+   "title": "Superó todas mis expectativas",
+   "review": "No esperaba engancharme tanto a Sekiro: Shadows Die Twice, pero cada sesión se me hace corta. Totalmente recomendado.",
+   "createdAt": "2026-09-09T19:21:45.665707+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.665707+02:00",
+   "userId": 15,
+   "gameId": 20
+  },
+  {
+   "id": 147,
+   "status": "Completado",
+   "rate": 6,
+   "title": "Cumple, sin sorprender",
+   "review": "Ni fu ni fa: Dead by Daylight entretiene un rato, aunque no es de lo mejor que he jugado este año.",
+   "createdAt": "2026-09-09T19:21:45.687303+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.687303+02:00",
+   "userId": 15,
+   "gameId": 32
+  },
+  {
+   "id": 148,
+   "status": "Jugando",
+   "rate": 3,
+   "title": "Decepción",
+   "review": "Le tenía muchas ganas a Slay the Spire, pero no ha terminado de convencerme. Quizás mejore en próximas actualizaciones.",
+   "createdAt": "2026-09-09T19:21:45.714509+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.714509+02:00",
+   "userId": 15,
+   "gameId": 38
+  },
+  {
+   "id": 149,
+   "status": "Completado",
+   "rate": 10,
+   "title": "No podía dejar de jugar",
+   "review": "Fall Guys: Ultimate Knockout me ha tenido pegado a la pantalla horas y horas. La ambientación y las mecánicas encajan de maravilla.",
+   "createdAt": "2026-09-09T19:21:45.737521+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.737521+02:00",
+   "userId": 15,
+   "gameId": 14
+  },
+  {
+   "id": 150,
+   "status": "Abandonado",
+   "rate": 8,
+   "title": "Superó todas mis expectativas",
+   "review": "Pocas veces un juego consigue que me importe tanto lo que pasa. The Legend of Zelda: Breath of the Wild lo consigue de sobra.",
+   "createdAt": "2026-09-09T19:21:45.756718+02:00",
+   "playedDate": null,
+   "updatedAt": "2026-09-09T19:21:45.756718+02:00",
+   "userId": 15,
+   "gameId": 4
+  }
+ ],
+ "lists": [
+  {
+   "id": 1,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:06.038157+02:00",
+   "isPublic": false,
+   "userId": 1,
+   "items": [
+    {
+     "gameId": 43,
+     "addedAt": "2026-10-23T18:05:51.182457+02:00"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:06.24808+02:00",
+   "isPublic": false,
+   "userId": 2,
+   "items": []
+  },
+  {
+   "id": 3,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:06.432845+02:00",
+   "isPublic": false,
+   "userId": 3,
+   "items": []
+  },
+  {
+   "id": 4,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:06.595369+02:00",
+   "isPublic": false,
+   "userId": 4,
+   "items": []
+  },
+  {
+   "id": 5,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:06.761068+02:00",
+   "isPublic": false,
+   "userId": 5,
+   "items": []
+  },
+  {
+   "id": 6,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:06.955377+02:00",
+   "isPublic": false,
+   "userId": 6,
+   "items": []
+  },
+  {
+   "id": 7,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:07.109894+02:00",
+   "isPublic": false,
+   "userId": 7,
+   "items": []
+  },
+  {
+   "id": 8,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:07.282081+02:00",
+   "isPublic": false,
+   "userId": 8,
+   "items": []
+  },
+  {
+   "id": 9,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:07.493199+02:00",
+   "isPublic": false,
+   "userId": 9,
+   "items": []
+  },
+  {
+   "id": 10,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:07.713823+02:00",
+   "isPublic": false,
+   "userId": 10,
+   "items": []
+  },
+  {
+   "id": 11,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:07.985697+02:00",
+   "isPublic": false,
+   "userId": 11,
+   "items": []
+  },
+  {
+   "id": 12,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:08.18635+02:00",
+   "isPublic": false,
+   "userId": 12,
+   "items": []
+  },
+  {
+   "id": 13,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:08.381695+02:00",
+   "isPublic": false,
+   "userId": 13,
+   "items": []
+  },
+  {
+   "id": 14,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:08.576038+02:00",
+   "isPublic": false,
+   "userId": 14,
+   "items": []
+  },
+  {
+   "id": 15,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-09-09T19:21:08.769506+02:00",
+   "isPublic": false,
+   "userId": 15,
+   "items": []
+  },
+  {
+   "id": 16,
+   "name": "Mis imprescindibles de NeonRider87",
+   "description": "Fan de la velocidad y las luces de neón. Si tiene motores o balas, lo he jugado.",
+   "createdAt": "2026-09-09T19:21:49.74879+02:00",
+   "isPublic": true,
+   "userId": 1,
+   "items": [
+    {
+     "gameId": 7,
+     "addedAt": "2026-09-09T19:21:49.782874+02:00"
+    },
+    {
+     "gameId": 22,
+     "addedAt": "2026-09-09T19:21:49.793346+02:00"
+    },
+    {
+     "gameId": 1,
+     "addedAt": "2026-09-09T19:21:49.801648+02:00"
+    },
+    {
+     "gameId": 18,
+     "addedAt": "2026-09-09T19:21:49.812496+02:00"
+    },
+    {
+     "gameId": 40,
+     "addedAt": "2026-09-09T19:21:49.822188+02:00"
+    },
+    {
+     "gameId": 26,
+     "addedAt": "2026-09-10T17:10:33.475004+02:00"
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "name": "Mis imprescindibles de PixelQueen",
+   "description": "Coleccionista de perlas indie y pixel art. Siempre busco la próxima joya escondida.",
+   "createdAt": "2026-09-09T19:21:49.828268+02:00",
+   "isPublic": true,
+   "userId": 2,
+   "items": [
+    {
+     "gameId": 4,
+     "addedAt": "2026-09-09T19:21:49.842974+02:00"
+    },
+    {
+     "gameId": 30,
+     "addedAt": "2026-09-09T19:21:49.851549+02:00"
+    },
+    {
+     "gameId": 23,
+     "addedAt": "2026-09-09T19:21:49.862091+02:00"
+    },
+    {
+     "gameId": 14,
+     "addedAt": "2026-09-09T19:21:49.87338+02:00"
+    },
+    {
+     "gameId": 17,
+     "addedAt": "2026-09-09T19:21:49.887329+02:00"
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "name": "Lo mejor que he jugado de DragonSlayer99",
+   "description": "100+ horas en cualquier RPG que se precie. La historia siempre gana a los gráficos.",
+   "createdAt": "2026-09-09T19:21:49.896451+02:00",
+   "isPublic": true,
+   "userId": 3,
+   "items": [
+    {
+     "gameId": 38,
+     "addedAt": "2026-09-09T19:21:49.917947+02:00"
+    },
+    {
+     "gameId": 26,
+     "addedAt": "2026-09-09T19:21:49.927209+02:00"
+    },
+    {
+     "gameId": 13,
+     "addedAt": "2026-09-09T19:21:49.93765+02:00"
+    },
+    {
+     "gameId": 24,
+     "addedAt": "2026-09-09T19:21:49.948978+02:00"
+    },
+    {
+     "gameId": 19,
+     "addedAt": "2026-09-09T19:21:49.961643+02:00"
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "name": "Mis imprescindibles de SnipeMaster",
+   "description": "Competitivo de nacimiento. Si hay ranking, ahí estoy.",
+   "createdAt": "2026-09-09T19:21:49.970055+02:00",
+   "isPublic": true,
+   "userId": 4,
+   "items": [
+    {
+     "gameId": 6,
+     "addedAt": "2026-09-09T19:21:49.983284+02:00"
+    },
+    {
+     "gameId": 40,
+     "addedAt": "2026-09-09T19:21:49.994777+02:00"
+    },
+    {
+     "gameId": 2,
+     "addedAt": "2026-09-09T19:21:50.009898+02:00"
+    },
+    {
+     "gameId": 1,
+     "addedAt": "2026-09-09T19:21:50.022902+02:00"
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "name": "Joyitas que recomiendo de CozyGamerAna",
+   "description": "Prefiero cultivar mi granja virtual antes que salvar el mundo. Juegos tranquilos, vida tranquila.",
+   "createdAt": "2026-09-09T19:21:50.031907+02:00",
+   "isPublic": true,
+   "userId": 5,
+   "items": [
+    {
+     "gameId": 38,
+     "addedAt": "2026-09-09T19:21:50.049395+02:00"
+    },
+    {
+     "gameId": 1,
+     "addedAt": "2026-09-09T19:21:50.063359+02:00"
+    },
+    {
+     "gameId": 5,
+     "addedAt": "2026-09-09T19:21:50.078233+02:00"
+    },
+    {
+     "gameId": 16,
+     "addedAt": "2026-09-09T19:21:50.091595+02:00"
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "name": "Mis imprescindibles de RetroVault",
+   "description": "Nostálgico profesional. Todo lo bueno se inventó antes del 2005.",
+   "createdAt": "2026-09-09T19:21:50.09853+02:00",
+   "isPublic": true,
+   "userId": 6,
+   "items": [
+    {
+     "gameId": 8,
+     "addedAt": "2026-09-09T19:21:50.113678+02:00"
+    },
+    {
+     "gameId": 39,
+     "addedAt": "2026-09-09T19:21:50.127677+02:00"
+    },
+    {
+     "gameId": 38,
+     "addedAt": "2026-09-09T19:21:50.143705+02:00"
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "name": "Para maratón de fin de semana de SpeedrunTom",
+   "description": "Cada segundo cuenta. Si se puede hacer más rápido, lo intentaré.",
+   "createdAt": "2026-09-09T19:21:50.154169+02:00",
+   "isPublic": true,
+   "userId": 7,
+   "items": [
+    {
+     "gameId": 3,
+     "addedAt": "2026-09-09T19:21:50.176885+02:00"
+    },
+    {
+     "gameId": 2,
+     "addedAt": "2026-09-09T19:21:50.192658+02:00"
+    },
+    {
+     "gameId": 13,
+     "addedAt": "2026-09-09T19:21:50.207568+02:00"
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "name": "Mis imprescindibles de LoreMaster",
+   "description": "Leo todos los diarios, hablo con todos los NPC. El lore es sagrado.",
+   "createdAt": "2026-09-09T19:21:50.218412+02:00",
+   "isPublic": true,
+   "userId": 8,
+   "items": [
+    {
+     "gameId": 4,
+     "addedAt": "2026-09-09T19:21:50.238701+02:00"
+    },
+    {
+     "gameId": 3,
+     "addedAt": "2026-09-09T19:21:50.249974+02:00"
+    },
+    {
+     "gameId": 1,
+     "addedAt": "2026-09-09T19:21:50.261977+02:00"
+    },
+    {
+     "gameId": 27,
+     "addedAt": "2026-09-09T19:21:50.274789+02:00"
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "name": "Para maratón de fin de semana de CoopKing",
+   "description": "Los juegos se disfrutan el doble en compañía. Siempre con hueco para un dúo más.",
+   "createdAt": "2026-09-09T19:21:50.281598+02:00",
+   "isPublic": true,
+   "userId": 9,
+   "items": [
+    {
+     "gameId": 8,
+     "addedAt": "2026-09-09T19:21:50.296667+02:00"
+    },
+    {
+     "gameId": 18,
+     "addedAt": "2026-09-09T19:21:50.308321+02:00"
+    },
+    {
+     "gameId": 19,
+     "addedAt": "2026-09-09T19:21:50.319987+02:00"
+    },
+    {
+     "gameId": 20,
+     "addedAt": "2026-09-09T19:21:50.330502+02:00"
+    },
+    {
+     "gameId": 34,
+     "addedAt": "2026-09-09T19:21:50.343092+02:00"
+    }
+   ]
+  },
+  {
+   "id": 25,
+   "name": "Joyitas que recomiendo de IndieDiver",
+   "description": "Buceando en itch.io y Steam en busca de rarezas que nadie más ha descubierto.",
+   "createdAt": "2026-09-09T19:21:50.350717+02:00",
+   "isPublic": true,
+   "userId": 10,
+   "items": [
+    {
+     "gameId": 22,
+     "addedAt": "2026-09-09T19:21:50.367412+02:00"
+    },
+    {
+     "gameId": 35,
+     "addedAt": "2026-09-09T19:21:50.379139+02:00"
+    },
+    {
+     "gameId": 16,
+     "addedAt": "2026-09-09T19:21:50.39359+02:00"
+    }
+   ]
+  },
+  {
+   "id": 26,
+   "name": "Para maratón de fin de semana de StrategyOwl",
+   "description": "Pienso diez turnos por delante. La paciencia es mi mejor arma.",
+   "createdAt": "2026-09-09T19:21:50.402104+02:00",
+   "isPublic": true,
+   "userId": 11,
+   "items": [
+    {
+     "gameId": 27,
+     "addedAt": "2026-09-09T19:21:50.421493+02:00"
+    },
+    {
+     "gameId": 3,
+     "addedAt": "2026-09-09T19:21:50.436855+02:00"
+    },
+    {
+     "gameId": 23,
+     "addedAt": "2026-09-09T19:21:50.454397+02:00"
+    },
+    {
+     "gameId": 7,
+     "addedAt": "2026-09-09T19:21:50.47084+02:00"
+    }
+   ]
+  },
+  {
+   "id": 27,
+   "name": "Para maratón de fin de semana de NightmareFuel",
+   "description": "Cuanto más oscuro y perturbador, mejor. Duermo con la luz encendida por elección propia.",
+   "createdAt": "2026-09-09T19:21:50.480806+02:00",
+   "isPublic": true,
+   "userId": 12,
+   "items": [
+    {
+     "gameId": 20,
+     "addedAt": "2026-09-09T19:21:50.498026+02:00"
+    },
+    {
+     "gameId": 1,
+     "addedAt": "2026-09-09T19:21:50.511595+02:00"
+    },
+    {
+     "gameId": 40,
+     "addedAt": "2026-09-09T19:21:50.523127+02:00"
+    },
+    {
+     "gameId": 9,
+     "addedAt": "2026-09-09T19:21:50.536282+02:00"
+    }
+   ]
+  },
+  {
+   "id": 28,
+   "name": "Para maratón de fin de semana de SoulsVeteran",
+   "description": "Git gud o vuelve a intentarlo. Cada muerte es una lección.",
+   "createdAt": "2026-09-09T19:21:50.543666+02:00",
+   "isPublic": true,
+   "userId": 13,
+   "items": [
+    {
+     "gameId": 18,
+     "addedAt": "2026-09-09T19:21:50.560362+02:00"
+    },
+    {
+     "gameId": 21,
+     "addedAt": "2026-09-09T19:21:50.572639+02:00"
+    },
+    {
+     "gameId": 8,
+     "addedAt": "2026-09-09T19:21:50.585817+02:00"
+    },
+    {
+     "gameId": 26,
+     "addedAt": "2026-09-09T19:21:50.599577+02:00"
+    },
+    {
+     "gameId": 29,
+     "addedAt": "2026-09-09T19:21:50.614053+02:00"
+    }
+   ]
+  },
+  {
+   "id": 29,
+   "name": "Lo mejor que he jugado de CasualClara",
+   "description": "Diez minutos entre tarea y tarea, eso es lo mío. Nada de estrés, solo diversión.",
+   "createdAt": "2026-09-09T19:21:50.622716+02:00",
+   "isPublic": true,
+   "userId": 14,
+   "items": [
+    {
+     "gameId": 27,
+     "addedAt": "2026-09-09T19:21:50.6414+02:00"
+    },
+    {
+     "gameId": 8,
+     "addedAt": "2026-09-09T19:21:50.655542+02:00"
+    },
+    {
+     "gameId": 40,
+     "addedAt": "2026-09-09T19:21:50.6701+02:00"
+    }
+   ]
+  },
+  {
+   "id": 30,
+   "name": "Lo mejor que he jugado de WanderingNomad",
+   "description": "Si el mapa tiene más de tres iconos sin descubrir, ya soy feliz.",
+   "createdAt": "2026-09-09T19:21:50.678553+02:00",
+   "isPublic": true,
+   "userId": 15,
+   "items": [
+    {
+     "gameId": 34,
+     "addedAt": "2026-09-09T19:21:50.701211+02:00"
+    },
+    {
+     "gameId": 18,
+     "addedAt": "2026-09-09T19:21:50.715763+02:00"
+    },
+    {
+     "gameId": 8,
+     "addedAt": "2026-09-09T19:21:50.729151+02:00"
+    },
+    {
+     "gameId": 25,
+     "addedAt": "2026-09-09T19:21:50.743287+02:00"
+    }
+   ]
+  },
+  {
+   "id": 31,
+   "name": "Juegos pendientes",
+   "description": null,
+   "createdAt": "2026-10-23T17:58:59.569305+02:00",
+   "isPublic": false,
+   "userId": 16,
+   "items": []
+  }
+ ],
+ "listFollows": [
+  {
+   "userId": 1,
+   "listId": 28,
+   "createdAt": "2026-09-09T19:21:50.796902+02:00"
+  },
+  {
+   "userId": 1,
+   "listId": 17,
+   "createdAt": "2026-09-09T19:21:50.856109+02:00"
+  },
+  {
+   "userId": 1,
+   "listId": 29,
+   "createdAt": "2026-09-09T19:21:50.86857+02:00"
+  },
+  {
+   "userId": 2,
+   "listId": 19,
+   "createdAt": "2026-09-09T19:21:50.885096+02:00"
+  },
+  {
+   "userId": 2,
+   "listId": 16,
+   "createdAt": "2026-09-09T19:21:50.900237+02:00"
+  },
+  {
+   "userId": 2,
+   "listId": 30,
+   "createdAt": "2026-09-09T19:21:50.914582+02:00"
+  },
+  {
+   "userId": 3,
+   "listId": 23,
+   "createdAt": "2026-09-09T19:21:50.931065+02:00"
+  },
+  {
+   "userId": 4,
+   "listId": 17,
+   "createdAt": "2026-09-09T19:21:50.94691+02:00"
+  },
+  {
+   "userId": 4,
+   "listId": 18,
+   "createdAt": "2026-09-09T19:21:50.95981+02:00"
+  },
+  {
+   "userId": 5,
+   "listId": 27,
+   "createdAt": "2026-09-09T19:21:50.973564+02:00"
+  },
+  {
+   "userId": 6,
+   "listId": 28,
+   "createdAt": "2026-09-09T19:21:50.985059+02:00"
+  },
+  {
+   "userId": 6,
+   "listId": 27,
+   "createdAt": "2026-09-09T19:21:50.997839+02:00"
+  },
+  {
+   "userId": 6,
+   "listId": 16,
+   "createdAt": "2026-09-09T19:21:51.010279+02:00"
+  },
+  {
+   "userId": 7,
+   "listId": 16,
+   "createdAt": "2026-09-09T19:21:51.020849+02:00"
+  },
+  {
+   "userId": 8,
+   "listId": 28,
+   "createdAt": "2026-09-09T19:21:51.031414+02:00"
+  },
+  {
+   "userId": 8,
+   "listId": 30,
+   "createdAt": "2026-09-09T19:21:51.041657+02:00"
+  },
+  {
+   "userId": 9,
+   "listId": 23,
+   "createdAt": "2026-09-09T19:21:51.052274+02:00"
+  },
+  {
+   "userId": 10,
+   "listId": 24,
+   "createdAt": "2026-09-09T19:21:51.062272+02:00"
+  },
+  {
+   "userId": 10,
+   "listId": 17,
+   "createdAt": "2026-09-09T19:21:51.075271+02:00"
+  },
+  {
+   "userId": 11,
+   "listId": 22,
+   "createdAt": "2026-09-09T19:21:51.108961+02:00"
+  },
+  {
+   "userId": 11,
+   "listId": 29,
+   "createdAt": "2026-09-09T19:21:51.124345+02:00"
+  },
+  {
+   "userId": 12,
+   "listId": 24,
+   "createdAt": "2026-09-09T19:21:51.139114+02:00"
+  },
+  {
+   "userId": 12,
+   "listId": 19,
+   "createdAt": "2026-09-09T19:21:51.156714+02:00"
+  },
+  {
+   "userId": 12,
+   "listId": 30,
+   "createdAt": "2026-09-09T19:21:51.175707+02:00"
+  },
+  {
+   "userId": 13,
+   "listId": 23,
+   "createdAt": "2026-09-09T19:21:51.194697+02:00"
+  },
+  {
+   "userId": 13,
+   "listId": 18,
+   "createdAt": "2026-09-09T19:21:51.210442+02:00"
+  },
+  {
+   "userId": 14,
+   "listId": 20,
+   "createdAt": "2026-09-09T19:21:51.22904+02:00"
+  },
+  {
+   "userId": 14,
+   "listId": 19,
+   "createdAt": "2026-09-09T19:21:51.24487+02:00"
+  },
+  {
+   "userId": 15,
+   "listId": 28,
+   "createdAt": "2026-09-09T19:21:51.256726+02:00"
+  },
+  {
+   "userId": 15,
+   "listId": 26,
+   "createdAt": "2026-09-09T19:21:51.27123+02:00"
+  },
+  {
+   "userId": 15,
+   "listId": 29,
+   "createdAt": "2026-09-09T19:21:51.285542+02:00"
+  }
+ ],
+ "follows": [
+  {
+   "followerId": 1,
+   "followedId": 12,
+   "createdAt": "2026-09-09T19:21:45.81372+02:00"
+  },
+  {
+   "followerId": 1,
+   "followedId": 8,
+   "createdAt": "2026-09-09T19:21:45.920966+02:00"
+  },
+  {
+   "followerId": 1,
+   "followedId": 3,
+   "createdAt": "2026-09-09T19:21:45.939022+02:00"
+  },
+  {
+   "followerId": 1,
+   "followedId": 14,
+   "createdAt": "2026-09-09T19:21:45.952099+02:00"
+  },
+  {
+   "followerId": 1,
+   "followedId": 6,
+   "createdAt": "2026-09-09T19:21:45.966393+02:00"
+  },
+  {
+   "followerId": 1,
+   "followedId": 9,
+   "createdAt": "2026-09-09T19:21:45.980498+02:00"
+  },
+  {
+   "followerId": 2,
+   "followedId": 12,
+   "createdAt": "2026-09-09T19:21:45.995126+02:00"
+  },
+  {
+   "followerId": 2,
+   "followedId": 14,
+   "createdAt": "2026-09-09T19:21:46.010384+02:00"
+  },
+  {
+   "followerId": 2,
+   "followedId": 6,
+   "createdAt": "2026-09-09T19:21:46.022419+02:00"
+  },
+  {
+   "followerId": 2,
+   "followedId": 5,
+   "createdAt": "2026-09-09T19:21:46.035842+02:00"
+  },
+  {
+   "followerId": 3,
+   "followedId": 11,
+   "createdAt": "2026-09-09T19:21:46.0491+02:00"
+  },
+  {
+   "followerId": 3,
+   "followedId": 1,
+   "createdAt": "2026-09-09T19:21:46.060361+02:00"
+  },
+  {
+   "followerId": 3,
+   "followedId": 2,
+   "createdAt": "2026-09-09T19:21:46.075206+02:00"
+  },
+  {
+   "followerId": 3,
+   "followedId": 7,
+   "createdAt": "2026-09-09T19:21:46.091543+02:00"
+  },
+  {
+   "followerId": 3,
+   "followedId": 6,
+   "createdAt": "2026-09-09T19:21:46.107762+02:00"
+  },
+  {
+   "followerId": 3,
+   "followedId": 14,
+   "createdAt": "2026-09-09T19:21:46.123788+02:00"
+  },
+  {
+   "followerId": 4,
+   "followedId": 7,
+   "createdAt": "2026-09-09T19:21:46.142043+02:00"
+  },
+  {
+   "followerId": 4,
+   "followedId": 15,
+   "createdAt": "2026-09-09T19:21:46.159776+02:00"
+  },
+  {
+   "followerId": 4,
+   "followedId": 13,
+   "createdAt": "2026-09-09T19:21:46.175934+02:00"
+  },
+  {
+   "followerId": 4,
+   "followedId": 3,
+   "createdAt": "2026-09-09T19:21:46.191618+02:00"
+  },
+  {
+   "followerId": 5,
+   "followedId": 7,
+   "createdAt": "2026-09-09T19:21:46.208682+02:00"
+  },
+  {
+   "followerId": 5,
+   "followedId": 14,
+   "createdAt": "2026-09-09T19:21:46.222836+02:00"
+  },
+  {
+   "followerId": 5,
+   "followedId": 15,
+   "createdAt": "2026-09-09T19:21:46.234837+02:00"
+  },
+  {
+   "followerId": 5,
+   "followedId": 1,
+   "createdAt": "2026-09-09T19:21:46.245197+02:00"
+  },
+  {
+   "followerId": 6,
+   "followedId": 10,
+   "createdAt": "2026-09-09T19:21:46.257486+02:00"
+  },
+  {
+   "followerId": 6,
+   "followedId": 14,
+   "createdAt": "2026-09-09T19:21:46.270326+02:00"
+  },
+  {
+   "followerId": 6,
+   "followedId": 9,
+   "createdAt": "2026-09-09T19:21:46.283306+02:00"
+  },
+  {
+   "followerId": 6,
+   "followedId": 8,
+   "createdAt": "2026-09-09T19:21:46.297245+02:00"
+  },
+  {
+   "followerId": 7,
+   "followedId": 2,
+   "createdAt": "2026-09-09T19:21:46.310063+02:00"
+  },
+  {
+   "followerId": 7,
+   "followedId": 5,
+   "createdAt": "2026-09-09T19:21:46.326074+02:00"
+  },
+  {
+   "followerId": 7,
+   "followedId": 1,
+   "createdAt": "2026-09-09T19:21:46.340277+02:00"
+  },
+  {
+   "followerId": 7,
+   "followedId": 12,
+   "createdAt": "2026-09-09T19:21:46.356583+02:00"
+  },
+  {
+   "followerId": 7,
+   "followedId": 10,
+   "createdAt": "2026-09-09T19:21:46.371213+02:00"
+  },
+  {
+   "followerId": 8,
+   "followedId": 11,
+   "createdAt": "2026-09-09T19:21:46.387169+02:00"
+  },
+  {
+   "followerId": 8,
+   "followedId": 15,
+   "createdAt": "2026-09-09T19:21:46.423337+02:00"
+  },
+  {
+   "followerId": 8,
+   "followedId": 4,
+   "createdAt": "2026-09-09T19:21:46.44375+02:00"
+  },
+  {
+   "followerId": 8,
+   "followedId": 5,
+   "createdAt": "2026-09-09T19:21:46.461104+02:00"
+  },
+  {
+   "followerId": 8,
+   "followedId": 3,
+   "createdAt": "2026-09-09T19:21:46.482056+02:00"
+  },
+  {
+   "followerId": 9,
+   "followedId": 8,
+   "createdAt": "2026-09-09T19:21:46.500027+02:00"
+  },
+  {
+   "followerId": 9,
+   "followedId": 2,
+   "createdAt": "2026-09-09T19:21:46.511974+02:00"
+  },
+  {
+   "followerId": 9,
+   "followedId": 1,
+   "createdAt": "2026-09-09T19:21:46.526453+02:00"
+  },
+  {
+   "followerId": 10,
+   "followedId": 11,
+   "createdAt": "2026-09-09T19:21:46.540057+02:00"
+  },
+  {
+   "followerId": 10,
+   "followedId": 12,
+   "createdAt": "2026-09-09T19:21:46.551105+02:00"
+  },
+  {
+   "followerId": 10,
+   "followedId": 13,
+   "createdAt": "2026-09-09T19:21:46.566142+02:00"
+  },
+  {
+   "followerId": 10,
+   "followedId": 1,
+   "createdAt": "2026-09-09T19:21:46.585675+02:00"
+  },
+  {
+   "followerId": 11,
+   "followedId": 6,
+   "createdAt": "2026-09-09T19:21:46.605148+02:00"
+  },
+  {
+   "followerId": 11,
+   "followedId": 12,
+   "createdAt": "2026-09-09T19:21:46.627708+02:00"
+  },
+  {
+   "followerId": 11,
+   "followedId": 5,
+   "createdAt": "2026-09-09T19:21:46.64511+02:00"
+  },
+  {
+   "followerId": 11,
+   "followedId": 4,
+   "createdAt": "2026-09-09T19:21:46.662504+02:00"
+  },
+  {
+   "followerId": 12,
+   "followedId": 14,
+   "createdAt": "2026-09-09T19:21:46.674069+02:00"
+  },
+  {
+   "followerId": 12,
+   "followedId": 10,
+   "createdAt": "2026-09-09T19:21:46.684608+02:00"
+  },
+  {
+   "followerId": 12,
+   "followedId": 13,
+   "createdAt": "2026-09-09T19:21:46.696307+02:00"
+  },
+  {
+   "followerId": 12,
+   "followedId": 1,
+   "createdAt": "2026-09-09T19:21:46.709546+02:00"
+  },
+  {
+   "followerId": 12,
+   "followedId": 7,
+   "createdAt": "2026-09-09T19:21:46.72048+02:00"
+  },
+  {
+   "followerId": 12,
+   "followedId": 4,
+   "createdAt": "2026-09-09T19:21:46.732722+02:00"
+  },
+  {
+   "followerId": 13,
+   "followedId": 15,
+   "createdAt": "2026-09-09T19:21:46.775043+02:00"
+  },
+  {
+   "followerId": 13,
+   "followedId": 7,
+   "createdAt": "2026-09-09T19:21:46.790053+02:00"
+  },
+  {
+   "followerId": 13,
+   "followedId": 3,
+   "createdAt": "2026-09-09T19:21:46.803968+02:00"
+  },
+  {
+   "followerId": 13,
+   "followedId": 2,
+   "createdAt": "2026-09-09T19:21:46.818979+02:00"
+  },
+  {
+   "followerId": 14,
+   "followedId": 15,
+   "createdAt": "2026-09-09T19:21:46.833355+02:00"
+  },
+  {
+   "followerId": 14,
+   "followedId": 12,
+   "createdAt": "2026-09-09T19:21:46.846971+02:00"
+  },
+  {
+   "followerId": 14,
+   "followedId": 2,
+   "createdAt": "2026-09-09T19:21:46.858349+02:00"
+  },
+  {
+   "followerId": 14,
+   "followedId": 13,
+   "createdAt": "2026-09-09T19:21:46.871166+02:00"
+  },
+  {
+   "followerId": 14,
+   "followedId": 1,
+   "createdAt": "2026-09-09T19:21:46.885437+02:00"
+  },
+  {
+   "followerId": 15,
+   "followedId": 6,
+   "createdAt": "2026-09-09T19:21:46.901117+02:00"
+  },
+  {
+   "followerId": 15,
+   "followedId": 11,
+   "createdAt": "2026-09-09T19:21:46.914324+02:00"
+  },
+  {
+   "followerId": 15,
+   "followedId": 9,
+   "createdAt": "2026-09-09T19:21:46.930146+02:00"
+  },
+  {
+   "followerId": 15,
+   "followedId": 3,
+   "createdAt": "2026-09-09T19:21:46.944873+02:00"
+  },
+  {
+   "followerId": 15,
+   "followedId": 5,
+   "createdAt": "2026-09-09T19:21:46.95966+02:00"
+  }
+ ],
+ "likes": [
+  {
+   "userId": 12,
+   "userGameId": 2
+  },
+  {
+   "userId": 8,
+   "userGameId": 3
+  },
+  {
+   "userId": 5,
+   "userGameId": 4
+  },
+  {
+   "userId": 11,
+   "userGameId": 4
+  },
+  {
+   "userId": 2,
+   "userGameId": 5
+  },
+  {
+   "userId": 7,
+   "userGameId": 5
+  },
+  {
+   "userId": 11,
+   "userGameId": 5
+  },
+  {
+   "userId": 13,
+   "userGameId": 6
+  },
+  {
+   "userId": 5,
+   "userGameId": 7
+  },
+  {
+   "userId": 5,
+   "userGameId": 8
+  },
+  {
+   "userId": 8,
+   "userGameId": 8
+  },
+  {
+   "userId": 8,
+   "userGameId": 9
+  },
+  {
+   "userId": 4,
+   "userGameId": 16
+  },
+  {
+   "userId": 13,
+   "userGameId": 16
+  },
+  {
+   "userId": 15,
+   "userGameId": 16
+  },
+  {
+   "userId": 3,
+   "userGameId": 19
+  },
+  {
+   "userId": 7,
+   "userGameId": 19
+  },
+  {
+   "userId": 10,
+   "userGameId": 19
+  },
+  {
+   "userId": 12,
+   "userGameId": 23
+  },
+  {
+   "userId": 6,
+   "userGameId": 25
+  },
+  {
+   "userId": 10,
+   "userGameId": 25
+  },
+  {
+   "userId": 14,
+   "userGameId": 26
+  },
+  {
+   "userId": 14,
+   "userGameId": 27
+  },
+  {
+   "userId": 15,
+   "userGameId": 28
+  },
+  {
+   "userId": 5,
+   "userGameId": 29
+  },
+  {
+   "userId": 1,
+   "userGameId": 31
+  },
+  {
+   "userId": 14,
+   "userGameId": 31
+  },
+  {
+   "userId": 7,
+   "userGameId": 33
+  },
+  {
+   "userId": 6,
+   "userGameId": 35
+  },
+  {
+   "userId": 15,
+   "userGameId": 35
+  },
+  {
+   "userId": 14,
+   "userGameId": 39
+  },
+  {
+   "userId": 12,
+   "userGameId": 41
+  },
+  {
+   "userId": 9,
+   "userGameId": 43
+  },
+  {
+   "userId": 2,
+   "userGameId": 44
+  },
+  {
+   "userId": 14,
+   "userGameId": 44
+  },
+  {
+   "userId": 12,
+   "userGameId": 46
+  },
+  {
+   "userId": 8,
+   "userGameId": 47
+  },
+  {
+   "userId": 7,
+   "userGameId": 49
+  },
+  {
+   "userId": 11,
+   "userGameId": 49
+  },
+  {
+   "userId": 12,
+   "userGameId": 49
+  },
+  {
+   "userId": 10,
+   "userGameId": 51
+  },
+  {
+   "userId": 15,
+   "userGameId": 51
+  },
+  {
+   "userId": 9,
+   "userGameId": 53
+  },
+  {
+   "userId": 15,
+   "userGameId": 53
+  },
+  {
+   "userId": 8,
+   "userGameId": 54
+  },
+  {
+   "userId": 12,
+   "userGameId": 57
+  },
+  {
+   "userId": 12,
+   "userGameId": 59
+  },
+  {
+   "userId": 12,
+   "userGameId": 60
+  },
+  {
+   "userId": 8,
+   "userGameId": 62
+  },
+  {
+   "userId": 13,
+   "userGameId": 62
+  },
+  {
+   "userId": 4,
+   "userGameId": 63
+  },
+  {
+   "userId": 5,
+   "userGameId": 63
+  },
+  {
+   "userId": 8,
+   "userGameId": 63
+  },
+  {
+   "userId": 13,
+   "userGameId": 63
+  },
+  {
+   "userId": 6,
+   "userGameId": 66
+  },
+  {
+   "userId": 8,
+   "userGameId": 66
+  },
+  {
+   "userId": 5,
+   "userGameId": 67
+  },
+  {
+   "userId": 12,
+   "userGameId": 67
+  },
+  {
+   "userId": 14,
+   "userGameId": 68
+  },
+  {
+   "userId": 8,
+   "userGameId": 69
+  },
+  {
+   "userId": 14,
+   "userGameId": 69
+  },
+  {
+   "userId": 5,
+   "userGameId": 70
+  },
+  {
+   "userId": 1,
+   "userGameId": 71
+  },
+  {
+   "userId": 9,
+   "userGameId": 72
+  },
+  {
+   "userId": 12,
+   "userGameId": 73
+  },
+  {
+   "userId": 1,
+   "userGameId": 74
+  },
+  {
+   "userId": 1,
+   "userGameId": 76
+  },
+  {
+   "userId": 2,
+   "userGameId": 77
+  },
+  {
+   "userId": 14,
+   "userGameId": 77
+  },
+  {
+   "userId": 2,
+   "userGameId": 78
+  },
+  {
+   "userId": 4,
+   "userGameId": 78
+  },
+  {
+   "userId": 13,
+   "userGameId": 78
+  },
+  {
+   "userId": 14,
+   "userGameId": 78
+  },
+  {
+   "userId": 9,
+   "userGameId": 79
+  },
+  {
+   "userId": 6,
+   "userGameId": 82
+  },
+  {
+   "userId": 10,
+   "userGameId": 82
+  },
+  {
+   "userId": 5,
+   "userGameId": 83
+  },
+  {
+   "userId": 4,
+   "userGameId": 84
+  },
+  {
+   "userId": 6,
+   "userGameId": 85
+  },
+  {
+   "userId": 4,
+   "userGameId": 90
+  },
+  {
+   "userId": 2,
+   "userGameId": 91
+  },
+  {
+   "userId": 9,
+   "userGameId": 91
+  },
+  {
+   "userId": 2,
+   "userGameId": 92
+  },
+  {
+   "userId": 15,
+   "userGameId": 93
+  },
+  {
+   "userId": 1,
+   "userGameId": 94
+  },
+  {
+   "userId": 13,
+   "userGameId": 94
+  },
+  {
+   "userId": 12,
+   "userGameId": 95
+  },
+  {
+   "userId": 14,
+   "userGameId": 96
+  },
+  {
+   "userId": 15,
+   "userGameId": 96
+  },
+  {
+   "userId": 8,
+   "userGameId": 97
+  },
+  {
+   "userId": 12,
+   "userGameId": 97
+  },
+  {
+   "userId": 13,
+   "userGameId": 97
+  },
+  {
+   "userId": 8,
+   "userGameId": 98
+  },
+  {
+   "userId": 15,
+   "userGameId": 98
+  },
+  {
+   "userId": 15,
+   "userGameId": 100
+  },
+  {
+   "userId": 12,
+   "userGameId": 101
+  },
+  {
+   "userId": 12,
+   "userGameId": 102
+  },
+  {
+   "userId": 9,
+   "userGameId": 104
+  },
+  {
+   "userId": 15,
+   "userGameId": 104
+  },
+  {
+   "userId": 9,
+   "userGameId": 105
+  },
+  {
+   "userId": 1,
+   "userGameId": 106
+  },
+  {
+   "userId": 7,
+   "userGameId": 106
+  },
+  {
+   "userId": 7,
+   "userGameId": 107
+  },
+  {
+   "userId": 2,
+   "userGameId": 108
+  },
+  {
+   "userId": 14,
+   "userGameId": 108
+  },
+  {
+   "userId": 14,
+   "userGameId": 109
+  },
+  {
+   "userId": 5,
+   "userGameId": 110
+  },
+  {
+   "userId": 14,
+   "userGameId": 110
+  },
+  {
+   "userId": 11,
+   "userGameId": 111
+  },
+  {
+   "userId": 7,
+   "userGameId": 112
+  },
+  {
+   "userId": 8,
+   "userGameId": 114
+  },
+  {
+   "userId": 4,
+   "userGameId": 116
+  },
+  {
+   "userId": 4,
+   "userGameId": 118
+  },
+  {
+   "userId": 4,
+   "userGameId": 119
+  },
+  {
+   "userId": 13,
+   "userGameId": 119
+  },
+  {
+   "userId": 7,
+   "userGameId": 120
+  },
+  {
+   "userId": 10,
+   "userGameId": 120
+  },
+  {
+   "userId": 13,
+   "userGameId": 120
+  },
+  {
+   "userId": 2,
+   "userGameId": 123
+  },
+  {
+   "userId": 6,
+   "userGameId": 123
+  },
+  {
+   "userId": 8,
+   "userGameId": 123
+  },
+  {
+   "userId": 6,
+   "userGameId": 125
+  },
+  {
+   "userId": 3,
+   "userGameId": 126
+  },
+  {
+   "userId": 15,
+   "userGameId": 126
+  },
+  {
+   "userId": 4,
+   "userGameId": 128
+  },
+  {
+   "userId": 6,
+   "userGameId": 129
+  },
+  {
+   "userId": 4,
+   "userGameId": 131
+  },
+  {
+   "userId": 8,
+   "userGameId": 131
+  },
+  {
+   "userId": 3,
+   "userGameId": 132
+  },
+  {
+   "userId": 3,
+   "userGameId": 134
+  },
+  {
+   "userId": 7,
+   "userGameId": 135
+  },
+  {
+   "userId": 11,
+   "userGameId": 135
+  },
+  {
+   "userId": 7,
+   "userGameId": 137
+  },
+  {
+   "userId": 3,
+   "userGameId": 138
+  },
+  {
+   "userId": 15,
+   "userGameId": 138
+  },
+  {
+   "userId": 6,
+   "userGameId": 141
+  },
+  {
+   "userId": 14,
+   "userGameId": 143
+  },
+  {
+   "userId": 5,
+   "userGameId": 146
+  },
+  {
+   "userId": 1,
+   "userGameId": 147
+  },
+  {
+   "userId": 2,
+   "userGameId": 148
+  },
+  {
+   "userId": 6,
+   "userGameId": 150
+  }
+ ],
+ "notifications": [
+  {
+   "recipientId": 12,
+   "actorId": 1,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:45.855905+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 1,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:45.92417+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 1,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:45.942621+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 1,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:45.954733+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 1,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:45.969735+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 1,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:45.983694+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 2,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:45.998893+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 2,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.013223+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 2,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.025276+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 2,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.039082+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 3,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.051737+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 3,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:46.063799+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 3,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.078734+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 3,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.09564+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 3,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.111558+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 3,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.127923+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 4,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.146481+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 4,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.163576+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 4,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.179899+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 4,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.196071+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 5,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.211893+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 5,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.225232+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 5,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.237452+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 5,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:46.248176+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 6,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.260181+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 6,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.273731+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 6,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.286722+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 6,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.300482+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 7,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.313367+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 7,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.328465+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 7,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:46.344253+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 7,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.360094+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 7,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.374859+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 8,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.412577+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 8,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.427679+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 8,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.448288+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 8,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.465663+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 8,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.486974+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 9,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.503809+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 9,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.515941+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 9,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:46.529101+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 10,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.542589+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 10,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.554331+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 10,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.570867+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 10,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:46.590535+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 11,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.609693+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 11,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.631629+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 11,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.649538+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 11,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.665239+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 12,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.677196+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 12,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.687352+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 12,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.699491+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 12,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:46.712689+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 12,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.7231+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 12,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.737163+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 13,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.778442+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 13,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.792956+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 13,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.807141+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 13,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.822191+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 14,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.836674+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 14,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.849413+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 14,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.8608+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 14,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.874432+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 14,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:46.887746+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 15,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.904485+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 15,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.918234+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 15,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.933857+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 15,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.948417+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 15,
+   "type": "Follow",
+   "userGameId": null,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:46.964087+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 1,
+   "type": "Like",
+   "userGameId": 71,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.064787+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 1,
+   "type": "Like",
+   "userGameId": 76,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.100909+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 1,
+   "type": "Like",
+   "userGameId": 147,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.124144+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 1,
+   "type": "Like",
+   "userGameId": 74,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.147556+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 1,
+   "type": "Like",
+   "userGameId": 106,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.170955+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 1,
+   "type": "Like",
+   "userGameId": 31,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.195864+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 1,
+   "type": "Like",
+   "userGameId": 94,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.220244+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 123,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.243764+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 5,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:47.268564+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 91,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.291597+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 78,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.30919+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 148,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.329406+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 92,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.351882+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 77,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.368633+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 108,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.38822+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 2,
+   "type": "Like",
+   "userGameId": 44,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.403755+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 3,
+   "type": "Like",
+   "userGameId": 138,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.419316+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 3,
+   "type": "Like",
+   "userGameId": 19,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.439284+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 3,
+   "type": "Like",
+   "userGameId": 132,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.463668+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 3,
+   "type": "Like",
+   "userGameId": 126,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.482793+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 3,
+   "type": "Like",
+   "userGameId": 134,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.501994+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 128,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.520975+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 84,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.537352+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 118,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.553941+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 131,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.56936+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 63,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.586181+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 119,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.601846+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 78,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.619822+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 116,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.641441+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 16,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.662339+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 4,
+   "type": "Like",
+   "userGameId": 90,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.684349+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 8,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:47.698467+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 29,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.716992+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 110,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.733895+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 4,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:47.750618+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 63,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.769208+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 70,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.789108+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 67,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.806936+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 83,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.827913+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 146,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.846597+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 5,
+   "type": "Like",
+   "userGameId": 7,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:47.866822+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 85,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.889392+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 150,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.911985+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 141,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.949125+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 123,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.971813+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 35,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:47.99183+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 129,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.011225+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 25,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.029164+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 82,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.045863+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 66,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.061139+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 6,
+   "type": "Like",
+   "userGameId": 125,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.082205+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 137,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.098088+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 112,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.115932+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 5,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:48.135633+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 33,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.158473+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 107,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.186864+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 19,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.207305+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 135,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.225616+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 120,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.24564+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 49,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.262066+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 7,
+   "type": "Like",
+   "userGameId": 106,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.282235+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 131,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.298357+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 8,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:48.312943+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 62,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.329178+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 3,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:48.345614+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 63,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.364997+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 54,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.385941+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 9,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:48.407644+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 114,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.431674+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 97,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.454102+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 98,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.467397+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 123,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.484618+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 47,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.506586+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 66,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.525359+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 8,
+   "type": "Like",
+   "userGameId": 69,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.543715+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 9,
+   "type": "Like",
+   "userGameId": 105,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.562467+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 9,
+   "type": "Like",
+   "userGameId": 91,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.582315+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 9,
+   "type": "Like",
+   "userGameId": 79,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.601051+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 9,
+   "type": "Like",
+   "userGameId": 43,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.622003+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 9,
+   "type": "Like",
+   "userGameId": 72,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.64064+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 9,
+   "type": "Like",
+   "userGameId": 53,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.662004+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 9,
+   "type": "Like",
+   "userGameId": 104,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.680939+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 10,
+   "type": "Like",
+   "userGameId": 120,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.70061+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 10,
+   "type": "Like",
+   "userGameId": 51,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.717229+02:00"
+  },
+  {
+   "recipientId": 9,
+   "actorId": 10,
+   "type": "Like",
+   "userGameId": 82,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.733391+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 10,
+   "type": "Like",
+   "userGameId": 25,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.75037+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 10,
+   "type": "Like",
+   "userGameId": 19,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.766816+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 11,
+   "type": "Like",
+   "userGameId": 111,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.791588+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 11,
+   "type": "Like",
+   "userGameId": 4,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:48.807237+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 11,
+   "type": "Like",
+   "userGameId": 49,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.825782+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 11,
+   "type": "Like",
+   "userGameId": 5,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:48.842183+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 11,
+   "type": "Like",
+   "userGameId": 135,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.857144+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 97,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.869246+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 23,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.881843+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 59,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.891772+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 73,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.932943+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 67,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.948414+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 60,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.962652+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 95,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.974745+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 57,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.986401+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 102,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:48.997728+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 2,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:49.006936+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 101,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.019684+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 49,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.029735+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 41,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.040428+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 12,
+   "type": "Like",
+   "userGameId": 46,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.052796+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 62,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.063845+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 97,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.074355+02:00"
+  },
+  {
+   "recipientId": 1,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 6,
+   "isRead": true,
+   "createdAt": "2026-09-09T19:21:49.085167+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 120,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.096424+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 16,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.106899+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 78,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.121747+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 63,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.140023+02:00"
+  },
+  {
+   "recipientId": 12,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 119,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.161085+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 13,
+   "type": "Like",
+   "userGameId": 94,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.180276+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 69,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.205638+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 78,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.225854+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 39,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.245726+02:00"
+  },
+  {
+   "recipientId": 8,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 77,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.26275+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 109,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.281373+02:00"
+  },
+  {
+   "recipientId": 5,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 44,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.30005+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 31,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.31948+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 27,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.339811+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 96,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.358548+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 108,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.379623+02:00"
+  },
+  {
+   "recipientId": 7,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 68,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.400326+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 110,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.41996+02:00"
+  },
+  {
+   "recipientId": 15,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 143,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.439819+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 14,
+   "type": "Like",
+   "userGameId": 26,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.460667+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 53,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.48296+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 93,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.50432+02:00"
+  },
+  {
+   "recipientId": 3,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 28,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.523016+02:00"
+  },
+  {
+   "recipientId": 2,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 16,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.540186+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 98,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.556267+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 96,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.573768+02:00"
+  },
+  {
+   "recipientId": 14,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 138,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.592194+02:00"
+  },
+  {
+   "recipientId": 4,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 35,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.611803+02:00"
+  },
+  {
+   "recipientId": 13,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 126,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.62929+02:00"
+  },
+  {
+   "recipientId": 11,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 104,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.645723+02:00"
+  },
+  {
+   "recipientId": 10,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 100,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.664125+02:00"
+  },
+  {
+   "recipientId": 6,
+   "actorId": 15,
+   "type": "Like",
+   "userGameId": 51,
+   "isRead": false,
+   "createdAt": "2026-09-09T19:21:49.688324+02:00"
+  }
+ ]
+}

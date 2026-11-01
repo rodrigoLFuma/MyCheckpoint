@@ -101,6 +101,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 builder.Services.AddScoped<InitialSeeder>();
+builder.Services.AddScoped<DemoDataSeeder>();
 
 builder.Services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
 
@@ -130,6 +131,7 @@ using (var scope = app.Services.CreateScope())
     try
     {
         await scope.ServiceProvider.GetRequiredService<InitialSeeder>().SeedAsync();
+        await scope.ServiceProvider.GetRequiredService<DemoDataSeeder>().SeedAsync();
     }
     catch (Exception ex)
     {
